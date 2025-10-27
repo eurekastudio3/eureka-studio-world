@@ -1,1 +1,0 @@
-# eureka-studio-world
