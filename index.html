@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eureka Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="logo-dot">✦</span>
+      <span class="brand-text">Eureka Studio</span>
+    </div>
+    <nav class="main-nav">
+      <a href="#about">About</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="public/home-candles-hero.JPG" alt="Home candles" class="hero-img" />
+    <div class="hero-overlay">
+      <h1>Making candles is simple — and wonderful for everyone.</h1>
+      <p>High-quality craft scents, cozy colors and textures that turn moments into memories.</p>
+      <a class="btn grad" href="#works">View Works</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2>About</h2>
+    <p>Each piece is handmade in small batches; inspired by color, texture and light.</p>
+    <ul class="features">
+      <li>Handmade &amp; limited production</li>
+      <li>Carefully selected pigments &amp; essences</li>
+      <li>Custom design options</li>
+    </ul>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works" class="section">
+    <h2>Our Works</h2>
+    <div class="gallery-grid">
+
+      <article class="card">
+        <img src="public/evil-eye.jpg" alt="Evil Eye candle" />
+        <div class="card-body">
+          <h3>Evil Eye</h3>
+          <p>A protective symbol that brings calm and balance.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="public/summer-cocktail.JPG" alt="Summer Cocktail candle" />
+        <div class="card-body">
+          <h3>Summer Cocktail</h3>
+          <p>Layered colors that recall a breezy summer drink.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="public/choco-cream.JPG" alt="Choco Cream candle" />
+        <div class="card-body">
+          <h3>Choco Cream</h3>
+          <p>Sweet vibes, creamy textures, modern look.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="public/golden-noir.PNG" alt="Golden Noir candle" />
+        <div class="card-body">
+          <h3>Golden Noir</h3>
+          <p>Matte black body with elegant gold details.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="public/caramel-crumble.JPG" alt="Caramel Crumble candle" />
+        <div class="card-body">
+          <h3>Caramel Crumble</h3>
+          <p>Warm caramel notes and a delicious look.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="public/sunset-orange.JPG" alt="Sunset Orange candle" />
+        <div class="card-body">
+          <h3>Sunset Orange</h3>
+          <p>Citrus glow inspired by golden-hour skies.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>For questions and orders:</p>
+    <p class="links">
+      <a href="#" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="#" target="_blank" rel="noopener">Behance</a> ·
+      <a href="mailto:hello@example.com">Email</a>
+    </p>
+  </section>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Eureka Studio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
