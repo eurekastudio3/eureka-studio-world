@@ -1,74 +1,224 @@
-:root{
-  --bg:#F3F1EC;          /* açık bej/gri */
-  --ink:#1c1c1c;
-  --muted:#6f6f6f;
-  --card:#ffffff;
-  --radius:18px;
+/* ---------- GENERAL ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color:var(--ink);
-  background:var(--bg);
-  line-height:1.5;
+body {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background-color: #fffdfa;
+  color: #333;
+  line-height: 1.6;
 }
 
-/* Header */
-.site-header{
-  position:sticky; top:0; z-index:10;
-  display:flex; align-items:center; gap:16px;
-  padding:14px 20px; background:rgba(255,255,255,.8);
-  backdrop-filter:saturate(150%) blur(12px);
-  border-bottom:1px solid #e8e6e1;
+img {
+  max-width: 100%;
+  display: block;
 }
-.brand{display:flex; align-items:center; gap:10px; font-weight:700}
-.logo-dot{font-size:20px}
-.main-nav{display:flex; gap:18px; margin-left:auto}
-.main-nav a{color:var(--ink); text-decoration:none; font-weight:600}
-.main-nav a:hover{opacity:.7}
-.lang select{padding:6px 10px; border:1px solid #dad7d0; border-radius:10px; background:#fff}
-.visually-hidden{position:absolute!important; height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
 
-/* Hero */
-.hero{position:relative; overflow:hidden; border-bottom:1px solid #eceae6}
-.hero img{width:100%; display:block; height:min(70vh,780px); object-fit:cover}
-.hero-overlay{
-  position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;
-  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.25));
-  color:#fff;
+/* ---------- HEADER ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.hero-overlay h1{max-width:900px; font-size:clamp(22px,4vw,46px); margin:.1em 0}
-.hero-overlay p{max-width:780px; font-size:clamp(14px,2vw,18px); opacity:.95}
-.hero-ctas{margin-top:18px; display:flex; gap:12px}
-.btn{padding:12px 18px; border-radius:999px; font-weight:700; text-decoration:none; display:inline-block}
-.btn.grad{color:#fff; border:none; background:linear-gradient(90deg,#ef7d3c,#0a84ff)}
-.btn.ghost{color:#fff; border:1.5px solid rgba(255,255,255,.9); background:transparent}
 
-/* Sections */
-.section{max-width:1100px; margin:56px auto; padding:0 22px}
-.section h2{font-size:clamp(26px,4vw,38px); margin:0 0 8px}
-.section-intro, .features, .section p{color:var(--muted)}
-.features{padding-left:18px}
-
-/* Gallery grid */
-.gallery-grid{
-  display:grid; gap:22px; margin-top:22px;
-  grid-template-columns: repeat(2, 1fr);  /* telefonda 2'li */
+.brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #111;
 }
-@media (min-width:800px){
-  .gallery-grid{grid-template-columns: repeat(3, 1fr);}
+
+.logo-dot {
+  color: #d49a3a;
+  margin-right: 0.4rem;
 }
-.card{background:var(--card); border-radius:var(--radius); box-shadow:0 8px 24px rgba(0,0,0,.06)}
-.card img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--radius) var(--radius) 0 0}
-.card-body{padding:14px 16px}
-.card-body h3{margin:4px 0 6px}
-.card-body p{margin:0; color:var(--muted)}
 
-/* Contact */
-.links a{color:var(--ink); text-decoration:none; font-weight:700}
-.links a:hover{opacity:.7}
+.main-nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
 
-/* Footer */
-.site-footer{padding:28px 20px; text-align:center; color:var(--muted); border-top:1px solid #e8e6e1}
+.main-nav a:hover {
+  color: #d49a3a;
+}
+
+.lang select {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0.7);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  padding: 0 1rem;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  max-width: 700px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-buttons .btn,
+.hero-buttons .btn-outline {
+  padding: 0.7rem 1.4rem;
+  margin: 0.3rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn {
+  background-color: #d49a3a;
+  color: white;
+  border: none;
+}
+
+.btn-outline {
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+}
+
+.btn:hover,
+.btn-outline:hover {
+  opacity: 0.8;
+}
+
+/* ---------- SECTIONS ---------- */
+.section {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+  text-align: center;
+}
+
+.section p {
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 2rem;
+}
+
+/* ---------- GALLERY ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin: 0.8rem 0 0.3rem;
+  text-align: center;
+}
+
+.card p {
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 0 1rem 1.2rem;
+}
+
+/* ---------- CONTACT ---------- */
+#contact a {
+  color: #d49a3a;
+  text-decoration: none;
+  margin: 0 0.3rem;
+}
+
+#contact a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+  background-color: #111;
+  color: #eee;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+  }
+}
