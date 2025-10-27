@@ -4,7 +4,45 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Eureka Studio</title>
-  <link rel="stylesheet" href="./styles.css?v=10">
+
+  <!-- CSS GÖMÜLÜ (tek dosya çözüm) -->
+  <style>
+    /* Genel */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#faf7f2;color:#222;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:#111;text-decoration:none} a:hover{text-decoration:underline}
+
+    /* Üst Menü */
+    .site-header{position:sticky;top:0;z-index:10;display:flex;gap:14px;align-items:center;justify-content:space-between;
+      padding:12px 16px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid #eee}
+    .brand{display:flex;gap:8px;align-items:center;font-weight:700}
+    .logo-dot{font-size:18px}
+    .brand-text{font-size:18px}
+    .main-nav a{margin-left:12px;font-weight:600}
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero-img{width:100%;height:auto;display:block}
+    .hero-overlay{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.88);padding:14px;border-radius:10px}
+    .hero-overlay h1{margin:0 0 8px;font-size:clamp(20px,4.6vw,32px);line-height:1.2}
+    .hero-overlay p{margin:0 0 10px;font-size:clamp(13px,3.4vw,16px)}
+    .btn{display:inline-block;padding:8px 12px;border:1px solid #222;border-radius:6px;font-weight:600}
+
+    /* Bölümler */
+    .section{padding:24px 14px}
+    .section h2{margin:0 0 12px;font-size:22px}
+
+    /* Kart/Galeri */
+    .gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(min-width:720px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+    .card{border:1px solid #eee;border-radius:10px;background:#fff;overflow:hidden}
+    .card img{width:100%;height:auto;display:block}
+    .card h3{margin:10px 12px 6px;font-size:16px}
+    .card p{margin:0 12px 14px;font-size:14px;color:#555}
+
+    /* Altbilgi */
+    .site-footer{padding:28px 14px 40px;text-align:center;color:#666;border-top:1px solid #eee;font-size:14px}
+  </style>
 </head>
 
 <body>
@@ -20,8 +58,10 @@
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <img src="./home-candles-hero.JPG" alt="Home candles" class="hero-img" />
+    <!-- Repo KÖKÜNDEKİ dosya adları birebir (büyük/küçük harf dahil) -->
+    <img src="home-candles-hero.JPG" alt="Home candles" class="hero-img" />
     <div class="hero-overlay">
       <h1>Making candles is simple — and wonderful for everyone.</h1>
       <p>High-quality craft scents, cozy colors and textures that turn moments into memories.</p>
@@ -29,47 +69,55 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about" class="section">
     <h2>About</h2>
     <p>Each piece is handmade in small batches, inspired by color, texture and light.</p>
   </section>
 
+  <!-- WORKS -->
   <section id="works" class="section">
     <h2>Our Works</h2>
     <div class="gallery-grid">
       <article class="card">
-        <img src="./evil-eye.jpg.jpg" alt="Evil Eye candle" />
+        <img loading="lazy" src="evil-eye.jpg.jpg" alt="Evil Eye" />
         <h3>Evil Eye</h3>
         <p>A protective symbol that brings calm and balance.</p>
       </article>
+
       <article class="card">
-        <img src="./summer-cocktail.JPG" alt="Summer Cocktail candle" />
+        <img loading="lazy" src="summer-cocktail.JPG" alt="Summer Cocktail" />
         <h3>Summer Cocktail</h3>
         <p>Layered colors that recall a breezy summer drink.</p>
       </article>
+
       <article class="card">
-        <img src="./choco-cream.JPG" alt="Choco Cream candle" />
+        <img loading="lazy" src="choco-cream.JPG" alt="Choco Cream" />
         <h3>Choco Cream</h3>
         <p>Sweet vibes, creamy textures, modern look.</p>
       </article>
+
       <article class="card">
-        <img src="./golden-noir.PNG" alt="Golden Noir candle" />
+        <img loading="lazy" src="golden-noir.PNG" alt="Golden Noir" />
         <h3>Golden Noir</h3>
         <p>Matte black body with elegant gold details.</p>
       </article>
+
       <article class="card">
-        <img src="./caramel-crumble.JPG" alt="Caramel Crumble candle" />
+        <img loading="lazy" src="caramel-crumble.JPG" alt="Caramel Crumble" />
         <h3>Caramel Crumble</h3>
         <p>Warm caramel notes and a delicious look.</p>
       </article>
+
       <article class="card">
-        <img src="./sunset-orange.JPG" alt="Sunset Orange candle" />
+        <img loading="lazy" src="sunset-orange.JPG" alt="Sunset Orange" />
         <h3>Sunset Orange</h3>
         <p>Citrus glow inspired by golden-hour skies.</p>
       </article>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact" class="section">
     <h2>Contact</h2>
     <p>For questions and orders:</p>
