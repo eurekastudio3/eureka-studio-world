@@ -1,1 +1,57 @@
+/* styles.css */
+*{box-sizing:border-box}
+:root{
+  --bg:#faf7f2; --ink:#222; --muted:#6b6b6b; --card:#ffffff; --line:#e9e3db;
+}
+html,body{margin:0;padding:0}
+body{
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji',sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.5;
+}
 
+/* Header */
+.site-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:14px 18px; border-bottom:1px solid var(--line); background:#fff;
+  position:sticky; top:0; z-index:10;
+}
+.brand{display:flex; align-items:center; gap:10px; font-weight:600}
+.logo-dot{font-size:18px}
+.main-nav a{margin-left:14px; text-decoration:none; color:var(--ink)}
+.main-nav a:hover{opacity:.7}
+
+/* Hero */
+.hero{position:relative; max-width:1100px; margin:16px auto; overflow:hidden; border-radius:12px; background:#ddd}
+.hero-img{display:block; width:100%; height:auto}
+.hero-overlay{
+  position:absolute; inset:auto 0 0 0; padding:16px; background:linear-gradient( to top, rgba(0,0,0,.55), rgba(0,0,0,0) 60%);
+  color:#fff;
+}
+.hero-overlay h1{margin:0 0 6px; font-size:22px}
+.hero-overlay p{margin:0 0 10px; color:#f0f0f0}
+.btn{display:inline-block; padding:8px 14px; border-radius:8px; background:#fff; color:#111; text-decoration:none; font-weight:600}
+
+/* Sections */
+.section{max-width:1100px; margin:32px auto; padding:0 16px}
+.section h2{margin:0 0 12px}
+.section p{color:var(--muted)}
+
+/* Gallery */
+.gallery-grid{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:16px; margin-top:14px;
+}
+.card{background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden}
+.card img{display:block; width:100%; height:auto}
+.card h3{margin:10px 12px 14px}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--line); padding:18px; text-align:center; color:var(--muted)}
+
+/* Mobile */
+@media (max-width: 760px){
+  .gallery-grid{grid-template-columns:1fr}
+  .hero-overlay h1{font-size:18px}
+}
