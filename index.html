@@ -467,6 +467,15 @@ document.addEventListener("click", e=>{
 /* -------------------- INIT -------------------- */
 applyI18N();
 renderCards();
+<script>
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".btn");
+  if (btn && btn.dataset.open === undefined) {
+    e.preventDefault();
+    const card = btn.closest(".card");
+    card.classList.toggle("show-details");
+  }
+});
 </script>
 </body>
 </html>
