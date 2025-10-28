@@ -1,116 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eureka Studio</title>
   <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
   <style>
-    :root {
-      --bg: #f7f4ef;
-      --text: #1b1b1b;
-      --accent: #d9cdb8;
-      --dark: #2a2a2a;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Poppins", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f5f0;
+      color: #2b2b2b;
     }
+
     header {
-      background: var(--dark);
-      color: var(--accent);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 20px 40px;
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
     }
-    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; }
-    .lang {
-      color: var(--accent);
+
+    .logo {
+      font-size: 1.5em;
       font-weight: 600;
+      color: #3b2f2f;
     }
-    .lang span { margin: 0 0.3rem; cursor: pointer; }
-    .lang span:hover { text-decoration: underline; }
-    main {
-      max-width: 700px;
-      margin: 4rem auto;
+
+    .lang {
+      font-size: 0.9em;
+      color: #3b2f2f;
+    }
+
+    .lang span {
+      cursor: pointer;
+      margin: 0 5px;
+      font-weight: 500;
+    }
+
+    .lang span:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 100px 20px;
       text-align: center;
     }
-    main h2 { font-size: 2rem; margin-bottom: 1rem; }
-    main p { font-size: 1.1rem; margin-bottom: 2rem; }
-    a.btn {
-      display: inline-block;
-      background: var(--dark);
-      color: var(--accent);
-      padding: 0.8rem 1.6rem;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.3s;
+
+    .hero img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 30px;
     }
-    a.btn:hover { background: #3a3a3a; }
+
+    .hero h1 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      color: #3b2f2f;
+    }
+
+    .hero p {
+      font-size: 1.1em;
+      color: #5a5a5a;
+    }
+
     footer {
       text-align: center;
-      padding: 2rem;
-      color: var(--dark);
-      font-size: 0.9rem;
-      border-top: 1px solid #ddd;
+      padding: 30px;
+      font-size: 0.9em;
+      color: #666;
+      border-top: 1px solid #eee;
+      margin-top: 40px;
     }
-    /* Smooth fade for language change */
+
     .fade { opacity: 0; transition: opacity 0.4s ease-in-out; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Eureka Studio</h1>
-    <div class="lang">🌐 <span data-lang="en">EN</span> | <span data-lang="he">HE</span> | <span data-lang="tr">TR</span></div>
+    <div class="logo">Eureka Studio</div>
+    <div class="lang">🌐 <span data-lang="en">EN</span> | <span data-lang="tr">TR</span> | <span data-lang="he">HE</span></div>
   </header>
 
-  <main id="content">
-    <h2>Modern. Minimal. Global.</h2>
+  <section class="hero" id="content">
+    <img src="https://cdn.pixabay.com/photo/2017/08/06/21/33/candles-2598030_1280.jpg" alt="Candles">
+    <h1>Home Candles</h1>
     <p>Luxury handcrafted candles and resin art.</p>
-    <a href="#contact" class="btn">Contact</a>
-  </main>
+  </section>
 
-  <footer>
-    <p>© Eureka Studio | All rights reserved.</p>
-  </footer>
+  <footer>© Eureka Studio | All rights reserved.</footer>
 
   <script>
     const texts = {
-      en: {
-        title: "Modern. Minimal. Global.",
-        desc: "Luxury handcrafted candles and resin art.",
-        btn: "Contact"
-      },
-      tr: {
-        title: "Modern. Minimal. Küresel.",
-        desc: "Lüks el yapımı mumlar ve epoksi sanat eserleri.",
-        btn: "İletişime Geç"
-      },
-      he: {
-        title: "מודרני. מינימלי. גלובלי.",
-        desc: "נרות בעבודת יד ואמנות שרף באיכות גבוהה.",
-        btn: "צור קשר"
-      }
+      en: { title: "Home Candles", desc: "Luxury handcrafted candles and resin art." },
+      tr: { title: "Ev Mumları", desc: "Lüks el yapımı mumlar ve epoksi sanat eserleri." },
+      he: { title: "נרות לבית", desc: "נרות בעבודת יד ואמנות שרף באיכות גבוהה." }
     };
 
     const content = document.getElementById("content");
+    const title = content.querySelector("h1");
+    const desc = content.querySelector("p");
+
     document.querySelectorAll(".lang span").forEach(span => {
       span.addEventListener("click", () => {
         const lang = span.getAttribute("data-lang");
         const data = texts[lang];
         content.classList.add("fade");
         setTimeout(() => {
-          content.innerHTML = `
-            <h2>${data.title}</h2>
-            <p>${data.desc}</p>
-            <a href="#contact" class="btn">${data.btn}</a>
-          `;
+          title.textContent = data.title;
+          desc.textContent = data.desc;
           content.classList.remove("fade");
-        }, 400);
+        }, 300);
       });
     });
   </script>
