@@ -401,26 +401,28 @@ const $ = sel => document.querySelector(sel);
 const cardsEl = $("#cards");
 
 function renderCards(){
+  const cardsEl = document.querySelector("#cards");
+  if(!cardsEl) return;
   cardsEl.innerHTML = "";
+
   PRODUCTS.forEach((p) => {
     const t = p.t[currentLang];
     const card = document.createElement("article");
     card.className = "card";
     card.innerHTML = `
-  <div class="top"><img src="${p.img}" alt="${t.title}"></div>
-  <div class="body">
-    <div class="title">${t.title}</div>
-    <p class="desc">${t.desc}</p>
-    <div class="extra" style="display:none;">
-      <div class="chips">
-        ${t.facts.slice(0,2).map(f => `
-          <div class="chip"><strong>${f.k}</strong>${f.v}</div>
-        `).join("")}
+      <div class="top">
+        <img src="${p.img}" alt="${t.title}">
       </div>
-    </div>
-    <a href="#" class="btn">${I18N[currentLang].detail}</a>
-  </div>
-`;
+      <div class="body">
+        <div class="title">${t.title}</div>
+        <p class="desc">${t.desc}</p>
+        <div class="chips">
+          ${t.facts.slice(0,2).map(f => `
+            <div class="chip"><strong>${f.k}</strong>${f.v}</div>
+          `).join("")}
+        </div>
+        <a href="#" class="btn" data-open="${p.key}">${I18N[currentLang].detail}</a>
+      </div>
     `;
     cardsEl.appendChild(card);
   });
