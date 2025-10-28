@@ -1,287 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eureka Studio</title>
-  <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
-  <style>
-    :root {
-      --bg: #f7f4ef;
-      --text: #1b1b1b;
-      --accent: #d9cdb8;
-      --dark: #2a2a2a;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Poppins", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: all 0.3s ease-in-out;
-    }
-    header {
-      background: var(--dark);
-      color: var(--accent);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; }
-    .lang { color: var(--accent); font-weight: 600; }
-    .lang span { margin: 0 0.3rem; cursor: pointer; }
-    .lang span:hover { text-decoration: underline; }
-
-    main {
-      max-width: 900px;
-      margin: 4rem auto;
-      text-align: center;
-    }
-
-    .collection {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .candle {
-      background: white;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-    }
-    .candle:hover { transform: translateY(-5px); }
-    .candle img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .candle h3 {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      color: var(--dark);
-    }
-    .candle p {
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--dark);
-      font-size: 0.9rem;
-      border-top: 1px solid #ddd;
-      margin-top: 3rem;
-    }
-    .signature {
-      margin-top: 0.5rem;
-      font-style: italic;
-      color: #777;
-    }
-    .fade { opacity: 0; transition: opacity 0.4s ease-in-out; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eureka Studio</title>
+<meta name="description" content="Eureka Studio — luxury handcrafted candles and resin art."/>
+<style>
+  :root{
+    --bg:#f6f1e9; --paper:#fff; --ink:#262626; --muted:#6b6b6b;
+    --brand:#0e1116; --chip:#efe8db; --ring:rgba(0,0,0,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  header{position:sticky;top:0;background:var(--brand);color:#e8dcc6;z-index:10}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;letter-spacing:.3px;font-size:22px}
+  .menu{display:flex;gap:20px;align-items:center}
+  .menu a{color:#e8dcc6;opacity:.9}
+  .menu a:hover{opacity:1}
+  .lang{display:flex;gap:10px;align-items:center}
+  .chip{display:inline-flex;gap:8px;align-items:center;background:var(--chip);color:#1d1d1d;padding:8px 12px;border-radius:999px;font-weight:600}
+  main{padding:32px 0 80px}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+  .hero img{width:100%;height:auto;border-radius:16px;box-shadow:0 8px 30px var(--ring);background:#ddd;object-fit:cover}
+  h1{font-size:44px;line-height:1.15;margin-bottom:14px}
+  .lead{font-size:18px;color:var(--muted)}
+  .section{margin-top:56px}
+  h2{font-size:32px;margin-bottom:18px;text-align:center}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  @media (min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+  .card{background:var(--paper);border-radius:16px;box-shadow:0 10px 30px var(--ring);overflow:hidden;display:flex;flex-direction:column}
+  .card img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#ddd}
+  .card-body{padding:16px}
+  .title{font-weight:800;font-size:20px;margin-bottom:6px}
+  .subtitle{color:var(--muted)}
+  .btn{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1f1f1f;color:#f3efe6;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  .btn:hover{filter:brightness(1.05)}
+  .contact{margin-top:56px;text-align:center}
+  footer{margin-top:56px;padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid #e6dfd2}
+  /* Modal */
+  .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.42);padding:16px}
+  .modal.open{display:grid}
+  .sheet{max-width:860px;width:100%;background:var(--paper);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.28)}
+  .sheet-grid{display:grid;grid-template-columns:1fr 1fr}
+  .sheet figure{margin:0}
+  .sheet img{width:100%;height:100%;object-fit:cover;background:#ddd}
+  .sheet-body{padding:20px 22px}
+  .sheet h3{font-size:26px;margin-bottom:6px}
+  .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 6px}
+  .meta div{background:#faf7f2;border:1px dashed #e6dfd2;border-radius:10px;padding:10px 12px}
+  .notes{color:var(--muted);margin-top:6px}
+  .x{position:absolute;top:14px;right:16px;background:#fff;border:0;border-radius:10px;padding:8px 10px;cursor:pointer;box-shadow:0 6px 20px var(--ring)}
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;gap:18px}
+    h1{font-size:32px}
+    .sheet-grid{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Eureka Studio</h1>
-    <div class="lang">🌐 <span data-lang="en">EN</span> | <span data-lang="he">HE</span> | <span data-lang="tr">TR</span></div>
-  </header>
+<header>
+  <div class="wrap nav">
+    <div class="logo">Eureka Studio</div>
+    <nav class="menu">
+      <a href="#about" data-i="nav_about">About</a>
+      <a href="#works" data-i="nav_works">Works</a>
+      <a href="#contact" data-i="nav_contact">Contact</a>
+      <div class="lang chip">
+        🌐 <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="tr">TR</a> | <a href="#" data-lang="he">HE</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <main id="content">
-    <h2>Signature Candle Collection</h2>
-    <div class="collection" id="candles"></div>
-  </main>
+<main class="wrap">
+  <!-- HERO -->
+  <section id="about" class="hero">
+    <div>
+      <h1 data-i="hero_title">Making candles is simple — and wonderful for everyone.</h1>
+      <p class="lead" data-i="hero_sub">High-quality craft scents, cozy colors and textures that turn moments into memories.</p>
+    </div>
+    <img src="home-candles-hero.JPG" alt="Home candles hero" loading="eager">
+  </section>
+
+  <!-- WORKS -->
+  <section id="works" class="section">
+    <h2 data-i="works_title">Our Works</h2>
+    <div class="grid">
+      <!-- 1 Evil Eye -->
+      <article class="card" data-key="evilEye">
+        <img src="evil-eye.jpg.jpg" alt="Evil Eye">
+        <div class="card-body">
+          <div class="title" data-i="evilEye_title">Evil Eye</div>
+          <div class="subtitle" data-i="evilEye_teaser">A protective symbol that brings calm and balance.</div>
+          <button class="btn" data-open data-i="btn_details">View details</button>
+        </div>
+      </article>
+
+      <!-- 2 Summer Cocktail -->
+      <article class="card" data-key="summerCocktail">
+        <img src="summer-cocktail.JPG" alt="Summer Cocktail">
+        <div class="card-body">
+          <div class="title" data-i="summerCocktail_title">Summer Cocktail</div>
+          <div class="subtitle" data-i="summerCocktail_teaser">Layered colors that recall a breezy summer drink.</div>
+          <button class="btn" data-open data-i="btn_details">View details</button>
+        </div>
+      </article>
+
+      <!-- 3 Choco Cream -->
+      <article class="card" data-key="chocoCream">
+        <img src="choco-cream.JPG" alt="Choco Cream">
+        <div class="card-body">
+          <div class="title" data-i="chocoCream_title">Choco Cream</div>
+          <div class="subtitle" data-i="chocoCream_teaser">Sweet vibes, creamy textures, modern look.</div>
+          <button class="btn" data-open data-i="btn_details">View details</button>
+        </div>
+      </article>
+
+      <!-- 4 Golden Noir -->
+      <article class="card" data-key="goldenNoir">
+        <img src="golden-noir.PNG" alt="Golden Noir">
+        <div class="card-body">
+          <div class="title" data-i="goldenNoir_title">Golden Noir</div>
+          <div class="subtitle" data-i="goldenNoir_teaser">Matte black body with elegant gold details.</div>
+          <button class="btn" data-open data-i="btn_details">View details</button>
+        </div>
+      </article>
+
+      <!-- 5 Caramel Crumble -->
+      <article class="card" data-key="caramelCrumble">
+        <img src="caramel-crumble.JPG" alt="Caramel Crumble">
+        <div class="card-body">
+          <div class="title" data-i="caramelCrumble_title">Caramel Crumble</div>
+          <div class="subtitle" data-i="caramelCrumble_teaser">Warm caramel notes and a delicious look.</div>
+          <button class="btn" data-open data-i="btn_details">View details</button>
+        </div>
+      </article>
+
+      <!-- 6 Sunset Orange -->
+      <article class="card" data-key="sunsetOrange">
+        <img src="sunset-orange.JPG" alt="Sunset Orange">
+        <div class="card-body">
+          <div class="title" data-i="sunsetOrange_title">Sunset Orange</div>
+          <div class="subtitle" data-i="sunsetOrange_teaser">Citrus glow inspired by golden-hour skies.</div>
+          <button class="btn" data-open data-i="btn_details">View details</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact section">
+    <h2 data-i="contact_title">Contact</h2>
+    <p data-i="contact_sub">For questions and orders:</p>
+    <p style="margin-top:8px">
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="#" title="Soon">Pinterest</a> ·
+      <a href="mailto:hello@eurekastudio.org">Email</a>
+    </p>
+  </section>
 
   <footer>
-    <p>© Eureka Studio | All rights reserved.</p>
-    <p class="signature">crafted with love 🍀</p>
+    <div>© 2025 Eureka Studio — All rights reserved.</div>
+    <div style="margin-top:6px">Crafted with love 🍀</div>
   </footer>
-    <script>
-    const texts = {
-      en: {
-        title: "Signature Candle Collection",
-        candles: [
-          {
-            name: "Evil Eye",
-            desc: "Symbol of protection and peace for your home.",
-            materials: "Natural soy wax, cotton wick, glass charm.",
-            scent: "Sea salt, lavender, amber.",
-            burn: "35–40 hours"
-          },
-          {
-            name: "Summer Cocktail",
-            desc: "Tropical freshness blended into your summer mood.",
-            materials: "Soy wax, natural oils.",
-            scent: "Mango, citrus, coconut.",
-            burn: "30 hours"
-          },
-          {
-            name: "Choco Cream",
-            desc: "Warm sweetness that melts hearts and senses.",
-            materials: "Premium soy wax, cocoa essence.",
-            scent: "Dark chocolate, vanilla, caramel.",
-            burn: "40 hours"
-          },
-          {
-            name: "Golden Noir",
-            desc: "Luxury and mystery in a flicker of gold.",
-            materials: "Soy wax, wooden wick, golden touch.",
-            scent: "Sandalwood, vanilla, musk.",
-            burn: "45 hours"
-          },
-          {
-            name: "Caramel Crumble",
-            desc: "A cozy dessert-like scent to embrace your space.",
-            materials: "Natural soy wax, caramel oil.",
-            scent: "Brown sugar, caramel, cream.",
-            burn: "38 hours"
-          },
-          {
-            name: "Sunset Orange",
-            desc: "A warm and vibrant scent inspired by golden skies.",
-            materials: "Soy wax, orange peel essence.",
-            scent: "Citrus, amber, honey.",
-            burn: "36 hours"
-          }
-        ]
+</main>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="sheet x-container">
+    <button class="x" aria-label="Close" id="close">✕</button>
+    <div class="sheet-grid">
+      <figure><img id="mImg" alt=""></figure>
+      <div class="sheet-body">
+        <h3 id="mTitle">Title</h3>
+        <p class="notes" id="mTeaser"></p>
+        <div class="meta">
+          <div><strong data-i="f_materials">Materials</strong><br><span id="mMaterials"></span></div>
+          <div><strong data-i="f_fragrance">Fragrance</strong><br><span id="mFragrance"></span></div>
+          <div><strong data-i="f_burn">Burn Time</strong><br><span id="mBurn"></span></div>
+          <div><strong data-i="f_weight">Weight</strong><br><span id="mWeight"></span></div>
+        </div>
+        <p class="notes" id="mNotes"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- i18n strings ---------- */
+const I18N = {
+  en:{
+    nav_about:"About", nav_works:"Works", nav_contact:"Contact",
+    hero_title:"Making candles is simple — and wonderful for everyone.",
+    hero_sub:"High-quality craft scents, cozy colors and textures that turn moments into memories.",
+    works_title:"Our Works", contact_title:"Contact", contact_sub:"For questions and orders:",
+    btn_details:"View details",
+    f_materials:"Materials", f_fragrance:"Fragrance", f_burn:"Burn Time", f_weight:"Weight",
+    items:{
+      evilEye:{
+        title:"Evil Eye",
+        teaser:"A protective symbol that brings calm and balance.",
+        materials:"100% soy wax, cotton wick, glass",
+        fragrance:"Sea salt • White musk",
+        burn:"30–35 h",
+        weight:"~220 g",
+        notes:"Hand-poured in small batches."
       },
-      tr: {
-        title: "Özel Mum Koleksiyonu",
-        candles: [
-          {
-            name: "Evil Eye",
-            desc: "Evinize koruma ve huzur getiren sembol.",
-            materials: "Doğal soya mumu, pamuk fitil, cam nazar boncuğu.",
-            scent: "Deniz tuzu, lavanta, amber.",
-            burn: "35–40 saat"
-          },
-          {
-            name: "Summer Cocktail",
-            desc: "Yaz ferahlığını evinize taşıyan tropik karışım.",
-            materials: "Soya mumu, doğal yağlar.",
-            scent: "Mango, narenciye, hindistan cevizi.",
-            burn: "30 saat"
-          },
-          {
-            name: "Choco Cream",
-            desc: "Tatlı ve sıcak bir atmosfer yaratır.",
-            materials: "Premium soya mumu, kakao esansı.",
-            scent: "Bitter çikolata, vanilya, karamel.",
-            burn: "40 saat"
-          },
-          {
-            name: "Golden Noir",
-            desc: "Altın ışıltısında gizemli bir zarafet.",
-            materials: "Soya mumu, ahşap fitil, altın dokunuş.",
-            scent: "Sandal ağacı, vanilya, misk.",
-            burn: "45 saat"
-          },
-          {
-            name: "Caramel Crumble",
-            desc: "Tatlı karamel dokusuyla sıcak bir ambiyans.",
-            materials: "Doğal soya mumu, karamel yağı.",
-            scent: "Esmer şeker, karamel, krema.",
-            burn: "38 saat"
-          },
-          {
-            name: "Sunset Orange",
-            desc: "Gün batımının sıcak tonlarını yansıtır.",
-            materials: "Soya mumu, portakal kabuğu esansı.",
-            scent: "Narenciye, amber, bal.",
-            burn: "36 saat"
-          }
-        ]
+      summerCocktail:{
+        title:"Summer Cocktail",
+        teaser:"Layered colors that recall a breezy summer drink.",
+        materials:"Soy wax blend, cotton wick, glass",
+        fragrance:"Pineapple • Mango • Coconut",
+        burn:"28–32 h",
+        weight:"~210 g",
+        notes:"Vibrant layered pour with smooth finish."
       },
-      he: {
-        title: "אוסף נרות ייחודי",
-        candles: [
-          {
-            name: "Evil Eye",
-            desc: "סמל של הגנה ושלווה לבית שלך.",
-            materials: "שעוות סויה טבעית, פתיל כותנה, חרוז זכוכית.",
-            scent: "מלח ים, לבנדר, ענבר.",
-            burn: "35–40 שעות"
-          },
-          {
-            name: "Summer Cocktail",
-            desc: "רעננות טרופית שמתאימה לאווירת הקיץ שלך.",
-            materials: "שעוות סויה, שמנים טבעיים.",
-            scent: "מנגו, הדרים, קוקוס.",
-            burn: "30 שעות"
-          },
-          {
-            name: "Choco Cream",
-            desc: "מתיקות חמימה שממיסה את הלב והחושים.",
-            materials: "שעוות סויה איכותית, תמצית קקאו.",
-            scent: "שוקולד מריר, וניל, קרמל.",
-            burn: "40 שעות"
-          },
-          {
-            name: "Golden Noir",
-            desc: "יוקרה ומסתורין בניצוץ של זהב.",
-            materials: "שעוות סויה, פתיל עץ, נגיעה מוזהבת.",
-            scent: "עץ סנדל, וניל, מושק.",
-            burn: "45 שעות"
-          },
-          {
-            name: "Caramel Crumble",
-            desc: "ניחוח חמים ומתוק שמחבק את החלל.",
-            materials: "שעוות סויה טבעית, שמן קרמל.",
-            scent: "סוכר חום, קרמל, שמנת.",
-            burn: "38 שעות"
-          },
-          {
-            name: "Sunset Orange",
-            desc: "ניחוח חמים ומלא חיים בהשראת שמי שקיעה.",
-            materials: "שעוות סויה, תמצית קליפת תפוז.",
-            scent: "הדרים, ענבר, דבש.",
-            burn: "36 שעות"
-          }
-        ]
+      chocoCream:{
+        title:"Choco Cream",
+        teaser:"Sweet vibes, creamy textures, modern look.",
+        materials:"Soy-coconut wax, cotton wick, glass",
+        fragrance:"Cocoa • Vanilla • Tonka",
+        burn:"32–36 h",
+        weight:"~230 g",
+        notes:"Dessert-inspired, cozy & warm."
+      },
+      goldenNoir:{
+        title:"Golden Noir",
+        teaser:"Matte black body with elegant gold details.",
+        materials:"Premium soy wax, wood wick, ceramic",
+        fragrance:"Amber • Oud • Bergamot",
+        burn:"35–40 h",
+        weight:"~240 g",
+        notes:"Minimal luxe piece for modern homes."
+      },
+      caramelCrumble:{
+        title:"Caramel Crumble",
+        teaser:"Warm caramel notes and a delicious look.",
+        materials:"Soy-coconut wax, cotton wick, glass",
+        fragrance:"Salted caramel • Vanilla",
+        burn:"30–34 h",
+        weight:"~220 g",
+        notes:"Comforting bakery-style aroma."
+      },
+      sunsetOrange:{
+        title:"Sunset Orange",
+        teaser:"Citrus glow inspired by golden-hour skies.",
+        materials:"Soy wax, cotton wick, glass",
+        fragrance:"Blood orange • Neroli",
+        burn:"28–32 h",
+        weight:"~210 g",
+        notes:"Fresh, bright, mood-lifting."
       }
-    };
-  </script>
-    <script>
-    const candlesContainer = document.getElementById("candles");
-    const content = document.getElementById("content");
-
-    function renderLang(lang) {
-      const data = texts[lang];
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-      content.classList.add("fade");
-
-      setTimeout(() => {
-        candlesContainer.innerHTML = "";
-        document.querySelector("main h2").textContent = data.title;
-
-        data.candles.forEach(candle => {
-          const div = document.createElement("div");
-          div.className = "candle";
-          div.innerHTML = `
-            <img src="${candle.name.toLowerCase().replace(/\s/g, '')}.jpg" alt="${candle.name}">
-            <h3>${candle.name}</h3>
-            <p><strong>${candle.desc}</strong></p>
-            <p><em>${lang === 'en' ? 'Materials:' : lang === 'tr' ? 'Malzemeler:' : 'מרכיבים:'}</em> ${candle.materials}</p>
-            <p><em>${lang === 'en' ? 'Scent notes:' : lang === 'tr' ? 'Koku notaları:' : 'ניחוחות:'}</em> ${candle.scent}</p>
-            <p><em>${lang === 'en' ? 'Burn time:' : lang === 'tr' ? 'Yanma süresi:' : 'משך בעירה:'}</em> ${candle.burn}</p>
-          `;
-          candlesContainer.appendChild(div);
-        });
-        content.classList.remove("fade");
-      }, 300);
     }
+  },
+  tr:{
+    nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
+    hero_title:"Mum yapmak basit — ve herkes için harika bir deneyim.",
+    hero_sub:"Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.",
+    works_title:"Çalışmalarımız", contact_title:"İletişim", contact_sub:"Soru ve sipariş için:",
+    btn_details:"Detayları gör",
+    f_materials:"Malzemeler", f_fragrance:"Koku", f_burn:"Yanma Süresi", f_weight:"Ağırlık",
+    items:{
+      evilEye:{
+        title:"Evil Eye",
+        teaser:"Sakinlik ve denge getiren koruyucu bir sembol.",
+        materials:"%100 soya mumu, pamuk fitil, cam",
+        fragrance:"Deniz tuzu • Beyaz misk",
+        burn:"30–35 saat",
+        weight:"~220 g",
+        notes:"Küçük partiler hâlinde elde dökülür."
+      },
+      summerCocktail:{
+        title:"Summer Cocktail",
+        teaser:"Esintili bir yaz içeceğini anımsatan katmanlı renkler.",
+        materials:"Soya mum karışımı, pamuk fitil, cam",
+        fragrance:"Ananas • Mango • Hindistan cevizi",
+        burn:"28–32 saat",
+        weight:"~210 g",
+        notes:"Canlı katman döküm, pürüzsüz bitiş."
+      },
+      chocoCream:{
+        title:"Choco Cream",
+        teaser:"Tatlı bir hava, kremamsı dokular, modern görünüm.",
+        materials:"Soya-hindistan cevizi mumu, pamuk fitil, cam",
+        fragrance:"Kakao • Vanilya • Tonka",
+        burn:"32–36 saat",
+        weight:"~230 g",
+        notes:"Tatlı esintili, sıcacık bir atmosfer."
+      },
+      goldenNoir:{
+        title:"Golden Noir",
+        teaser:"Mat siyah gövde, zarif altın detaylar.",
+        materials:"Premium soya mumu, ahşap fitil, seramik",
+        fragrance:"Amber • Oud • Bergamot",
+        burn:"35–40 saat",
+        weight:"~240 g",
+        notes:"Modern mekânlar için minimal lüks."
+      },
+      caramelCrumble:{
+        title:"Caramel Crumble",
+        teaser:"Sıcak karamelli notalar ve iştah açan görünüm.",
+        materials:"Soya-hindistan cevizi mumu, pamuk fitil, cam",
+        fragrance:"Tuzlu karamel • Vanilya",
+        burn:"30–34 saat",
+        weight:"~220 g",
+        notes:"Pastane esintili, konforlu koku."
+      },
+      sunsetOrange:{
+        title:"Sunset Orange",
+        teaser:"Altın saat gökyüzünden ilham alan turunç parıltısı.",
+        materials:"Soya mumu, pamuk fitil, cam",
+        fragrance:"Kan portakalı • Neroli",
+        burn:"28–32 saat",
+        weight:"~210 g",
+        notes:"Ferahlık, canlılık, enerji."
+      }
+    }
+  },
+  he:{
+    nav_about:"אודות", nav_works:"עבודות", nav_contact:"צרו קשר",
+    hero_title:"יצירת נרות היא פשוטה — ונפלאה לכולם.",
+    hero_sub:"ניחוחות איכותיים, צבעים חמים ומרקמים שהופכים רגעים לזיכרונות.",
+    works_title:"העבודות שלנו", contact_title:"צרו קשר", contact_sub:"לשאלות והזמנות:",
+    btn_details:"פרטים",
+    f_materials:"חומרים", f_fragrance:"ניחוח", f_burn:"זמן בעירה", f_weight:"משקל",
+    items:{
+      evilEye:{
+        title:"Evil Eye",
+        teaser:"סמל מגן שמביא רוגע ואיזון.",
+        materials:"100% שעוות סויה, פתילת כותנה, זכוכית",
+        fragrance:"מלח ים • מאסק לבן",
+        burn:"30–35 שעות",
+        weight:"~220 גרם",
+        notes:"נמזג בעבודת יד בכמויות קטנות."
+      },
+      summerCocktail:{
+        title:"Summer Cocktail",
+        teaser:"צבעים בשכבות המזכירים קוקטייל קיצי ורענן.",
+        materials:"תערובת שעוות סויה, פתילת כותנה, זכוכית",
+        fragrance:"אננס • מנגו • קוקוס",
+        burn:"28–32 שעות",
+        weight:"~210 גרם",
+        notes:"מזיגה בשכבות בגימור חלק."
+      },
+      chocoCream:{
+        title:"Choco Cream",
+        teaser:"אווירה מתוקה, מרקם קרמי ומראה מודרני.",
+        materials:"שעוות סויה-קוקוס, פתילת כותנה, זכוכית",
+        fragrance:"קקאו • וניל • טונקה",
+        burn:"32–36 שעות",
+        weight:"~230 גרם",
+        notes:"השראה של קינוחים חמים ומחבקים."
+      },
+      goldenNoir:{
+        title:"Golden Noir",
+        teaser:"גוף שחור מט עם פרטי זהב אלגנטיים.",
+        materials:"שעוות סויה פרימיום, פתיל עץ, קרמיקה",
+        fragrance:"ענבר • אוד • ברגמוט",
+        burn:"35–40 שעות",
+        weight:"~240 גרם",
+        notes:"מינימליסטי ומפואר לבית מודרני."
+      },
+      caramelCrumble:{
+        title:"Caramel Crumble",
+        teaser:"תווי קרמל חמים ומראה מגרה.",
+        materials:"שעוות סויה-קוקוס, פתילת כותנה, זכוכית",
+        fragrance:"קרמל מלוח • וניל",
+        burn:"30–34 שעות",
+        weight:"~220 גרם",
+        notes:"ניחוח מאפייה מנחם."
+      },
+      sunsetOrange:{
+        title:"Sunset Orange",
+        teaser:"זוהר הדרים בהשראת שעות הזהב.",
+        materials:"שעוות סויה, פתילת כותנה, זכוכית",
+        fragrance:"תפוז דם • נרולי",
+        burn:"28–32 שעות",
+        weight:"~210 גרם",
+        notes:"רענן, בהיר ומרים מצב רוח."
+      }
+    }
+  }
+};
 
-    renderLang("en"); // default
+/* ---------- runtime helpers ---------- */
+const $ = (s,root=document)=>root.querySelector(s);
+const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
 
-    document.querySelectorAll(".lang span").forEach(span => {
-      span.addEventListener("click", () => {
-        const lang = span.getAttribute("data-lang");
-        renderLang(lang);
-      });
-    });
-  </script>
+let lang = (localStorage.getItem("lang") || (navigator.language||"en").slice(0,2)).toLowerCase();
+if(!["en","tr","he"].includes(lang)) lang="en";
+
+/* apply language */
+function applyLang(){
+  const pack = I18N[lang];
+
+  // nav & static
+  $$("[data-i]").forEach(el=>{
+    const key = el.getAttribute("data-i");
+    if(pack[key]) el.textContent = pack[key];
+  });
+
+  // item cards titles & teasers
+  $$(".card").forEach(card=>{
+    const key = card.getAttribute("data-key");
+    const d = pack.items[key];
+    if(!d) return;
+    $("[data-i$='_title']",card).textContent = d.title;
+    $("[data-i$='_teaser']",card).textContent = d.teaser;
+  });
+
+  // modal field labels
+  $("[data-i='f_materials']").textContent = pack.f_materials;
+  $("[data-i='f_fragrance']").textContent = pack.f_fragrance;
+  $("[data-i='f_burn']").textContent = pack.f_burn;
+  $("[data-i='f_weight']").textContent = pack.f_weight;
+  $$(".btn[data-open]").forEach(b=>b.textContent = pack.btn_details);
+
+  // dir for Hebrew
+  document.documentElement.dir = (lang==="he")?"rtl":"ltr";
+  document.documentElement.lang = lang;
+}
+applyLang();
+
+/* language switcher */
+$$("[data-lang]").forEach(a=>{
+  a.addEventListener("click",(e)=>{
+    e.preventDefault();
+    lang = a.getAttribute("data-lang");
+    localStorage.setItem("lang",lang);
+    applyLang();
+  });
+});
+
+/* modal logic */
+const modal = $("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"),
+      mTeaser=$("#mTeaser"), mMaterials=$("#mMaterials"),
+      mFragrance=$("#mFragrance"), mBurn=$("#mBurn"),
+      mWeight=$("#mWeight"), mNotes=$("#mNotes");
+function openModal(key){
+  const d = I18N[lang].items[key];
+  const card = document.querySelector(`.card[data-key='${key}'] img`);
+  mImg.src = card.getAttribute("src");
+  mImg.alt = d.title;
+  mTitle.textContent = d.title;
+  mTeaser.textContent = d.teaser;
+  mMaterials.textContent = d.materials;
+  mFragrance.textContent = d.fragrance;
+  mBurn.textContent = d.burn;
+  mWeight.textContent = d.weight;
+  mNotes.textContent = d.notes;
+  modal.classList.add("open");
+}
+$$(".card .btn[data-open]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const key = btn.closest(".card").getAttribute("data-key");
+    openModal(key);
+  });
+});
+$("#close").addEventListener("click",()=>modal.classList.remove("open"));
+modal.addEventListener("click",(e)=>{ if(e.target===modal) modal.classList.remove("open"); });
+</script>
 </body>
 </html>
