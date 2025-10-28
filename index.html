@@ -98,14 +98,22 @@
 </p>
     </section>
 
-  <footer class="footer">
-<p>© 2025 Eureka Studio — All rights reserved.</p>
-    <div class="social-links">
-      <a href="https://www.instagram.com/eurekastudio3" target="_blank">Instagram</a>
-      <a href="mailto:eurekastudio@gmail.com">Email</a>
-    </div>
-  </footer>
+  <footer class="site-footer" id="contact">
+  <h2>Contact</h2>
+  <p>For questions and orders:</p>
 
+  <p class="links">
+    <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <span class="disabled">Pinterest (soon)</span>
+    <a href="mailto:eurekastudio@gmail.com">
+      <i class="fas fa-envelope"></i> Email
+    </a>
+  </p>
+
+  <p class="copyright">© <span id="year"></span> Eureka Studio — All rights reserved.</p>
+</footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
