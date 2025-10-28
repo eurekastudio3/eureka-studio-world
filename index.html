@@ -4,121 +4,229 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eureka Studio</title>
-  <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
+  <meta name="description" content="Luxury handcrafted candles and resin art — Eureka Studio.">
   <style>
     body {
+      font-family: "Poppins", sans-serif;
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f8f5f0;
-      color: #2b2b2b;
+      background: #faf7f3;
+      color: #1a1a1a;
     }
-
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background-color: #fff;
-      border-bottom: 1px solid #eee;
+      padding: 1rem 2rem;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-
-    .logo {
-      font-size: 1.5em;
-      font-weight: 600;
-      color: #3b2f2f;
-    }
-
-    .lang {
-      font-size: 0.9em;
-      color: #3b2f2f;
-    }
-
-    .lang span {
-      cursor: pointer;
-      margin: 0 5px;
+    header h1 { font-size: 1.4rem; font-weight: 700; }
+    nav a {
+      margin-left: 1.2rem;
+      text-decoration: none;
+      color: #333;
       font-weight: 500;
     }
+    nav a:hover { text-decoration: underline; }
 
-    .lang span:hover {
-      text-decoration: underline;
+    .lang-switch {
+      display: flex;
+      gap: 0.3rem;
+      align-items: center;
+      font-size: 0.9rem;
     }
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .lang-switch button:hover { text-decoration: underline; }
 
     .hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding: 100px 20px;
       text-align: center;
+      padding: 3rem 1rem;
     }
-
     .hero img {
       max-width: 90%;
-      height: auto;
       border-radius: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 2rem;
+    }
+    .hero h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .hero p { max-width: 600px; margin: 0.8rem auto; line-height: 1.6; }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    h3 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-      color: #3b2f2f;
+    .works {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
     }
-
-    .hero p {
-      font-size: 1.1em;
-      color: #5a5a5a;
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 1rem;
     }
+    .card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+    .card h4 { margin: 1rem 0 0.5rem; font-size: 1.1rem; }
+    .card p { padding: 0 1rem; font-size: 0.9rem; color: #555; }
 
     footer {
       text-align: center;
-      padding: 30px;
-      font-size: 0.9em;
-      color: #666;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
+      padding: 2rem;
+      border-top: 1px solid #ddd;
+      color: #333;
+      background: #fff;
+      font-size: 0.9rem;
     }
-
-    .fade { opacity: 0; transition: opacity 0.4s ease-in-out; }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Eureka Studio</div>
-    <div class="lang">🌐 <span data-lang="en">EN</span> | <span data-lang="tr">TR</span> | <span data-lang="he">HE</span></div>
+    <h1>✦ Eureka Studio</h1>
+    <nav>
+      <a href="#about" id="navAbout">About</a>
+      <a href="#works" id="navWorks">Works</a>
+      <a href="#contact" id="navContact">Contact</a>
+    </nav>
+    <div class="lang-switch">
+      🌐
+      <button data-lang="en">EN</button>|
+      <button data-lang="tr">TR</button>|
+      <button data-lang="he">HE</button>
+    </div>
   </header>
 
-  <section class="hero" id="content">
-    <img src="https://cdn.pixabay.com/photo/2017/08/06/21/33/candles-2598030_1280.jpg" alt="Candles">
-    <h1>Home Candles</h1>
-    <p>Luxury handcrafted candles and resin art.</p>
+  <section class="hero" id="about">
+    <img src="https://images.unsplash.com/photo-1607082349566-187342b1e22f?w=1000" alt="Home Candles">
+    <h2 id="heroTitle">Making candles is simple — and wonderful for everyone.</h2>
+    <p id="heroDesc">High-quality craft scents, cozy colors and textures that turn moments into memories.</p>
   </section>
 
-  <footer>© Eureka Studio | All rights reserved.</footer>
+  <section id="works">
+    <h3 id="worksTitle">Our Works</h3>
+    <div class="works">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1631721394075-848aeed67600?w=800" alt="">
+        <h4 id="evilEyeTitle">Evil Eye</h4>
+        <p id="evilEyeDesc">A protective symbol that brings calm and balance.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1607083206833-c2c37df9b49a?w=800" alt="">
+        <h4 id="summerCocktailTitle">Summer Cocktail</h4>
+        <p id="summerCocktailDesc">Layered colors that recall a breezy summer drink.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1616627985720-7f2212c4e11a?w=800" alt="">
+        <h4 id="chocoCreamTitle">Choco Cream</h4>
+        <p id="chocoCreamDesc">Sweet vibes, creamy textures, modern look.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1616627873197-69b2e6b23f03?w=800" alt="">
+        <h4 id="goldenNoirTitle">Golden Noir</h4>
+        <p id="goldenNoirDesc">Matte black body with elegant gold details.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1632239248049-90a6c51b86a8?w=800" alt="">
+        <h4 id="caramelCrumbleTitle">Caramel Crumble</h4>
+        <p id="caramelCrumbleDesc">Warm caramel notes and a delicious look.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1616627921344-2a8c9c319b52?w=800" alt="">
+        <h4 id="sunsetOrangeTitle">Sunset Orange</h4>
+        <p id="sunsetOrangeDesc">Citrus glow inspired by golden-hour skies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h3 id="contactTitle">Contact</h3>
+    <p id="contactLead">For questions and orders:</p>
+    <p>
+      <a href="https://instagram.com" target="_blank" id="contactInstagram">Instagram</a> ·
+      <span id="contactPinterest">Pinterest (soon)</span> ·
+      <a href="mailto:info@eurekastudio.org" id="contactEmail">Email</a>
+    </p>
+  </section>
+
+  <footer>
+    <p id="footerText">© 2025 Eureka Studio — All rights reserved.</p>
+  </footer>
 
   <script>
-    const texts = {
-      en: { title: "Home Candles", desc: "Luxury handcrafted candles and resin art." },
-      tr: { title: "Ev Mumları", desc: "Lüks el yapımı mumlar ve epoksi sanat eserleri." },
-      he: { title: "נרות לבית", desc: "נרות בעבודת יד ואמנות שרף באיכות גבוהה." }
+    const i18n = {
+      tr: {
+        navAbout:"Hakkımızda", navWorks:"Çalışmalar", navContact:"İletişim",
+        heroTitle:"Mum yapmak basit — ve herkes için harika.",
+        heroDesc:"Kaliteli kokular, sıcak renkler ve dokular; anları hatıraya çevirir.",
+        worksTitle:"Çalışmalarımız",
+        evilEyeTitle:"Nazar Boncuğu", evilEyeDesc:"Sakinlik ve dengeyi çağıran koruyucu bir sembol.",
+        summerCocktailTitle:"Yaz Kokteyli", summerCocktailDesc:"Esintili yaz içeceğini anımsatan katmanlı renkler.",
+        chocoCreamTitle:"Choco Cream", chocoCreamDesc:"Tatlı bir hava, kremamsı dokular, modern görünüm.",
+        goldenNoirTitle:"Golden Noir", goldenNoirDesc:"Mat siyah gövde, zarif altın detaylarla.",
+        caramelCrumbleTitle:"Karamel Crumble", caramelCrumbleDesc:"Sıcak karamel notaları ve leziz bir görünüm.",
+        sunsetOrangeTitle:"Günbatımı Turuncusu", sunsetOrangeDesc:"Altın saatlerden ilham alan narenciye ışıltısı.",
+        contactTitle:"İletişim", contactLead:"Sorular ve siparişler için:",
+        contactInstagram:"Instagram", contactPinterest:"Pinterest (yakında)", contactEmail:"E-posta",
+        footerText:"© 2025 Eureka Studio — Tüm hakları saklıdır."
+      },
+      he: {
+        navAbout:"אודות", navWorks:"עבודות", navContact:"צור קשר",
+        heroTitle:"ייצור נרות פשוט — ומקסים לכולם.",
+        heroDesc:"ניחוחות איכותיים, צבעים חמים ומרקמים שהופכים רגעים לזיכרונות.",
+        worksTitle:"העבודות שלנו",
+        evilEyeTitle:"עין המגן", evilEyeDesc:"סמל שמביא שלווה ואיזון.",
+        summerCocktailTitle:"קוקטייל קיץ", summerCocktailDesc:"צבעים שכבתיים המזכירים משקה קיצי.",
+        chocoCreamTitle:"שוקו קרם", chocoCreamDesc:"אווירה מתוקה, מרקמים קרמיים, מראה מודרני.",
+        goldenNoirTitle:"גולדן נואר", goldenNoirDesc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים.",
+        caramelCrumbleTitle:"קראמבל קרמל", caramelCrumbleDesc:"ניחוחות קרמל חמים ומראה מגרה.",
+        sunsetOrangeTitle:"כתום שקיעה", sunsetOrangeDesc:"זוהר הדרים בהשראת שעת הזהב.",
+        contactTitle:"יצירת קשר", contactLead:"לשאלות והזמנות:",
+        contactInstagram:"אינסטגרם", contactPinterest:"פינטרסט (בקרוב)", contactEmail:"אימייל",
+        footerText:"© 2025 Eureka Studio — כל הזכויות שמורות."
+      }
     };
 
-    const content = document.getElementById("content");
-    const title = content.querySelector("h1");
-    const desc = content.querySelector("p");
-
-    document.querySelectorAll(".lang span").forEach(span => {
-      span.addEventListener("click", () => {
-        const lang = span.getAttribute("data-lang");
-        const data = texts[lang];
-        content.classList.add("fade");
-        setTimeout(() => {
-          title.textContent = data.title;
-          desc.textContent = data.desc;
-          content.classList.remove("fade");
-        }, 300);
+    function applyLang(lang){
+      const dict = i18n[lang];
+      document.documentElement.dir = (lang==="he")?"rtl":"ltr";
+      document.documentElement.lang = lang;
+      if(!dict) return;
+      Object.entries(dict).forEach(([id,value])=>{
+        const el = document.getElementById(id);
+        if(el) el.textContent = value;
       });
+      localStorage.setItem("lang",lang);
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(btn=>{
+      btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
     });
+
+    const saved = localStorage.getItem("lang");
+    if(saved){applyLang(saved);}
   </script>
 </body>
 </html>
