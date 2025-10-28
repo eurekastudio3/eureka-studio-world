@@ -1,495 +1,605 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Eureka Studio</title>
-<meta name="description" content="Eureka Studio — modern handcrafted candles & resin art." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eureka Studio</title>
+  <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art." />
+  <style>
+    :root{
+      --bg:#f4efe7;
+      --panel:#fff7ef;
+      --ink:#201a17;
+      --ink-2:#4f463f;
+      --brand:#d9cdb8;
+      --pill:#1f1b17;
+      --pill-text:#fff;
+      --card:#ffffff;
+      --radius:16px;
+      --shadow:0 10px 28px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{
+      background:var(--bg);
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:inherit}
 
-<style>
-  :root{
-    --bg:#f4efe7;
-    --panel:#fff7ef;
-    --ink:#201a17;
-    --ink-2:#4f463f;
-    --brand:#d9cdb8;
-    --pill:#1f1b17;
-    --pill-text:#fff;
-    --card:#ffffff;
-    --shadow: 0 10px 30px rgba(0,0,0,.08);
-    --radius:16px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%}
-  /* --- Hero image style update (center + matte) --- */
-.hero-img {
-  max-width: 680px;          
-  margin: 0 auto 10px auto;  
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-  position: relative;
-}
+    /* Header */
+    .site{
+      max-width:1000px; margin:0 auto; padding:0 18px;
+    }
+    .top{
+      position:sticky; top:0; z-index:20;
+      background:rgba(255,247,239,.92); /* açık bar */
+      backdrop-filter:saturate(120%) blur(6px);
+      border-bottom:1px solid rgba(0,0,0,.05);
+    }
+    .top-inner{
+      display:flex; align-items:center; gap:16px; justify-content:space-between;
+      min-height:64px;
+    }
+    .brand{font-weight:800; letter-spacing:.5px; font-size:22px; line-height:1.1}
+    .nav{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+    .nav a{opacity:.9; text-decoration:none}
+    .lang{
+      display:flex; gap:10px; align-items:center; padding:6px 10px;
+      background:#161514; color:#fff; border-radius:999px;
+      box-shadow: var(--shadow);
+    }
+    .lang button{
+      background:transparent; border:0; color:#fff; cursor:pointer; padding:6px 4px; font-weight:700;
+      opacity:.7
+    }
+    .lang button.active{opacity:1; text-decoration:underline}
+    .lang .globe{font-size:18px; margin-right:6px}
 
-.hero-img img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  filter: brightness(0.92) saturate(0.9) contrast(0.95);
-}
+    /* Hero */
+    .hero{padding:28px 0 12px}
+    .hero-img{
+      max-width:680px; margin:0 auto 16px; border-radius:18px; overflow:hidden;
+      box-shadow: var(--shadow); position:relative;
+    }
+    .hero-img img{
+      width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+      filter:brightness(.92) saturate(.9) contrast(.98);
+    }
+    .hero-img::after{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(circle at 50% 10%, rgba(255,255,255,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .hero h1{
+      font-size: clamp(26px, 5.2vw, 44px);
+      line-height:1.18; margin:10px auto 8px; max-width:720px; font-weight:800;
+    }
+    .hero p{
+      color:var(--ink-2); margin:0 auto 22px; max-width:720px;
+      font-size: clamp(15px, 2.8vw, 18px);
+    }
 
-.hero-img::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.15), rgba(0,0,0,0.1) 70%, transparent 100%);
-  pointer-events: none;
-}
-    font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,Helvetica,sans-serif;
-    background: radial-gradient(1200px 600px at 50% -200px, #fff8f0 0%, var(--bg) 60%, var(--bg) 100%);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    line-height:1.55;
-  }
+    /* Section title */
+    .section-title{
+      font-size: clamp(22px, 4.6vw, 34px);
+      font-weight:800; margin:22px 0 12px
+    }
 
-  /* Header */
-  .topbar{
-    position:sticky; top:0; z-index:50;
-    backdrop-filter: saturate(1.1) blur(8px);
-    background: color-mix(in oklab, var(--panel) 88%, white);
-    border-bottom: 1px solid rgba(0,0,0,.06);
-  }
-  .wrap{max-width:1060px;margin:auto;padding:20px 20px}
-  .nav{
-    display:flex; align-items:center; gap:20px; justify-content:space-between;
-  }
-  .brand{
-    font-weight:800; letter-spacing:.3px; font-size:28px; line-height:1;
-    display:grid; gap:6px;
-  }
-  .brand span:nth-child(2){font-weight:700; color:var(--ink-2)}
-  .menu{display:flex; gap:22px; align-items:center; font-weight:600}
-  .menu a{color:var(--ink-2); text-decoration:none}
-  .menu a:hover{opacity:.8}
+    /* Cards grid */
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    }
+    .card{
+      background:var(--card); border-radius:16px; box-shadow:var(--shadow);
+      overflow:hidden; display:flex; flex-direction:column;
+    }
+    .card img{
+      width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+    }
+    .pad{padding:16px}
+    .pill-wrap{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 8px}
+    .pill{
+      background:var(--panel); border:1px dashed #ead7c6; border-radius:12px;
+      padding:10px 12px; min-width:120px; font-size:14px;
+    }
+    .card h3{margin:0 0 4px; font-size:22px}
+    .muted{color:var(--ink-2)}
+    .cta{
+      margin-top:auto; padding:0 16px 16px;
+    }
+    .button{
+      display:inline-block; background:var(--pill); color:var(--pill-text);
+      padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700;
+    }
 
-  /* Lang pill */
-  .lang{
-    display:flex; align-items:center; gap:10px;
-    background: var(--pill);
-    color: var(--pill-text);
-    padding:8px 12px; border-radius:999px; font-weight:700; box-shadow:var(--shadow);
-  }
-  .lang button{
-    border:none;background:transparent;color:inherit;font:inherit;cursor:pointer;opacity:.7
-  }
-  .lang button.active{opacity:1;text-decoration:underline}
-  .lang .globe{filter:invert(1) opacity(.9)}
+    /* Footer */
+    footer{margin:28px 0 18px; text-align:center}
+    .social{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin:10px 0}
+    .social a{pointer-events:auto; position:relative; z-index:2; text-decoration:none}
 
-  /* Hero */
-  .hero{padding:24px 20px 10px}
-  .hero .inner{max-width:1060px;margin:auto;display:grid;gap:26px}
-  .hero-img{
-    position:relative; overflow:hidden; border-radius:var(--radius);
-    box-shadow: var(--shadow);
-    background: #ddd;
-  }
-  .hero-img img{
-    display:block; width:100%; height:auto;
-    object-fit:cover; object-position:center;
-    filter: saturate(.85) brightness(.98) contrast(.98);
-    transform: translateZ(0);
-  }
-  .hero-img::after{
-    content:""; position:absolute; inset:0;
-    background: radial-gradient(60% 50% at 50% 20%, rgba(255,255,255,.20), rgba(0,0,0,.10) 70%, transparent 100%);
-    pointer-events:none;
-  }
-  .lead{
-    font-size: clamp(26px, 5.4vw, 44px);
-    font-weight:800; letter-spacing:-.4px;
-  }
-  .sub{color:var(--ink-2)}
+    /* Modal (detay) */
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:40}
+    .modal.open{display:flex}
+    .backdrop{position:absolute; inset:0; background:rgba(0,0,0,.5)}
+    .sheet{
+      position:relative; background:#fff; width:min(92vw, 820px); max-height:90vh;
+      border-radius:16px; overflow:auto; box-shadow:var(--shadow)
+    }
+    .sheet img{width:100%; aspect-ratio:16/10; object-fit:cover; display:block}
+    .sheet .pad{padding:18px}
+    .close{
+      position:absolute; top:10px; right:10px; border:0; background:#000; color:#fff;
+      border-radius:999px; width:36px; height:36px; font-size:18px; cursor:pointer
+    }
 
-  /* Section title */
-  .title{font-size: clamp(24px, 4.8vw, 36px); font-weight:800; margin:26px 0 12px}
-
-  /* Works grid */
-  .grid{display:grid; gap:18px; grid-template-columns: repeat(2,minmax(0,1fr))}
-  @media (min-width:820px){ .grid{grid-template-columns: repeat(3,minmax(0,1fr))} }
-  .card{
-    background:var(--card); border-radius:14px; box-shadow: var(--shadow);
-    overflow:hidden; display:flex; flex-direction:column; transition:transform .2s ease;
-  }
-  .card:hover{transform: translateY(-2px)}
-  .card figure{margin:0; aspect-ratio: 4/3; overflow:hidden; background:#eee}
-  .card img{width:100%; height:100%; object-fit:cover; display:block}
-  .card .pad{padding:16px}
-  .card h3{margin:0 0 6px; font-size:22px}
-  .meta{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px}
-  .chip{
-    background: #faf7f3; border:1px dashed #e7dfd3; border-radius:12px; padding:10px 12px; font-size:14px
-  }
-  .more{margin-top:14px; font-weight:700}
-  .more a{color:var(--ink); text-decoration:none}
-  .more a:hover{text-decoration:underline}
-
-  /* Modal */
-  .modal{position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; padding:20px; z-index:100}
-  .modal[open]{display:flex}
-  .sheet{
-    max-width:920px; width:min(920px, 100%); max-height:90dvh; overflow:auto;
-    background:var(--card); border-radius:18px; box-shadow:0 30px 80px rgba(0,0,0,.35);
-  }
-  .sheet-head{position:sticky; top:0; display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 14px; background:linear-gradient(#fff, #fff0)}
-    .close{border:none;background:#111;color:#fff;padding:8px 11px;border-radius:10px;cursor:pointer;font-weight:800}
-  .sheet-media{aspect-ratio:16/10; overflow:hidden; background:#ddd}
-  .sheet-media img{width:100%; height:100%; object-fit:cover}
-  .sheet-body{padding:16px 18px 22px}
-  .kblocks{display:grid; gap:12px; grid-template-columns:1fr 1fr}
-  @media (min-width:860px){ .kblocks{grid-template-columns:repeat(4,1fr)} }
-  .kb{background:#faf7f3; border:1px dashed #e7dfd3; padding:12px; border-radius:12px}
-  .kb b{display:block;margin-bottom:4px}
-
-  /* Footer */
-  footer{margin:32px 0 40px; text-align:center; color:var(--ink-2)}
-  .sig{margin-top:8px; font-weight:700}
-
-  /* Utility */
-  .center{max-width:1060px;margin:auto;padding:0 20px}
-</style>
+    /* RTL (Hebrew) */
+    .rtl{direction:rtl}
+    .rtl .nav{flex-direction:row-reverse}
+    .rtl .lang{flex-direction:row-reverse}
+  </style>
 </head>
 <body>
-
-<header class="topbar">
-  <div class="wrap nav">
-    <div class="brand">
-      <span>Eureka</span>
-      <span>Studio</span>
-    </div>
-
-    <nav class="menu">
-      <a href="#about" data-i="nav_about">About</a>
-      <a href="#works" data-i="nav_works">Works</a>
-      <a href="#contact" data-i="nav_contact">Contact</a>
-    </nav>
-
-    <div class="lang" aria-label="Language switcher">
-      <img class="globe" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><line x1='2' y1='12' x2='22' y2='12'/><path d='M12 2a15.3 15.3 0 0 1 0 20a15.3 15.3 0 0 1 0-20z'/></svg>" alt="">
-      <button class="active" data-lang="en">EN</button>|
-      <button data-lang="tr">TR</button>|
-      <button data-lang="he">HE</button>
-    </div>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="inner">
-    <figure class="hero-img">
-      <img src="home-candles-hero.JPG" alt="Home candles hero image">
-    </figure>
-    <div class="center">
-      <h1 class="lead" data-i="lead">Making candles is simple and wonderful for everyone.</h1>
-      <p class="sub" data-i="sub">High-quality scents, cozy colors and textures turn moments into memories.</p>
-    </div>
-  </div>
-</section>
-
-<section id="works" class="center">
-  <h2 class="title" data-i="ourworks">Our Works</h2>
-
-  <div class="grid" id="grid">
-    <!-- Cards will be injected by JS so tüm diller doğru dolar -->
-  </div>
-</section>
-
-<section id="contact" class="center" style="margin-top:26px">
-  <h2 class="title" data-i="contact">Contact</h2>
-  <p class="sub" data-i="contactline">For questions and orders:</p>
-  <p style="font-weight:700">
-    Instagram • Pinterest (soon) • Email
-  </p>
-</section>
-
-<footer class="footer">
-  <p>© 2025 Eureka Studio — All rights reserved.</p>
-
-  <div class="social" style="margin-top:12px; display:flex; gap:18px; flex-wrap:wrap;">
-    <!-- Instagram -->
-    <a href="https://instagram.com/INSTAGRAM_KULLANICI_ADIN" target="_blank" rel="noopener" aria-label="Instagram">
-      Instagram
-    </a>
-
-    <!-- Pinterest (yakında) -->
-    <a href="https://pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest">
-      Pinterest (soon)
-    </a>
-
-    <!-- Email -->
-    <a href="mailto:hello@eurekastudio.org" aria-label="Email">
-      Email
-    </a>
-  </div>
-
-  <p style="margin-top:12px; opacity:.9;">crafted with love 🍀</p>
-</footer>
-<!-- Modal -->
-<dialog class="modal" id="modal">
-  <div class="sheet">
-    <div class="sheet-head">
-      <strong id="mTitle">Title</strong>
-      <button class="close" id="mClose" aria-label="Close">×</button>
-    </div>
-    <figure class="sheet-media"><img id="mImg" alt=""></figure>
-    <div class="sheet-body">
-      <p id="mTagline" class="sub" style="margin:8px 0 14px"></p>
-      <div class="kblocks">
-        <div class="kb"><b data-i="k_fragrance">Fragrance</b><span id="mFrag"></span></div>
-        <div class="kb"><b data-i="k_materials">Materials</b><span id="mMat"></span></div>
-        <div class="kb"><b data-i="k_burn">Burn Time</b><span id="mBurn"></span></div>
-        <div class="kb"><b data-i="k_weight">Weight</b><span id="mWeight"></span></div>
+  <header class="top">
+    <div class="site top-inner">
+      <div class="brand">Eureka<br/>Studio</div>
+      <nav class="nav">
+        <a href="#about" data-i="navAbout">Hakkımızda</a>
+        <a href="#works" data-i="navWorks">Çalışmalar</a>
+        <a href="#contact" data-i="navContact">İletişim</a>
+      </nav>
+      <div class="lang" aria-label="Language">
+        <span class="globe">🌐</span>
+        <button data-lang="en">EN</button>
+        <button data-lang="tr" class="active">TR</button>
+        <button data-lang="he">HE</button>
       </div>
     </div>
-  </div>
-</dialog>
+  </header>
 
-<script>
-/* -------- CONTENT (3 dil) -------- */
-const T = {
-  en:{
-    nav_about:"About", nav_works:"Works", nav_contact:"Contact",
-    lead:"Making candles is simple and wonderful for everyone.",
-    sub:"High-quality scents, cozy colors and textures turn moments into memories.",
-    ourworks:"Our Works", contact:"Contact", contactline:"For questions and orders:",
-    card_more:"View details",
-    k_fragrance:"Fragrance", k_materials:"Materials", k_burn:"Burn Time", k_weight:"Weight",
-    items:[
-      {
-        id:"evil-eye",
-        title:"Evil Eye",
-        img:"evil-eye.jpg.jpg",
-        tagline:"A calming, protective symbol.",
-        fragrance:"Sea salt • White musk",
-        materials:"Soy wax • 100% cotton wick • Glass",
-        burn:"~30–35 h",
-        weight:"~220 g"
-      },
-      {
-        id:"summer",
-        title:"Summer Cocktail",
-        img:"summer-cocktail.JPG",
-        tagline:"Layered colors that recall a breezy summer drink.",
-        fragrance:"Pineapple • Mango • Coconut",
-        materials:"Soy wax blend • Cotton wick • Glass",
-        burn:"~28–32 h",
-        weight:"~210 g"
-      },
-      {
-        id:"choco",
-        title:"Choco Cream",
-        img:"choco-cream.JPG",
-        tagline:"Dessert-inspired, creamy and cozy.",
-        fragrance:"Dark cocoa • Vanilla",
-        materials:"Soy wax • Cotton wick • Glass",
-        burn:"~28–32 h",
-        weight:"~210 g"
-      },
-      {
-        id:"golden",
-        title:"Golden Noir",
-        img:"golden-noir.PNG",
-        tagline:"Elegant black body with golden details.",
-        fragrance:"Amber • Oud • Tonka",
-        materials:"Soy wax • Cotton wick • Vessel",
-        burn:"~32–36 h",
-        weight:"~230 g"
-      },
-      {
-        id:"caramel",
-        title:"Caramel Crumble",
-        img:"caramel-crumble.JPG",
-        tagline:"Warm caramel notes and a delicious look.",
-        fragrance:"Caramel • Biscuit • Vanilla",
-        materials:"Soy wax • Cotton wick • Glass",
-        burn:"~28–32 h",
-        weight:"~210 g"
-      },
-      {
-        id:"sunset",
-        title:"Sunset Orange",
-        img:"sunset-orange.JPG",
-        tagline:"Citrus glow inspired by golden-hour skies.",
-        fragrance:"Orange • Neroli",
-        materials:"Soy wax • Cotton wick • Glass",
-        burn:"~26–30 h",
-        weight:"~200 g"
-      }
-    ]
-  },
-  tr:{
-    nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
-    lead:"Mum yapmak basit ve herkes için harika bir deneyim.",
-    sub:"Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.",
-    ourworks:"Çalışmalarımız", contact:"İletişim", contactline:"Soru ve siparişler için:",
-    card_more:"Detayları gör",
-    k_fragrance:"Koku", k_materials:"Malzemeler", k_burn:"Yanma Süresi", k_weight:"Ağırlık",
-    items:[
-      {id:"evil-eye", title:"Evil Eye", img:"evil-eye.jpg.jpg",
-       tagline:"Sakinlik ve denge getiren koruyucu bir sembol.",
-       fragrance:"Deniz tuzu • Beyaz misk",
-       materials:"Soya mumu • %100 pamuk fitil • Cam",
-       burn:"~30–35 saat", weight:"~220 g"},
-      {id:"summer", title:"Yaz Kokteyli", img:"summer-cocktail.JPG",
-       tagline:"Taze bir yaz kokteylini anımsatan katmanlı renkler.",
-       fragrance:"Ananas • Mango • Hindistan cevizi",
-       materials:"Soya mumu karışımı • Pamuk fitil • Cam",
-       burn:"~28–32 saat", weight:"~210 g"},
-      {id:"choco", title:"Choco Cream", img:"choco-cream.JPG",
-       tagline:"Tatlıdan ilham alan, kremamsı sıcak dokunuş.",
-       fragrance:"Bitter kakao • Vanilya",
-       materials:"Soya mumu • Pamuk fitil • Cam",
-       burn:"~28–32 saat", weight:"~210 g"},
-      {id:"golden", title:"Golden Noir", img:"golden-noir.PNG",
-       tagline:"Siyah gövde ve zarif altın detaylar.",
-       fragrance:"Amber • Ud • Tonka",
-       materials:"Soya mumu • Pamuk fitil • Kap",
-       burn:"~32–36 saat", weight:"~230 g"},
-      {id:"caramel", title:"Caramel Crumble", img:"caramel-crumble.JPG",
-       tagline:"Sıcak karamel notaları ve leziz bir görünüm.",
-       fragrance:"Karamel • Bisküvi • Vanilya",
-       materials:"Soya mumu • Pamuk fitil • Cam",
-       burn:"~28–32 saat", weight:"~210 g"},
-      {id:"sunset", title:"Sunset Orange", img:"sunset-orange.JPG",
-       tagline:"Gün batımı ışıltısından ilham alan narenciye parıltısı.",
-       fragrance:"Portakal • Narlıçiçeği (Neroli)",
-       materials:"Soya mumu • Pamuk fitil • Cam",
-       burn:"~26–30 saat", weight:"~200 g"}
-    ]
-  },
-  he:{
-    nav_about:"עלינו", nav_works:"עבודות", nav_contact:"צור קשר",
-    lead:"יצירת נרות היא פשוטה ונפלאה לכולם.",
-    sub:"ניחוחות איכותיים, צבעים חמימים ומרקמים הופכים רגעים לזיכרונות.",
-    ourworks:"העבודות שלנו", contact:"צור קשר", contactline:"לשאלות והזמנות:",
-    card_more:"צפה בפרטים",
-    k_fragrance:"ניחוח", k_materials:"חומרים", k_burn:"זמן בעירה", k_weight:"משקל",
-    items:[
-      {id:"evil-eye", title:"Evil Eye", img:"evil-eye.jpg.jpg",
-       tagline:"סמל מרגיע ומגן.",
-       fragrance:"מלח ים • מאסק לבן",
-       materials:"שעוות סויה • פתיל כותנה 100% • זכוכית",
-       burn:"~30–35 ש'", weight:"~220 ג'"},
-      {id:"summer", title:"קוקטייל קיץ", img:"summer-cocktail.JPG",
-       tagline:"צבעים בשכבות המזכירים משקה קיצי.",
-       fragrance:"אננס • מנגו • קוקוס",
-       materials:"תערובת שעוות סויה • פתיל כותנה • זכוכית",
-       burn:"~28–32 ש'", weight:"~210 ג'"},
-      {id:"choco", title:"Choco Cream", img:"choco-cream.JPG",
-       tagline:"מראה של קינוח – קרמי וחמים.",
-       fragrance:"קקאו מריר • וניל",
-       materials:"שעוות סויה • פתיל כותנה • זכוכית",
-       burn:"~28–32 ש'", weight:"~210 ג'"},
-      {id:"golden", title:"Golden Noir", img:"golden-noir.PNG",
-       tagline:"שחור אלגנטי עם פרטי זהב.",
-       fragrance:"אמבר • עץ אוד • טונקה",
-       materials:"שעוות סויה • פתיל כותנה • כלי",
-       burn:"~32–36 ש'", weight:"~230 ג'"},
-      {id:"caramel", title:"Caramel Crumble", img:"caramel-crumble.JPG",
-       tagline:"נגיעות קרמל חמימות ומראה מפתה.",
-       fragrance:"קרמל • ביסקוויט • וניל",
-       materials:"שעוות סויה • פתיל כותנה • זכוכית",
-       burn:"~28–32 ש'", weight:"~210 ג'"},
-      {id:"sunset", title:"Sunset Orange", img:"sunset-orange.JPG",
-       tagline:"זוהר הדר בהשראת שעת הזהב.",
-       fragrance:"תפוז • נרולי",
-       materials:"שעוות סויה • פתיל כותנה • זכוכית",
-       burn:"~26–30 ש'", weight:"~200 ג'"}
-    ]
-  }
-};
+  <main class="site">
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div class="hero-img">
+        <img src="home-candles-hero.JPG" alt="Home candles collage" loading="eager">
+      </div>
+      <h1 data-i="heroTitle">Mum yapmak basit ve herkes için harika bir deneyim.</h1>
+      <p data-i="heroDesc">Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.</p>
+    </section>
 
-/* -------- RENDER -------- */
-const grid = document.getElementById('grid');
-const modal = document.getElementById('modal');
-const mTitle = document.getElementById('mTitle');
-const mImg = document.getElementById('mImg');
-const mTag = document.getElementById('mTagline');
-const mFrag = document.getElementById('mFrag');
-const mMat = document.getElementById('mMat');
-const mBurn = document.getElementById('mBurn');
-const mWeight = document.getElementById('mWeight');
-
-let LANG = 'tr'; // Eddy TR seviyor 💛
-
-function bySel(attr){ return document.querySelectorAll(`[data-i="${attr}"]`); }
-
-function setTexts(){
-  const t = T[LANG];
-  // navbar, hero, titles
-  for(const k of ["nav_about","nav_works","nav_contact","lead","sub","ourworks","contact","contactline",
-                  "k_fragrance","k_materials","k_burn","k_weight"]){
-    bySel(k).forEach(el=> el.textContent = t[k]);
-  }
-  // dil buton aktif
-  document.querySelectorAll('.lang button').forEach(b=>{
-    b.classList.toggle('active', b.dataset.lang===LANG);
-  });
-}
-
-function renderGrid(){
-  const t = T[LANG];
-  grid.innerHTML = '';
-  t.items.forEach(it=>{
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.innerHTML = `
-      <figure><img src="${it.img}" alt="${it.title}"></figure>
-      <div class="pad">
-        <h3>${it.title}</h3>
-        <div class="meta">
-          <div class="chip"><b>${T[LANG].k_fragrance}:</b> ${it.fragrance}</div>
-          <div class="chip"><b>${T[LANG].k_burn}:</b> ${it.burn}</div>
+    <!-- WORKS -->
+    <h2 class="section-title" id="works" data-i="worksTitle">Çalışmalarımız</h2>
+    <section class="grid" aria-label="Works cards">
+      <!-- Evil Eye -->
+      <article class="card" data-item="evil-eye">
+        <img src="evil-eye.jpg.jpg" alt="Evil Eye candle" loading="lazy">
+        <div class="pad">
+          <h3>Evil Eye</h3>
+          <div class="pill-wrap">
+            <div class="pill"><strong data-i="pMaterials">Malzemeler</strong><br><span data-i="e1_mat">Soya mumu, pamuk fitil, cam</span></div>
+            <div class="pill"><strong data-i="pScent">Koku</strong><br><span data-i="e1_scent">Deniz tuzu • Beyaz misk</span></div>
+            <div class="pill"><strong data-i="pBurn">Yanma Süresi</strong><br><span data-i="e1_burn">~30–35 saat</span></div>
+          </div>
+          <div class="cta"><a href="#" class="button" data-i="viewDetails" data-open="evil-eye">Detayları gör</a></div>
         </div>
-        <div class="more"><a href="#" data-open="${it.id}">${T[LANG].card_more}</a></div>
+      </article>
+
+      <!-- Summer Cocktail -->
+      <article class="card" data-item="summer">
+        <img src="summer-cocktail.JPG" alt="Summer cocktail candle" loading="lazy">
+        <div class="pad">
+          <h3 data-i="w2">Yaz Kokteyli</h3>
+          <div class="pill-wrap">
+            <div class="pill"><strong data-i="pMaterials">Malzemeler</strong><br><span data-i="e2_mat">Soya mumu karışımı, pamuk fitil, cam</span></div>
+            <div class="pill"><strong data-i="pScent">Koku</strong><br><span data-i="e2_scent">Ananas • Mango • Hindistan cevizi</span></div>
+            <div class="pill"><strong data-i="pBurn">Yanma Süresi</strong><br><span data-i="e2_burn">~28–32 saat</span></div>
+          </div>
+          <div class="cta"><a href="#" class="button" data-i="viewDetails" data-open="summer">Detayları gör</a></div>
+        </div>
+      </article>
+
+      <!-- Choco Cream -->
+      <article class="card" data-item="choco">
+        <img src="choco-cream.JPG" alt="Choco Cream candle" loading="lazy">
+        <div class="pad">
+          <h3>Choco Cream</h3>
+          <div class="pill-wrap">
+            <div class="pill"><strong data-i="pMaterials">Malzemeler</strong><br><span data-i="e3_mat">Soya mumu, pamuk fitil, cam</span></div>
+            <div class="pill"><strong data-i="pScent">Koku</strong><br><span data-i="e3_scent">Bitter kakao • Vanilya</span></div>
+            <div class="pill"><strong data-i="pBurn">Yanma Süresi</strong><br><span data-i="e3_burn">~28–32 saat</span></div>
+          </div>
+          <div class="cta"><a href="#" class="button" data-i="viewDetails" data-open="choco">Detayları gör</a></div>
+        </div>
+      </article>
+
+      <!-- Golden Noir -->
+      <article class="card" data-item="noir">
+        <img src="golden-noir.PNG" alt="Golden Noir candle" loading="lazy">
+        <div class="pad">
+          <h3>Golden Noir</h3>
+          <div class="pill-wrap">
+            <div class="pill"><strong data-i="pMaterials">Malzemeler</strong><br><span data-i="e4_mat">Soya mumu, pamuk fitil, cam</span></div>
+            <div class="pill"><strong data-i="pScent">Koku</strong><br><span data-i="e4_scent">Amber • Ud • Tonka</span></div>
+            <div class="pill"><strong data-i="pBurn">Yanma Süresi</strong><br><span data-i="e4_burn">~32–36 saat</span></div>
+          </div>
+          <div class="cta"><a href="#" class="button" data-i="viewDetails" data-open="noir">Detayları gör</a></div>
+        </div>
+      </article>
+
+      <!-- Caramel Crumble -->
+      <article class="card" data-item="caramel">
+        <img src="caramel-crumble.JPG" alt="Caramel Crumble candle" loading="lazy">
+        <div class="pad">
+          <h3>Caramel Crumble</h3>
+          <div class="pill-wrap">
+            <div class="pill"><strong data-i="pMaterials">Malzemeler</strong><br><span data-i="e5_mat">Soya mumu, pamuk fitil, cam</span></div>
+            <div class="pill"><strong data-i="pScent">Koku</strong><br><span data-i="e5_scent">Karamel • Bisküvi • Vanilya</span></div>
+            <div class="pill"><strong data-i="pBurn">Yanma Süresi</strong><br><span data-i="e5_burn">~28–32 saat</span></div>
+          </div>
+          <div class="cta"><a href="#" class="button" data-i="viewDetails" data-open="caramel">Detayları gör</a></div>
+        </div>
+      </article>
+
+      <!-- Sunset Orange -->
+      <article class="card" data-item="sunset">
+        <img src="sunset-orange.JPG" alt="Sunset Orange candle" loading="lazy">
+        <div class="pad">
+          <h3>Sunset Orange</h3>
+          <div class="pill-wrap">
+            <div class="pill"><strong data-i="pMaterials">Malzemeler</strong><br><span data-i="e6_mat">Soya mumu, pamuk fitil, cam</span></div>
+            <div class="pill"><strong data-i="pScent">Koku</strong><br><span data-i="e6_scent">Portakal • Narlıçiçeği (Neroli)</span></div>
+            <div class="pill"><strong data-i="pBurn">Yanma Süresi</strong><br><span data-i="e6_burn">~26–30 saat</span></div>
+          </div>
+          <div class="cta"><a href="#" class="button" data-i="viewDetails" data-open="sunset">Detayları gör</a></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CONTACT -->
+    <h2 class="section-title" id="contact" data-i="contactTitle">İletişim</h2>
+    <p class="muted" data-i="contactLead">Soru ve siparişler için:</p>
+    <div class="social">
+      <a href="https://instagram.com/INSTAGRAM_KULLANICI_ADIN" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://pinterest.com/" target="_blank" rel="noopener">Pinterest (soon)</a>
+      <a href="mailto:hello@eurekastudio.org">Email</a>
+    </div>
+
+    <footer>
+      <p>© 2025 Eureka Studio — All rights reserved.</p>
+      <p>crafted with love 🍀</p>
+    </footer>
+  </main>
+
+  <!-- MODAL (tek şablon, içerik JS ile doldurulur) -->
+  <div class="modal" id="modal">
+    <div class="backdrop" data-close></div>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="close" aria-label="Close" data-close>×</button>
+      <img id="mImg" src="" alt="" loading="lazy" />
+      <div class="pad">
+        <h3 id="mTitle">Title</h3>
+        <p class="muted" id="mDesc"></p>
+        <div class="pill-wrap" id="mFacts"></div>
       </div>
-    `;
-    grid.appendChild(card);
-  });
-}
+    </div>
+  </div>
 
-function openModal(id){
-  const it = T[LANG].items.find(x=>x.id===id);
-  if(!it) return;
-  mTitle.textContent = it.title;
-  mImg.src = it.img; mImg.alt = it.title;
-  mTag.textContent = it.tagline;
-  mFrag.textContent = it.fragrance;
-  mMat.textContent = it.materials;
-  mBurn.textContent = it.burn;
-  mWeight.textContent = it.weight;
-  modal.setAttribute('open','');
-}
+  <script>
+    // --- Dil metinleri
+    const T = {
+      en:{
+        navAbout:"About", navWorks:"Works", navContact:"Contact",
+        heroTitle:"Making candles is simple — and wonderful for everyone.",
+        heroDesc:"High-quality scents, cozy colors and textures turn moments into memories.",
+        worksTitle:"Our Works", contactTitle:"Contact", contactLead:"For questions and orders:",
+        pMaterials:"Materials", pScent:"Fragrance", pBurn:"Burn Time",
+        w2:"Summer Cocktail", viewDetails:"View details",
+        items:{
+          "evil-eye":{
+            title:"Evil Eye",
+            desc:"A protective symbol that brings calm and balance.",
+            img:"evil-eye.jpg.jpg",
+            facts:[
+              ["Materials","Soy wax, cotton wick, glass"],
+              ["Fragrance","Sea salt • White musk"],
+              ["Burn Time","~30–35 hours"],
+              ["Weight","~220 g"]
+            ]
+          },
+          "summer":{
+            title:"Summer Cocktail",
+            desc:"Layered colors that recall a breezy summer drink.",
+            img:"summer-cocktail.JPG",
+            facts:[
+              ["Materials","Soy wax blend, cotton wick, glass"],
+              ["Fragrance","Pineapple • Mango • Coconut"],
+              ["Burn Time","~28–32 hours"],
+              ["Weight","~210 g"]
+            ]
+          },
+          "choco":{
+            title:"Choco Cream",
+            desc:"Rich cocoa tones with a creamy look.",
+            img:"choco-cream.JPG",
+            facts:[
+              ["Materials","Soy wax, cotton wick, glass"],
+              ["Fragrance","Dark cocoa • Vanilla"],
+              ["Burn Time","~28–32 hours"],
+              ["Weight","~220 g"]
+            ]
+          },
+          "noir":{
+            title:"Golden Noir",
+            desc:"Elegant gold details with a deep dark style.",
+            img:"golden-noir.PNG",
+            facts:[
+              ["Materials","Soy wax, cotton wick, glass"],
+              ["Fragrance","Amber • Oud • Tonka"],
+              ["Burn Time","~32–36 hours"],
+              ["Weight","~230 g"]
+            ]
+          },
+          "caramel":{
+            title:"Caramel Crumble",
+            desc:"Warm caramel notes and a delicious look.",
+            img:"caramel-crumble.JPG",
+            facts:[
+              ["Materials","Soy wax, cotton wick, glass"],
+              ["Fragrance","Caramel • Biscuit • Vanilla"],
+              ["Burn Time","~28–32 hours"],
+              ["Weight","~220 g"]
+            ]
+          },
+          "sunset":{
+            title:"Sunset Orange",
+            desc:"Citrus glow inspired by golden-hour skies.",
+            img:"sunset-orange.JPG",
+            facts:[
+              ["Materials","Soy wax, cotton wick, glass"],
+              ["Fragrance","Orange • Neroli"],
+              ["Burn Time","~26–30 hours"],
+              ["Weight","~210 g"]
+            ]
+          }
+        }
+      },
+      tr:{
+        navAbout:"Hakkımızda", navWorks:"Çalışmalar", navContact:"İletişim",
+        heroTitle:"Mum yapmak basit ve herkes için harika bir deneyim.",
+        heroDesc:"Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.",
+        worksTitle:"Çalışmalarımız", contactTitle:"İletişim", contactLead:"Soru ve siparişler için:",
+        pMaterials:"Malzemeler", pScent:"Koku", pBurn:"Yanma Süresi",
+        w2:"Yaz Kokteyli", viewDetails:"Detayları gör",
+        items:{
+          "evil-eye":{
+            title:"Evil Eye",
+            desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
+            img:"evil-eye.jpg.jpg",
+            facts:[
+              ["Malzemeler","Soya mumu, pamuk fitil, cam"],
+              ["Koku","Deniz tuzu • Beyaz misk"],
+              ["Yanma Süresi","~30–35 saat"],
+              ["Ağırlık","~220 g"]
+            ]
+          },
+          "summer":{
+            title:"Yaz Kokteyli",
+            desc:"Taze bir yaz kokteylini anımsatan katmanlı renkler.",
+            img:"summer-cocktail.JPG",
+            facts:[
+              ["Malzemeler","Soya mumu karışımı, pamuk fitil, cam"],
+              ["Koku","Ananas • Mango • Hindistan cevizi"],
+              ["Yanma Süresi","~28–32 saat"],
+              ["Ağırlık","~210 g"]
+            ]
+          },
+          "choco":{
+            title:"Choco Cream",
+            desc:"Yoğun kakao tonları ve kremsi bir görünüm.",
+            img:"choco-cream.JPG",
+            facts:[
+              ["Malzemeler","Soya mumu, pamuk fitil, cam"],
+              ["Koku","Bitter kakao • Vanilya"],
+              ["Yanma Süresi","~28–32 saat"],
+              ["Ağırlık","~220 g"]
+            ]
+          },
+          "noir":{
+            title:"Golden Noir",
+            desc:"Modern siyah görünüm, zarif altın detaylarla.",
+            img:"golden-noir.PNG",
+            facts:[
+              ["Malzemeler","Soya mumu, pamuk fitil, cam"],
+              ["Koku","Amber • Ud • Tonka"],
+              ["Yanma Süresi","~32–36 saat"],
+              ["Ağırlık","~230 g"]
+            ]
+          },
+          "caramel":{
+            title:"Caramel Crumble",
+            desc:"Sıcak karamel notaları ve iştah açan bir görünüm.",
+            img:"caramel-crumble.JPG",
+            facts:[
+              ["Malzemeler","Soya mumu, pamuk fitil, cam"],
+              ["Koku","Karamel • Bisküvi • Vanilya"],
+              ["Yanma Süresi","~28–32 saat"],
+              ["Ağırlık","~220 g"]
+            ]
+          },
+          "sunset":{
+            title:"Sunset Orange",
+            desc:"Gün batımı ışıltısından ilham alan narenciye dokunuşu.",
+            img:"sunset-orange.JPG",
+            facts:[
+              ["Malzemeler","Soya mumu, pamuk fitil, cam"],
+              ["Koku","Portakal • Narlıçiçeği (Neroli)"],
+              ["Yanma Süresi","~26–30 saat"],
+              ["Ağırlık","~210 g"]
+            ]
+          }
+        }
+      },
+      he:{
+        navAbout:"אודות", navWorks:"עבודות", navContact:"יצירת קשר",
+        heroTitle:"יצירת נרות היא פשוטה — ונפלאה לכולם.",
+        heroDesc:"ניחוחות איכותיים, צבעים חמימים וטקסטורות שמעניקות רגעים קסומים.",
+        worksTitle:"העבודות שלנו", contactTitle:"יצירת קשר", contactLead:"לשאלות והזמנות:",
+        pMaterials:"חומרים", pScent:"ניחוח", pBurn:"זמן בערה",
+        w2:"קוקטייל קיץ", viewDetails:"הצג פרטים",
+        items:{
+          "evil-eye":{
+            title:"Evil Eye",
+            desc:"סמל הגנה שמביא רוגע ואיזון.",
+            img:"evil-eye.jpg.jpg",
+            facts:[
+              ["חומרים","שעוות סויה, פתיל כותנה, זכוכית"],
+              ["ניחוח","מלח ים • מושק לבן"],
+              ["זמן בערה","~30–35 שעות"],
+              ["משקל","~220 גרם"]
+            ]
+          },
+          "summer":{
+            title:"קוקטייל קיץ",
+            desc:"שכבות צבע שמזכירות משקה קיצי ורענן.",
+            img:"summer-cocktail.JPG",
+            facts:[
+              ["חומרים","תערובת שעוות סויה, פתיל כותנה, זכוכית"],
+              ["ניחוח","אננס • מנגו • קוקוס"],
+              ["זמן בערה","~28–32 שעות"],
+              ["משקל","~210 גרם"]
+            ]
+          },
+          "choco":{
+            title:"Choco Cream",
+            desc:"גווני קקאו עשירים ומראה קרמי.",
+            img:"choco-cream.JPG",
+            facts:[
+              ["חומרים","שעוות סויה, פתיל כותנה, זכוכית"],
+              ["ניחוח","קקאו מריר • וניל"],
+              ["זמן בערה","~28–32 שעות"],
+              ["משקל","~220 גרם"]
+            ]
+          },
+          "noir":{
+            title:"Golden Noir",
+            desc:"מראה שחור אלגנטי עם פרטים מוזהבים.",
+            img:"golden-noir.PNG",
+            facts:[
+              ["חומרים","שעוות סויה, פתיל כותנה, זכוכית"],
+              ["ניחוח","ענבר • עץ אוד • טונקה"],
+              ["זמן בערה","~32–36 שעות"],
+              ["משקל","~230 גרם"]
+            ]
+          },
+          "caramel":{
+            title:"Caramel Crumble",
+            desc:"ניחוחות קרמל חמים ומראה מגרה.",
+            img:"caramel-crumble.JPG",
+            facts:[
+              ["חומרים","שעוות סויה, פתיל כותנה, זכוכית"],
+              ["ניחוח","קרמל • ביסקוויט • וניל"],
+              ["זמן בערה","~28–32 שעות"],
+              ["משקל","~220 גרם"]
+            ]
+          },
+          "sunset":{
+            title:"Sunset Orange",
+            desc:"נגיעה הדרית בהשראת שקיעה זהובה.",
+            img:"sunset-orange.JPG",
+            facts:[
+              ["חומרים","שעוות סויה, פתיל כותנה, זכוכית"],
+              ["ניחוח","תפוז • נרולי"],
+              ["זמן בערה","~26–30 שעות"],
+              ["משקל","~210 גרם"]
+            ]
+          }
+        }
+      }
+    };
 
-function closeModal(){ modal.removeAttribute('open'); }
+    // Basit çeviri & RTL
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+    function setLang(code){
+      const dict = T[code];
+      document.documentElement.lang = code;
+      // RTL toggle
+      if(code === 'he') document.body.classList.add('rtl'); else document.body.classList.remove('rtl');
+      // statik metinler
+      $("[data-i='navAbout']").textContent = dict.navAbout;
+      $("[data-i='navWorks']").textContent = dict.navWorks;
+      $("[data-i='navContact']").textContent = dict.navContact;
+      $("[data-i='heroTitle']").textContent = dict.heroTitle;
+      $("[data-i='heroDesc']").textContent = dict.heroDesc;
+      $("[data-i='worksTitle']").textContent = dict.worksTitle;
+      $("[data-i='contactTitle']").textContent = dict.contactTitle;
+      $("[data-i='contactLead']").textContent = dict.contactLead;
+      $$(".button").forEach(b=> b.textContent = dict.viewDetails);
+      $("[data-i='w2']").textContent = dict.w2;
+      $$(".pill strong[data-i='pMaterials']").forEach(e=> e.textContent = dict.pMaterials);
+      $$(".pill strong[data-i='pScent']").forEach(e=> e.textContent = dict.pScent);
+      $$(".pill strong[data-i='pBurn']").forEach(e=> e.textContent = dict.pBurn);
+      // kart içerikleri (alt yazılar)
+      const ids = ["evil-eye","summer","choco","noir","caramel","sunset"];
+      ids.forEach(id=>{
+        const base = T[code].items[id];
+        if(!base) return;
+        const card = document.querySelector(`.card[data-item="${id}"]`);
+        if(card){
+          card.querySelector("h3").textContent = base.title;
+          const spans = card.querySelectorAll(".pill span");
+          // Materyal, Koku, Yanma
+          spans[0].textContent = base.facts[0][1];
+          spans[1].textContent = base.facts[1][1];
+          spans[2].textContent = base.facts[2][1];
+          // Görsel yolu sabit (adlar repo ile uyumlu)
+          const im = card.querySelector("img");
+          im.src = base.img; im.alt = base.title;
+        }
+      });
 
-document.addEventListener('click', (e)=>{
-  const openId = e.target.closest('[data-open]')?.dataset.open;
-  if(openId){ e.preventDefault(); openModal(openId); return; }
-  if(e.target.id==='mClose' || e.target === modal){ closeModal(); }
-});
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+      // dil düğmesi aktiflik
+      $$(".lang button").forEach(b=> b.classList.toggle('active', b.dataset.lang===code));
+      localStorage.setItem("lang", code);
+    }
+    $$(".lang button").forEach(b=> b.addEventListener("click", ()=> setLang(b.dataset.lang)));
+    setLang(localStorage.getItem("lang") || "tr");
 
-document.querySelectorAll('.lang button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    LANG = btn.dataset.lang;
-    setTexts(); renderGrid();
-  });
-});
-
-/* init */
-setTexts(); renderGrid();
-</script>
-
+    // Modal open/close
+    const modal = $("#modal");
+    function openModal(id){
+      const lang = localStorage.getItem("lang") || "tr";
+      const item = T[lang].items[id];
+      if(!item) return;
+      $("#mImg").src = item.img;
+      $("#mImg").alt = item.title;
+      $("#mTitle").textContent = item.title;
+      $("#mDesc").textContent = item.desc;
+      const facts = $("#mFacts"); facts.innerHTML = "";
+      item.facts.forEach(([k,v])=>{
+        const div = document.createElement("div");
+        div.className = "pill";
+        div.innerHTML = `<strong>${k}</strong><br>${v}`;
+        facts.appendChild(div);
+      });
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(){
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+    $$(".button[data-open]").forEach(a=>{
+      a.addEventListener("click", (e)=>{
+        e.preventDefault();
+        openModal(a.dataset.open);
+      });
+    });
+    modal.addEventListener("click", (e)=>{ if(e.target.hasAttribute('data-close')) closeModal(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeModal(); });
+  </script>
 </body>
 </html>
