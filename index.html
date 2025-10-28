@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Eureka Studio</title>
   <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
   <style>
@@ -22,7 +22,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;height:100%}
     body{
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
       background:var(--bg);
       color:var(--ink);
       line-height:1.55;
@@ -40,7 +40,7 @@
     nav a{text-decoration:none}
     nav a:hover{text-decoration:underline}
 
-    /* Lang pill */
+    /* Lang pill (değişmeyecek görünüm) */
     .langs{display:flex; align-items:center; gap:10px; background:var(--pill); color:var(--pill-text); padding:6px 10px; border-radius:22px}
     .langs span{font-size:18px}
     .lang-btn{border:0; background:transparent; color:#cfcfcf; font-weight:800; padding:4px 10px; border-radius:14px; cursor:pointer}
@@ -56,31 +56,26 @@
     h1{font-size:clamp(26px, 4.8vw, 40px); line-height:1.15; margin:6px 0 10px}
     .lead{color:var(--ink-2); max-width:680px}
 
-    /* Grid */
-    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:18px}
-    @media (max-width:760px){ .grid{grid-template-columns:1fr} }
+    /* GRID — telefonda da 2 sütun */
+    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:18px}
+    @media (max-width:520px){ .grid{gap:14px} }
 
-    /* Card */
-    .card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden}
-    .card .top{overflow:hidden; border-bottom:1px solid rgba(0,0,0,.06)}
-    .card .top img{
-      width:100%; height:auto;
-      max-height:260px;           /* görseller biraz küçük */
-      object-fit:cover; object-position:center;
-      display:block;
-    }
-    .card .body{padding:16px}
-    .title{font-size:22px; font-weight:800; margin:6px 0 4px}
-    .desc{color:var(--ink-2); margin:0 0 10px}
+    /* CARD */
+    .card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column}
+    .card .top{height:210px; overflow:hidden; border-bottom:1px solid rgba(0,0,0,.06)}
+    .card .top img{width:100%; height:100%; object-fit:cover; object-position:center; display:block}
+    .card .body{padding:16px; display:flex; flex-direction:column; gap:10px; flex:1}
+    .title{font-size:20px; font-weight:800; margin:4px 0 0}
+    .desc{color:var(--ink-2); margin:0}
 
-    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
-    .chip{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:700}
-    .chip strong{display:block; margin-bottom:4px; font-size:12px; color:var(--ink-2); font-weight:800}
+    /* kart üstünde detay yok (sadece modalda) */
+    .chips{display:none}
 
-    .btn{display:inline-block; margin-top:10px; background:#141414; color:#fff; text-decoration:none; padding:8px 12px; border-radius:10px; font-weight:800}
-    .btn:hover{opacity:.9}
+    /* Buton */
+    .btn{display:inline-block; margin-top:auto; background:#141414; color:#fff; text-decoration:none; padding:8px 12px; border-radius:10px; font-weight:800}
+    .btn:hover{opacity:.92}
 
-    /* Modal */
+    /* MODAL */
     .modal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; padding:18px; z-index:60}
     .modal.show{display:flex}
     .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
@@ -89,64 +84,14 @@
     .close{position:absolute; right:10px; top:10px; width:36px; height:36px; display:grid; place-items:center; background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer}
     .content{padding:16px}
     .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
+    .chip{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:700}
+    .chip strong{display:block; margin-bottom:4px; font-size:12px; color:var(--ink-2); font-weight:800}
     .full{grid-column:1/-1}
     @media (max-width:560px){ .meta{grid-template-columns:1fr} }
 
-    /* Footer */
+    /* FOOTER */
     footer{max-width:980px; margin:40px auto 60px; padding:0 18px; text-align:center; color:var(--ink-2)}
     footer .socials a{font-weight:800; text-decoration:underline}
-    ...
-footer .socials a{font-weight:800; text-decoration:underline}
-
-/* ================== ÇALIŞMALAR HİZALAMA PATCH ================== */
-.grid{
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 18px !important;
-  justify-items: stretch;
-  align-items: stretch;
-}
-@media (max-width: 760px){
-  .grid{ grid-template-columns: repeat(2, 1fr) !important; }
-}
-.card{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.card .top{
-  height: 210px;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(0,0,0,.06);
-}
-.card .top img{
-  width: 100%;
-  height: 100% !important;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-.card .body{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-}
-.card .chips{ margin-top: 4px; }
-.card .btn{
-  margin-top: auto;
-  align-self: flex-start;
-}
-.title{ font-size: 20px; }
-.desc{ color: var(--ink-2); }
-
-/* PATCH SONU */
-/* Detay kısmını gizle/göster */
-.card .extra{
-  display:none;
-}
-.card.show-details .extra{
-  display:block;
-}
   </style>
 </head>
 <body>
@@ -173,16 +118,17 @@ footer .socials a{font-weight:800; text-decoration:underline}
       <img src="home-candles-hero.JPG" alt="Home Candles">
     </div>
 
+    <!-- INTRO -->
     <section id="about">
       <h1 data-i18n="hero_title">Mum yapmak basit ve herkes için harika bir deneyim.</h1>
       <p class="lead" data-i18n="hero_lead">Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.</p>
     </section>
 
-    <!-- Works -->
+    <!-- WORKS -->
     <section id="works" style="margin-top:26px">
-  <h2 data-i18n="works_h">Çalışmalarımız</h2>
-  <div id="cards" class="grid"></div>
-</section>
+      <h2 data-i18n="works_h">Çalışmalarımız</h2>
+      <div id="cards" class="grid"></div>
+    </section>
   </main>
 
   <footer id="contact">
@@ -197,7 +143,7 @@ footer .socials a{font-weight:800; text-decoration:underline}
     <p>Crafted with love 🍀</p>
   </footer>
 
-  <!-- Modal -->
+  <!-- MODAL -->
   <div class="modal" id="modal">
     <div class="sheet">
       <div class="top">
@@ -212,275 +158,192 @@ footer .socials a{font-weight:800; text-decoration:underline}
     </div>
   </div>
 
-<script>
-/* -------------------- CONTENT (TR/EN/HE) -------------------- */
-const PRODUCTS = [
-  {
-    key: "evil",
-    img: "evil-eye.jpg.jpg",
-    t: {
-      en: { title:"Evil Eye", desc:"A protective symbol that brings calm and balance.",
-        facts:[
-          {k:"Materials", v:"Soy wax, cotton wick, glass"},
-          {k:"Fragrance", v:"Sea salt • White musk"},
-          {k:"Burn Time", v:"~30–35 h"},
-          {k:"Weight", v:"~220 g"}
-        ]},
-      tr: { title:"Evil Eye", desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
-        facts:[
-          {k:"Malzemeler", v:"Soya mumu, pamuk fitil, cam"},
-          {k:"Koku", v:"Deniz tuzu • Beyaz misk"},
-          {k:"Yanma Süresi", v:"~30–35 saat"},
-          {k:"Ağırlık", v:"~220 g"}
-        ]},
-      he: { title:"Evil Eye", desc:"סמל מגן שמביא שלווה ואיזון.",
-        facts:[
-          {k:"חומרים", v:"שעוות סויה, פתיל כותנה, זכוכית"},
-          {k:"ניחוח", v:"מלח ים • מושק לבן"},
-          {k:"זמן בערה", v:"~30–35 ש׳"},
-          {k:"משקל", v:"~220 גר׳"}
-        ]}
+  <script>
+  /* -------------------- CONTENT (TR/EN/HE) -------------------- */
+  const PRODUCTS = [
+    {
+      key: "evil",
+      img: "evil-eye.jpg.jpg", // dosya adın böyleydi, aynen bıraktım
+      t: {
+        en:{ title:"Evil Eye", desc:"A protective symbol that brings calm and balance.",
+          facts:[
+            {k:"Materials", v:"Soy wax, cotton wick, glass"},
+            {k:"Fragrance", v:"Sea salt • White musk"},
+            {k:"Burn Time", v:"~30–35 h"},
+            {k:"Weight", v:"~220 g"}
+          ]},
+        tr:{ title:"Evil Eye", desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
+          facts:[
+            {k:"Malzemeler", v:"Soya mumu, pamuk fitil, cam"},
+            {k:"Koku", v:"Deniz tuzu • Beyaz misk"},
+            {k:"Yanma Süresi", v:"~30–35 saat"},
+            {k:"Ağırlık", v:"~220 g"}
+          ]},
+        he:{ title:"Evil Eye", desc:"סמל מגן שמביא שלווה ואיזון.",
+          facts:[
+            {k:"חומרים", v:"שעוות סויה, פתיל כותנה, זכוכית"},
+            {k:"ניחוח", v:"מלח ים • מושק לבן"},
+            {k:"זמן בערה", v:"~30–35 ש׳"},
+            {k:"משקל", v:"~220 גר׳"}
+          ]}
+      }
+    },
+    {
+      key: "cocktail",
+      img: "summer-cocktail.JPG",
+      t: {
+        en:{ title:"Summer Cocktail", desc:"Layered colors that recall a breezy summer drink.",
+          facts:[
+            {k:"Materials", v:"Soy blend, cotton wick, glass"},
+            {k:"Fragrance", v:"Pineapple • Mango • Coconut"},
+            {k:"Burn Time", v:"~28–32 h"},
+            {k:"Weight", v:"~210 g"}
+          ]},
+        tr:{ title:"Yaz Kokteyli", desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",
+          facts:[
+            {k:"Malzemeler", v:"Soya mumu karışımı, pamuk fitil, cam"},
+            {k:"Koku", v:"Ananas • Mango • Hindistan cevizi"},
+            {k:"Yanma Süresi", v:"~28–32 saat"},
+            {k:"Ağırlık", v:"~210 g"}
+          ]},
+        he:{ title:"קוקטייל קיץ", desc:"צבעים בשכבות שמזכירים משקה קיצי ורענן.",
+          facts:[
+            {k:"חומרים", v:"תערובת שעוות סויה, פתיל כותנה, זכוכית"},
+            {k:"ניחוח", v:"אננס • מנגו • קוקוס"},
+            {k:"זמן בערה", v:"~28–32 ש׳"},
+            {k:"משקל", v:"~210 גר׳"}
+          ]}
+      }
+    },
+    { key:"choco", img:"choco-cream.JPG",
+      t:{
+        en:{ title:"Choco Cream", desc:"Creamy textures and sweet vibes.",
+          facts:[{k:"Fragrance", v:"Bitter cocoa • Vanilla"},{k:"Burn Time", v:"~28–32 h"}]},
+        tr:{ title:"Choco Cream", desc:"Kremamsı dokular ve tatlı hisler.",
+          facts:[{k:"Koku", v:"Bitter kakao • Vanilya"},{k:"Yanma Süresi", v:"~28–32 saat"}]},
+        he:{ title:"שוקו קרם", desc:"מרקמים עשירים וניחוחות מתוקים.",
+          facts:[{k:"ניחוח", v:"קקאו מריר • וניל"},{k:"זמן בערה", v:"~28–32 ש׳"}]}
+      }
+    },
+    { key:"noir", img:"golden-noir.PNG",
+      t:{
+        en:{ title:"Golden Noir", desc:"Matte black body with elegant golden details.",
+          facts:[{k:"Fragrance", v:"Amber • Oud • Tonka"},{k:"Burn Time", v:"~32–36 h"}]},
+        tr:{ title:"Golden Noir", desc:"Mat siyah gövde, zarif altın detaylar.",
+          facts:[{k:"Koku", v:"Amber • Ud • Tonka"},{k:"Yanma Süresi", v:"~32–36 saat"}]},
+        he:{ title:"גולדן נואר", desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים.",
+          facts:[{k:"ניחוח", v:"ענבר • אוד • טונקה"},{k:"זמן בערה", v:"~32–36 ש׳"}]}
+      }
+    },
+    { key:"caramel", img:"caramel-crumble.JPG",
+      t:{
+        en:{ title:"Caramel Crumble", desc:"Warm caramel notes and a delicious look.",
+          facts:[{k:"Fragrance", v:"Caramel • Biscuit • Vanilla"},{k:"Burn Time", v:"~28–32 h"}]},
+        tr:{ title:"Caramel Crumble", desc:"Sıcak karamelli notalar, leziz bir görünüm.",
+          facts:[{k:"Koku", v:"Karamel • Bisküvi • Vanilya"},{k:"Yanma Süresi", v:"~28–32 saat"}]},
+        he:{ title:"קרמל קרמבל", desc:"נימות קרמל חמות ומראה מגרה.",
+          facts:[{k:"ניחוח", v:"קרמל • ביסקוויט • וניל"},{k:"זמן בערה", v:"~28–32 ש׳"}]}
+      }
+    },
+    { key:"sunset", img:"sunset-orange.JPG",
+      t:{
+        en:{ title:"Sunset Orange", desc:"Citrus glow inspired by golden-hour skies.",
+          facts:[{k:"Fragrance", v:"Orange • Neroli"},{k:"Burn Time", v:"~26–30 h"}]},
+        tr:{ title:"Sunset Orange", desc:"Altın saatleri hatırlatan narenciye ışıltısı.",
+          facts:[{k:"Koku", v:"Portakal • Narlıçiçeği (Neroli)"},{k:"Yanma Süresi", v:"~26–30 saat"}]},
+        he:{ title:"סאנסט אורנג׳", desc:"זוהר הדרים בהשראת רגעי שקיעה.",
+          facts:[{k:"ניחוח", v:"תפוז • נרולי"},{k:"זמן בערה", v:"~26–30 ש׳"}]}
+      }
     }
-  },
-  {
-    key: "cocktail",
-    img: "summer-cocktail.JPG",
-    t: {
-      en: { title:"Summer Cocktail", desc:"Layered colors that recall a breezy summer drink.",
-        facts:[
-          {k:"Materials", v:"Soy blend, cotton wick, glass"},
-          {k:"Fragrance", v:"Pineapple • Mango • Coconut"},
-          {k:"Burn Time", v:"~28–32 h"},
-          {k:"Weight", v:"~210 g"}
-        ]},
-      tr: { title:"Yaz Kokteyli", desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",
-        facts:[
-          {k:"Malzemeler", v:"Soya mumu karışımı, pamuk fitil, cam"},
-          {k:"Koku", v:"Ananas • Mango • Hindistan cevizi"},
-          {k:"Yanma Süresi", v:"~28–32 saat"},
-          {k:"Ağırlık", v:"~210 g"}
-        ]},
-      he: { title:"קוקטייל קיץ", desc:"צבעים בשכבות שמזכירים משקה קיצי ורענן.",
-        facts:[
-          {k:"חומרים", v:"תערובת שעוות סויה, פתיל כותנה, זכוכית"},
-          {k:"ניחוח", v:"אננס • מנגו • קוקוס"},
-          {k:"זמן בערה", v:"~28–32 ש׳"},
-          {k:"משקל", v:"~210 גר׳"}
-        ]}
-    }
-  },
-  {
-    key: "choco",
-    img: "choco-cream.JPG",
-    t: {
-      en:{ title:"Choco Cream", desc:"Creamy textures and sweet vibes.",
-        facts:[
-          {k:"Fragrance", v:"Bitter cocoa • Vanilla"},
-          {k:"Burn Time", v:"~28–32 h"}
-        ]},
-      tr:{ title:"Choco Cream", desc:"Kremamsı dokular ve tatlı hisler.",
-        facts:[
-          {k:"Koku", v:"Bitter kakao • Vanilya"},
-          {k:"Yanma Süresi", v:"~28–32 saat"}
-        ]},
-      he:{ title:"שוקו קרם", desc:"מרקמים עשירים וניחוחות מתוקים.",
-        facts:[
-          {k:"ניחוח", v:"קקאו מריר • וניל"},
-          {k:"זמן בערה", v:"~28–32 ש׳"}
-        ]}
-    }
-  },
-  {
-    key: "noir",
-    img: "golden-noir.PNG",
-    t: {
-      en:{ title:"Golden Noir", desc:"Matte black body with elegant golden details.",
-        facts:[
-          {k:"Fragrance", v:"Amber • Oud • Tonka"},
-          {k:"Burn Time", v:"~32–36 h"}
-        ]},
-      tr:{ title:"Golden Noir", desc:"Mat siyah gövde, zarif altın detaylar.",
-        facts:[
-          {k:"Koku", v:"Amber • Ud • Tonka"},
-          {k:"Yanma Süresi", v:"~32–36 saat"}
-        ]},
-      he:{ title:"גולדן נואר", desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים.",
-        facts:[
-          {k:"ניחוח", v:"ענבר • אוד • טונקה"},
-          {k:"זמן בערה", v:"~32–36 ש׳"}
-        ]}
-    }
-  },
-  {
-    key: "caramel",
-    img: "caramel-crumble.JPG",
-    t: {
-      en:{ title:"Caramel Crumble", desc:"Warm caramel notes and a delicious look.",
-        facts:[
-          {k:"Fragrance", v:"Caramel • Biscuit • Vanilla"},
-          {k:"Burn Time", v:"~28–32 h"}
-        ]},
-      tr:{ title:"Caramel Crumble", desc:"Sıcak karamelli notalar, leziz bir görünüm.",
-        facts:[
-          {k:"Koku", v:"Karamel • Bisküvi • Vanilya"},
-          {k:"Yanma Süresi", v:"~28–32 saat"}
-        ]},
-      he:{ title:"קרמל קרמבל", desc:"נימות קרמל חמות ומראה מגרה.",
-        facts:[
-          {k:"ניחוח", v:"קרמל • ביסקוויט • וניל"},
-          {k:"זמן בערה", v:"~28–32 ש׳"}
-        ]}
-    }
-  },
-  {
-    key: "sunset",
-    img: "sunset-orange.JPG",
-    t: {
-      en:{ title:"Sunset Orange", desc:"Citrus glow inspired by golden-hour skies.",
-        facts:[
-          {k:"Fragrance", v:"Orange • Neroli"},
-          {k:"Burn Time", v:"~26–30 h"}
-        ]},
-      tr:{ title:"Sunset Orange", desc:"Altın saatleri hatırlatan narenciye ışıltısı.",
-        facts:[
-          {k:"Koku", v:"Portakal • Narlıçiçeği (Neroli)"},
-          {k:"Yanma Süresi", v:"~26–30 saat"}
-        ]},
-      he:{ title:"סאנסט אורנג׳", desc:"זוהר הדרים בהשראת רגעי שקיעה.",
-        facts:[
-          {k:"ניחוח", v:"תפוז • נרולי"},
-          {k:"זמן בערה", v:"~26–30 ש׳"}
-        ]}
-    }
-  }
-];
+  ];
 
-const I18N = {
-  en:{
-    nav_about:"About",
-    nav_works:"Works",
-    nav_contact:"Contact",
-    hero_title:"Making candles is simple — and wonderful for everyone.",
-    hero_lead:"High-quality scents, cozy colors and textures turn moments into memories.",
-    works_h:"Our Works",
-    contact_h:"Contact",
-    contact_p:"For questions and orders:",
-    pin_soon:"Pinterest (soon)",
-    detail:"Detail"
-  },
-  tr:{
-    nav_about:"Hakkımızda",
-    nav_works:"Çalışmalar",
-    nav_contact:"İletişim",
-    hero_title:"Mum yapmak basit ve herkes için harika bir deneyim.",
-    hero_lead:"Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.",
-    works_h:"Çalışmalarımız",
-    contact_h:"İletişim",
-    contact_p:"Soru ve siparişler için:",
-    pin_soon:"Pinterest (yakında)",
-    detail:"Detay"
-  },
-  he:{
-    nav_about:"אודות",
-    nav_works:"עבודות",
-    nav_contact:"יצירת קשר",
-    hero_title:"יצירת נרות היא פשוטה ונפלאה לכולם.",
-    hero_lead:"ניחוחות איכותיים, צבעים חמימים ומרקמים שממלאים רגעים בזיכרונות.",
-    works_h:"העבודות שלנו",
-    contact_h:"יצירת קשר",
-    contact_p:"לשאלות והזמנות:",
-    pin_soon:"Pinterest (בקרוב)",
-    detail:"פרטים"
-  }
-};
+  const I18N = {
+    en:{ nav_about:"About", nav_works:"Works", nav_contact:"Contact",
+         hero_title:"Making candles is simple — and wonderful for everyone.",
+         hero_lead:"High-quality scents, cozy colors and textures turn moments into memories.",
+         works_h:"Our Works", contact_h:"Contact", contact_p:"For questions and orders:",
+         pin_soon:"Pinterest (soon)", detail:"Detail" },
+    tr:{ nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
+         hero_title:"Mum yapmak basit ve herkes için harika bir deneyim.",
+         hero_lead:"Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.",
+         works_h:"Çalışmalarımız", contact_h:"İletişim", contact_p:"Soru ve siparişler için:",
+         pin_soon:"Pinterest (yakında)", detail:"Detay" },
+    he:{ nav_about:"אודות", nav_works:"עבודות", nav_contact:"יצירת קשר",
+         hero_title:"יצירת נרות היא פשוטה ונפלאה לכולם.",
+         hero_lead:"ניחוחות איכותיים, צבעים חמימים ומרקמים שממלאים רגעים בזיכרונות.",
+         works_h:"העבודות שלנו", contact_h:"יצירת קשר", contact_p:"לשאלות והזמנות:",
+         pin_soon:"Pinterest (בקרוב)", detail:"פרטים" }
+  };
 
-/* -------------------- RENDER -------------------- */
-let currentLang = "tr"; // varsayılan TR
+  /* -------------------- RENDER -------------------- */
+  let currentLang = "tr"; // varsayılan TR
 
-const $ = sel => document.querySelector(sel);
-const cardsEl = $("#cards");
+  const $ = sel => document.querySelector(sel);
+  const cardsRoot = $("#cards");
 
-function renderCards(){
-  const cardsEl = document.querySelector("#cards");
-  if(!cardsEl) return;
-  cardsEl.innerHTML = "";
-
-  PRODUCTS.forEach((p) => {
-    const t = p.t[currentLang];
-    const card = document.createElement("article");
-    card.className = "card";
-    card.innerHTML = `
-      <div class="top">
-        <img src="${p.img}" alt="${t.title}">
-      </div>
-      <div class="body">
-        <div class="title">${t.title}</div>
-        <p class="desc">${t.desc}</p>
-        <div class="chips">
-          ${t.facts.slice(0,2).map(f => `
-            <div class="chip"><strong>${f.k}</strong>${f.v}</div>
-          `).join("")}
+  function renderCards(){
+    if(!cardsRoot) return;
+    cardsRoot.innerHTML = "";
+    PRODUCTS.forEach((p) => {
+      const t = p.t[currentLang];
+      const el = document.createElement("article");
+      el.className = "card";
+      el.innerHTML = `
+        <div class="top"><img src="${p.img}" alt="${t.title}"></div>
+        <div class="body">
+          <div class="title">${t.title}</div>
+          <p class="desc">${t.desc}</p>
+          <a href="#" class="btn" data-open="${p.key}">${I18N[currentLang].detail}</a>
         </div>
-        <a href="#" class="btn" data-open="${p.key}">${I18N[currentLang].detail}</a>
-      </div>
-    `;
-    cardsEl.appendChild(card);
-  });
-}
-
-function applyI18N(){
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const k = el.getAttribute("data-i18n");
-    el.textContent = I18N[currentLang][k];
-  });
-}
-
-/* -------------------- LANG SWITCH -------------------- */
-document.querySelectorAll(".lang-btn").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
-    btn.classList.add("active");
-    currentLang = btn.dataset.lang;
-    applyI18N();
-    renderCards();
-  });
-});
-
-/* -------------------- MODAL -------------------- */
-const modal = $("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
-function openModal(key){
-  const prod = PRODUCTS.find(p=>p.key===key);
-  const t = prod.t[currentLang];
-  mImg.src = prod.img;
-  mImg.alt = t.title;
-  mTitle.textContent = t.title;
-  mDesc.textContent = t.desc;
-  mMeta.innerHTML = t.facts.map(f=>`<div class="chip full"><strong>${f.k}</strong>${f.v}</div>`).join("");
-  modal.classList.add("show");
-}
-$("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
-modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
-
-document.addEventListener("click", e=>{
-  const trg = e.target.closest("[data-open]");
-  if(trg){
-    e.preventDefault();
-    openModal(trg.getAttribute("data-open"));
+      `;
+      cardsRoot.appendChild(el);
+    });
   }
-});
 
-/* -------------------- INIT -------------------- */
-applyI18N();
-renderCards();
-<script>
-document.addEventListener("click", e => {
-  const btn = e.target.closest(".btn");
-  if (btn && btn.dataset.open === undefined) {
-    e.preventDefault();
-    const card = btn.closest(".card");
-    card.classList.toggle("show-details");
+  function applyI18N(){
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const k = el.getAttribute("data-i18n");
+      el.textContent = I18N[currentLang][k];
+    });
   }
-});
-</script>
+
+  /* -------------------- LANG SWITCH -------------------- */
+  document.querySelectorAll(".lang-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      currentLang = btn.dataset.lang;
+      applyI18N();
+      renderCards();
+    });
+  });
+
+  /* -------------------- MODAL -------------------- */
+  const modal = $("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
+  function openModal(key){
+    const prod = PRODUCTS.find(p=>p.key===key);
+    if(!prod) return;
+    const t = prod.t[currentLang];
+    mImg.src = prod.img; mImg.alt = t.title;
+    mTitle.textContent = t.title;
+    mDesc.textContent = t.desc;
+    mMeta.innerHTML = t.facts.map(f=>`<div class="chip full"><strong>${f.k}</strong>${f.v}</div>`).join("");
+    modal.classList.add("show");
+  }
+  $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
+  modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
+
+  document.addEventListener("click", e=>{
+    const trg = e.target.closest("[data-open]");
+    if(trg){
+      e.preventDefault();
+      openModal(trg.getAttribute("data-open"));
+    }
+  });
+
+  /* -------------------- INIT -------------------- */
+  applyI18N();
+  renderCards();
+  </script>
 </body>
 </html>
