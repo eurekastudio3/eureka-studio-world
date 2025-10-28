@@ -7,6 +7,26 @@
   <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
 
   <style>
+    /* ==== MOBILE FIT PATCH (<=480px) ==== */
+html, body { overflow-x: hidden; }
+
+@media (max-width: 480px){
+  .wrap{ padding: 12px 14px; }
+  main{ padding: 0 14px; }
+
+  .grid{
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .card{ border-radius: 14px; }
+  .card .top{ height: 180px; }
+  .title{ font-size: 19px; }
+  .btn{ padding: 10px 12px; font-size: 14px; }
+
+  .hero-img{ max-width: 560px; margin: 6px auto 18px; }
+  footer{ padding: 0 8px; }
+}
     :root{
       --bg:#f4efe7;
       --panel:#fff7ef;
