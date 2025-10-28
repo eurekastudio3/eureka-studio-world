@@ -1,243 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eureka Studio</title>
+  <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
   <style>
+    :root {
+      --bg: #f7f4ef;
+      --text: #1b1b1b;
+      --accent: #d9cdb8;
+      --dark: #2a2a2a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      margin: 0;
-      background-color: #f8f5ef;
-      color: #222;
-      text-align: center;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: all 0.3s ease-in-out;
     }
     header {
+      background: var(--dark);
+      color: var(--accent);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: #fff;
-      border-bottom: 1px solid #eee;
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-    .lang-switch {
-      cursor: pointer;
-      margin-left: 10px;
-      font-weight: bold;
-    }
-    .hero img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-    .section {
-      padding: 2rem 1rem;
-    }
-    .works {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      width: 280px;
+    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; }
+    .lang { color: var(--accent); font-weight: 600; }
+    .lang span { margin: 0 0.3rem; cursor: pointer; }
+    .lang span:hover { text-decoration: underline; }
+
+    main {
+      max-width: 900px;
+      margin: 4rem auto;
       text-align: center;
-      overflow: hidden;
     }
-    .card img {
+
+    .collection {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .candle {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .candle:hover { transform: translateY(-5px); }
+    .candle img {
       width: 100%;
-      height: auto;
-      display: block;
+      border-radius: 10px;
+    }
+    .candle h3 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+    .candle p {
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
     }
     footer {
+      text-align: center;
       padding: 2rem;
-      background: #fff;
-      border-top: 1px solid #eee;
+      color: var(--dark);
       font-size: 0.9rem;
-      margin-top: 2rem;
+      border-top: 1px solid #ddd;
+      margin-top: 3rem;
     }
-    [dir="rtl"] {
-      direction: rtl;
-      text-align: right;
+    .signature {
+      margin-top: 0.5rem;
+      font-style: italic;
+      color: #777;
     }
+    .fade { opacity: 0; transition: opacity 0.4s ease-in-out; }
   </style>
 </head>
 <body>
   <header>
-    <h1>✦ Eureka Studio</h1>
-    <nav>
-      <a href="#about" class="t-about"></a>
-      <a href="#works" class="t-works"></a>
-      <a href="#contact" class="t-contact"></a>
-      🌐 
-      <span class="lang-switch" onclick="setLang('en')">EN</span> |
-      <span class="lang-switch" onclick="setLang('tr')">TR</span> |
-      <span class="lang-switch" onclick="setLang('he')">HE</span>
-    </nav>
+    <h1>Eureka Studio</h1>
+    <div class="lang">🌐 <span data-lang="en">EN</span> | <span data-lang="he">HE</span> | <span data-lang="tr">TR</span></div>
   </header>
 
-  <section id="about" class="section">
-    <div class="hero">
-      <img src="home-candles-hero.JPG" alt="Home Candles" />
-    </div>
-    <h2 class="t-hero-title"></h2>
-    <p class="t-hero-text"></p>
-  </section>
+  <main id="content">
+    <h2>Signature Candle Collection</h2>
+    <div class="collection" id="candles"></div>
+  </main>
 
-  <section id="works" class="section">
-    <h2 class="t-works-title"></h2>
-    <div class="works">
-      <div class="card">
-        <img src="evil-eye.jpg.jpg" alt="Evil Eye" />
-        <h3 class="t-evil-eye-title"></h3>
-        <p class="t-evil-eye-text"></p>
-      </div>
-      <div class="card">
-        <img src="summer-cocktail.JPG" alt="Summer Cocktail" />
-        <h3 class="t-summer-title"></h3>
-        <p class="t-summer-text"></p>
-      </div>
-      <div class="card">
-        <img src="choco-cream.JPG" alt="Choco Cream" />
-        <h3 class="t-choco-title"></h3>
-        <p class="t-choco-text"></p>
-      </div>
-      <div class="card">
-        <img src="golden-noir.PNG" alt="Golden Noir" />
-        <h3 class="t-golden-title"></h3>
-        <p class="t-golden-text"></p>
-      </div>
-      <div class="card">
-        <img src="caramel-crumble.JPG" alt="Caramel Crumble" />
-        <h3 class="t-caramel-title"></h3>
-        <p class="t-caramel-text"></p>
-      </div>
-      <div class="card">
-        <img src="sunset-orange.JPG" alt="Sunset Orange" />
-        <h3 class="t-sunset-title"></h3>
-        <p class="t-sunset-text"></p>
-      </div>
-    </div>
-  </section>
-
-  <footer id="contact">
-    <h2 class="t-contact-title"></h2>
-    <p class="t-contact-text"></p>
-    <p>📸 Instagram | Pinterest (soon) | ✉️ Email</p>
-    <p>© 2025 Eureka Studio — All rights reserved.</p>
+  <footer>
+    <p>© Eureka Studio | All rights reserved.</p>
+    <p class="signature">crafted with love 🍀</p>
   </footer>
-
-  <script>
-    const translations = {
+    <script>
+    const texts = {
       en: {
-        about: "About",
-        works: "Works",
-        contact: "Contact",
-        heroTitle: "Making candles is simple — and wonderful for everyone.",
-        heroText: "High-quality craft scents, cozy colors and textures that turn moments into memories.",
-        worksTitle: "Our Works",
-        evilEyeTitle: "Evil Eye",
-        evilEyeText: "A protective symbol that brings calm and balance.",
-        summerTitle: "Summer Cocktail",
-        summerText: "Layered colors that recall a breezy summer drink.",
-        chocoTitle: "Choco Cream",
-        chocoText: "A delicious look with chocolate tones and creamy details.",
-        goldenTitle: "Golden Noir",
-        goldenText: "Elegant gold details meet dark beauty.",
-        caramelTitle: "Caramel Crumble",
-        caramelText: "Warm caramel notes and a delightful look.",
-        sunsetTitle: "Sunset Orange",
-        sunsetText: "Citrus glow inspired by golden-hour skies.",
-        contactTitle: "Contact",
-        contactText: "For questions and orders:"
+        title: "Signature Candle Collection",
+        candles: [
+          {
+            name: "Evil Eye",
+            desc: "Symbol of protection and peace for your home.",
+            materials: "Natural soy wax, cotton wick, glass charm.",
+            scent: "Sea salt, lavender, amber.",
+            burn: "35–40 hours"
+          },
+          {
+            name: "Summer Cocktail",
+            desc: "Tropical freshness blended into your summer mood.",
+            materials: "Soy wax, natural oils.",
+            scent: "Mango, citrus, coconut.",
+            burn: "30 hours"
+          },
+          {
+            name: "Choco Cream",
+            desc: "Warm sweetness that melts hearts and senses.",
+            materials: "Premium soy wax, cocoa essence.",
+            scent: "Dark chocolate, vanilla, caramel.",
+            burn: "40 hours"
+          },
+          {
+            name: "Golden Noir",
+            desc: "Luxury and mystery in a flicker of gold.",
+            materials: "Soy wax, wooden wick, golden touch.",
+            scent: "Sandalwood, vanilla, musk.",
+            burn: "45 hours"
+          },
+          {
+            name: "Caramel Crumble",
+            desc: "A cozy dessert-like scent to embrace your space.",
+            materials: "Natural soy wax, caramel oil.",
+            scent: "Brown sugar, caramel, cream.",
+            burn: "38 hours"
+          },
+          {
+            name: "Sunset Orange",
+            desc: "A warm and vibrant scent inspired by golden skies.",
+            materials: "Soy wax, orange peel essence.",
+            scent: "Citrus, amber, honey.",
+            burn: "36 hours"
+          }
+        ]
       },
       tr: {
-        about: "Hakkında",
-        works: "Çalışmalar",
-        contact: "İletişim",
-        heroTitle: "Mum yapmak basit — ve herkes için harika bir deneyim.",
-        heroText: "Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.",
-        worksTitle: "Çalışmalarımız",
-        evilEyeTitle: "Nazar Boncuğu",
-        evilEyeText: "Sakinlik ve denge getiren koruyucu bir sembol.",
-        summerTitle: "Yaz Kokteyli",
-        summerText: "Yaz esintilerini hatırlatan katmanlı renkler.",
-        chocoTitle: "Çikolata Kreması",
-        chocoText: "Tatlı ve kremamsı detaylarla lezzetli bir görünüm.",
-        goldenTitle: "Altın Noir",
-        goldenText: "Koyu zarafetle buluşan altın detaylar.",
-        caramelTitle: "Karamel Crumble",
-        caramelText: "Sıcak karamel notalarıyla leziz bir görünüm.",
-        sunsetTitle: "Günbatımı Turuncusu",
-        sunsetText: "Altın saatlerden ilham alan narenciye ışıltısı.",
-        contactTitle: "İletişim",
-        contactText: "Sorular ve siparişler için:"
+        title: "Özel Mum Koleksiyonu",
+        candles: [
+          {
+            name: "Evil Eye",
+            desc: "Evinize koruma ve huzur getiren sembol.",
+            materials: "Doğal soya mumu, pamuk fitil, cam nazar boncuğu.",
+            scent: "Deniz tuzu, lavanta, amber.",
+            burn: "35–40 saat"
+          },
+          {
+            name: "Summer Cocktail",
+            desc: "Yaz ferahlığını evinize taşıyan tropik karışım.",
+            materials: "Soya mumu, doğal yağlar.",
+            scent: "Mango, narenciye, hindistan cevizi.",
+            burn: "30 saat"
+          },
+          {
+            name: "Choco Cream",
+            desc: "Tatlı ve sıcak bir atmosfer yaratır.",
+            materials: "Premium soya mumu, kakao esansı.",
+            scent: "Bitter çikolata, vanilya, karamel.",
+            burn: "40 saat"
+          },
+          {
+            name: "Golden Noir",
+            desc: "Altın ışıltısında gizemli bir zarafet.",
+            materials: "Soya mumu, ahşap fitil, altın dokunuş.",
+            scent: "Sandal ağacı, vanilya, misk.",
+            burn: "45 saat"
+          },
+          {
+            name: "Caramel Crumble",
+            desc: "Tatlı karamel dokusuyla sıcak bir ambiyans.",
+            materials: "Doğal soya mumu, karamel yağı.",
+            scent: "Esmer şeker, karamel, krema.",
+            burn: "38 saat"
+          },
+          {
+            name: "Sunset Orange",
+            desc: "Gün batımının sıcak tonlarını yansıtır.",
+            materials: "Soya mumu, portakal kabuğu esansı.",
+            scent: "Narenciye, amber, bal.",
+            burn: "36 saat"
+          }
+        ]
       },
       he: {
-        about: "עלינו",
-        works: "העבודות שלנו",
-        contact: "צור קשר",
-        heroTitle: "יצירת נרות היא פשוטה — ונפלאה לכולם.",
-        heroText: "ניחוחות איכותיים, צבעים חמימים ומרקמים שמשמרים רגעים קסומים.",
-        worksTitle: "העבודות שלנו",
-        evilEyeTitle: "עין הרע",
-        evilEyeText: "סמל הגנה המביא שלווה ואיזון.",
-        summerTitle: "קוקטייל קיץ",
-        summerText: "צבעים בשכבות המזכירים משקה קיץ מרענן.",
-        chocoTitle: "שמנת שוקולד",
-        chocoText: "מראה טעים עם גווני שוקולד ופרטים קרמיים.",
-        goldenTitle: "גוֹלדֶן נוּאַר",
-        goldenText: "פרטים מוזהבים אלגנטיים שנפגשים עם יופי כהה.",
-        caramelTitle: "קרמל קרמבל",
-        caramelText: "ניחוחות קרמל חמימים ומראה טעים.",
-        sunsetTitle: "שקיעה כתומה",
-        sunsetText: "זוהר הדרים בהשראת שעות הזהב.",
-        contactTitle: "צור קשר",
-        contactText: "לשאלות והזמנות:"
+        title: "אוסף נרות ייחודי",
+        candles: [
+          {
+            name: "Evil Eye",
+            desc: "סמל של הגנה ושלווה לבית שלך.",
+            materials: "שעוות סויה טבעית, פתיל כותנה, חרוז זכוכית.",
+            scent: "מלח ים, לבנדר, ענבר.",
+            burn: "35–40 שעות"
+          },
+          {
+            name: "Summer Cocktail",
+            desc: "רעננות טרופית שמתאימה לאווירת הקיץ שלך.",
+            materials: "שעוות סויה, שמנים טבעיים.",
+            scent: "מנגו, הדרים, קוקוס.",
+            burn: "30 שעות"
+          },
+          {
+            name: "Choco Cream",
+            desc: "מתיקות חמימה שממיסה את הלב והחושים.",
+            materials: "שעוות סויה איכותית, תמצית קקאו.",
+            scent: "שוקולד מריר, וניל, קרמל.",
+            burn: "40 שעות"
+          },
+          {
+            name: "Golden Noir",
+            desc: "יוקרה ומסתורין בניצוץ של זהב.",
+            materials: "שעוות סויה, פתיל עץ, נגיעה מוזהבת.",
+            scent: "עץ סנדל, וניל, מושק.",
+            burn: "45 שעות"
+          },
+          {
+            name: "Caramel Crumble",
+            desc: "ניחוח חמים ומתוק שמחבק את החלל.",
+            materials: "שעוות סויה טבעית, שמן קרמל.",
+            scent: "סוכר חום, קרמל, שמנת.",
+            burn: "38 שעות"
+          },
+          {
+            name: "Sunset Orange",
+            desc: "ניחוח חמים ומלא חיים בהשראת שמי שקיעה.",
+            materials: "שעוות סויה, תמצית קליפת תפוז.",
+            scent: "הדרים, ענבר, דבש.",
+            burn: "36 שעות"
+          }
+        ]
       }
     };
+  </script>
+    <script>
+    const candlesContainer = document.getElementById("candles");
+    const content = document.getElementById("content");
 
-    function setLang(lang) {
-      const t = translations[lang];
+    function renderLang(lang) {
+      const data = texts[lang];
       document.documentElement.lang = lang;
-      document.body.dir = lang === "he" ? "rtl" : "ltr";
-      document.querySelector(".t-about").textContent = t.about;
-      document.querySelector(".t-works").textContent = t.works;
-      document.querySelector(".t-contact").textContent = t.contact;
-      document.querySelector(".t-hero-title").textContent = t.heroTitle;
-      document.querySelector(".t-hero-text").textContent = t.heroText;
-      document.querySelector(".t-works-title").textContent = t.worksTitle;
-      document.querySelector(".t-evil-eye-title").textContent = t.evilEyeTitle;
-      document.querySelector(".t-evil-eye-text").textContent = t.evilEyeText;
-      document.querySelector(".t-summer-title").textContent = t.summerTitle;
-      document.querySelector(".t-summer-text").textContent = t.summerText;
-      document.querySelector(".t-choco-title").textContent = t.chocoTitle;
-      document.querySelector(".t-choco-text").textContent = t.chocoText;
-      document.querySelector(".t-golden-title").textContent = t.goldenTitle;
-      document.querySelector(".t-golden-text").textContent = t.goldenText;
-      document.querySelector(".t-caramel-title").textContent = t.caramelTitle;
-      document.querySelector(".t-caramel-text").textContent = t.caramelText;
-      document.querySelector(".t-sunset-title").textContent = t.sunsetTitle;
-      document.querySelector(".t-sunset-text").textContent = t.sunsetText;
-      document.querySelector(".t-contact-title").textContent = t.contactTitle;
-      document.querySelector(".t-contact-text").textContent = t.contactText;
+      document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+      content.classList.add("fade");
+
+      setTimeout(() => {
+        candlesContainer.innerHTML = "";
+        document.querySelector("main h2").textContent = data.title;
+
+        data.candles.forEach(candle => {
+          const div = document.createElement("div");
+          div.className = "candle";
+          div.innerHTML = `
+            <img src="${candle.name.toLowerCase().replace(/\s/g, '')}.jpg" alt="${candle.name}">
+            <h3>${candle.name}</h3>
+            <p><strong>${candle.desc}</strong></p>
+            <p><em>${lang === 'en' ? 'Materials:' : lang === 'tr' ? 'Malzemeler:' : 'מרכיבים:'}</em> ${candle.materials}</p>
+            <p><em>${lang === 'en' ? 'Scent notes:' : lang === 'tr' ? 'Koku notaları:' : 'ניחוחות:'}</em> ${candle.scent}</p>
+            <p><em>${lang === 'en' ? 'Burn time:' : lang === 'tr' ? 'Yanma süresi:' : 'משך בעירה:'}</em> ${candle.burn}</p>
+          `;
+          candlesContainer.appendChild(div);
+        });
+        content.classList.remove("fade");
+      }, 300);
     }
 
-    setLang('en'); // default
+    renderLang("en"); // default
+
+    document.querySelectorAll(".lang span").forEach(span => {
+      span.addEventListener("click", () => {
+        const lang = span.getAttribute("data-lang");
+        renderLang(lang);
+      });
+    });
   </script>
 </body>
 </html>
