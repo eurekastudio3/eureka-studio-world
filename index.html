@@ -19,19 +19,21 @@
   a{color:inherit;text-decoration:none}
   img{max-width:100%;height:auto;display:block}
 
-  /* topbar */
+  /* ÜST BAR */
   .top{
     position:sticky;top:0;z-index:50;
-    background:#0f0e0d;color:#f0eade;
-    border-bottom:1px solid #2a2826
+    background:#f5efe6;
+    color:#201d1a;
+    border-bottom:1px solid #e2d8c8;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
   }
   .nav{
     max-width:980px;margin:auto;display:flex;gap:16px;align-items:center;justify-content:space-between;
     padding:14px 20px
   }
-  .brand{font-weight:800;font-size:1.35rem;letter-spacing:.3px}
+  .brand{font-weight:800;font-size:1.3rem;letter-spacing:.3px}
   .links{display:flex;gap:18px;align-items:center}
-  .links a{opacity:.9}
+  .links a{opacity:.85;font-weight:600}
   .links a:hover{opacity:1}
 
   /* 🌐 dil seçici */
@@ -39,11 +41,11 @@
     display:flex;
     align-items:center;
     gap:10px;
-    background:#ece5d6;   /* açık bej zemin */
+    background:#ece5d6;
     color:#000;
     border-radius:999px;
     padding:6px 12px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
   }
   .lang a{
     color:#000;
@@ -61,7 +63,7 @@
 
   /* hero */
   .hero figure{margin:0 auto 18px;max-width:720px;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
-  .hero h1{font-size:clamp(1.6rem,2.4rem,2.6rem);line-height:1.25;margin:10px 0 8px}
+  .hero h1{font-size:clamp(1.4rem,2rem,2.3rem);line-height:1.25;margin:10px 0 8px;font-weight:700;}
   .hero p{color:var(--muted);margin:0 0 26px}
 
   .h2{font-size:clamp(1.4rem,1.8rem,2rem);text-align:center;margin:26px 0 14px}
@@ -120,17 +122,17 @@
     <figure>
       <img src="home-candles-hero.JPG" alt="Home candles collage">
     </figure>
-    <h1 data-i18n="hero_title">Mum yapmak basit — ve herkes için harika bir deneyim.</h1>
-    <p data-i18n="hero_desc">Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.</p>
+    <h1>Mum yapmak basit ve herkes için harika bir deneyim.</h1>
+    <p>Yüksek kaliteli kokular, sıcak renkler ve dokular anıları güzelleştirir.</p>
   </section>
 
-  <h2 class="h2" id="works" data-i18n="works_title">Çalışmalarımız</h2>
+  <h2 class="h2" id="works">Çalışmalarımız</h2>
   <div class="grid">
     <article class="card">
       <img src="evil-eye.jpg.jpg" alt="Evil Eye candle">
       <div class="body">
         <h3>Evil Eye</h3>
-        <p data-i18n="w1_teaser">Sakinlik ve denge getiren koruyucu bir sembol.</p>
+        <p>Sakinlik ve denge getiren koruyucu bir sembol.</p>
         <button class="btn" data-open="evil">Detay</button>
       </div>
     </article>
@@ -138,8 +140,8 @@
     <article class="card">
       <img src="summer-cocktail.JPG" alt="Summer Cocktail candle">
       <div class="body">
-        <h3 data-i18n="w2_title">Yaz Kokteyli</h3>
-        <p data-i18n="w2_teaser">Katmanlı renkler, taze yaz kokteylini anımsatır.</p>
+        <h3>Yaz Kokteyli</h3>
+        <p>Katmanlı renkler, taze yaz kokteylini anımsatır.</p>
         <button class="btn" data-open="cocktail">Detay</button>
       </div>
     </article>
@@ -148,7 +150,7 @@
       <img src="choco-cream.JPG" alt="Choco Cream candle">
       <div class="body">
         <h3>Choco Cream</h3>
-        <p data-i18n="w3_teaser">Kremamsı dokular ve tatlı hisler.</p>
+        <p>Kremamsı dokular ve tatlı hisler.</p>
         <button class="btn" data-open="choco">Detay</button>
       </div>
     </article>
@@ -157,7 +159,7 @@
       <img src="golden-noir.PNG" alt="Golden Noir candle">
       <div class="body">
         <h3>Golden Noir</h3>
-        <p data-i18n="w4_teaser">Mat siyah gövde, zarif altın detaylar.</p>
+        <p>Mat siyah gövde, zarif altın detaylar.</p>
         <button class="btn" data-open="noir">Detay</button>
       </div>
     </article>
@@ -166,7 +168,7 @@
       <img src="caramel-crumble.JPG" alt="Caramel Crumble candle">
       <div class="body">
         <h3>Caramel Crumble</h3>
-        <p data-i18n="w5_teaser">Sıcak karamelli notalar, leziz bir görünüm.</p>
+        <p>Sıcak karamelli notalar, leziz bir görünüm.</p>
         <button class="btn" data-open="caramel">Detay</button>
       </div>
     </article>
@@ -175,21 +177,20 @@
       <img src="sunset-orange.JPG" alt="Sunset Orange candle">
       <div class="body">
         <h3>Sunset Orange</h3>
-        <p data-i18n="w6_teaser">Altın saatleri hatırlatan narenciye ışıltısı.</p>
+        <p>Altın saatleri hatırlatan narenciye ışıltısı.</p>
         <button class="btn" data-open="sunset">Detay</button>
       </div>
     </article>
   </div>
 
-  <h2 class="h2" id="contact" data-i18n="contact_title">İletişim</h2>
-  <p style="text-align:center" data-i18n="contact_desc">Sorularınız ve siparişler için:</p>
+  <h2 class="h2" id="contact">İletişim</h2>
+  <p style="text-align:center">Sorularınız ve siparişler için:</p>
   <p style="text-align:center">Instagram • Pinterest (yakında) • Email</p>
 
   <p class="sig">Crafted with love 🍀</p>
   <p class="foot">© 2025 Eureka Studio — All rights reserved.</p>
 </main>
 
-<!-- modal -->
 <dialog id="view">
   <button class="close" onclick="closeView()">×</button>
   <div class="detail">
