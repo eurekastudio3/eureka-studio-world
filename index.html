@@ -95,6 +95,51 @@
     /* Footer */
     footer{max-width:980px; margin:40px auto 60px; padding:0 18px; text-align:center; color:var(--ink-2)}
     footer .socials a{font-weight:800; text-decoration:underline}
+    ...
+footer .socials a{font-weight:800; text-decoration:underline}
+
+/* ================== ÇALIŞMALAR HİZALAMA PATCH ================== */
+.grid{
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 18px !important;
+  justify-items: stretch;
+  align-items: stretch;
+}
+@media (max-width: 760px){
+  .grid{ grid-template-columns: repeat(2, 1fr) !important; }
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card .top{
+  height: 210px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.card .top img{
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.card .body{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.card .chips{ margin-top: 4px; }
+.card .btn{
+  margin-top: auto;
+  align-self: flex-start;
+}
+.title{ font-size: 20px; }
+.desc{ color: var(--ink-2); }
+
+/* PATCH SONU */
   </style>
 </head>
 <body>
