@@ -8,34 +8,24 @@
 
   <style>
     :root{
-      --bg:#f4efe7;
-      --panel:#fff7ef;
-      --ink:#201a17;
-      --ink-2:#4f463f;
-      --pill:#141414;
-      --pill-text:#fff;
-      --card:#ffffff;
-      --shadow:0 10px 28px rgba(0,0,0,.08);
-      --radius:16px;
-      --fade: .25s ease;
+      --bg:#f4efe7; --panel:#fff7ef; --ink:#201a17; --ink-2:#4f463f;
+      --pill:#141414; --pill-text:#fff; --card:#ffffff;
+      --shadow:0 10px 28px rgba(0,0,0,.08); --radius:16px;
+      --fade:.25s ease; --slide:.28s cubic-bezier(.22,.7,.23,1);
     }
-
     *{box-sizing:border-box}
     html,body{margin:0;height:100%}
     body{
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
-      background:var(--bg);
-      color:var(--ink);
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
+      background:var(--bg); color:var(--ink); line-height:1.55;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     }
     img{max-width:100%; display:block}
     a{color:inherit; text-decoration:none}
 
-    /* Fade container */
-    .page{transition: opacity var(--fade);}
-    .page.fade{opacity:.25;}
+    /* Page transition container */
+    .page{transition:opacity var(--fade), transform var(--slide);}
+    .page.fade{opacity:.25; transform:translateY(6px);}
 
     /* Top bar */
     header{position:sticky; top:0; z-index:50; background:var(--panel); border-bottom:1px solid rgba(0,0,0,.06)}
@@ -71,8 +61,13 @@
     .about-close{margin-top:12px; background:#141414; color:#fff; border:0; padding:8px 12px; border-radius:10px; font-weight:800; cursor:pointer}
     .about-close:hover{opacity:.92}
 
+    /* Filter bar */
+    .filters{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 0}
+    .filter-btn{background:#ece6db; border:1px solid rgba(0,0,0,.08); padding:8px 12px; border-radius:999px; font-weight:900; cursor:pointer}
+    .filter-btn.active{background:#141414; color:#fff}
+
     /* GRID — telefonda da 2 sütun */
-    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:18px}
+    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:12px}
     @media (max-width:520px){ .grid{gap:14px} }
 
     /* CARD (görseller sabit yükseklik) */
@@ -98,21 +93,36 @@
     .chip strong{display:block; margin-bottom:4px; font-size:12px; color:var(--ink-2); font-weight:900}
     @media (max-width:560px){ .meta{grid-template-columns:1fr} }
 
+    /* CONTACT FORM */
+    .contact-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px; margin-top:28px}
+    .row{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+    @media (max-width:560px){ .row{grid-template-columns:1fr} }
+    label{font-weight:900; font-size:14px; color:var(--ink-2)}
+    input, textarea{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(0,0,0,.12); background:#fff;
+      font:inherit; color:var(--ink);
+    }
+    textarea{min-height:120px; resize:vertical}
+    .send{margin-top:12px; background:#141414; color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:900; cursor:pointer}
+    .send:hover{opacity:.92}
+
     /* FOOTER */
     footer{max-width:980px; margin:40px auto 60px; padding:0 18px; text-align:center; color:var(--ink-2)}
     footer .socials a{font-weight:800; text-decoration:underline}
 
-    /* ===== RTL (HEBREW) DÜZEN ===== */
+    /* ===== RTL (HEBREW) ===== */
     html[dir="rtl"] body{direction: rtl;}
     html[dir="rtl"] nav{flex-direction: row-reverse; gap:18px;}
     html[dir="rtl"] .wrap{flex-direction: row-reverse}
     html[dir="rtl"] .brand{text-align:right}
     html[dir="rtl"] .about-card, 
+    html[dir="rtl"] .contact-card,
     html[dir="rtl"] .lead, 
     html[dir="rtl"] h1, 
     html[dir="rtl"] h2, 
     html[dir="rtl"] .title, 
-    html[dir="rtl"] .desc{ text-align:right }
+    html[dir="rtl"] .desc, 
+    html[dir="rtl"] label{ text-align:right }
     html[dir="rtl"] .langs{flex-direction: row-reverse}
   </style>
 </head>
@@ -124,7 +134,7 @@
         <nav>
           <a href="#about" data-i18n="nav_about">Hakkımızda</a>
           <a href="#works" data-i18n="nav_works">Çalışmalar</a>
-          <a href="#contact" data-i18n="nav_contact">İletişim</a>
+          <a href="#contact-form" data-i18n="nav_contact">İletişim</a>
         </nav>
         <div class="langs" aria-label="Language">
           <span>🌐</span>
@@ -167,18 +177,49 @@
       <!-- WORKS -->
       <section id="works" style="margin-top:26px">
         <h2 data-i18n="works_h">Çalışmalarımız</h2>
+
+        <!-- Kategori filtreleri -->
+        <div class="filters" id="filters">
+          <button class="filter-btn active" data-cat="all" data-i18n="filter_all">Tümü</button>
+          <button class="filter-btn" data-cat="candles" data-i18n="filter_candles">Mumlar</button>
+          <button class="filter-btn" data-cat="resin" data-i18n="filter_resin">Epoksi</button>
+        </div>
+
         <div id="cards" class="grid"></div>
+      </section>
+
+      <!-- CONTACT FORM -->
+      <section id="contact-form" class="contact-card">
+        <h2 data-i18n="contact_h">İletişim</h2>
+        <p class="lead" data-i18n="contact_p">Soru ve siparişler için:</p>
+
+        <form id="form" action="mailto:hello@eurekastudio.org" method="POST" enctype="text/plain">
+          <div class="row">
+            <div>
+              <label for="name" data-i18n="form_name_l">Ad</label>
+              <input type="text" id="name" name="Name" placeholder="" required />
+            </div>
+            <div>
+              <label for="email" data-i18n="form_email_l">E-posta</label>
+              <input type="email" id="email" name="Email" placeholder="" required />
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label for="msg" data-i18n="form_msg_l">Mesaj</label>
+            <textarea id="msg" name="Message" placeholder="" required></textarea>
+          </div>
+          <button type="submit" class="send" data-i18n="form_send">Gönder</button>
+        </form>
+
+        <p style="margin-top:12px">
+          <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a>
+          • <span data-i18n="pin_soon">Pinterest (yakında)</span>
+          • <a href="mailto:hello@eurekastudio.org">Email</a>
+        </p>
       </section>
     </main>
 
-    <footer id="contact">
-      <p data-i18n="contact_h"><strong>İletişim</strong></p>
-      <p data-i18n="contact_p">Soru ve siparişler için:</p>
-      <p class="socials">
-        <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a>
-        • <span data-i18n="pin_soon">Pinterest (yakında)</span>
-        • <a href="mailto:hello@eurekastudio.org">Email</a>
-      </p>
+    <footer style="margin-top:24px">
       <p>© 2025 Eureka Studio — All rights reserved.</p>
       <p>Crafted with love 🍀</p>
     </footer>
@@ -200,44 +241,44 @@
   </div>
 
   <script>
-  /* --------- ÜRÜNLER (dosya adlarınla birebir) --------- */
+  /* ---------- DATA (dosya adları birebir) ---------- */
   const PRODUCTS = [
-    { key:"evil",    img:"evil-eye.jpg.jpg",
+    { key:"evil",    img:"evil-eye.jpg.jpg",   cat:"candles",
       t:{ tr:{ title:"Evil Eye", desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
                facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}] },
           en:{ title:"Evil Eye", desc:"A protective symbol that brings calm and balance.",
                facts:[{k:"Materials",v:"Soy wax, cotton wick, glass"},{k:"Fragrance",v:"Sea salt • White musk"},{k:"Burn Time",v:"~30–35 h"},{k:"Weight",v:"~220 g"}] },
           he:{ title:"Evil Eye", desc:"סמל מגן שמביא שלווה ואיזון.",
                facts:[{k:"חומרים",v:"שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"מלח ים • מושק לבן"},{k:"זמן בערה",v:"~30–35 ש׳"},{k:"משקל",v:"~220 גר׳"}] } } },
-    { key:"cocktail",img:"summer-cocktail.JPG",
+    { key:"cocktail",img:"summer-cocktail.JPG", cat:"candles",
       t:{ tr:{ title:"Yaz Kokteyli", desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",
                facts:[{k:"Malzemeler",v:"Soya karışımı, pamuk fitil, cam"},{k:"Koku",v:"Ananas • Mango • Hind. cevizi"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
           en:{ title:"Summer Cocktail", desc:"Layered colors that recall a breezy summer drink.",
                facts:[{k:"Materials",v:"Soy blend, cotton wick, glass"},{k:"Fragrance",v:"Pineapple • Mango • Coconut"},{k:"Burn Time",v:"~28–32 h"}] },
           he:{ title:"קוקטייל קיץ", desc:"צבעים בשכבות שמזכירים משקה קיצי ורענן.",
                facts:[{k:"חומרים",v:"תערובת שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"אננס • מנגו • קוקוס"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
-    { key:"choco",  img:"choco-cream.JPG",
+    { key:"choco",  img:"choco-cream.JPG",     cat:"candles",
       t:{ tr:{ title:"Choco Cream", desc:"Kremamsı dokular ve tatlı hisler.",
                facts:[{k:"Koku",v:"Bitter kakao • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
           en:{ title:"Choco Cream", desc:"Creamy textures and sweet vibes.",
                facts:[{k:"Fragrance",v:"Bitter cocoa • Vanilla"},{k:"Burn Time",v:"~28–32 h"}] },
           he:{ title:"שוקו קרם", desc:"מרקמים עשירים וניחוחות מתוקים.",
                facts:[{k:"ניחוח",v:"קקאו מריר • וניל"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
-    { key:"noir",   img:"golden-noir.PNG",
+    { key:"noir",   img:"golden-noir.PNG",     cat:"resin",
       t:{ tr:{ title:"Golden Noir", desc:"Mat siyah gövde, zarif altın detaylar.",
                facts:[{k:"Koku",v:"Amber • Ud • Tonka"},{k:"Yanma Süresi",v:"~32–36 saat"}] },
           en:{ title:"Golden Noir", desc:"Matte black body with elegant golden details.",
                facts:[{k:"Fragrance",v:"Amber • Oud • Tonka"},{k:"Burn Time",v:"~32–36 h"}] },
           he:{ title:"גולדן נואר", desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים.",
                facts:[{k:"ניחוח",v:"ענבר • אוד • טונקה"},{k:"זמן בערה",v:"~32–36 ש׳"}] } } },
-    { key:"caramel",img:"caramel-crumble.JPG",
+    { key:"caramel",img:"caramel-crumble.JPG",  cat:"candles",
       t:{ tr:{ title:"Caramel Crumble", desc:"Sıcak karamelli notalar, leziz bir görünüm.",
                facts:[{k:"Koku",v:"Karamel • Bisküvi • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
           en:{ title:"Caramel Crumble", desc:"Warm caramel notes and a delicious look.",
                facts:[{k:"Fragrance",v:"Caramel • Biscuit • Vanilla"},{k:"Burn Time",v:"~28–32 h"}] },
           he:{ title:"קרמל קרמבל", desc:"נימות קרמל חמות ומראה מגרה.",
                facts:[{k:"ניחוח",v:"קרמל • ביסקוויט • וניל"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
-    { key:"sunset", img:"sunset-orange.JPG",
+    { key:"sunset", img:"sunset-orange.JPG",    cat:"candles",
       t:{ tr:{ title:"Sunset Orange", desc:"Altın saatleri hatırlatan narenciye ışıltısı.",
                facts:[{k:"Koku",v:"Portakal • Neroli"},{k:"Yanma Süresi",v:"~26–30 saat"}] },
           en:{ title:"Sunset Orange", desc:"Citrus glow inspired by golden-hour skies.",
@@ -246,7 +287,7 @@
                facts:[{k:"ניחוח",v:"תפוז • נרולי"},{k:"זמן בערה",v:"~26–30 ש׳"}] } } },
   ];
 
-  /* --------- I18N (TR/EN/HE) --------- */
+  /* ---------- I18N ---------- */
   const I18N = {
     tr:{
       nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
@@ -260,7 +301,11 @@
       about_b3:"Sürdürülebilir üretim ve küçük parti kalitesi",
       about_b4:"Kişiselleştirme: koku, renk, etiket seçenekleri",
       about_b5:"Atölye & workshop’lar (yakında)",
-      about_close:"Kapat"
+      about_close:"Kapat",
+
+      filter_all:"Tümü", filter_candles:"Mumlar", filter_resin:"Epoksi",
+
+      form_name_l:"Ad", form_email_l:"E-posta", form_msg_l:"Mesaj", form_send:"Gönder"
     },
     en:{
       nav_about:"About", nav_works:"Works", nav_contact:"Contact",
@@ -274,7 +319,11 @@
       about_b3:"Sustainable production & small-batch quality",
       about_b4:"Customization: scent, color, label",
       about_b5:"Workshops (coming soon)",
-      about_close:"Close"
+      about_close:"Close",
+
+      filter_all:"All", filter_candles:"Candles", filter_resin:"Resin",
+
+      form_name_l:"Name", form_email_l:"Email", form_msg_l:"Message", form_send:"Send"
     },
     he:{
       nav_about:"אודות", nav_works:"עבודות", nav_contact:"יצירת קשר",
@@ -288,36 +337,44 @@
       about_b3:"ייצור בר-קיימא ואיכות Small-Batch",
       about_b4:"התאמה אישית: ניחוח, צבע ותווית",
       about_b5:"סדנאות (בקרוב)",
-      about_close:"סגור"
+      about_close:"סגור",
+
+      filter_all:"הכול", filter_candles:"נרות", filter_resin:"אפוקסי",
+
+      form_name_l:"שם", form_email_l:"אימייל", form_msg_l:"הודעה", form_send:"שלח"
     }
   };
 
-  /* --------- DURUM & SEÇİCİLER --------- */
+  /* ---------- STATE & DOM ---------- */
   let currentLang = "tr";
+  let currentCat  = "all";
+
   const $ = s => document.querySelector(s);
   const page = $("#page");
   const cardsRoot = $("#cards");
   const aboutSec  = $("#about");
 
-  /* --------- KARTLARI ÇİZ --------- */
+  /* ---------- RENDER CARDS (with category) ---------- */
   function renderCards(){
     cardsRoot.innerHTML = "";
-    PRODUCTS.forEach(p=>{
-      const t = p.t[currentLang] ?? p.t.tr;
-      const el = document.createElement("article");
-      el.className = "card";
-      el.innerHTML = `
-        <div class="top"><img src="${p.img}" alt="${t.title}"></div>
-        <div class="body">
-          <div class="title">${t.title}</div>
-          <p class="desc">${t.desc}</p>
-          <a href="#" class="btn" data-open="${p.key}">${I18N[currentLang].detail}</a>
-        </div>`;
-      cardsRoot.appendChild(el);
-    });
+    PRODUCTS
+      .filter(p => currentCat==="all" ? true : p.cat === currentCat)
+      .forEach(p=>{
+        const t = p.t[currentLang] ?? p.t.tr;
+        const el = document.createElement("article");
+        el.className = "card";
+        el.innerHTML = `
+          <div class="top"><img src="${p.img}" alt="${t.title}"></div>
+          <div class="body">
+            <div class="title">${t.title}</div>
+            <p class="desc">${t.desc}</p>
+            <a href="#" class="btn" data-open="${p.key}">${I18N[currentLang].detail}</a>
+          </div>`;
+        cardsRoot.appendChild(el);
+      });
   }
 
-  /* --------- METİNLERİ UYGULA --------- */
+  /* ---------- I18N APPLY ---------- */
   function applyI18N(){
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       const k = el.getAttribute("data-i18n");
@@ -325,40 +382,66 @@
     });
   }
 
-  /* --------- RTL/LTR & LANG ATTR --------- */
+  /* ---------- RTL/LTR ---------- */
   function applyDir(){
     const html = document.documentElement;
-    if(currentLang === "he"){
-      html.setAttribute("dir","rtl");
-      html.setAttribute("lang","he");
-    }else{
-      html.setAttribute("dir","ltr");
-      html.setAttribute("lang", currentLang === "en" ? "en" : "tr");
-    }
+    if(currentLang === "he"){ html.setAttribute("dir","rtl"); html.setAttribute("lang","he"); }
+    else { html.setAttribute("dir","ltr"); html.setAttribute("lang", currentLang==="en" ? "en" : "tr"); }
   }
 
-  /* --------- DİL DEĞİŞTİR (fade ile) --------- */
-  function switchLang(to){
-    if(to === currentLang) return;
+  /* ---------- Fade+Slide helper ---------- */
+  function animatePage(fn){
     page.classList.add("fade");
-    setTimeout(()=>{
-      currentLang = to;
-      applyI18N();
-      renderCards();
-      applyDir();
-      page.classList.remove("fade");
-    }, 250);
+    setTimeout(()=>{ fn(); page.classList.remove("fade"); }, 250);
   }
 
+  /* ---------- Language Switch ---------- */
   document.querySelectorAll(".lang-btn").forEach(btn=>{
     btn.addEventListener("click", ()=>{
       document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
       btn.classList.add("active");
-      switchLang(btn.dataset.lang);
+      const to = btn.dataset.lang;
+      if(to === currentLang) return;
+      animatePage(()=>{
+        currentLang = to;
+        applyI18N(); renderCards(); applyDir();
+      });
     });
   });
 
-  /* --------- MODAL --------- */
+  /* ---------- Filter Buttons ---------- */
+  document.querySelectorAll(".filter-btn").forEach(b=>{
+    b.addEventListener("click", ()=>{
+      document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      const to = b.dataset.cat;
+      animatePage(()=>{ currentCat = to; renderCards(); });
+    });
+  });
+
+  /* ---------- Smooth section animation on nav click ---------- */
+  document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
+    a.addEventListener("click", e=>{
+      const id = a.getAttribute("href");
+      if(!id || id==="#") return;
+      const target = document.querySelector(id);
+      if(!target) return;
+      e.preventDefault();
+      if(id==="#about"){ // toggle about
+        aboutSec.classList.toggle("is-hidden");
+      }
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+      animatePage(()=>{}); // sadece animasyon
+    });
+  });
+
+  /* ---------- About close ---------- */
+  document.addEventListener("click", e=>{
+    const btn = e.target.closest(".about-close");
+    if(btn){ aboutSec.classList.add("is-hidden"); }
+  });
+
+  /* ---------- Modal ---------- */
   const modal=$("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
   function openModal(key){
     const prod = PRODUCTS.find(p=>p.key===key);
@@ -377,24 +460,7 @@
     if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
   });
 
-  /* --------- HAKKIMIZDA AÇ/KAPA --------- */
-  aboutSec.classList.add("is-hidden");
-  const aboutLink = document.querySelector('a[href="#about"]');
-  if(aboutLink){
-    aboutLink.addEventListener("click",(e)=>{
-      e.preventDefault();
-      aboutSec.classList.toggle("is-hidden");
-      if(!aboutSec.classList.contains("is-hidden")){
-        aboutSec.scrollIntoView({behavior:"smooth", block:"start"});
-      }
-    });
-  }
-  document.addEventListener("click", e=>{
-    const btn = e.target.closest(".about-close");
-    if(btn){ aboutSec.classList.add("is-hidden"); }
-  });
-
-  /* --------- INIT --------- */
+  /* ---------- INIT ---------- */
   applyI18N();
   renderCards();
   applyDir();
