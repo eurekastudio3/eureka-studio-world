@@ -17,6 +17,7 @@
       --card:#ffffff;
       --shadow:0 10px 28px rgba(0,0,0,.08);
       --radius:16px;
+      --fade: .25s ease;
     }
 
     *{box-sizing:border-box}
@@ -31,6 +32,10 @@
     }
     img{max-width:100%; display:block}
     a{color:inherit; text-decoration:none}
+
+    /* Fade container */
+    .page{transition: opacity var(--fade);}
+    .page.fade{opacity:.25;}
 
     /* Top bar */
     header{position:sticky; top:0; z-index:50; background:var(--panel); border-bottom:1px solid rgba(0,0,0,.06)}
@@ -96,73 +101,88 @@
     /* FOOTER */
     footer{max-width:980px; margin:40px auto 60px; padding:0 18px; text-align:center; color:var(--ink-2)}
     footer .socials a{font-weight:800; text-decoration:underline}
+
+    /* ===== RTL (HEBREW) DÜZEN ===== */
+    html[dir="rtl"] body{direction: rtl;}
+    html[dir="rtl"] nav{flex-direction: row-reverse; gap:18px;}
+    html[dir="rtl"] .wrap{flex-direction: row-reverse}
+    html[dir="rtl"] .brand{text-align:right}
+    html[dir="rtl"] .about-card, 
+    html[dir="rtl"] .lead, 
+    html[dir="rtl"] h1, 
+    html[dir="rtl"] h2, 
+    html[dir="rtl"] .title, 
+    html[dir="rtl"] .desc{ text-align:right }
+    html[dir="rtl"] .langs{flex-direction: row-reverse}
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap bar">
-      <div class="brand">Eureka<br>Studio</div>
-      <nav>
-        <a href="#about" data-i18n="nav_about">Hakkımızda</a>
-        <a href="#works" data-i18n="nav_works">Çalışmalar</a>
-        <a href="#contact" data-i18n="nav_contact">İletişim</a>
-      </nav>
-      <div class="langs" aria-label="Language">
-        <span>🌐</span>
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn active" data-lang="tr">TR</button>
-        <button class="lang-btn" data-lang="he">HE</button>
+  <div class="page" id="page">
+    <header>
+      <div class="wrap bar">
+        <div class="brand">Eureka<br>Studio</div>
+        <nav>
+          <a href="#about" data-i18n="nav_about">Hakkımızda</a>
+          <a href="#works" data-i18n="nav_works">Çalışmalar</a>
+          <a href="#contact" data-i18n="nav_contact">İletişim</a>
+        </nav>
+        <div class="langs" aria-label="Language">
+          <span>🌐</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn active" data-lang="tr">TR</button>
+          <button class="lang-btn" data-lang="he">HE</button>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <!-- HERO -->
-    <div class="hero-img">
-      <img src="home-candles-hero.JPG" alt="Home Candles">
-    </div>
+    <main>
+      <!-- HERO -->
+      <div class="hero-img">
+        <img src="home-candles-hero.JPG" alt="Home Candles">
+      </div>
 
-    <!-- ABOUT (başlangıçta gizli) -->
-    <section id="about" class="is-hidden">
-      <h2 data-i18n="about_h">Hakkımızda</h2>
-      <article class="about-card">
-        <p data-i18n="about_p1">
-          <strong>Eureka Studio</strong>, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir.
-          Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.
-        </p>
-        <p data-i18n="about_p2">
-          Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil
-          ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.
-        </p>
-        <ul class="about-points">
-          <li data-i18n="about_b1">Zarif, yalın ve zamansız tasarım dili</li>
-          <li data-i18n="about_b2">Güvenli ve dengeli kokular (IFRA uyumlu)</li>
-          <li data-i18n="about_b3">Sürdürülebilir üretim ve küçük parti kalitesi</li>
-          <li data-i18n="about_b4">Kişiselleştirme: koku, renk, etiket seçenekleri</li>
-          <li data-i18n="about_b5">Atölye & workshop’lar (yakında)</li>
-        </ul>
-        <button type="button" class="about-close" data-i18n="about_close">Kapat</button>
-      </article>
-    </section>
+      <!-- ABOUT (başlangıçta gizli) -->
+      <section id="about" class="is-hidden">
+        <h2 data-i18n="about_h">Hakkımızda</h2>
+        <article class="about-card">
+          <p data-i18n="about_p1">
+            <strong>Eureka Studio</strong>, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir.
+            Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.
+          </p>
+          <p data-i18n="about_p2">
+            Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil
+            ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.
+          </p>
+          <ul class="about-points">
+            <li data-i18n="about_b1">Zarif, yalın ve zamansız tasarım dili</li>
+            <li data-i18n="about_b2">Güvenli ve dengeli kokular (IFRA uyumlu)</li>
+            <li data-i18n="about_b3">Sürdürülebilir üretim ve küçük parti kalitesi</li>
+            <li data-i18n="about_b4">Kişiselleştirme: koku, renk, etiket seçenekleri</li>
+            <li data-i18n="about_b5">Atölye & workshop’lar (yakında)</li>
+          </ul>
+          <button type="button" class="about-close" data-i18n="about_close">Kapat</button>
+        </article>
+      </section>
 
-    <!-- WORKS -->
-    <section id="works" style="margin-top:26px">
-      <h2 data-i18n="works_h">Çalışmalarımız</h2>
-      <div id="cards" class="grid"></div>
-    </section>
-  </main>
+      <!-- WORKS -->
+      <section id="works" style="margin-top:26px">
+        <h2 data-i18n="works_h">Çalışmalarımız</h2>
+        <div id="cards" class="grid"></div>
+      </section>
+    </main>
 
-  <footer id="contact">
-    <p data-i18n="contact_h"><strong>İletişim</strong></p>
-    <p data-i18n="contact_p">Soru ve siparişler için:</p>
-    <p class="socials">
-      <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a>
-      • <span data-i18n="pin_soon">Pinterest (yakında)</span>
-      • <a href="mailto:hello@eurekastudio.org">Email</a>
-    </p>
-    <p>© 2025 Eureka Studio — All rights reserved.</p>
-    <p>Crafted with love 🍀</p>
-  </footer>
+    <footer id="contact">
+      <p data-i18n="contact_h"><strong>İletişim</strong></p>
+      <p data-i18n="contact_p">Soru ve siparişler için:</p>
+      <p class="socials">
+        <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a>
+        • <span data-i18n="pin_soon">Pinterest (yakında)</span>
+        • <a href="mailto:hello@eurekastudio.org">Email</a>
+      </p>
+      <p>© 2025 Eureka Studio — All rights reserved.</p>
+      <p>Crafted with love 🍀</p>
+    </footer>
+  </div>
 
   <!-- MODAL -->
   <div class="modal" id="modal">
@@ -261,7 +281,7 @@
       works_h:"העבודות שלנו", contact_h:"יצירת קשר", contact_p:"לשאלות והזמנות:",
       pin_soon:"Pinterest (בקרוב)", detail:"פרטים",
       about_h:"אודות",
-      about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים. צבעים חמימים, מרקמים בשכבות וניחוחות מאוזנים הופכים רגעים יומיומיים לזכרונות.",
+      about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים. צבעים חמימים, מרקמים בשכבות וניחוחות מאוזנים הופכים רגעים יומיומיים לזיכרונות.",
       about_p2:"מיוצר בסדרות קטנות ובקפדנות: שעוות סויה צמחית, פתילי כותנה וניחוחות תואמי IFRA. כל פריט מכויל, מלוטש ונבדק איכותית.",
       about_b1:"אסתטיקה נקייה ועל-זמנית",
       about_b2:"ניחוחות בטוחים ומאוזנים (IFRA)",
@@ -275,6 +295,7 @@
   /* --------- DURUM & SEÇİCİLER --------- */
   let currentLang = "tr";
   const $ = s => document.querySelector(s);
+  const page = $("#page");
   const cardsRoot = $("#cards");
   const aboutSec  = $("#about");
 
@@ -304,6 +325,39 @@
     });
   }
 
+  /* --------- RTL/LTR & LANG ATTR --------- */
+  function applyDir(){
+    const html = document.documentElement;
+    if(currentLang === "he"){
+      html.setAttribute("dir","rtl");
+      html.setAttribute("lang","he");
+    }else{
+      html.setAttribute("dir","ltr");
+      html.setAttribute("lang", currentLang === "en" ? "en" : "tr");
+    }
+  }
+
+  /* --------- DİL DEĞİŞTİR (fade ile) --------- */
+  function switchLang(to){
+    if(to === currentLang) return;
+    page.classList.add("fade");
+    setTimeout(()=>{
+      currentLang = to;
+      applyI18N();
+      renderCards();
+      applyDir();
+      page.classList.remove("fade");
+    }, 250);
+  }
+
+  document.querySelectorAll(".lang-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      switchLang(btn.dataset.lang);
+    });
+  });
+
   /* --------- MODAL --------- */
   const modal=$("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
   function openModal(key){
@@ -321,16 +375,6 @@
   document.addEventListener("click", e=>{
     const trg = e.target.closest("[data-open]");
     if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
-  });
-
-  /* --------- DİL DEĞİŞTİR --------- */
-  document.querySelectorAll(".lang-btn").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
-      btn.classList.add("active");
-      currentLang = btn.dataset.lang;
-      applyI18N(); renderCards();
-    });
   });
 
   /* --------- HAKKIMIZDA AÇ/KAPA --------- */
@@ -353,6 +397,7 @@
   /* --------- INIT --------- */
   applyI18N();
   renderCards();
+  applyDir();
   </script>
 </body>
 </html>
