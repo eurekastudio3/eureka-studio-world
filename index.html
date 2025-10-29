@@ -6,6 +6,32 @@
   <title>Eureka Studio</title>
   <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
   <style>
+    /* === GRID LAYOUT PATCH ===
+   Phone: 2 columns | Desktop: 3 columns
+   (Diğer kuralları ezmek için !important kullanıldı) */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr)); /* desktop 3 */
+  gap: 18px;
+}
+
+/* Tablet ve aşağısı için istersen 2'li tut */
+@media (max-width: 1024px){
+  .grid{ grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+}
+
+/* Telefon (dar ekran) – kesin 2'li olsun */
+@media (max-width: 520px){
+  .grid{
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 14px !important;
+  }
+  /* kart görsel yüksekliğini biraz kısalttık ki taşmasın */
+  .card .top{ height: 170px !important; }
+  .title{ font-size: 18px; }
+  .btn{ font-size: 14px; padding: 8px 10px; }
+}
+    
     :root{
       --bg:#f4efe7;
       --panel:#fff7ef;
