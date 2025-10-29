@@ -7,178 +7,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f6f1e8;
-      --panel:#fffaf3;
-      --ink:#2a201b;
-      --ink-2:#635b54;
-      --accent:#c5a26e;
-      --shadow:0 10px 28px rgba(0,0,0,.08);
-      --radius:16px;
+      --bg:#f6f1e8; --panel:#fffaf3; --ink:#2a201b; --ink-2:#635b54;
+      --accent:#c5a26e; --shadow:0 10px 28px rgba(0,0,0,.08); --radius:16px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Inter',system-ui,sans-serif;
-      background:var(--bg);
-      color:var(--ink);
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-      transition:all .25s ease;
-    }
-    header{
-      position:sticky;top:0;z-index:10;
-      background:var(--panel);
-      border-bottom:1px solid rgba(0,0,0,.08);
-      box-shadow:0 2px 8px rgba(0,0,0,.04);
-    }
-    .wrap{
-      max-width:980px;
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-family:'Playfair Display',serif;
-      font-weight:700;
-      font-size:22px;
-    }
-    .brand img{
-      height:42px;
-      width:auto;
-    }
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    /* Header */
+    header{position:sticky;top:0;z-index:10;background:var(--panel);border-bottom:1px solid rgba(0,0,0,.08);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+    .wrap{max-width:980px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-weight:700;font-size:22px}
+    .brand img{height:48px;width:auto;display:block;object-fit:contain}
     nav{display:flex;gap:18px;font-weight:600;color:var(--ink-2)}
     nav a{text-decoration:none;color:inherit}
     nav a:hover{color:var(--accent)}
-    .langs{
-      display:flex;align-items:center;gap:6px;
-      background:#2a201b;color:#fff;padding:6px 10px;
-      border-radius:20px;
-    }
-    .lang-btn{
-      background:transparent;border:0;color:#ccc;
-      font-weight:800;cursor:pointer;padding:4px 10px;
-      border-radius:10px;
-    }
+    .langs{display:flex;align-items:center;gap:6px;background:#2a201b;color:#fff;padding:6px 10px;border-radius:20px}
+    .lang-btn{background:transparent;border:0;color:#ccc;font-weight:800;cursor:pointer;padding:4px 10px;border-radius:10px}
     .lang-btn.active{background:#fff;color:#2a201b}
-
+    /* Main */
     main{max-width:980px;margin:0 auto;padding:0 18px}
-
-    /* HERO */
-    .hero{
-      position:relative;
-      margin:20px 0 30px;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-    .hero img{
-      width:100%;height:auto;
-      object-fit:cover;
-      opacity:0.7;
-      filter:blur(1px) brightness(0.9);
-    }
-    .banner{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-    }
-    .banner-text{
-      background:rgba(255,255,255,0.75);
-      padding:20px 28px;
-      border-radius:14px;
-      max-width:80%;
-      font-family:'Playfair Display',serif;
-      font-size:clamp(20px,3vw,28px);
-      color:var(--ink);
-      font-weight:600;
-    }
-
-    h2{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(24px,3.2vw,30px);
-      color:var(--ink);
-      margin:26px 0 12px;
-      text-align:center;
-    }
-
-    /* GRID */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-      gap:20px;
-      margin-top:16px;
-    }
-    .card{
-      background:#fff;
-      border-radius:16px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-    .card .top img{
-      width:100%;height:200px;
-      object-fit:cover;
-    }
+    /* Hero */
+    .hero{position:relative;margin:20px 0 30px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+    .hero img{width:100%;height:auto;object-fit:cover;opacity:.72;filter:blur(1px) brightness(.9)}
+    .banner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center}
+    .banner-text{background:rgba(255,255,255,.78);padding:20px 28px;border-radius:14px;max-width:80%;font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);color:var(--ink);font-weight:600}
+    /* Section titles */
+    h2{font-family:'Playfair Display',serif;font-size:clamp(24px,3.2vw,30px);color:var(--ink);margin:26px 0 12px;text-align:center}
+    /* Grid — mobile 2, desktop 3 */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:16px}
+    @media (min-width:860px){ .grid{grid-template-columns:repeat(3,1fr);gap:20px} }
+    .card{background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .card .top img{width:100%;height:200px;object-fit:cover}
     .card .body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px}
-    .title{font-weight:700;font-size:18px;font-family:'Playfair Display',serif;}
+    .title{font-weight:700;font-size:18px;font-family:'Playfair Display',serif}
     .desc{color:var(--ink-2);font-size:14px}
-    .btn{
-      background:var(--ink);
-      color:#fff;
-      padding:8px 10px;
-      border-radius:10px;
-      text-align:center;
-      font-weight:800;
-      margin-top:auto;
-      text-decoration:none;
-    }
-    .btn:hover{background:var(--accent);color:#fff}
-
-    /* CONTACT */
-    .contact-card{
-      background:#fff;
-      padding:20px;
-      border-radius:16px;
-      box-shadow:var(--shadow);
-      margin-top:40px;
-    }
+    .btn{background:var(--ink);color:#fff;padding:8px 10px;border-radius:10px;text-align:center;font-weight:800;margin-top:auto;text-decoration:none}
+    .btn:hover{background:var(--accent)}
+    /* Contact */
+    .contact-card{background:#fff;padding:20px;border-radius:16px;box-shadow:var(--shadow);margin-top:40px}
     label{font-weight:700;font-size:14px;color:var(--ink-2)}
-    input,textarea{
-      width:100%;
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:10px;
-      padding:10px;
-      font:inherit;
-      margin-top:4px;
-    }
+    input,textarea{width:100%;border:1px solid rgba(0,0,0,.12);border-radius:10px;padding:10px;font:inherit;margin-top:4px}
     textarea{min-height:120px}
-    .send{
-      margin-top:12px;
-      background:var(--ink);
-      color:#fff;
-      border:0;
-      border-radius:10px;
-      padding:10px 14px;
-      font-weight:800;
-      cursor:pointer;
-    }
+    .send{margin-top:12px;background:var(--ink);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
     .send:hover{background:var(--accent)}
-
+    /* Footer */
     footer{text-align:center;color:var(--ink-2);margin:40px 0 60px}
     footer p{margin:6px 0}
     footer .socials a{font-weight:700;color:var(--ink-2);text-decoration:underline}
     footer .imza{margin-top:10px;font-family:'Playfair Display',serif;font-size:18px;color:var(--ink)}
-
     /* RTL */
     html[dir="rtl"] body{direction:rtl}
     html[dir="rtl"] nav{flex-direction:row-reverse}
@@ -191,7 +66,8 @@
   <header>
     <div class="wrap">
       <div class="brand">
-        <img src="logo.png" alt="Eureka Studio Logo">
+        <!-- LOGO DOSYA ADI DEPODAKİYLE AYNI: logo.png1.PNG -->
+        <img src="logo.png1.PNG" alt="Eureka Studio Logo" loading="lazy">
         <span>Eureka Studio</span>
       </div>
       <nav>
@@ -210,6 +86,7 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section id="hero" class="hero">
       <img src="home-candles-hero.JPG" alt="Hero Candles">
       <div class="banner">
@@ -217,21 +94,23 @@
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
       <h2 data-i18n="about_h">Hakkımızda</h2>
       <p style="text-align:center;max-width:720px;margin:0 auto;color:var(--ink-2)">
         <span data-i18n="about_p1">
-        Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir.  
-        Her bir parça, sıcak tonlar ve dengeli kokularla günlük anları hatıraya dönüştürür.
+          Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir. Her bir parça, sıcak tonlar ve dengeli kokularla günlük anları hatıraya dönüştürür.
         </span>
       </p>
     </section>
 
+    <!-- WORKS -->
     <section id="works">
       <h2 data-i18n="works_h">Çalışmalarımız</h2>
       <div class="grid" id="cards"></div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="contact-card">
       <h2 data-i18n="contact_h">İletişim</h2>
       <p style="text-align:center" data-i18n="contact_p">Soru ve siparişler için:</p>
@@ -258,65 +137,84 @@
   </footer>
 
   <script>
+    /* ---------- I18N ---------- */
     const I18N = {
-      tr:{
-        nav_home:"Ana Sayfa",nav_about:"Hakkımızda",nav_works:"Çalışmalar",nav_contact:"İletişim",
-        banner_text:"Her mum bir hikâye anlatır — el yapımı, doğal ve zarif.",
-        about_h:"Hakkımızda",
-        about_p1:"Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir. Her bir parça, sıcak tonlar ve dengeli kokularla günlük anları hatıraya dönüştürür.",
-        works_h:"Çalışmalarımız",
-        contact_h:"İletişim",contact_p:"Soru ve siparişler için:",
-        form_name:"Ad",form_email:"E-posta",form_msg:"Mesaj",form_send:"Gönder",
-        pin_soon:"Pinterest (yakında)"
-      },
-      en:{
-        nav_home:"Home",nav_about:"About",nav_works:"Works",nav_contact:"Contact",
-        banner_text:"Each candle tells a story — handcrafted with care.",
-        about_h:"About",
-        about_p1:"Eureka Studio is a boutique atelier creating handcrafted candles and refined objects. Each piece transforms daily moments into memories through warm hues and balanced scents.",
-        works_h:"Our Works",
-        contact_h:"Contact",contact_p:"For questions and orders:",
-        form_name:"Name",form_email:"Email",form_msg:"Message",form_send:"Send",
-        pin_soon:"Pinterest (soon)"
-      },
-      he:{
-        nav_home:"בית",nav_about:"אודות",nav_works:"עבודות",nav_contact:"יצירת קשר",
-        banner_text:"כל נר מספר סיפור — בעבודת יד ובאהבה.",
-        about_h:"אודות",
-        about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים. כל פריט הופך רגעים יומיומיים לזיכרונות בעזרת צבעים חמימים וניחוחות מאוזנים.",
-        works_h:"העבודות שלנו",
-        contact_h:"יצירת קשר",contact_p:"לשאלות והזמנות:",
-        form_name:"שם",form_email:"אימייל",form_msg:"הודעה",form_send:"שלח",
-        pin_soon:"Pinterest (בקרוב)"
-      }
+      tr:{ nav_home:"Ana Sayfa",nav_about:"Hakkımızda",nav_works:"Çalışmalar",nav_contact:"İletişim",
+           banner_text:"Her mum bir hikâye anlatır — el yapımı, doğal ve zarif.",
+           about_h:"Hakkımızda",
+           about_p1:"Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir. Her bir parça, sıcak tonlar ve dengeli kokularla günlük anları hatıraya dönüştürür.",
+           works_h:"Çalışmalarımız",
+           contact_h:"İletişim",contact_p:"Soru ve siparişler için:",
+           form_name:"Ad",form_email:"E-posta",form_msg:"Mesaj",form_send:"Gönder",
+           pin_soon:"Pinterest (yakında)" },
+      en:{ nav_home:"Home",nav_about:"About",nav_works:"Works",nav_contact:"Contact",
+           banner_text:"Each candle tells a story — handcrafted with care.",
+           about_h:"About",
+           about_p1:"Eureka Studio is a boutique atelier creating handcrafted candles and refined objects. Each piece turns daily moments into memories with warm hues and balanced scents.",
+           works_h:"Our Works",
+           contact_h:"Contact",contact_p:"For questions and orders:",
+           form_name:"Name",form_email:"Email",form_msg:"Message",form_send:"Send",
+           pin_soon:"Pinterest (soon)" },
+      he:{ nav_home:"בית",nav_about:"אודות",nav_works:"עבודות",nav_contact:"יצירת קשר",
+           banner_text:"כל נר מספר סיפור — בעבודת יד ובאהבה.",
+           about_h:"אודות",
+           about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים. כל פריט הופך רגעים יומיומיים לזיכרונות בעזרת צבעים חמימים וניחוחות מאוזנים.",
+           works_h:"העבודות שלנו",
+           contact_h:"יצירת קשר",contact_p:"לשאלות והזמנות:",
+           form_name:"שם",form_email:"אימייל",form_msg:"הודעה",form_send:"שלח",
+           pin_soon:"Pinterest (בקרוב)" }
     };
 
-    const cards=[
-      {img:"evil-eye.jpg.jpg",title:"Evil Eye",desc:"Koruyucu sembol, denge ve huzur getirir."},
-      {img:"summer-cocktail.JPG",title:"Summer Cocktail",desc:"Katmanlı renkler, yaz kokteyli esintisi."},
-      {img:"choco-cream.JPG",title:"Choco Cream",desc:"Tatlı, kremsi dokular ve vanilya esintisi."},
-      {img:"golden-noir.PNG",title:"Golden Noir",desc:"Zarif siyah-altın kontrastı."},
-      {img:"caramel-crumble.JPG",title:"Caramel Crumble",desc:"Karamel ve bisküvi tonlarıyla sıcak."},
-      {img:"sunset-orange.JPG",title:"Sunset Orange",desc:"Altın saatlerin narenciye ışıltısı."}
+    /* ---------- CARDS (dosya adları birebir depodakiyle) ---------- */
+    const PRODUCTS = [
+      {img:"evil-eye.jpg.jpg",  t:{tr:["Evil Eye","Koruyucu sembol, denge ve huzur getirir."],
+                                   en:["Evil Eye","Protective symbol bringing calm and balance."],
+                                   he:["Evil Eye","סמל מגן שמביא שלווה ואיזון."]}},
+      {img:"summer-cocktail.JPG", t:{tr:["Yaz Kokteyli","Katmanlı renkler, yaz kokteyli esintisi."],
+                                     en:["Summer Cocktail","Layered colors, breezy summer vibes."],
+                                     he:["קוקטייל קיץ","צבעים בשכבות וניחוח קיצי."]}},
+      {img:"choco-cream.JPG",   t:{tr:["Choco Cream","Tatlı, kremsi dokular ve vanilya esintisi."],
+                                   en:["Choco Cream","Sweet, creamy textures with vanilla."],
+                                   he:["שוקו קרם","מרקם קרמי וניחוח וניל."]}},
+      {img:"golden-noir.PNG",   t:{tr:["Golden Noir","Zarif siyah-altın kontrastı."],
+                                   en:["Golden Noir","Elegant black-gold contrast."],
+                                   he:["גולדן נואר","ניגוד שחור-זהב אלגנטי."]}},
+      {img:"caramel-crumble.JPG",t:{tr:["Caramel Crumble","Karamel ve bisküvi tonlarıyla sıcak."],
+                                    en:["Caramel Crumble","Warm caramel and biscuit notes."],
+                                    he:["קרמל קרמבל","נימות קרמל חמות."]}},
+      {img:"sunset-orange.JPG", t:{tr:["Sunset Orange","Altın saatlerin narenciye ışıltısı."],
+                                   en:["Sunset Orange","Citrus glow of golden hour."],
+                                   he:["סאנסט אורנג׳","זוהר הדרים של שעת הזהב."]}}
     ];
-    const cardsRoot=document.getElementById("cards");
-    cards.forEach(c=>{
-      const el=document.createElement("div");
-      el.className="card";
-      el.innerHTML=`<div class="top"><img src="${c.img}" alt="${c.title}"></div>
-      <div class="body"><div class="title">${c.title}</div><div class="desc">${c.desc}</div></div>`;
-      cardsRoot.appendChild(el);
-    });
 
+    const cardsRoot=document.getElementById("cards");
     let currentLang="tr";
-    const applyLang=()=>{
+
+    function renderCards(){
+      cardsRoot.innerHTML="";
+      PRODUCTS.forEach(p=>{
+        const [title,desc]=p.t[currentLang];
+        const el=document.createElement("article");
+        el.className="card";
+        el.innerHTML=`<div class="top"><img src="${p.img}" alt="${title}" loading="lazy"></div>
+          <div class="body">
+            <div class="title">${title}</div>
+            <div class="desc">${desc}</div>
+          </div>`;
+        cardsRoot.appendChild(el);
+      });
+    }
+
+    function applyLang(){
       document.querySelectorAll("[data-i18n]").forEach(el=>{
-        const key=el.getAttribute("data-i18n");
-        if(I18N[currentLang][key]) el.textContent=I18N[currentLang][key];
+        const k=el.getAttribute("data-i18n");
+        if(I18N[currentLang][k]) el.textContent=I18N[currentLang][k];
       });
       document.documentElement.lang=currentLang;
       document.documentElement.dir=(currentLang==="he")?"rtl":"ltr";
-    };
+      renderCards();
+    }
+
     document.querySelectorAll(".lang-btn").forEach(btn=>{
       btn.addEventListener("click",()=>{
         document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
@@ -325,6 +223,9 @@
         applyLang();
       });
     });
+
+    // Init
+    renderCards();
     applyLang();
   </script>
 </body>
