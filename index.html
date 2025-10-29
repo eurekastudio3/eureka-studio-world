@@ -83,19 +83,26 @@
     .modal.show{display:flex}
     .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .sheet .top{position:relative}
-    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover}
+    /* KILIT DÜZELTME: görsel tıklamayı kapmasın */
+    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover; pointer-events:none}
     .close{
       position:absolute; right:10px; top:10px; width:36px; height:36px;
       display:grid; place-items:center; background:rgba(0,0,0,.58); color:#fff;
       border-radius:50%; font-weight:900; cursor:pointer;
-      /* görünürlük iyileştirmeleri: */
-      font-size:22px; line-height:1; border:1px solid rgba(255,255,255,.9); z-index:2;
+      font-size:22px; line-height:1; border:1px solid rgba(255,255,255,.9); z-index:3;
     }
     .content{padding:16px}
     .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
     .chip{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:700}
     .chip strong{display:block; margin-bottom:4px; font-size:12px; color:var(--ink-2); font-weight:900}
     @media (max-width:560px){ .meta{grid-template-columns:1fr} }
+
+    /* Alt "Kapat" butonu (mobil kolay kapatma) */
+    .close.bottom{
+      position:static; width:auto; height:auto; margin-top:14px;
+      background:#141414; color:#fff; border-radius:10px; padding:10px 14px;
+      border:0; font-size:14px;
+    }
 
     /* Contact form */
     .contact-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px; margin-top:28px}
@@ -257,6 +264,8 @@
         <h3 id="mTitle" class="title"></h3>
         <p id="mDesc" class="desc"></p>
         <div class="meta" id="mMeta"></div>
+        <!-- Mobil kolay kapatma için ikinci buton -->
+        <button class="close bottom" type="button" aria-label="Kapat">Kapat</button>
       </div>
     </div>
   </div>
@@ -267,7 +276,7 @@
       { key:"evil", cat:"candles", img:"evil-eye.jpg.jpg",
         t:{ tr:{title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol.",facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}]},
             en:{title:"Evil Eye",desc:"A protective symbol that brings calm and balance.",facts:[{k:"Materials",v:"Soy wax, cotton wick, glass"},{k:"Fragrance",v:"Sea salt • White musk"},{k:"Burn Time",v:"~30–35 h"},{k:"Weight",v:"~220 g"}]},
-            he:{title:"Evil Eye",desc:"סמל מגן שמביא שלווה ואיזון.",facts:[{k:"חומרים",v:"שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"מלח ים • מושק לבן"},{k:"זמן בערה",v:"~30–35 ש׳"},{k:"משקל",v:"~220 גר׳"}]} } },
+            he:{title:"Evil Eye",desc:"סמל מגן שמביא שלווה ואיזון.",facts:[{k:"חומרים",v:"שעוות סויה, פתיל כותना, זכוכית"},{k:"ניחוח",v:"מלח ים • מושק לבן"},{k:"זמן בערה",v:"~30–35 ש׳"},{k:"משקל",v:"~220 גר׳"}]} } },
       { key:"cocktail", cat:"candles", img:"summer-cocktail.JPG",
         t:{ tr:{title:"Yaz Kokteyli",desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",facts:[{k:"Malzemeler",v:"Soya karışımı, pamuk fitil, cam"},{k:"Koku",v:"Ananas • Mango • Hindistan cevizi"},{k:"Yanma Süresi",v:"~28–32 saat"},{k:"Ağırlık",v:"~210 g"}]},
             en:{title:"Summer Cocktail",desc:"Layered colors that recall a breezy summer drink.",facts:[{k:"Materials",v:"Soy blend, cotton wick, glass"},{k:"Fragrance",v:"Pineapple • Mango • Coconut"},{k:"Burn Time",v:"~28–32 h"},{k:"Weight",v:"~210 g"}]},
@@ -394,17 +403,18 @@
       mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
       modal.classList.add("show");
     }
-    // Kapat (X)
-    $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
+
+    // ——— KAPATMA DAVRANIŞLARI ———
+    // Delegasyon: .close sınıflı HER buton modalı kapatır (üst X + alt "Kapat")
+    document.addEventListener("click", (e)=>{
+      if(e.target.closest(".close")){ e.preventDefault(); modal.classList.remove("show"); return; }
+      const trg = e.target.closest("[data-open]");
+      if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
+    });
     // Arka plana tıkla
     modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
     // ESC ile kapat
     document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") modal.classList.remove("show"); });
-    // "Detay" tıklama
-    document.addEventListener("click", e=>{
-      const trg = e.target.closest("[data-open]");
-      if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
-    });
 
     /* ===== DIR & Lang switch ===== */
     function applyDir(){
