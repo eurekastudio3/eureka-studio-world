@@ -41,7 +41,6 @@
     h1,h2{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.2px;line-height:1.2;margin:0 0 10px}
     h2{font-size:clamp(26px,4.2vw,36px)}
     .hero-img{max-width:640px;margin:6px auto 26px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-
     section{margin-top:28px;padding-top:2px}
     #works h2{margin-bottom:12px}
     #works .filters{margin-top:14px;margin-bottom:16px}
@@ -67,7 +66,7 @@
     .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
     .title{font-size:20px;font-weight:900}
     .desc{color:var(--ink-2)}
-    .btn{background:#141414;color:#fff;padding:8px 12px;border-radius:10px;font-weight:900;text-align:center;margin-top:auto}
+    .btn{background:#141414;color:#fff;padding:8px 12px;border-radius:10px;font-weight:900;text-align:center;margin-top:auto;display:inline-block}
     .btn:hover{opacity:.9}
 
     /* ===== Contact ===== */
@@ -80,6 +79,19 @@
     /* ===== Footer ===== */
     footer{text-align:center;color:var(--ink-2);margin-top:60px;padding-top:20px;border-top:1px solid rgba(0,0,0,.1)}
     footer p{margin:6px 0;text-align:center}
+
+    /* ===== Modal ===== */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:18px;z-index:60}
+    .modal.show{display:flex}
+    .sheet{max-width:860px;width:min(96vw,860px);background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .sheet .top{position:relative}
+    .sheet .top img{width:100%;height:auto;max-height:420px;object-fit:cover}
+    .close{position:absolute;right:10px;top:10px;width:36px;height:36px;display:grid;place-items:center;background:rgba(0,0,0,.55);color:#fff;border-radius:50%;font-weight:900;cursor:pointer}
+    .content{padding:16px}
+    .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
+    .chip{background:#fff7ef;border:1px dashed rgba(0,0,0,.12);padding:10px 12px;border-radius:12px;font-weight:700}
+    .chip strong{display:block;margin-bottom:4px;font-size:12px;color:var(--ink-2);font-weight:900}
+    @media (max-width:560px){ .meta{grid-template-columns:1fr} }
 
     /* ===== RTL (HE) ===== */
     html[dir="rtl"] body{direction:rtl}
@@ -146,7 +158,7 @@
         <button type="submit" class="send">Gönder</button>
       </form>
       <p style="margin-top:12px">
-        <a href="https://www.instagram.com/eurekastudio3/" target="_blank">Instagram</a> •
+        <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a> •
         Pinterest (yakında) • <a href="mailto:hello@eurekastudio.org">Email</a>
       </p>
     </section>
@@ -157,40 +169,97 @@
     <p>Crafted with love 🍀</p>
   </footer>
 
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="sheet">
+      <div class="top">
+        <img id="mImg" alt="">
+        <button class="close" id="mClose" aria-label="Close">×</button>
+      </div>
+      <div class="content">
+        <h3 id="mTitle" class="title"></h3>
+        <p id="mDesc" class="desc"></p>
+        <div class="meta" id="mMeta"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
+    /* ===== DATA ===== */
     const PRODUCTS=[
-      {cat:"candles",img:"evil-eye.jpg.jpg",title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol."},
-      {cat:"candles",img:"summer-cocktail.JPG",title:"Yaz Kokteyli",desc:"Katmanlı renkler, taze yaz kokteylini anımsatır."},
-      {cat:"candles",img:"choco-cream.JPG",title:"Choco Cream",desc:"Kremamsı dokular ve tatlı hisler."},
-      {cat:"candles",img:"caramel-crumble.JPG",title:"Caramel Crumble",desc:"Sıcak karamelli notalar, leziz bir görünüm."},
-      {cat:"candles",img:"sunset-orange.JPG",title:"Sunset Orange",desc:"Altın saatleri hatırlatan narenciye ışıltısı."},
-      {cat:"resin",img:"golden-noir.PNG",title:"Golden Noir",desc:"Mat siyah gövde, zarif altın detaylar."}
+      { key:"evil",   cat:"candles", img:"evil-eye.jpg.jpg",
+        title:"Evil Eye", desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
+        facts:[{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}]},
+      { key:"cocktail",cat:"candles", img:"summer-cocktail.JPG",
+        title:"Yaz Kokteyli", desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",
+        facts:[{k:"Koku",v:"Ananas • Mango • Hindistan cevizi"},{k:"Yanma Süresi",v:"~28–32 saat"}]},
+      { key:"choco",  cat:"candles", img:"choco-cream.JPG",
+        title:"Choco Cream", desc:"Kremamsı dokular ve tatlı hisler.",
+        facts:[{k:"Koku",v:"Bitter kakao • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}]},
+      { key:"caramel",cat:"candles", img:"caramel-crumble.JPG",
+        title:"Caramel Crumble", desc:"Sıcak karamelli notalar, leziz bir görünüm.",
+        facts:[{k:"Koku",v:"Karamel • Bisküvi • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}]},
+      { key:"sunset", cat:"candles", img:"sunset-orange.JPG",
+        title:"Sunset Orange", desc:"Altın saatleri hatırlatan narenciye ışıltısı.",
+        facts:[{k:"Koku",v:"Portakal • Neroli"},{k:"Yanma Süresi",v:"~26–30 saat"}]},
+      { key:"noir",   cat:"resin",   img:"golden-noir.PNG",
+        title:"Golden Noir", desc:"Mat siyah gövde, zarif altın detaylar.",
+        facts:[{k:"Malzeme",v:"Epoksi • Altın detaylar"},{k:"Boyut",v:"Orta"}]}
     ];
 
+    /* ===== RENDER ===== */
     function renderCards(cat="all"){
-      const c=document.getElementById("cards");
-      c.innerHTML="";
+      const root=document.getElementById("cards");
+      root.innerHTML="";
       PRODUCTS.filter(p=>cat==="all"||p.cat===cat).forEach(p=>{
-        c.innerHTML+=`
-        <article class="card">
-          <div class="top"><img src="${p.img}" alt="${p.title}"></div>
-          <div class="body">
-            <div class="title">${p.title}</div>
-            <p class="desc">${p.desc}</p>
-            <a href="#" class="btn">Detay</a>
-          </div>
-        </article>`;
+        root.innerHTML+=`
+          <article class="card">
+            <div class="top"><img src="${p.img}" alt="${p.title}"></div>
+            <div class="body">
+              <div class="title">${p.title}</div>
+              <p class="desc">${p.desc}</p>
+              <a href="#" class="btn" data-open="${p.key}">Detay</a>
+            </div>
+          </article>`;
       });
     }
 
-    document.querySelectorAll(".filter-btn").forEach(b=>{
-      b.addEventListener("click",()=>{
-        document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
-        b.classList.add("active");
-        renderCards(b.dataset.cat);
+    /* ===== FILTERS ===== */
+    document.querySelectorAll(".filter-btn").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        renderCards(btn.dataset.cat);
       });
     });
 
+    /* ===== MODAL LOGIC ===== */
+    const modal = document.getElementById("modal");
+    const mImg  = document.getElementById("mImg");
+    const mTitle= document.getElementById("mTitle");
+    const mDesc = document.getElementById("mDesc");
+    const mMeta = document.getElementById("mMeta");
+
+    function openModal(key){
+      const p = PRODUCTS.find(x=>x.key===key);
+      if(!p) return;
+      mImg.src   = p.img;
+      mImg.alt   = p.title;
+      mTitle.textContent = p.title;
+      mDesc.textContent  = p.desc;
+      mMeta.innerHTML    = (p.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
+      modal.classList.add("show");
+    }
+    function closeModal(){ modal.classList.remove("show"); }
+
+    document.addEventListener("click",e=>{
+      const trg = e.target.closest("[data-open]");
+      if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
+    });
+    document.getElementById("mClose").addEventListener("click", closeModal);
+    modal.addEventListener("click", e=>{ if(e.target===modal) closeModal(); });
+
+    /* ===== INIT ===== */
     renderCards();
   </script>
 </body>
