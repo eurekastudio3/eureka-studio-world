@@ -161,10 +161,12 @@
     const PRODUCTS=[
       {cat:"candles",img:"evil-eye.jpg.jpg",title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol."},
       {cat:"candles",img:"summer-cocktail.JPG",title:"Yaz Kokteyli",desc:"Katmanlı renkler, taze yaz kokteylini anımsatır."},
+      {cat:"candles",img:"choco-cream.JPG",title:"Choco Cream",desc:"Kremamsı dokular ve tatlı hisler."},
       {cat:"candles",img:"caramel-crumble.JPG",title:"Caramel Crumble",desc:"Sıcak karamelli notalar, leziz bir görünüm."},
       {cat:"candles",img:"sunset-orange.JPG",title:"Sunset Orange",desc:"Altın saatleri hatırlatan narenciye ışıltısı."},
       {cat:"resin",img:"golden-noir.PNG",title:"Golden Noir",desc:"Mat siyah gövde, zarif altın detaylar."}
     ];
+
     function renderCards(cat="all"){
       const c=document.getElementById("cards");
       c.innerHTML="";
@@ -180,6 +182,7 @@
         </article>`;
       });
     }
+
     document.querySelectorAll(".filter-btn").forEach(b=>{
       b.addEventListener("click",()=>{
         document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
@@ -187,6 +190,7 @@
         renderCards(b.dataset.cat);
       });
     });
+
     renderCards();
   </script>
 </body>
