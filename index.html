@@ -9,63 +9,73 @@
     :root{
       --bg:#f4efe7; --panel:#fff7ef; --ink:#201a17; --ink-2:#4f463f;
       --pill:#141414; --pill-text:#fff; --card:#ffffff;
-      --shadow:0 10px 28px rgba(0,0,0,.08); --radius:16px;
-      --accent:#caa35a;
+      --shadow:0 10px 28px rgba(0,0,0,.08); --radius:16px; --accent:#caa35a;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background:var(--bg);color:var(--ink);line-height:1.55;
-    }
+    body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+         background:var(--bg);color:var(--ink);line-height:1.55}
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
-    /* HEADER */
+    /* Header */
     header{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid rgba(0,0,0,.06)}
     .wrap{max-width:980px;margin:auto;padding:14px 18px;display:flex;align-items:center;gap:18px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:24px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:24px;line-height:1}
     .brand img{width:36px;height:36px;object-fit:contain;border-radius:6px}
     .brand strong{color:var(--accent)}
     nav{display:flex;gap:18px;font-weight:800;color:var(--ink-2)}
+    nav a:hover{text-decoration:underline}
     .langs{display:flex;align-items:center;gap:10px;background:var(--pill);color:var(--pill-text);padding:6px 10px;border-radius:22px}
     .lang-btn{background:transparent;border:0;color:#cfcfcf;font-weight:900;padding:4px 10px;border-radius:14px;cursor:pointer}
     .lang-btn.active{background:#fff;color:#141414}
     @media(max-width:720px){.wrap{flex-wrap:wrap}.brand{order:1}.langs{order:2;margin-left:auto}.brand img{width:32px;height:32px}nav{order:3;width:100%;justify-content:center;padding-top:6px}}
 
+    /* Main */
     main{max-width:980px;margin:28px auto 80px;padding:0 18px}
-    .hero-img{max-width:640px;margin:6px auto 20px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .hero-img{max-width:640px;margin:6px auto 26px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
     h1,h2{margin-bottom:8px}
-    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+
+    /* About */
+    #about p{color:var(--ink-2);margin-top:8px}
+
+    /* Filters & grid */
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 10px}
     .filter-btn{background:#ece6db;border:1px solid rgba(0,0,0,.08);padding:8px 12px;border-radius:999px;font-weight:900;cursor:pointer}
     .filter-btn.active{background:#141414;color:#fff}
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
 
+    /* Cards */
     .card{background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
     .card .top{height:180px;overflow:hidden}
     .card .top img{width:100%;height:100%;object-fit:cover}
     .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
-    .btn{background:#141414;color:#fff;padding:8px 12px;border-radius:10px;font-weight:900;text-align:center}
+    .title{font-size:20px;font-weight:900}
+    .desc{color:var(--ink-2)}
+    .btn{background:#141414;color:#fff;padding:8px 12px;border-radius:10px;font-weight:900;text-align:center;margin-top:auto}
     .btn:hover{opacity:.9}
 
-    form label{display:block;margin-bottom:4px;font-weight:700;color:var(--ink-2)}
+    /* Contact */
+    #contact .lead{color:var(--ink-2);margin-bottom:8px}
+    form label{display:block;margin:10px 0 4px;font-weight:700;color:var(--ink-2)}
     input,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,.12);background:#fff;font:inherit;color:var(--ink)}
-    textarea{min-height:100px;resize:vertical}
+    textarea{min-height:110px;resize:vertical}
     button.send{background:#141414;color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:900;cursor:pointer;margin-top:10px}
 
+    /* Footer */
     footer{text-align:center;color:var(--ink-2);margin-top:40px}
     footer p{margin:6px 0}
 
-    /* RTL */
+    /* RTL (HE) */
     html[dir="rtl"] body{direction:rtl}
     html[dir="rtl"] nav{flex-direction:row-reverse}
     html[dir="rtl"] .wrap{flex-direction:row-reverse}
     html[dir="rtl"] .brand{text-align:right}
-    html[dir="rtl"] h1,h2,.title,.desc,label,.lead,footer p{text-align:right}
+    html[dir="rtl"] h1,h2,.title,.desc,label,.lead,footer p,#about p{text-align:right}
     html[dir="rtl"] .langs{flex-direction:row-reverse}
 
     /* LTR (TR/EN) */
-    html[dir="ltr"] h1,h2,.title,.desc,.lead,label,footer p{text-align:left}
+    html[dir="ltr"] h1,h2,.title,.desc,.lead,label,footer p,#about p{text-align:left}
   </style>
 </head>
 <body>
@@ -90,10 +100,25 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <div class="hero-img">
       <img src="home-candles-hero.JPG" alt="Home Candles">
     </div>
 
+    <!-- ABOUT -->
+    <section id="about" style="margin-bottom:34px">
+      <h2 data-i18n="about_h">Hakkımızda</h2>
+      <p data-i18n="about_p1">
+        <strong>Eureka Studio</strong>, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir.
+        Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.
+      </p>
+      <p data-i18n="about_p2">
+        Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil
+        ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.
+      </p>
+    </section>
+
+    <!-- WORKS -->
     <section id="works">
       <h2 data-i18n="works_h">Çalışmalarımız</h2>
       <div class="filters">
@@ -104,22 +129,23 @@
       <div id="cards" class="grid"></div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" style="margin-top:34px">
       <h2 data-i18n="contact_h">İletişim</h2>
       <p class="lead" data-i18n="contact_p">Soru ve siparişler için:</p>
       <form action="mailto:hello@eurekastudio.org" method="POST" enctype="text/plain">
         <label data-i18n="form_name_l">Ad</label>
-        <input type="text" name="Name" required>
+        <input type="text" name="Name" required />
         <label data-i18n="form_email_l">E-posta</label>
-        <input type="email" name="Email" required>
+        <input type="email" name="Email" required />
         <label data-i18n="form_msg_l">Mesaj</label>
         <textarea name="Message" required></textarea>
         <button type="submit" class="send" data-i18n="form_send">Gönder</button>
       </form>
       <p style="margin-top:12px">
-        <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a> •
-        <span data-i18n="pin_soon">Pinterest (yakında)</span> •
-        <a href="mailto:hello@eurekastudio.org">Email</a>
+        <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a>
+        • <span data-i18n="pin_soon">Pinterest (yakında)</span>
+        • <a href="mailto:hello@eurekastudio.org">Email</a>
       </p>
     </section>
   </main>
@@ -130,6 +156,7 @@
   </footer>
 
   <script>
+    /* ===== Products (dosya adları deponla birebir) ===== */
     const PRODUCTS=[
       {key:"evil",cat:"candles",img:"evil-eye.jpg.jpg",
        t:{tr:{title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol."},
@@ -146,35 +173,100 @@
       {key:"sunset",cat:"candles",img:"sunset-orange.JPG",
        t:{tr:{title:"Sunset Orange",desc:"Altın saatleri hatırlatan narenciye ışıltısı."},
           en:{title:"Sunset Orange",desc:"Citrus glow inspired by golden-hour skies."},
-          he:{title:"סאנסט אורנג׳",desc:"זוהר הדרים בהשראת רגעי שקיעה."}}}
+          he:{title:"סאנסט אורנג׳",desc:"זוהר הדרים בהשראת רגעי שקיעה."}}},
+      {key:"noir",cat:"resin",img:"golden-noir.PNG",
+       t:{tr:{title:"Golden Noir",desc:"Mat siyah gövde, zarif altın detaylar."},
+          en:{title:"Golden Noir",desc:"Matte black body with elegant golden details."},
+          he:{title:"גולדן נואר",desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים."}}}
     ];
 
+    /* ===== i18n ===== */
     const I18N={
-      tr:{works_h:"Çalışmalarımız",contact_h:"İletişim",contact_p:"Soru ve siparişler için:",
-          f_all:"Tümü",f_candles:"Mumlar",f_resin:"Epoksi",
-          form_name_l:"Ad",form_email_l:"E-posta",form_msg_l:"Mesaj",form_send:"Gönder"},
-      en:{works_h:"Our Works",contact_h:"Contact",contact_p:"For questions and orders:",
-          f_all:"All",f_candles:"Candles",f_resin:"Resin",
-          form_name_l:"Name",form_email_l:"Email",form_msg_l:"Message",form_send:"Send"},
-      he:{works_h:"העבודות שלנו",contact_h:"יצירת קשר",contact_p:"לשאלות והזמנות:",
-          f_all:"הכול",f_candles:"נרות",f_resin:"אפוקסי",
-          form_name_l:"שם",form_email_l:"אימייל",form_msg_l:"הודעה",form_send:"שלח"}
+      tr:{
+        nav_about:"Hakkımızda",nav_works:"Çalışmalar",nav_contact:"İletişim",
+        about_h:"Hakkımızda",
+        about_p1:"Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir. Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.",
+        about_p2:"Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.",
+        works_h:"Çalışmalarımız",
+        f_all:"Tümü",f_candles:"Mumlar",f_resin:"Epoksi",
+        contact_h:"İletişim",contact_p:"Soru ve siparişler için:",
+        form_name_l:"Ad",form_email_l:"E-posta",form_msg_l:"Mesaj",form_send:"Gönder",
+        pin_soon:"Pinterest (yakında)"
+      },
+      en:{
+        nav_about:"About",nav_works:"Works",nav_contact:"Contact",
+        about_h:"About",
+        about_p1:"Eureka Studio is a boutique atelier crafting handmade candles and refined objects. With warm palettes, layered textures and balanced scents, we turn everyday moments into keepsakes.",
+        about_p2:"Produced in small batches with care: plant-based soy wax, cotton wicks and IFRA-compliant fragrances. Each piece is tuned, polished and quality-checked.",
+        works_h:"Our Works",
+        f_all:"All",f_candles:"Candles",f_resin:"Resin",
+        contact_h:"Contact",contact_p:"For questions and orders:",
+        form_name_l:"Name",form_email_l:"Email",form_msg_l:"Message",form_send:"Send",
+        pin_soon:"Pinterest (soon)"
+      },
+      he:{
+        nav_about:"אודות",nav_works:"עבודות",nav_contact:"יצירת קשר",
+        about_h:"אודות",
+        about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים. צבעים חמימים, מרקמים בשכבות וניחוחות מאוזנים הופכים רגעים יומיומיים לזיכרונות.",
+        about_p2:"מיוצר בסדרות קטנות ובקפדנות: שעוות סויה צמחית, פתילי כותנה וניחוחות תואמי IFRA. כל פריט מכויל, מלוטש ונבדק איכותית.",
+        works_h:"העבודות שלנו",
+        f_all:"הכול",f_candles:"נרות",f_resin:"אפוקסי",
+        contact_h:"יצירת קשר",contact_p:"לשאלות והזמנות:",
+        form_name_l:"שם",form_email_l:"אימייל",form_msg_l:"הודעה",form_send:"שלח",
+        pin_soon:"Pinterest (בקרוב)"
+      }
     };
 
-    let currentLang="tr",currentCat="all";
-    const cards=document.querySelector("#cards");
-    function render(){
-      cards.innerHTML="";
-      PRODUCTS.filter(p=>currentCat==="all"||p.cat===currentCat).forEach(p=>{
-        const t=p.t[currentLang];
-        cards.innerHTML+=`<article class="card"><div class="top"><img src="${p.img}" alt="${t.title}"></div><div class="body"><div class="title">${t.title}</div><p class="desc">${t.desc}</p><a href="#" class="btn">Detay</a></div></article>`;
+    /* ===== State & helpers ===== */
+    let currentLang="tr", currentCat="all";
+    const cardsRoot=document.querySelector("#cards");
+
+    function applyI18N(){
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const k=el.getAttribute("data-i18n");
+        if(I18N[currentLang][k]) el.textContent=I18N[currentLang][k];
       });
-      document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n;if(I18N[currentLang][k])e.textContent=I18N[currentLang][k]});
-      document.documentElement.setAttribute("dir",currentLang==="he"?"rtl":"ltr");
     }
-    document.querySelectorAll(".lang-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".lang-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");currentLang=b.dataset.lang;render()});
-    document.querySelectorAll(".filter-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");currentCat=b.dataset.cat;render()});
-    render();
+    function applyDir(){
+      const html=document.documentElement;
+      if(currentLang==="he"){ html.setAttribute("dir","rtl"); html.setAttribute("lang","he"); }
+      else { html.setAttribute("dir","ltr"); html.setAttribute("lang", currentLang==="en"?"en":"tr"); }
+    }
+    function renderCards(){
+      cardsRoot.innerHTML="";
+      PRODUCTS.filter(p=>currentCat==="all"||p.cat===currentCat).forEach(p=>{
+        const t=p.t[currentLang]||p.t.tr;
+        cardsRoot.innerHTML+=`
+          <article class="card">
+            <div class="top"><img src="${p.img}" alt="${t.title}"></div>
+            <div class="body">
+              <div class="title">${t.title}</div>
+              <p class="desc">${t.desc}</p>
+              <a href="#" class="btn" aria-label="${t.title}">Detay</a>
+            </div>
+          </article>`;
+      });
+    }
+
+    /* ===== Events ===== */
+    document.querySelectorAll(".lang-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        if(btn.dataset.lang===currentLang) return;
+        document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        currentLang=btn.dataset.lang;
+        applyI18N(); applyDir(); renderCards();
+      });
+    });
+    document.querySelectorAll(".filter-btn").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
+        b.classList.add("active"); currentCat=b.dataset.cat; renderCards();
+      });
+    });
+
+    /* ===== Init ===== */
+    applyI18N(); applyDir(); renderCards();
   </script>
 </body>
 </html>
