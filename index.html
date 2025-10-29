@@ -50,9 +50,8 @@
       font-family:"Playfair Display", Georgia, "Times New Roman", serif;
       font-weight:700; letter-spacing:.2px; line-height:1.18;
       font-size:clamp(16px, 3.2vw, 24px); color:#1f1b18;
-      position: absolute; overflow:hidden;
+      overflow:hidden;
     }
-    /* ---- Hero parıltı (zarif) ---- */
     .banner::after{
       content:""; position:absolute; inset:-20% -60%;
       background:linear-gradient(100deg, transparent 0%, rgba(255,255,255,.65) 12%, transparent 24%);
@@ -65,7 +64,7 @@
       100%   { transform:translateX(120%); }
     }
 
-    /* About (hidden by default) */
+    /* About (gizli) */
     #about.is-hidden{display:none}
     .about-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px}
     .about-card p{color:var(--ink-2)}
@@ -74,17 +73,17 @@
     .about-points li{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:800}
     .about-close{margin-top:12px; background:#141414; color:#fff; border:0; padding:8px 12px; border-radius:10px; font-weight:800; cursor:pointer}
 
-    /* Filters */
+    /* Filtreler */
     .filters{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 0}
     .filter-btn{background:#fff; border:1px solid rgba(0,0,0,.12); border-radius:999px; padding:10px 14px; font-weight:900; color:var(--ink-2); cursor:pointer}
     .filter-btn.active{background:#141414; color:#fff}
 
-    /* Grid */
+    /* Grid: masaüstü 3, mobil 2 */
     .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:12px}
     @media (max-width:920px){ .grid{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width:520px){ .grid{gap:14px} }
+    @media (max-width:520px){ .grid{grid-template-columns:repeat(2,1fr); gap:14px} }
 
-    /* Card */
+    /* Card + hover */
     .card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
       transition:transform .28s ease, box-shadow .28s ease;}
     .card .top{height:210px; overflow:hidden; border-bottom:1px solid rgba(0,0,0,.06)}
@@ -93,12 +92,9 @@
     .title{font-size:20px; font-weight:900}
     .desc{color:var(--ink-2)}
     .btn{margin-top:auto; display:inline-block; background:#141414; color:#fff; padding:8px 12px; border-radius:10px; font-weight:900}
-
-    /* ---- Zarif hover ---- */
     .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(0,0,0,.12)}
     .card:hover .top img{transform:scale(1.04)}
 
-    /* Hareket tercihlerini dikkate al */
     @media (prefers-reduced-motion: reduce){
       .card, .card .top img, .banner::after { animation:none !important; transition:none !important; }
     }
@@ -116,7 +112,7 @@
     .chip strong{display:block; margin-bottom:4px; font-size:12px; color:var(--ink-2); font-weight:900}
     @media (max-width:560px){ .meta{grid-template-columns:1fr} }
 
-    /* Contact form */
+    /* Form */
     .contact-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px; margin-top:28px}
     .row{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
     @media (max-width:560px){ .row{grid-template-columns:1fr} }
@@ -128,7 +124,7 @@
     textarea{min-height:120px; resize:vertical}
     .send{margin-top:12px; background:#141414; color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:900; cursor:pointer}
 
-    /* Footer */
+    /* Footer (imza ortalı) */
     footer{max-width:1100px; margin:40px auto 60px; padding:0 18px; text-align:center; color:var(--ink-2)}
     footer .socials a{font-weight:800; text-decoration:underline}
 
@@ -137,16 +133,16 @@
     html[dir="rtl"] nav{flex-direction: row-reverse; gap:18px;}
     html[dir="rtl"] .wrap{flex-direction: row-reverse}
     html[dir="rtl"] .brand{text-align:right}
-    html[dir="rtl"] .about-card,
+    html[dir="rtl"] .about-card, 
     html[dir="rtl"] .contact-card,
-    html[dir="rtl"] .lead,
-    html[dir="rtl"] h1,
-    html[dir="rtl"] h2,
-    html[dir="rtl"] .title,
-    html[dir="rtl"] .desc,
+    html[dir="rtl"] .lead, 
+    html[dir="rtl"] h1, 
+    html[dir="rtl"] h2, 
+    html[dir="rtl"] .title, 
+    html[dir="rtl"] .desc, 
     html[dir="rtl"] label{ text-align:right }
 
-    /* Mobile header fixes */
+    /* Mobile header */
     @media (max-width:720px){
       .wrap{flex-wrap:wrap; row-gap:10px}
       .brand-logo{width:38px; height:38px}
@@ -154,7 +150,6 @@
       nav{order:3; width:100%; justify-content:space-around; gap:16px}
     }
 
-    /* General mobile */
     html,body{overflow-x:hidden}
     @media (max-width:520px){
       main{padding:0 14px}
@@ -260,14 +255,14 @@
     </section>
   </main>
 
-  <footer style="margin-top:24px">
+  <footer style="margin-top:24px; text-align:center">
     <p>© 2025 Eureka Studio — All rights reserved.</p>
     <p>Crafted with love 🍀</p>
   </footer>
 
   <!-- MODAL -->
-  <div class="modal" id="modal">
-    <div class="sheet">
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
       <div class="top">
         <img id="mImg" alt="">
         <button class="close" id="mClose" aria-label="Close">×</button>
@@ -309,6 +304,7 @@
             he:{title:"סאנסט אורנג׳",desc:"זוהר הדרים בהשראת רגעי שקיעה.",facts:[{k:"ניחוח",v:"תפוז • נרולי"},{k:"זמן בערה",v:"~26–30 ש׳"}]} } },
     ];
 
+    /* ===== I18N ===== */
     const I18N = {
       tr:{
         nav_home:"Ana Sayfa", nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
@@ -402,7 +398,7 @@
       });
     });
 
-    /* ===== Modal ===== */
+    /* ===== Modal open/close (tüm ürünler için) ===== */
     function openModal(key){
       const prod = PRODUCTS.find(p=>p.key===key);
       if(!prod) return;
@@ -412,18 +408,20 @@
       mDesc.textContent = t.desc;
       mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
       modal.classList.add("show");
+      modal.setAttribute("aria-hidden","false");
     }
     function closeModal(){
       modal.classList.remove("show");
-      // görseli temizlemek istersen: mImg.removeAttribute('src');
+      modal.setAttribute("aria-hidden","true");
     }
-    document.addEventListener("click", e=>{
+
+    // Tek bir delegasyon: hem açma hem kapama
+    document.addEventListener("click", (e)=>{
       const openBtn = e.target.closest("[data-open]");
-      if(openBtn){ e.preventDefault(); openModal(openBtn.dataset.open); }
-      if(e.target.id==="mClose"){ closeModal(); }
-      if(e.target===modal){ closeModal(); }
+      if(openBtn){ e.preventDefault(); openModal(openBtn.dataset.open); return; }
+      if(e.target.id==="mClose" || e.target === modal){ closeModal(); }
     });
-    // ESC ile kapat
+    // ESC
     document.addEventListener("keydown", (e)=>{ if(e.key==="Escape" && modal.classList.contains("show")) closeModal(); });
 
     /* ===== DIR & Lang switch ===== */
@@ -441,7 +439,7 @@
       });
     });
 
-    /* ===== About toggle from nav ===== */
+    /* ===== About toggle (nav) ===== */
     const aboutLink = document.querySelector('a[href="#about"]');
     if(aboutLink){
       aboutLink.addEventListener("click", (e)=>{
@@ -452,13 +450,12 @@
         }
       });
     }
-    const aboutCloseBtn = document.querySelector(".about-close");
-    if(aboutCloseBtn){
-      aboutCloseBtn.addEventListener("click", ()=>{
+    document.addEventListener("click", (e)=>{
+      if(e.target.closest(".about-close")){
         aboutSec.classList.add("is-hidden");
         window.scrollTo({top:0, behavior:"smooth"});
-      });
-    }
+      }
+    });
 
     /* ===== INIT ===== */
     applyI18N();
