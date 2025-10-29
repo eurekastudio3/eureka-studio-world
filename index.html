@@ -1,539 +1,190 @@
 <!DOCTYPE html>
-<html lang="tr" dir="ltr">
+<html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eureka Studio</title>
-  <meta name="description" content="Eureka Studio — handmade candles & resin art.">
-
-  <!-- Zarif tipografi -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    :root{
-      --bg:#f4efe7; --panel:#fff7ef; --ink:#201a17; --ink-2:#4f463f;
-      --pill:#141414; --pill-text:#fff; --card:#ffffff;
-      --shadow:0 10px 28px rgba(0,0,0,.08); --radius:16px;
-      --fade:.25s ease; --slide:.28s cubic-bezier(.22,.7,.23,1);
-      --accent:#141414;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%}
-    body{
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--bg); color:var(--ink); line-height:1.6;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    }
-    img{max-width:100%; display:block}
-    a{color:inherit; text-decoration:none}
-
-    /* Sayfa geçişi */
-    .page{transition:opacity var(--fade), transform var(--slide);}
-    .page.fade{opacity:.25; transform:translateY(6px);}
-
-    /* ===== Header ===== */
-    header{position:sticky; top:0; z-index:50; background:var(--panel); border-bottom:1px solid rgba(0,0,0,.06)}
-    .wrap{max-width:1040px; margin:0 auto; padding:12px 18px; display:flex; align-items:center; gap:14px; justify-content:space-between; flex-wrap:nowrap}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px; line-height:1}
-    .brand img{height:68px; width:auto; object-fit:contain}
-    .brand-name{display:flex; flex-direction:column}
-    .brand-name .l1,.brand-name .l2{font-size:28px; font-weight:900}
-
-    nav{display:flex; gap:22px; font-weight:800; color:var(--ink-2)}
-    nav a:hover{text-decoration:underline}
-
-    /* Dil seçimi */
-    .langs{display:flex; align-items:center; gap:8px; background:var(--pill); color:var(--pill-text); padding:6px 10px; border-radius:22px}
-    .langs .globe{font-size:18px}
-    .lang-btn{border:0; background:transparent; color:#cfcfcf; font-weight:900; padding:4px 10px; border-radius:14px; cursor:pointer}
-    .lang-btn.active{background:#fff; color:#141414}
-    .lang-btn:focus{outline:none}
-
-    /* Mobil header: 2 satır düzen */
-    @media (max-width:680px){
-      .wrap{flex-wrap:wrap}
-      .langs{order:2; margin-left:auto}
-      nav{order:3; width:100%; justify-content:center; padding-top:8px; flex-wrap:wrap}
-      .brand-name .l1,.brand-name .l2{font-size:26px}
-      .brand img{height:60px}
+    :root {
+      --bg: #f8f3ec;
+      --ink: #2e2b27;
+      --accent: #caa472;
     }
 
-    /* ===== Main ===== */
-    main{max-width:1040px; margin:18px auto 80px; padding:0 18px}
-    section{scroll-margin-top:100px}
-
-    /* HERO + banner */
-    .hero{position:relative; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); background:#ddd}
-    .hero img{width:100%; height:auto; display:block; filter:brightness(.85) saturate(.95); opacity:.85}
-    .banner{
-      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-      background:rgba(255,255,255,.92); padding:16px 18px; border-radius:14px;
-      box-shadow:0 12px 35px rgba(0,0,0,.18); max-width:min(90%,720px); text-align:center;
-      font-weight:900; font-size:clamp(16px, 3.6vw, 26px); color:var(--ink);
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background-color: var(--bg);
+      color: var(--ink);
     }
 
-    /* Başlıklar */
-    h2.section-title{
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 8%;
+      background-color: #fdf8f1;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 48px;
+      height: auto;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      font-weight: 600;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      transition: color .3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      background: #000;
+      border-radius: 30px;
+      padding: 4px 10px;
+      color: white;
+      font-size: 12px;
+      gap: 8px;
+    }
+
+    .hero {
+      position: relative;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .hero img {
+      width: 90%;
+      max-width: 900px;
+      border-radius: 14px;
+      opacity: .92;
+      box-shadow: 0 6px 18px rgba(0,0,0,.1);
+    }
+
+    /* Zarif banner ortada */
+    .banner {
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      transform: translate(-50%, -50%);
       font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-      font-weight:700; font-size:clamp(24px, 4.4vw, 36px);
-      margin:22px 0 10px; color:var(--ink);
+      font-weight: 600;
+      letter-spacing: .2px;
+      line-height: 1.15;
+      font-size: clamp(18px, 3.8vw, 30px);
+      color: var(--ink);
+      background: rgba(255, 255, 255, .74); /* daha şeffaf */
+      backdrop-filter: blur(2px);
+      padding: 10px 14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .18);
+      max-width: min(62%, 560px);
+      text-align: center;
+      border: 1px solid rgba(0,0,0,.06);
     }
-    .lead{color:var(--ink-2); max-width:760px}
 
-    /* ABOUT (başlangıçta gizli) */
-    #about.is-hidden{display:none}
-    .about-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px}
-    .about-card p{margin:0 0 10px}
-    .about-grid{display:grid; gap:12px; grid-template-columns:1fr 1fr}
-    .about-grid > div{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:12px; border-radius:12px}
-    @media (max-width:700px){ .about-grid{grid-template-columns:1fr} }
-    .about-close{margin-top:12px; background:#141414; color:#fff; border:0; padding:8px 12px; border-radius:10px; font-weight:800; cursor:pointer}
-
-    /* Filtreler */
-    .filters{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 0}
-    .filter-btn{background:#ece6db; border:1px solid rgba(0,0,0,.08); padding:10px 14px; border-radius:999px; font-weight:900; cursor:pointer}
-    .filter-btn.active{background:#141414; color:#fff}
-
-    /* GRID — mobil 2, masaüstü 3 */
-    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:12px}
-    @media (min-width:900px){ .grid{grid-template-columns:repeat(3,1fr)} }
-    @media (max-width:520px){ .grid{gap:14px} }
-
-    /* CARD */
-    .card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column}
-    .card .top{height:190px; overflow:hidden; border-bottom:1px solid rgba(0,0,0,.06)}
-    .card .top img{width:100%; height:100%; object-fit:cover; object-position:center}
-    .card .body{padding:16px; display:flex; flex-direction:column; gap:8px; flex:1}
-    .title{font-size:20px; font-weight:900}
-    .desc{color:var(--ink-2)}
-    .btn{display:inline-block; margin-top:auto; background:#141414; color:#fff; padding:10px 12px; border-radius:10px; font-weight:900}
-    .btn:hover{opacity:.9}
-
-    /* MODAL */
-    .modal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; padding:18px; z-index:60}
-    .modal.show{display:flex}
-    .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
-    .sheet .top{position:relative}
-    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover}
-    .close{position:absolute; right:10px; top:10px; width:36px; height:36px; display:grid; place-items:center; background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer}
-    .content{padding:16px}
-    .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
-    .chip{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:700}
-    .chip strong{display:block; margin-bottom:4px; font-size:12px; color:var(--ink-2); font-weight:900}
-    @media (max-width:560px){ .meta{grid-template-columns:1fr} }
-
-    /* İLETİŞİM FORMU */
-    .contact-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px; margin-top:28px}
-    .row{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
-    @media (max-width:560px){ .row{grid-template-columns:1fr} }
-    label{font-weight:900; font-size:14px; color:var(--ink-2)}
-    input, textarea{
-      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(0,0,0,.12); background:#fff;
-      font:inherit; color:var(--ink);
+    @media (max-width: 768px) {
+      .banner {
+        top: 50%;
+        font-size: clamp(16px, 5vw, 24px);
+        max-width: 74%;
+        padding: 10px 12px;
+      }
     }
-    textarea{min-height:120px; resize:vertical}
-    .send{margin-top:12px; background:#141414; color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:900; cursor:pointer}
-    .send:hover{opacity:.92}
 
-    /* FOOTER & imza */
-    footer{max-width:1040px; margin:40px auto 60px; padding:0 18px; text-align:center; color:var(--ink-2)}
-    footer .socials a{font-weight:800; text-decoration:underline}
-    .sig{margin-top:10px; font-weight:700}
+    section {
+      padding: 40px 8%;
+      text-align: center;
+    }
 
-    /* ===== RTL (HEBREW) ===== */
-    html[dir="rtl"] body{direction: rtl;}
-    html[dir="rtl"] nav{flex-direction: row-reverse; gap:18px;}
-    html[dir="rtl"] .wrap{flex-direction: row-reverse}
-    html[dir="rtl"] .brand-name{text-align:right}
-    html[dir="rtl"] .about-card, 
-    html[dir="rtl"] .contact-card,
-    html[dir="rtl"] .lead, 
-    html[dir="rtl"] h2.section-title, 
-    html[dir="rtl"] .title, 
-    html[dir="rtl"] .desc, 
-    html[dir="rtl"] label{ text-align:right }
-    html[dir="rtl"] .langs{flex-direction: row-reverse}
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: #f4ece4;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <div class="page" id="page">
-    <!-- ===== Header ===== -->
-    <header>
-      <div class="wrap">
-        <a href="#home" class="brand">
-          <img src="logo.png1.PNG" alt="Eureka Studio logo">
-          <span class="brand-name">
-            <span class="l1">Eureka</span>
-            <span class="l2">Studio</span>
-          </span>
-        </a>
 
-        <nav>
-          <a href="#home" data-i18n="nav_home">Ana Sayfa</a>
-          <a href="#about" id="aboutLink" data-i18n="nav_about">Hakkımızda</a>
-          <a href="#works" data-i18n="nav_works">Çalışmalar</a>
-          <a href="#contact-form" data-i18n="nav_contact">İletişim</a>
-        </nav>
-
-        <div class="langs" aria-label="Language">
-          <span class="globe">🌐</span>
-          <button class="lang-btn active" data-lang="tr">TR</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="he">HE</button>
-        </div>
-      </div>
-    </header>
-
-    <main id="home">
-      <!-- HERO -->
-      <div class="hero" style="margin-top:10px">
-        <img src="home-candles-hero.JPG" alt="Home Candles">
-        <div class="banner" data-i18n="hero_banner">Eureka Studio handmade candles</div>
-      </div>
-
-      <!-- ABOUT (menüden açılır, başlangıçta gizli) -->
-      <section id="about" class="is-hidden" style="margin-top:22px">
-        <h2 class="section-title" data-i18n="about_h">Hakkımızda</h2>
-        <article class="about-card">
-          <p class="lead" data-i18n="about_p1">
-            <strong>Eureka Studio</strong>, el yapımı mumlar ve epoksi objeler üreten zarif bir tasarım atölyesidir.
-            Her parça doğallığın ve estetiğin buluştuğu özenli bir üretim sürecinin sonucudur.
-          </p>
-          <p class="lead" data-i18n="about_p2">
-            Mumlarımızda yüksek kaliteli soya mumu ve pamuk fitiller kullanılır; bu sayede temiz, uzun ömürlü ve zararsız bir yanış elde edilir.
-            Kullandığımız esanslar IFRA sertifikalı, dengeli ve kalıcı notalara sahiptir.
-          </p>
-          <p class="lead" data-i18n="about_p3">
-            Epoksi tasarımlarımızda şeffaflık, parlaklık ve dayanıklılık ön plandadır.
-            Her ürün tek tek dökülür, kurutulur ve sevgiyle tamamlanır.
-            Bizim için “el yapımı” sadece bir üretim biçimi değil, bir değer anlayışıdır.
-          </p>
-
-          <div class="about-grid" style="margin-top:6px">
-            <div>
-              <strong data-i18n="about_wax_h">Mum & Fitil</strong>
-              <p data-i18n="about_wax_p">%100 bitkisel soya mumu ve kurşunsuz pamuk fitil kullanırız.</p>
-            </div>
-            <div>
-              <strong data-i18n="about_fragrance_h">Koku</strong>
-              <p data-i18n="about_fragrance_p">IFRA uyumlu esanslarla dengeli ve kalıcı koku profilleri.</p>
-            </div>
-            <div>
-              <strong data-i18n="about_color_h">Renk & Doku</strong>
-              <p data-i18n="about_color_p">Doğal pigmentler ve katmanlı dokularla zamansız estetik.</p>
-            </div>
-            <div>
-              <strong data-i18n="about_sustain_h">Sürdürülebilirlik</strong>
-              <p data-i18n="about_sustain_p">Küçük parti üretim, yeniden kullanılabilir/geri dönüştürülebilir ambalaj.</p>
-            </div>
-          </div>
-
-          <button type="button" class="about-close" data-i18n="about_close">Kapat</button>
-        </article>
-      </section>
-
-      <!-- WORKS -->
-      <section id="works" style="margin-top:26px">
-        <h2 class="section-title" data-i18n="works_h">Çalışmalarımız</h2>
-
-        <!-- Kategori filtreleri -->
-        <div class="filters" id="filters">
-          <button class="filter-btn active" data-cat="all" data-i18n="filter_all">Tümü</button>
-          <button class="filter-btn" data-cat="candles" data-i18n="filter_candles">Mumlar</button>
-          <button class="filter-btn" data-cat="resin" data-i18n="filter_resin">Epoksi</button>
-        </div>
-
-        <div id="cards" class="grid"></div>
-      </section>
-
-      <!-- CONTACT FORM -->
-      <section id="contact-form" class="contact-card">
-        <h2 class="section-title" data-i18n="contact_h">İletişim</h2>
-        <p class="lead" data-i18n="contact_p">Soru ve siparişler için:</p>
-
-        <form id="form" action="mailto:hello@eurekastudio.org" method="POST" enctype="text/plain">
-          <div class="row">
-            <div>
-              <label for="name" data-i18n="form_name_l">Ad</label>
-              <input type="text" id="name" name="Name" required />
-            </div>
-            <div>
-              <label for="email" data-i18n="form_email_l">E-posta</label>
-              <input type="email" id="email" name="Email" required />
-            </div>
-          </div>
-          <div style="margin-top:12px">
-            <label for="msg" data-i18n="form_msg_l">Mesaj</label>
-            <textarea id="msg" name="Message" required></textarea>
-          </div>
-          <button type="submit" class="send" data-i18n="form_send">Gönder</button>
-        </form>
-
-        <p class="socials" style="margin-top:12px">
-          <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram</a>
-          • <span data-i18n="pin_soon">Pinterest (yakında)</span>
-          • <a href="mailto:hello@eurekastudio.org">Email</a>
-        </p>
-      </section>
-    </main>
-
-    <footer>
-      <p>© 2025 Eureka Studio — All rights reserved.</p>
-      <p class="sig">Crafted with love 🍀</p>
-    </footer>
-  </div>
-
-  <!-- MODAL -->
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="sheet">
-      <div class="top">
-        <img id="mImg" alt="">
-        <button class="close" id="mClose" aria-label="Close">×</button>
-      </div>
-      <div class="content">
-        <h3 id="mTitle" class="title"></h3>
-        <p id="mDesc" class="desc"></p>
-        <div class="meta" id="mMeta"></div>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Eureka Studio Logosu">
+      <h1><span style="font-weight:700;">Eureka</span> Studio</h1>
     </div>
-  </div>
+    <nav>
+      <a href="#anasayfa">Ana Sayfa</a>
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#calismalar">Çalışmalar</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <div class="lang-switch">
+      🌐 TR | EN | HE
+    </div>
+  </header>
 
-  <script>
-  /* ---------- ÜRÜNLER (dosya adları birebir) ---------- */
-  const PRODUCTS = [
-    { key:"evil",    img:"evil-eye.jpg.jpg",   cat:"candles",
-      t:{ tr:{ title:"Evil Eye", desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
-               facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}] },
-          en:{ title:"Evil Eye", desc:"A protective symbol that brings calm and balance.",
-               facts:[{k:"Materials",v:"Soy wax, cotton wick, glass"},{k:"Fragrance",v:"Sea salt • White musk"},{k:"Burn Time",v:"~30–35 h"},{k:"Weight",v:"~220 g"}] },
-          he:{ title:"Evil Eye", desc:"סמל מגן שמביא שלווה ואיזון.",
-               facts:[{k:"חומרים",v:"שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"מלח ים • מושק לבן"},{k:"זמן בערה",v:"~30–35 ש׳"},{k:"משקל",v:"~220 גר׳"}] } } },
-    { key:"cocktail",img:"summer-cocktail.JPG", cat:"candles",
-      t:{ tr:{ title:"Yaz Kokteyli", desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",
-               facts:[{k:"Malzemeler",v:"Soya karışımı, pamuk fitil, cam"},{k:"Koku",v:"Ananas • Mango • Hindistan cevizi"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
-          en:{ title:"Summer Cocktail", desc:"Layered colors that recall a breezy summer drink.",
-               facts:[{k:"Materials",v:"Soy blend, cotton wick, glass"},{k:"Fragrance",v:"Pineapple • Mango • Coconut"},{k:"Burn Time",v:"~28–32 h"}] },
-          he:{ title:"קוקטייל קיץ", desc:"צבעים בשכבות שמזכירים משקה קיצי ורענן.",
-               facts:[{k:"חומרים",v:"תערובת שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"אננס • מנגו • קוקוס"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
-    { key:"choco",  img:"choco-cream.JPG",     cat:"candles",
-      t:{ tr:{ title:"Choco Cream", desc:"Kremamsı dokular ve tatlı hisler.",
-               facts:[{k:"Koku",v:"Bitter kakao • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
-          en:{ title:"Choco Cream", desc:"Creamy textures and sweet vibes.",
-               facts:[{k:"Fragrance",v:"Bitter cocoa • Vanilla"},{k:"Burn Time",v:"~28–32 h"}] },
-          he:{ title:"שוקו קרם", desc:"מרקמים עשירים וניחוחות מתוקים.",
-               facts:[{k:"ניחוח",v:"קקאו מריר • וניל"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
-    { key:"noir",   img:"golden-noir.PNG",     cat:"resin",
-      t:{ tr:{ title:"Golden Noir", desc:"Mat siyah gövde, zarif altın detaylar.",
-               facts:[{k:"Koku",v:"Amber • Ud • Tonka"},{k:"Yanma Süresi",v:"~32–36 saat"}] },
-          en:{ title:"Golden Noir", desc:"Matte black body with elegant golden details.",
-               facts:[{k:"Fragrance",v:"Amber • Oud • Tonka"},{k:"Burn Time",v:"~32–36 h"}] },
-          he:{ title:"גולדן נואר", desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים.",
-               facts:[{k:"ניחוח",v:"ענבר • אוד • טונקה"},{k:"זמן בערה",v:"~32–36 ש׳"}] } } },
-    { key:"caramel",img:"caramel-crumble.JPG",  cat:"candles",
-      t:{ tr:{ title:"Caramel Crumble", desc:"Sıcak karamelli notalar, leziz bir görünüm.",
-               facts:[{k:"Koku",v:"Karamel • Bisküvi • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
-          en:{ title:"Caramel Crumble", desc:"Warm caramel notes and a delicious look.",
-               facts:[{k:"Fragrance",v:"Caramel • Biscuit • Vanilla"},{k:"Burn Time",v:"~28–32 h"}] },
-          he:{ title:"קרמל קרמבל", desc:"נימות קרמל חמות ומראה מגרה.",
-               facts:[{k:"ניחוח",v:"קרמל • ביסקוויט • וניל"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
-    { key:"sunset", img:"sunset-orange.JPG",    cat:"candles",
-      t:{ tr:{ title:"Sunset Orange", desc:"Altın saatleri hatırlatan narenciye ışıltısı.",
-               facts:[{k:"Koku",v:"Portakal • Neroli"},{k:"Yanma Süresi",v:"~26–30 saat"}] },
-          en:{ title:"Sunset Orange", desc:"Citrus glow inspired by golden-hour skies.",
-               facts:[{k:"Fragrance",v:"Orange • Neroli"},{k:"Burn Time",v:"~26–30 h"}] },
-          he:{ title:"סאנסט אורנג׳", desc:"זוהר הדרים בהשראת רגעי שקיעה.",
-               facts:[{k:"ניחוח",v:"תפוז • נרולי"},{k:"זמן בערה",v:"~26–30 ש׳"}] } } },
-  ];
+  <section class="hero" id="anasayfa">
+    <img src="home-candles.jpg" alt="Eureka Studio handmade candles">
+    <div class="banner">Eureka Studio<br>handmade candles</div>
+  </section>
 
-  /* ---------- I18N ---------- */
-  const I18N = {
-    tr:{
-      nav_home:"Ana Sayfa", nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
-      hero_banner:"Eureka Studio handmade candles",
-      works_h:"Çalışmalarımız", contact_h:"İletişim", contact_p:"Soru ve siparişler için:",
-      pin_soon:"Pinterest (yakında)", detail:"Detay",
-      about_h:"Hakkımızda",
-      about_p1:"Eureka Studio, el yapımı mumlar ve epoksi objeler üreten zarif bir tasarım atölyesidir. Her parça doğallığın ve estetiğin buluştuğu özenli bir üretim sürecinin sonucudur.",
-      about_p2:"Mumlarımızda yüksek kaliteli soya mumu ve pamuk fitiller kullanılır; bu sayede temiz, uzun ömürlü ve zararsız bir yanış elde edilir. Kullandığımız esanslar IFRA sertifikalı, dengeli ve kalıcı notalara sahiptir.",
-      about_p3:"Epoksi tasarımlarımızda şeffaflık, parlaklık ve dayanıklılık ön plandadır. Her ürün tek tek dökülür, kurutulur ve sevgiyle tamamlanır. Bizim için “el yapımı” sadece bir üretim biçimi değil, bir değer anlayışıdır.",
-      about_wax_h:"Mum & Fitil", about_wax_p:"%100 bitkisel soya mumu ve kurşunsuz pamuk fitil kullanırız.",
-      about_fragrance_h:"Koku", about_fragrance_p:"IFRA uyumlu esanslarla dengeli ve kalıcı koku profilleri.",
-      about_color_h:"Renk & Doku", about_color_p:"Doğal pigmentler ve katmanlı dokularla zamansız estetik.",
-      about_sustain_h:"Sürdürülebilirlik", about_sustain_p:"Küçük parti üretim, yeniden kullanılabilir/geri dönüştürülebilir ambalaj.",
-      about_close:"Kapat",
+  <section id="calismalar">
+    <h2>Çalışmalarımız</h2>
+    <p>Yakında eklenecek 🌿</p>
+  </section>
 
-      filter_all:"Tümü", filter_candles:"Mumlar", filter_resin:"Epoksi",
+  <footer id="iletisim">
+    <p>© 2025 Eureka Studio | Handmade candles & elegant creations</p>
+    <p>
+      <a href="#">Instagram</a> • 
+      <a href="#">Pinterest</a> • 
+      <a href="#">E-posta</a>
+    </p>
+  </footer>
 
-      form_name_l:"Ad", form_email_l:"E-posta", form_msg_l:"Mesaj", form_send:"Gönder"
-    },
-    en:{
-      nav_home:"Home", nav_about:"About", nav_works:"Works", nav_contact:"Contact",
-      hero_banner:"Eureka Studio handmade candles",
-      works_h:"Our Works", contact_h:"Contact", contact_p:"For questions and orders:",
-      pin_soon:"Pinterest (soon)", detail:"Detail",
-      about_h:"About",
-      about_p1:"Eureka Studio is a boutique atelier creating handcrafted candles and resin objects. Each piece is the result of a careful process where nature and aesthetics meet.",
-      about_p2:"We use high-quality soy wax and cotton wicks for a clean, long-lasting and safe burn. Our fragrances are IFRA-compliant, balanced and enduring.",
-      about_p3:"In our resin work, clarity, gloss and durability come first. Every item is poured, cured and finished with care.",
-      about_wax_h:"Wax & Wick", about_wax_p:"100% plant-based soy wax and lead-free cotton wicks.",
-      about_fragrance_h:"Fragrance", about_fragrance_p:"IFRA-compliant fragrances with balanced, lasting profiles.",
-      about_color_h:"Color & Texture", about_color_p:"Natural pigments and layered textures for a timeless aesthetic.",
-      about_sustain_h:"Sustainability", about_sustain_p:"Small-batch production with reusable/recyclable packaging.",
-      about_close:"Close",
-
-      filter_all:"All", filter_candles:"Candles", filter_resin:"Resin",
-
-      form_name_l:"Name", form_email_l:"Email", form_msg_l:"Message", form_send:"Send"
-    },
-    he:{
-      nav_home:"דף הבית", nav_about:"אודות", nav_works:"עבודות", nav_contact:"יצירת קשר",
-      hero_banner:"Eureka Studio handmade candles",
-      works_h:"העבודות שלנו", contact_h:"יצירת קשר", contact_p:"לשאלות והזמנות:",
-      pin_soon:"Pinterest (בקרוב)", detail:"פרטים",
-      about_h:"אודות",
-      about_p1:"Eureka Studio הוא סטודיו בוטיק לנרות בעבודת יד וחפצי אפוקסי. כל פריט הוא תוצאה של תהליך מוקפד שבו טבע ואסתטיקה נפגשים.",
-      about_p2:"אנו משתמשים בשעוות סויה איכותית ובפתילי כותנה לבעירה נקייה ובטוחה. הניחוחות תואמי IFRA, מאוזנים ובעלי עמידות.",
-      about_p3:"בעבודות האפוקסי שלנו, שקיפות, ברק ועמידות הם בעדיפות. כל פריט נשפך, מתקשה ומושלם באהבה.",
-      about_wax_h:"שעווה ופתיל", about_wax_p:"שעוות סויה טבעית ופתילי כותנה ללא עופרת.",
-      about_fragrance_h:"ניחוח", about_fragrance_p:"ניחוחות תואמי IFRA עם פרופיל מאוזן ועמיד.",
-      about_color_h:"צבע ומרקם", about_color_p:"פיגמנטים טבעיים ומרקמים בשכבות לאסתטיקה על-זמנית.",
-      about_sustain_h:"קיימות", about_sustain_p:"ייצור בסדרות קטנות ואריזות לשימוש חוזר/מחזור.",
-      about_close:"סגור",
-
-      filter_all:"הכול", filter_candles:"נרות", filter_resin:"אפוקסי",
-
-      form_name_l:"שם", form_email_l:"אימייל", form_msg_l:"הודעה", form_send:"שלח"
-    }
-  };
-
-  /* ---------- STATE & DOM ---------- */
-  let currentLang = "tr";
-  let currentCat  = "all";
-  const $ = s => document.querySelector(s);
-  const page = $("#page");
-  const cardsRoot = $("#cards");
-  const aboutSec  = $("#about");
-
-  /* ---------- RENDER CARDS ---------- */
-  function renderCards(){
-    cardsRoot.innerHTML = "";
-    PRODUCTS
-      .filter(p => currentCat==="all" ? true : p.cat === currentCat)
-      .forEach(p=>{
-        const t = p.t[currentLang] ?? p.t.tr;
-        const el = document.createElement("article");
-        el.className = "card";
-        el.innerHTML = `
-          <div class="top"><img src="${p.img}" alt="${t.title}" loading="lazy"></div>
-          <div class="body">
-            <div class="title">${t.title}</div>
-            <p class="desc">${t.desc}</p>
-            <a href="#" class="btn" data-open="${p.key}">${I18N[currentLang].detail}</a>
-          </div>`;
-        cardsRoot.appendChild(el);
-      });
-  }
-
-  /* ---------- I18N uygula ---------- */
-  function applyI18N(){
-    document.querySelectorAll("[data-i18n]").forEach(el=>{
-      const k = el.getAttribute("data-i18n");
-      if(I18N[currentLang][k]) el.textContent = I18N[currentLang][k];
-    });
-  }
-
-  /* ---------- RTL/LTR ---------- */
-  function applyDir(){
-    const html = document.documentElement;
-    if(currentLang === "he"){ html.setAttribute("dir","rtl"); html.setAttribute("lang","he"); }
-    else { html.setAttribute("dir","ltr"); html.setAttribute("lang", currentLang==="en" ? "en" : "tr"); }
-  }
-
-  /* ---------- Fade helper ---------- */
-  function animatePage(fn){
-    page.classList.add("fade");
-    setTimeout(()=>{ fn(); page.classList.remove("fade"); }, 250);
-  }
-
-  /* ---------- Dil değiştirme ---------- */
-  document.querySelectorAll(".lang-btn").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
-      btn.classList.add("active");
-      const to = btn.dataset.lang;
-      if(to === currentLang) return;
-      animatePage(()=>{
-        currentLang = to;
-        applyI18N(); renderCards(); applyDir();
-      });
-    });
-  });
-
-  /* ---------- Filtreler ---------- */
-  document.querySelectorAll(".filter-btn").forEach(b=>{
-    b.addEventListener("click", ()=>{
-      document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
-      b.classList.add("active");
-      const to = b.dataset.cat;
-      animatePage(()=>{ currentCat = to; renderCards(); });
-    });
-  });
-
-  /* ---------- Nav davranışı ---------- */
-  // Hakkımızda: görünür/gizli toggle + scroll
-  $("#aboutLink").addEventListener("click", (e)=>{
-    e.preventDefault();
-    const wasHidden = aboutSec.classList.contains("is-hidden");
-    aboutSec.classList.toggle("is-hidden");
-    if(wasHidden){
-      aboutSec.scrollIntoView({behavior:"smooth", block:"start"});
-    }
-  });
-
-  // Diğer anchorlar: yumuşak kaydırma
-  document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
-    if(a.id==="aboutLink") return;
-    a.addEventListener("click", e=>{
-      const id = a.getAttribute("href");
-      const target = document.querySelector(id);
-      if(!target) return;
-      e.preventDefault();
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-    });
-  });
-
-  /* ---------- About close ---------- */
-  document.addEventListener("click", e=>{
-    const btn = e.target.closest(".about-close");
-    if(btn){ aboutSec.classList.add("is-hidden"); }
-  });
-
-  /* ---------- Modal ---------- */
-  const modal=$("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
-  function openModal(key){
-    const prod = PRODUCTS.find(p=>p.key===key);
-    if(!prod) return;
-    const t = prod.t[currentLang] ?? prod.t.tr;
-    mImg.src = prod.img; mImg.alt = t.title;
-    mTitle.textContent = t.title;
-    mDesc.textContent = t.desc;
-    mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
-    modal.classList.add("show");
-  }
-  $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
-  modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
-  document.addEventListener("click", e=>{
-    const trg = e.target.closest("[data-open]");
-    if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
-  });
-
-  /* ---------- INIT ---------- */
-  aboutSec.classList.add("is-hidden");  // başlangıçta gizli
-  applyI18N();
-  renderCards();
-  applyDir();
-  </script>
 </body>
 </html>
