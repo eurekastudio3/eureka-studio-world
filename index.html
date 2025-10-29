@@ -70,7 +70,7 @@
     .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:18px}
     @media (max-width:520px){ .grid{gap:14px} }
 
-    /* CARD */
+    /* CARD (görseller sabit yükseklik) */
     .card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column}
     .card .top{height:180px; overflow:hidden; border-bottom:1px solid rgba(0,0,0,.06)}
     .card .top img{width:100%; height:100%; object-fit:cover; object-position:center}
@@ -124,24 +124,24 @@
 
     <!-- ABOUT (başlangıçta gizli) -->
     <section id="about" class="is-hidden">
-      <h2>Hakkımızda</h2>
+      <h2 data-i18n="about_h">Hakkımızda</h2>
       <article class="about-card">
-        <p>
+        <p data-i18n="about_p1">
           <strong>Eureka Studio</strong>, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir.
           Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.
         </p>
-        <p>
+        <p data-i18n="about_p2">
           Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil
           ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.
         </p>
         <ul class="about-points">
-          <li>Zarif, yalın ve zamansız tasarım dili</li>
-          <li>Güvenli ve dengeli kokular (IFRA uyumlu)</li>
-          <li>Sürdürülebilir üretim ve küçük parti kalitesi</li>
-          <li>Kişiselleştirme: koku, renk, etiket seçenekleri</li>
-          <li>Atölye & workshop’lar (yakında)</li>
+          <li data-i18n="about_b1">Zarif, yalın ve zamansız tasarım dili</li>
+          <li data-i18n="about_b2">Güvenli ve dengeli kokular (IFRA uyumlu)</li>
+          <li data-i18n="about_b3">Sürdürülebilir üretim ve küçük parti kalitesi</li>
+          <li data-i18n="about_b4">Kişiselleştirme: koku, renk, etiket seçenekleri</li>
+          <li data-i18n="about_b5">Atölye & workshop’lar (yakında)</li>
         </ul>
-        <button type="button" class="about-close">Kapat</button>
+        <button type="button" class="about-close" data-i18n="about_close">Kapat</button>
       </article>
     </section>
 
@@ -180,44 +180,95 @@
   </div>
 
   <script>
-  /* --------- İÇERİK --------- */
+  /* --------- ÜRÜNLER (dosya adlarınla birebir) --------- */
   const PRODUCTS = [
     { key:"evil",    img:"evil-eye.jpg.jpg",
       t:{ tr:{ title:"Evil Eye", desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
-               facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}] } } },
+               facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}] },
+          en:{ title:"Evil Eye", desc:"A protective symbol that brings calm and balance.",
+               facts:[{k:"Materials",v:"Soy wax, cotton wick, glass"},{k:"Fragrance",v:"Sea salt • White musk"},{k:"Burn Time",v:"~30–35 h"},{k:"Weight",v:"~220 g"}] },
+          he:{ title:"Evil Eye", desc:"סמל מגן שמביא שלווה ואיזון.",
+               facts:[{k:"חומרים",v:"שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"מלח ים • מושק לבן"},{k:"זמן בערה",v:"~30–35 ש׳"},{k:"משקל",v:"~220 גר׳"}] } } },
     { key:"cocktail",img:"summer-cocktail.JPG",
       t:{ tr:{ title:"Yaz Kokteyli", desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",
-               facts:[{k:"Malzemeler",v:"Soya karışımı, pamuk fitil, cam"},{k:"Koku",v:"Ananas • Mango • Hind. cevizi"},{k:"Yanma Süresi",v:"~28–32 saat"}] } } },
+               facts:[{k:"Malzemeler",v:"Soya karışımı, pamuk fitil, cam"},{k:"Koku",v:"Ananas • Mango • Hind. cevizi"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
+          en:{ title:"Summer Cocktail", desc:"Layered colors that recall a breezy summer drink.",
+               facts:[{k:"Materials",v:"Soy blend, cotton wick, glass"},{k:"Fragrance",v:"Pineapple • Mango • Coconut"},{k:"Burn Time",v:"~28–32 h"}] },
+          he:{ title:"קוקטייל קיץ", desc:"צבעים בשכבות שמזכירים משקה קיצי ורענן.",
+               facts:[{k:"חומרים",v:"תערובת שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"אננס • מנגו • קוקוס"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
     { key:"choco",  img:"choco-cream.JPG",
       t:{ tr:{ title:"Choco Cream", desc:"Kremamsı dokular ve tatlı hisler.",
-               facts:[{k:"Koku",v:"Bitter kakao • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] } } },
+               facts:[{k:"Koku",v:"Bitter kakao • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
+          en:{ title:"Choco Cream", desc:"Creamy textures and sweet vibes.",
+               facts:[{k:"Fragrance",v:"Bitter cocoa • Vanilla"},{k:"Burn Time",v:"~28–32 h"}] },
+          he:{ title:"שוקו קרם", desc:"מרקמים עשירים וניחוחות מתוקים.",
+               facts:[{k:"ניחוח",v:"קקאו מריר • וניל"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
     { key:"noir",   img:"golden-noir.PNG",
       t:{ tr:{ title:"Golden Noir", desc:"Mat siyah gövde, zarif altın detaylar.",
-               facts:[{k:"Koku",v:"Amber • Ud • Tonka"},{k:"Yanma Süresi",v:"~32–36 saat"}] } } },
+               facts:[{k:"Koku",v:"Amber • Ud • Tonka"},{k:"Yanma Süresi",v:"~32–36 saat"}] },
+          en:{ title:"Golden Noir", desc:"Matte black body with elegant golden details.",
+               facts:[{k:"Fragrance",v:"Amber • Oud • Tonka"},{k:"Burn Time",v:"~32–36 h"}] },
+          he:{ title:"גולדן נואר", desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים.",
+               facts:[{k:"ניחוח",v:"ענבר • אוד • טונקה"},{k:"זמן בערה",v:"~32–36 ש׳"}] } } },
     { key:"caramel",img:"caramel-crumble.JPG",
       t:{ tr:{ title:"Caramel Crumble", desc:"Sıcak karamelli notalar, leziz bir görünüm.",
-               facts:[{k:"Koku",v:"Karamel • Bisküvi • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] } } },
+               facts:[{k:"Koku",v:"Karamel • Bisküvi • Vanilya"},{k:"Yanma Süresi",v:"~28–32 saat"}] },
+          en:{ title:"Caramel Crumble", desc:"Warm caramel notes and a delicious look.",
+               facts:[{k:"Fragrance",v:"Caramel • Biscuit • Vanilla"},{k:"Burn Time",v:"~28–32 h"}] },
+          he:{ title:"קרמל קרמבל", desc:"נימות קרמל חמות ומראה מגרה.",
+               facts:[{k:"ניחוח",v:"קרמל • ביסקוויט • וניל"},{k:"זמן בערה",v:"~28–32 ש׳"}] } } },
     { key:"sunset", img:"sunset-orange.JPG",
       t:{ tr:{ title:"Sunset Orange", desc:"Altın saatleri hatırlatan narenciye ışıltısı.",
-               facts:[{k:"Koku",v:"Portakal • Neroli"},{k:"Yanma Süresi",v:"~26–30 saat"}] } } },
+               facts:[{k:"Koku",v:"Portakal • Neroli"},{k:"Yanma Süresi",v:"~26–30 saat"}] },
+          en:{ title:"Sunset Orange", desc:"Citrus glow inspired by golden-hour skies.",
+               facts:[{k:"Fragrance",v:"Orange • Neroli"},{k:"Burn Time",v:"~26–30 h"}] },
+          he:{ title:"סאנסט אורנג׳", desc:"זוהר הדרים בהשראת רגעי שקיעה.",
+               facts:[{k:"ניחוח",v:"תפוז • נרולי"},{k:"זמן בערה",v:"~26–30 ש׳"}] } } },
   ];
 
+  /* --------- I18N (TR/EN/HE) --------- */
   const I18N = {
     tr:{
       nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
-      works_h:"Çalışmalarımız",
-      contact_h:"İletişim", contact_p:"Soru ve siparişler için:",
-      pin_soon:"Pinterest (yakında)", detail:"Detay"
+      works_h:"Çalışmalarımız", contact_h:"İletişim", contact_p:"Soru ve siparişler için:",
+      pin_soon:"Pinterest (yakında)", detail:"Detay",
+      about_h:"Hakkımızda",
+      about_p1:"Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir. Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.",
+      about_p2:"Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.",
+      about_b1:"Zarif, yalın ve zamansız tasarım dili",
+      about_b2:"Güvenli ve dengeli kokular (IFRA uyumlu)",
+      about_b3:"Sürdürülebilir üretim ve küçük parti kalitesi",
+      about_b4:"Kişiselleştirme: koku, renk, etiket seçenekleri",
+      about_b5:"Atölye & workshop’lar (yakında)",
+      about_close:"Kapat"
     },
     en:{
       nav_about:"About", nav_works:"Works", nav_contact:"Contact",
       works_h:"Our Works", contact_h:"Contact", contact_p:"For questions and orders:",
-      pin_soon:"Pinterest (soon)", detail:"Detail"
+      pin_soon:"Pinterest (soon)", detail:"Detail",
+      about_h:"About",
+      about_p1:"Eureka Studio is a boutique atelier crafting handcrafted candles and refined objects. With warm palettes, layered textures and balanced scents, we turn everyday moments into keepsakes.",
+      about_p2:"Produced in small batches with care: plant-based soy wax, cotton wicks and IFRA-compliant fragrances. Each piece is tuned, polished and quality-checked.",
+      about_b1:"Refined, minimal and timeless aesthetics",
+      about_b2:"Safe, balanced scents (IFRA compliant)",
+      about_b3:"Sustainable production & small-batch quality",
+      about_b4:"Customization: scent, color, label",
+      about_b5:"Workshops (coming soon)",
+      about_close:"Close"
     },
     he:{
       nav_about:"אודות", nav_works:"עבודות", nav_contact:"יצירת קשר",
       works_h:"העבודות שלנו", contact_h:"יצירת קשר", contact_p:"לשאלות והזמנות:",
-      pin_soon:"Pinterest (בקרוב)", detail:"פרטים"
+      pin_soon:"Pinterest (בקרוב)", detail:"פרטים",
+      about_h:"אודות",
+      about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים. צבעים חמימים, מרקמים בשכבות וניחוחות מאוזנים הופכים רגעים יומיומיים לזכרונות.",
+      about_p2:"מיוצר בסדרות קטנות ובקפדנות: שעוות סויה צמחית, פתילי כותנה וניחוחות תואמי IFRA. כל פריט מכויל, מלוטש ונבדק איכותית.",
+      about_b1:"אסתטיקה נקייה ועל-זמנית",
+      about_b2:"ניחוחות בטוחים ומאוזנים (IFRA)",
+      about_b3:"ייצור בר-קיימא ואיכות Small-Batch",
+      about_b4:"התאמה אישית: ניחוח, צבע ותווית",
+      about_b5:"סדנאות (בקרוב)",
+      about_close:"סגור"
     }
   };
 
@@ -227,9 +278,8 @@
   const cardsRoot = $("#cards");
   const aboutSec  = $("#about");
 
-  /* --------- RENDER --------- */
+  /* --------- KARTLARI ÇİZ --------- */
   function renderCards(){
-    if(!cardsRoot) return;
     cardsRoot.innerHTML = "";
     PRODUCTS.forEach(p=>{
       const t = p.t[currentLang] ?? p.t.tr;
@@ -246,6 +296,7 @@
     });
   }
 
+  /* --------- METİNLERİ UYGULA --------- */
   function applyI18N(){
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       const k = el.getAttribute("data-i18n");
@@ -294,10 +345,10 @@
       }
     });
   }
-  const aboutClose = document.querySelector(".about-close");
-  if(aboutClose){
-    aboutClose.addEventListener("click", ()=>aboutSec.classList.add("is-hidden"));
-  }
+  document.addEventListener("click", e=>{
+    const btn = e.target.closest(".about-close");
+    if(btn){ aboutSec.classList.add("is-hidden"); }
+  });
 
   /* --------- INIT --------- */
   applyI18N();
