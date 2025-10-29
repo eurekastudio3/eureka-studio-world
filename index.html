@@ -84,7 +84,23 @@
     .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .sheet .top{position:relative}
     .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover}
-    .close{position:absolute; right:10px; top:10px; width:36px; height:36px; display:grid; place-items:center; background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer}
+
+    /* >>> Updated close button styles <<< */
+    .close{
+      position:absolute;
+      right:12px; top:12px;
+      width:40px; height:40px;
+      display:grid; place-items:center;
+      background:rgba(0,0,0,.68);
+      color:#fff; border:2px solid #fff;
+      border-radius:999px;
+      font-weight:900; font-size:22px; line-height:1;
+      cursor:pointer; z-index:5;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .close:active{ transform:scale(.96); }
+
     .content{padding:16px}
     .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
     .chip{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:700}
@@ -388,11 +404,18 @@
       mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
       modal.classList.add("show");
     }
-    $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
+    document.getElementById("mClose").addEventListener("click", ()=>modal.classList.remove("show"));
     modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
     document.addEventListener("click", e=>{
       const trg = e.target.closest("[data-open]");
       if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
+    });
+
+    /* >>> Escape ile de kapat (ek güvenlik) <<< */
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && modal.classList.contains('show')){
+        modal.classList.remove('show');
+      }
     });
 
     /* ===== DIR & Lang switch ===== */
