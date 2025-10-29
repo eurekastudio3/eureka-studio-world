@@ -17,7 +17,7 @@
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
-    /* Header */
+    /* ===== Header ===== */
     header{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid rgba(0,0,0,.06)}
     .wrap{max-width:980px;margin:auto;padding:14px 18px;display:flex;align-items:center;gap:18px;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:24px;line-height:1}
@@ -28,24 +28,42 @@
     .langs{display:flex;align-items:center;gap:10px;background:var(--pill);color:var(--pill-text);padding:6px 10px;border-radius:22px}
     .lang-btn{background:transparent;border:0;color:#cfcfcf;font-weight:900;padding:4px 10px;border-radius:14px;cursor:pointer}
     .lang-btn.active{background:#fff;color:#141414}
-    @media(max-width:720px){.wrap{flex-wrap:wrap}.brand{order:1}.langs{order:2;margin-left:auto}.brand img{width:32px;height:32px}nav{order:3;width:100%;justify-content:center;padding-top:6px}}
+    @media(max-width:720px){
+      .wrap{flex-wrap:wrap}
+      .brand{order:1}
+      .langs{order:2;margin-left:auto}
+      nav{order:3;width:100%;justify-content:center;padding-top:6px}
+    }
 
-    /* Main */
+    /* ===== Main ===== */
     main{max-width:980px;margin:28px auto 80px;padding:0 18px}
-    h1,h2{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.3px;margin-bottom:8px}
+    h1,h2{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.2px;line-height:1.2;margin:0 0 10px}
+    h2{font-size:clamp(26px,4.2vw,36px)}
     .hero-img{max-width:640px;margin:6px auto 26px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
 
-    /* About */
+    /* Bölüm boşlukları */
+    section{margin-top:28px;padding-top:2px}
+    #works h2{margin-bottom:12px}
+    #works .filters{margin-top:14px;margin-bottom:16px}
+    #contact h2{margin-bottom:8px}
+    #contact .lead{margin-bottom:12px}
+    @media (max-width:560px){
+      h2{font-size:clamp(24px,6.2vw,30px)}
+      section{margin-top:24px}
+    }
+    @media (min-width:1024px){ section{margin-top:34px} }
+
+    /* ===== About ===== */
     #about p{color:var(--ink-2);margin-top:8px}
 
-    /* Filters & grid */
-    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 10px}
+    /* ===== Filters & Grid ===== */
+    .filters{display:flex;gap:10px;flex-wrap:wrap}
     .filter-btn{background:#ece6db;border:1px solid rgba(0,0,0,.08);padding:8px 12px;border-radius:999px;font-weight:900;cursor:pointer}
     .filter-btn.active{background:#141414;color:#fff}
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
 
-    /* Cards */
+    /* ===== Cards ===== */
     .card{background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
     .card .top{height:180px;overflow:hidden}
     .card .top img{width:100%;height:100%;object-fit:cover}
@@ -55,18 +73,18 @@
     .btn{background:#141414;color:#fff;padding:8px 12px;border-radius:10px;font-weight:900;text-align:center;margin-top:auto}
     .btn:hover{opacity:.9}
 
-    /* Contact */
-    #contact .lead{color:var(--ink-2);margin-bottom:8px}
+    /* ===== Contact ===== */
+    #contact .lead{color:var(--ink-2)}
     form label{display:block;margin:10px 0 4px;font-weight:700;color:var(--ink-2)}
     input,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,.12);background:#fff;font:inherit;color:var(--ink)}
     textarea{min-height:110px;resize:vertical}
     button.send{background:#141414;color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:900;cursor:pointer;margin-top:10px}
 
-    /* Footer */
+    /* ===== Footer ===== */
     footer{text-align:center;color:var(--ink-2);margin-top:60px;padding-top:20px;border-top:1px solid rgba(0,0,0,.1)}
     footer p{margin:6px 0;text-align:center}
 
-    /* RTL (HE) */
+    /* ===== RTL (HE) ===== */
     html[dir="rtl"] body{direction:rtl}
     html[dir="rtl"] nav{flex-direction:row-reverse}
     html[dir="rtl"] .wrap{flex-direction:row-reverse}
@@ -74,7 +92,7 @@
     html[dir="rtl"] h1,h2,.title,.desc,label,.lead,#about p{text-align:right}
     html[dir="rtl"] .langs{flex-direction:row-reverse}
 
-    /* LTR (TR/EN) */
+    /* ===== LTR (TR/EN) ===== */
     html[dir="ltr"] h1,h2,.title,.desc,.lead,label,#about p{text-align:left}
   </style>
 </head>
@@ -109,7 +127,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" style="margin-bottom:34px">
+    <section id="about">
       <h2 data-i18n="about_h">Hakkımızda</h2>
       <p data-i18n="about_p1">
         <strong>Eureka Studio</strong>, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir.
@@ -133,7 +151,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" style="margin-top:34px">
+    <section id="contact">
       <h2 data-i18n="contact_h">İletişim</h2>
       <p class="lead" data-i18n="contact_p">Soru ve siparişler için:</p>
       <form action="mailto:hello@eurekastudio.org" method="POST" enctype="text/plain">
@@ -159,7 +177,7 @@
   </footer>
 
   <script>
-    /* ==== DATA (dosya adları birebir repo ile aynı) ==== */
+    /* ==== DATA (repo dosya adlarıyla birebir) ==== */
     const PRODUCTS = [
       {key:"evil",cat:"candles",img:"evil-eye.jpg.jpg",
         t:{tr:{title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol."},
