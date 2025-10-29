@@ -37,9 +37,9 @@
     main{max-width:980px; margin:28px auto 80px; padding:0 18px}
     section{scroll-margin-top:88px}
 
-    /* Hero */
-    .hero-img{max-width:640px; margin:6px auto 20px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow)}
-    .hero-img img{width:100%; height:auto; object-fit:cover; filter:brightness(.94) saturate(.95) contrast(1.02)}
+    /* Hero (orantılı, taşmasın) */
+    .hero-img{max-width:640px; margin:6px auto 20px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); aspect-ratio:16/9}
+    .hero-img img{width:100%; height:100%; object-fit:cover; filter:brightness(.94) saturate(.95) contrast(1.02)}
 
     h1{font-size:clamp(26px, 4.8vw, 40px); line-height:1.15; margin:6px 0 10px}
     .lead{color:var(--ink-2); max-width:680px}
@@ -60,7 +60,8 @@
     @media (max-width:520px){ .grid{grid-template-columns:1fr; gap:14px} }
 
     .card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column}
-    .card .top{height:210px; overflow:hidden; border-bottom:1px solid rgba(0,0,0,.06)}
+    /* ÖNEMLİ: Kart görseli orantılı ve sınırlı */
+    .card .top{aspect-ratio:4/3; overflow:hidden; border-bottom:1px solid rgba(0,0,0,.06)}
     .card .top img{width:100%; height:100%; object-fit:cover; object-position:center}
     .card .body{padding:16px; display:flex; flex-direction:column; gap:8px; flex:1}
     .title{font-size:20px; font-weight:900}
@@ -72,8 +73,8 @@
     .modal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; padding:18px; z-index:60}
     .modal.show{display:flex}
     .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
-    .sheet .top{position:relative}
-    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover}
+    .sheet .top{position:relative; max-height:60vh} /* ekranın %60’ı ile sınırla */
+    .sheet .top img{width:100%; height:60vh; max-height:420px; object-fit:cover} /* hem 60vh hem 420px ile güvenli sınır */
     .close{position:absolute; right:10px; top:10px; width:36px; height:36px; display:grid; place-items:center; background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer}
     .content{padding:16px}
     .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
@@ -107,7 +108,7 @@
   <main>
     <!-- HERO -->
     <div class="hero-img">
-      <img src="home-candles-hero.JPG" alt="Home Candles">
+      <img src="home-candles-hero.JPG" alt="Home Candles" loading="lazy">
     </div>
 
     <!-- ABOUT (başlangıçta gizli) -->
@@ -172,7 +173,7 @@
   <script>
   /* ========= ÜRÜNLER ========= */
   const PRODUCTS = [
-    { key:"evil",    cat:"candles", img:"evil-eye.jpg.jpg",
+    { key:"evil",    cat:"candles", img:"evil-eye.jpg", /* DÜZELTİLDİ */
       t:{
         tr:{ title:"Evil Eye", desc:"Sakinlik ve denge getiren koruyucu bir sembol.",
             facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}]},
@@ -218,53 +219,35 @@
 
   /* ========= I18N ========= */
   const I18N = {
-    tr:{
-      nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
-      about_h:"Hakkımızda",
-      about_title:"Eureka Studio: elde yapılan mumlar & objeler",
+    tr:{ nav_about:"Hakkımızda", nav_works:"Çalışmalar", nav_contact:"İletişim",
+      about_h:"Hakkımızda", about_title:"Eureka Studio: elde yapılan mumlar & objeler",
       about_p1:"Eureka Studio, küçük partiler hâlinde elde dökülen soya mumları ve zarif objeler üreten butik bir atölyedir. Sıcak renkler, katmanlı dokular ve dengeli kokularla günlük anları hatıraya dönüştürür.",
       about_p2:"Bitkisel içerikli soya mumu, pamuk fitil ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer. Ambalajlarımız yeniden kullanılabilir/geri dönüştürülebilir malzemelerden seçilir.",
-      about_b1:"Zarif, yalın ve zamansız tasarım dili",
-      about_b2:"Güvenli ve dengeli kokular (IFRA uyumlu)",
-      about_b3:"Sürdürülebilir üretim ve küçük parti kalite",
-      about_b4:"Kişiselleştirme: koku, renk, etiket seçenekleri",
-      about_b5:"Atölye & workshop’lar (yakında)",
-      works_h:"Çalışmalarımız",
+      about_b1:"Zarif, yalın ve zamansız tasarım dili", about_b2:"Güvenli ve dengeli kokular (IFRA uyumlu)",
+      about_b3:"Sürdürülebilir üretim ve küçük parti kalite", about_b4:"Kişiselleştirme: koku, renk, etiket seçenekleri",
+      about_b5:"Atölye & workshop’lar (yakında)", works_h:"Çalışmalarımız",
       flt_all:"Tümü", flt_candles:"Mumlar", flt_resin:"Epoksi",
-      contact_h:"İletişim", contact_p:"Soru ve siparişler için:", pin_soon:"Pinterest (yakında)",
-      detail:"Detay"
+      contact_h:"İletişim", contact_p:"Soru ve siparişler için:", pin_soon:"Pinterest (yakında)", detail:"Detay"
     },
-    en:{
-      nav_about:"About", nav_works:"Works", nav_contact:"Contact",
-      about_h:"About",
-      about_title:"Eureka Studio: handcrafted candles & objects",
+    en:{ nav_about:"About", nav_works:"Works", nav_contact:"Contact",
+      about_h:"About", about_title:"Eureka Studio: handcrafted candles & objects",
       about_p1:"A boutique studio crafting soy candles and refined objects in small batches. Cozy colors, layered textures and balanced scents turn moments into memories.",
       about_p2:"We use plant-based soy wax, cotton wicks and IFRA-compliant fragrances. Each piece is tuned, polished and quality-checked. Packaging is reusable/recyclable.",
-      about_b1:"Refined, timeless aesthetics",
-      about_b2:"Safe & balanced scents (IFRA compliant)",
-      about_b3:"Sustainable, small-batch quality",
-      about_b4:"Customization: scent, color, label",
-      about_b5:"Workshops (coming soon)",
-      works_h:"Our Works",
+      about_b1:"Refined, timeless aesthetics", about_b2:"Safe & balanced scents (IFRA compliant)",
+      about_b3:"Sustainable, small-batch quality", about_b4:"Customization: scent, color, label",
+      about_b5:"Workshops (coming soon)", works_h:"Our Works",
       flt_all:"All", flt_candles:"Candles", flt_resin:"Resin",
-      contact_h:"Contact", contact_p:"For questions and orders:", pin_soon:"Pinterest (soon)",
-      detail:"Detail"
+      contact_h:"Contact", contact_p:"For questions and orders:", pin_soon:"Pinterest (soon)", detail:"Detail"
     },
-    he:{
-      nav_about:"אודות", nav_works:"עבודות", nav_contact:"יצירת קשר",
-      about_h:"אודות",
-      about_title:"Eureka Studio: נרות וחפצים בעבודת יד",
+    he:{ nav_about:"אודות", nav_works:"עבודות", nav_contact:"יצירת קשר",
+      about_h:"אודות", about_title:"Eureka Studio: נרות וחפצים בעבודת יד",
       about_p1:"סטודיו בוטיק לייצור נרות סויה וחפצים מעודנים בסדרות קטנות. צבעים חמימים, מרקמים בשכבות וניחוחות מאוזנים.",
       about_p2:"שעוות סויה, פתיל כותנה וניחוחות תואמי IFRA. כל פריט מכויל ומבוקר. האריזות לשימוש חוזר/מחזור.",
-      about_b1:"אסתטיקה נקייה ועל-זמנית",
-      about_b2:"ניחוחות בטוחים ומאוזנים (IFRA)",
-      about_b3:"ייצור בר-קיימא באיכות Small-Batch",
-      about_b4:"התאמה אישית: ניחוח, צבע, תווית",
-      about_b5:"סדנאות (בקרוב)",
-      works_h:"העבודות שלנו",
+      about_b1:"אסתטיקה נקייה ועל-זמנית", about_b2:"ניחוחות בטוחים ומאוזנים (IFRA)",
+      about_b3:"ייצור בר-קיימא באיכות Small-Batch", about_b4:"התאמה אישית: ניחוח, צבע, תווית",
+      about_b5:"סדנאות (בקרוב)", works_h:"העבודות שלנו",
       flt_all:"הכול", flt_candles:"נרות", flt_resin:"אפוקסי",
-      contact_h:"יצירת קשר", contact_p:"לשאלות והזמנות:", pin_soon:"Pinterest (בקרוב)",
-      detail:"פרטים"
+      contact_h:"יצירת קשר", contact_p:"לשאלות והזמנות:", pin_soon:"Pinterest (בקרוב)", detail:"פרטים"
     }
   };
 
@@ -284,7 +267,7 @@
       const el = document.createElement("article");
       el.className = "card";
       el.innerHTML = `
-        <div class="top"><img src="${p.img}" alt="${t.title}" loading="lazy"></div>
+        <div class="top"><img src="${p.img}" alt="${t.title}" loading="lazy" decoding="async"></div>
         <div class="body">
           <div class="title">${t.title}</div>
           <p class="desc">${t.desc}</p>
@@ -309,7 +292,7 @@
     mImg.src = prod.img; mImg.alt = t.title;
     mTitle.textContent = t.title;
     mDesc.textContent = t.desc;
-    mMeta.innerHTML = t.facts.map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
+    mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
     modal.classList.add("show");
   }
   $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
@@ -326,7 +309,6 @@
       btn.classList.add("active");
       currentLang = btn.dataset.lang;
       applyI18N();
-      // filtre etiketleri de çevirilsin:
       document.querySelectorAll(".filter-btn").forEach(b=>{
         const key = b.getAttribute("data-i18n");
         if(I18N[currentLang][key]) b.textContent = I18N[currentLang][key];
@@ -346,9 +328,7 @@
   });
 
   /* ========= HAKKIMIZDA toggle ========= */
-  // Başlangıçta gizli:
   aboutSec.classList.add("is-hidden");
-  // Menüden tıklanınca aç/kapa + kaydır:
   const aboutLink = document.querySelector('a[href="#about"]');
   if(aboutLink){
     aboutLink.addEventListener("click",(e)=>{
