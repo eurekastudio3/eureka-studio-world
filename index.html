@@ -43,16 +43,16 @@
     .hero img{width:100%; height:auto; object-fit:cover; filter:brightness(.92) saturate(.95) contrast(1.02)}
     .banner{
       position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-      background:rgba(255,255,255,.74); backdrop-filter:blur(2px);
-      padding:10px 14px; border-radius:14px; border:1px solid rgba(0,0,0,.06);
+      background:rgba(255,255,255,.72); backdrop-filter:blur(2px);
+      padding:12px 16px; border-radius:14px; border:1px solid rgba(0,0,0,.06);
       box-shadow:0 12px 28px rgba(0,0,0,.18);
-      text-align:center; max-width:min(70%,520px);
+      text-align:center; max-width:min(72%,520px);
       font-family:"Playfair Display", Georgia, "Times New Roman", serif;
       font-weight:700; letter-spacing:.2px; line-height:1.18;
       font-size:clamp(16px, 3.2vw, 24px); color:#1f1b18;
     }
 
-    /* About (başlangıçta gizli) */
+    /* About (hidden by default) */
     #about.is-hidden{display:none}
     .about-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px}
     .about-card p{color:var(--ink-2)}
@@ -83,26 +83,14 @@
     .modal.show{display:flex}
     .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .sheet .top{position:relative}
-    /* KILIT DÜZELTME: görsel tıklamayı kapmasın */
-    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover; pointer-events:none}
-    .close{
-      position:absolute; right:10px; top:10px; width:36px; height:36px;
-      display:grid; place-items:center; background:rgba(0,0,0,.58); color:#fff;
-      border-radius:50%; font-weight:900; cursor:pointer;
-      font-size:22px; line-height:1; border:1px solid rgba(255,255,255,.9); z-index:3;
-    }
+    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover}
+    .close{position:absolute; right:10px; top:10px; width:40px; height:40px; display:grid; place-items:center; background:rgba(0,0,0,.58); color:#fff; border-radius:50%; font-weight:900; cursor:pointer; z-index:5; font-size:20px; line-height:1}
     .content{padding:16px}
     .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
     .chip{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:700}
     .chip strong{display:block; margin-bottom:4px; font-size:12px; color:var(--ink-2); font-weight:900}
+    .close-bottom{margin-top:14px; background:#141414; color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:900; cursor:pointer}
     @media (max-width:560px){ .meta{grid-template-columns:1fr} }
-
-    /* Alt "Kapat" butonu (mobil kolay kapatma) */
-    .close.bottom{
-      position:static; width:auto; height:auto; margin-top:14px;
-      background:#141414; color:#fff; border-radius:10px; padding:10px 14px;
-      border:0; font-size:14px;
-    }
 
     /* Contact form */
     .contact-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px; margin-top:28px}
@@ -249,23 +237,22 @@
   </main>
 
   <footer style="margin-top:24px">
-    <p>© 2025 Eureka Studio — All rights reserved.</p>
+    <p>© 2025 Eureka Studio — Handmade candles & elegant creations.</p>
     <p>Crafted with love 🍀</p>
   </footer>
 
   <!-- MODAL -->
-  <div class="modal" id="modal">
-    <div class="sheet">
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
       <div class="top">
         <img id="mImg" alt="">
-        <button class="close" id="mClose" aria-label="Close" title="Kapat">×</button>
+        <button class="close" id="mClose" aria-label="Close">×</button>
       </div>
       <div class="content">
         <h3 id="mTitle" class="title"></h3>
         <p id="mDesc" class="desc"></p>
         <div class="meta" id="mMeta"></div>
-        <!-- Mobil kolay kapatma için ikinci buton -->
-        <button class="close bottom" type="button" aria-label="Kapat">Kapat</button>
+        <button class="close-bottom" id="mCloseBottom" data-i18n="detail_close">Kapat</button>
       </div>
     </div>
   </div>
@@ -276,7 +263,7 @@
       { key:"evil", cat:"candles", img:"evil-eye.jpg.jpg",
         t:{ tr:{title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol.",facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}]},
             en:{title:"Evil Eye",desc:"A protective symbol that brings calm and balance.",facts:[{k:"Materials",v:"Soy wax, cotton wick, glass"},{k:"Fragrance",v:"Sea salt • White musk"},{k:"Burn Time",v:"~30–35 h"},{k:"Weight",v:"~220 g"}]},
-            he:{title:"Evil Eye",desc:"סמל מגן שמביא שלווה ואיזון.",facts:[{k:"חומרים",v:"שעוות סויה, פתיל כותना, זכוכית"},{k:"ניחוח",v:"מלח ים • מושק לבן"},{k:"זמן בערה",v:"~30–35 ש׳"},{k:"משקל",v:"~220 גר׳"}]} } },
+            he:{title:"Evil Eye",desc:"סמל מגן שמביא שלווה ואיזון.",facts:[{k:"חומרים",v:"שעוות סויה, פתיל כותנה, זכוכית"},{k:"ניחוח",v:"מלח ים • מושק לבן"},{k:"זמן בערה",v:"~30–35 ש׳"},{k:"משקל",v:"~220 גר׳"}]} } },
       { key:"cocktail", cat:"candles", img:"summer-cocktail.JPG",
         t:{ tr:{title:"Yaz Kokteyli",desc:"Katmanlı renkler, taze yaz kokteylini anımsatır.",facts:[{k:"Malzemeler",v:"Soya karışımı, pamuk fitil, cam"},{k:"Koku",v:"Ananas • Mango • Hindistan cevizi"},{k:"Yanma Süresi",v:"~28–32 saat"},{k:"Ağırlık",v:"~210 g"}]},
             en:{title:"Summer Cocktail",desc:"Layered colors that recall a breezy summer drink.",facts:[{k:"Materials",v:"Soy blend, cotton wick, glass"},{k:"Fragrance",v:"Pineapple • Mango • Coconut"},{k:"Burn Time",v:"~28–32 h"},{k:"Weight",v:"~210 g"}]},
@@ -313,7 +300,8 @@
         works_h:"Çalışmalarımız", contact_h:"İletişim", contact_p:"Soru ve siparişler için:",
         pin_soon:"Pinterest (yakında)", detail:"Detay",
         f_all:"Tümü", f_candles:"Mumlar", f_resin:"Epoksi",
-        form_name_l:"Ad", form_email_l:"E-posta", form_msg_l:"Mesaj", form_send:"Gönder"
+        form_name_l:"Ad", form_email_l:"E-posta", form_msg_l:"Mesaj", form_send:"Gönder",
+        detail_close:"Kapat"
       },
       en:{
         nav_home:"Home", nav_about:"About", nav_works:"Works", nav_contact:"Contact",
@@ -328,7 +316,8 @@
         works_h:"Our Works", contact_h:"Contact", contact_p:"For questions and orders:",
         pin_soon:"Pinterest (soon)", detail:"Detail",
         f_all:"All", f_candles:"Candles", f_resin:"Resin",
-        form_name_l:"Name", form_email_l:"Email", form_msg_l:"Message", form_send:"Send"
+        form_name_l:"Name", form_email_l:"Email", form_msg_l:"Message", form_send:"Send",
+        detail_close:"Close"
       },
       he:{
         nav_home:"דף הבית", nav_about:"אודות", nav_works:"עבודות", nav_contact:"יצירת קשר",
@@ -343,7 +332,8 @@
         works_h:"העבודות שלנו", contact_h:"יצירת קשר", contact_p:"לשאלות והזמנות:",
         pin_soon:"Pinterest (בקרוב)", detail:"פרטים",
         f_all:"הכול", f_candles:"נרות", f_resin:"אפוקסי",
-        form_name_l:"שם", form_email_l:"אימייל", form_msg_l:"הודעה", form_send:"שלח"
+        form_name_l:"שם", form_email_l:"אימייל", form_msg_l:"הודעה", form_send:"שלח",
+        detail_close:"סגור"
       }
     };
 
@@ -353,6 +343,8 @@
     const $ = s => document.querySelector(s);
     const cardsRoot = $("#cards");
     const aboutSec  = $("#about");
+    const modal = $("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
+    const mClose = $("#mClose"), mCloseBottom = $("#mCloseBottom");
 
     /* ===== Render cards ===== */
     function renderCards(){
@@ -379,6 +371,7 @@
         const k = el.getAttribute("data-i18n");
         if(I18N[currentLang][k]) el.textContent = I18N[currentLang][k];
       });
+      mCloseBottom.textContent = I18N[currentLang].detail_close;
     }
 
     /* ===== Filters ===== */
@@ -392,7 +385,6 @@
     });
 
     /* ===== Modal ===== */
-    const modal = $("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
     function openModal(key){
       const prod = PRODUCTS.find(p=>p.key===key);
       if(!prod) return;
@@ -402,19 +394,22 @@
       mDesc.textContent = t.desc;
       mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
       modal.classList.add("show");
+      modal.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
     }
-
-    // ——— KAPATMA DAVRANIŞLARI ———
-    // Delegasyon: .close sınıflı HER buton modalı kapatır (üst X + alt "Kapat")
-    document.addEventListener("click", (e)=>{
-      if(e.target.closest(".close")){ e.preventDefault(); modal.classList.remove("show"); return; }
+    function closeModal(){
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+    mClose.addEventListener("click", closeModal);
+    mCloseBottom.addEventListener("click", closeModal);
+    modal.addEventListener("click", e=>{ if(e.target===modal) closeModal(); });
+    document.addEventListener("keydown", e=>{ if(e.key==="Escape" && modal.classList.contains("show")) closeModal(); });
+    document.addEventListener("click", e=>{
       const trg = e.target.closest("[data-open]");
       if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
     });
-    // Arka plana tıkla
-    modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
-    // ESC ile kapat
-    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") modal.classList.remove("show"); });
 
     /* ===== DIR & Lang switch ===== */
     function applyDir(){
