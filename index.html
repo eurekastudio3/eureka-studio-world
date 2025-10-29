@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Eureka Studio</title>
   <meta name="description" content="Eureka Studio — modern handcrafted candles & resin art.">
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -14,10 +13,7 @@
       --shadow:0 10px 28px rgba(0,0,0,.08); --radius:16px; --accent:#caa35a;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background:var(--bg); color:var(--ink); line-height:1.55;
-    }
+    body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:var(--bg);color:var(--ink);line-height:1.55}
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
 
@@ -67,13 +63,8 @@
     button.send{background:#141414;color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:900;cursor:pointer;margin-top:10px}
 
     /* Footer */
-    footer{
-      text-align:center;color:var(--ink-2);margin-top:60px;padding-top:20px;
-      border-top:1px solid rgba(0,0,0,.1);animation:fadeInFooter 1.6s ease-in-out;
-    }
-    footer p{margin:6px 0;text-align:center;opacity:0;animation:fadeInText 2.2s ease forwards}
-    @keyframes fadeInFooter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes fadeInText{to{opacity:1}}
+    footer{text-align:center;color:var(--ink-2);margin-top:60px;padding-top:20px;border-top:1px solid rgba(0,0,0,.1)}
+    footer p{margin:6px 0;text-align:center}
 
     /* RTL (HE) */
     html[dir="rtl"] body{direction:rtl}
@@ -168,106 +159,125 @@
   </footer>
 
   <script>
-    const PRODUCTS=[
+    /* ==== DATA (dosya adları birebir repo ile aynı) ==== */
+    const PRODUCTS = [
       {key:"evil",cat:"candles",img:"evil-eye.jpg.jpg",
-       t:{tr:{title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol."},
-          en:{title:"Evil Eye",desc:"A protective symbol that brings calm and balance."},
-          he:{title:"Evil Eye",desc:"סמל מגן שמביא שלווה ואיזון."}}},
+        t:{tr:{title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol."},
+           en:{title:"Evil Eye",desc:"A protective symbol that brings calm and balance."},
+           he:{title:"Evil Eye",desc:"סמל מגן שמביא שלווה ואיזון."}}},
       {key:"cocktail",cat:"candles",img:"summer-cocktail.JPG",
-       t:{tr:{title:"Yaz Kokteyli",desc:"Katmanlı renkler, taze yaz kokteylini anımsatır."},
-          en:{title:"Summer Cocktail",desc:"Layered colors that recall a breezy summer drink."},
-          he:{title:"קוקטייל קיץ",desc:"צבעים בשכבות שמזכירים משקה קיצי ורענן."}}},
+        t:{tr:{title:"Yaz Kokteyli",desc:"Katmanlı renkler, taze yaz kokteylini anımsatır."},
+           en:{title:"Summer Cocktail",desc:"Layered colors that recall a breezy summer drink."},
+           he:{title:"קוקטייל קיץ",desc:"צבעים בשכבות שמזכירים משקה קיצי ורענן."}}},
       {key:"caramel",cat:"candles",img:"caramel-crumble.JPG",
-       t:{tr:{title:"Caramel Crumble",desc:"Sıcak karamelli notalar, leziz bir görünüm."},
-          en:{title:"Caramel Crumble",desc:"Warm caramel notes and a delicious look."},
-          he:{title:"קרמל קרמבל",desc:"נימות קרמל חמות ומראה מגרה."}}},
+        t:{tr:{title:"Caramel Crumble",desc:"Sıcak karamelli notalar, leziz bir görünüm."},
+           en:{title:"Caramel Crumble",desc:"Warm caramel notes and a delicious look."},
+           he:{title:"קרמל קרמבל",desc:"נימות קרמל חמות ומראה מגרה."}}},
       {key:"sunset",cat:"candles",img:"sunset-orange.JPG",
-       t:{tr:{title:"Sunset Orange",desc:"Altın saatleri hatırlatan narenciye ışıltısı."},
-          en:{title:"Sunset Orange",desc:"Citrus glow inspired by golden-hour skies."},
-          he:{title:"סאנסט אורנג׳",desc:"זוהר הדרים בהשראת רגעי שקיעה."}}},
+        t:{tr:{title:"Sunset Orange",desc:"Altın saatleri hatırlatan narenciye ışıltısı."},
+           en:{title:"Sunset Orange",desc:"Citrus glow inspired by golden-hour skies."},
+           he:{title:"סאנסט אורנג׳",desc:"זוהר הדרים בהשראת רגעי שקיעה."}}},
       {key:"noir",cat:"resin",img:"golden-noir.PNG",
-       t:{tr:{title:"Golden Noir",desc:"Mat siyah gövde, zarif altın detaylar."},
-          en:{title:"Golden Noir",desc:"Matte black body with elegant golden details."},
-          he:{title:"גולדן נואר",desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים."}}}
+        t:{tr:{title:"Golden Noir",desc:"Mat siyah gövde, zarif altın detaylar."},
+           en:{title:"Golden Noir",desc:"Matte black body with elegant golden details."},
+           he:{title:"גולדן נואר",desc:"גוף שחור מט עם פרטים מוזהבים אלגנטיים."}}}
     ];
 
-    const I18N={
-      tr:{
-        nav_home:"Ana Sayfa",nav_about:"Hakkımızda",nav_works:"Çalışmalar",nav_contact:"İletişim",
-        about_h:"Hakkımızda",
-        about_p1:"Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir. Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.",
-        about_p2:"Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.",
-        works_h:"Çalışmalarımız",
-        f_all:"Tümü",f_candles:"Mumlar",f_resin:"Epoksi",
-        contact_h:"İletişim",contact_p:"Soru ve siparişler için:",
-        form_name_l:"Ad",form_email_l:"E-posta",form_msg_l:"Mesaj",form_send:"Gönder",
-        pin_soon:"Pinterest (yakında)"
-      },
-      en:{
-        nav_home:"Home",nav_about:"About",nav_works:"Works",nav_contact:"Contact",
-        about_h:"About",
-        about_p1:"Eureka Studio is a boutique atelier crafting handmade candles and refined objects.",
-        about_p2:"Produced in small batches with care: plant-based soy wax, cotton wicks and IFRA-compliant fragrances.",
-        works_h:"Our Works",
-        f_all:"All",f_candles:"Candles",f_resin:"Resin",
-        contact_h:"Contact",contact_p:"For questions and orders:",
-        form_name_l:"Name",form_email_l:"Email",form_msg_l:"Message",form_send:"Send",
-        pin_soon:"Pinterest (soon)"
-      },
-      he:{
-        nav_home:"דף הבית",nav_about:"אודות",nav_works:"עבודות",nav_contact:"יצירת קשר",
-        about_h:"אודות",
-        about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים.",
-        about_p2:"מיוצר בסדרות קטנות ובקפדנות: שעוות סויה צמחית, פתילי כותנה וניחוחות תואמי IFRA.",
-        works_h:"העבודות שלנו",
-        f_all:"הכול",f_candles:"נרות",f_resin:"אפוקסי",
-        contact_h:"יצירת קשר",contact_p:"לשאלות והזמנות:",
-        form_name_l:"שם",form_email_l:"אימייל",form_msg_l:"הודעה",form_send:"שלח",
-        pin_soon:"Pinterest (בקרוב)"
-      }
+    const I18N = {
+      tr:{nav_home:"Ana Sayfa",nav_about:"Hakkımızda",nav_works:"Çalışmalar",nav_contact:"İletişim",
+          about_h:"Hakkımızda",
+          about_p1:"Eureka Studio, el yapımı mumlar ve zarif objeler üreten butik bir atölyedir. Sıcak renkler, katmanlı dokular ve dengeli kokularla, gündelik anları hatıraya dönüştüren parçalar tasarlarız.",
+          about_p2:"Ürünlerimiz küçük partiler hâlinde ve özenle hazırlanır; bitkisel içerikli soya mumu, pamuk fitil ve IFRA uyumlu esanslar kullanırız. Her parça tek tek ayarlanır, parlatılır ve kalite kontrolden geçer.",
+          works_h:"Çalışmalarımız",f_all:"Tümü",f_candles:"Mumlar",f_resin:"Epoksi",
+          contact_h:"İletişim",contact_p:"Soru ve siparişler için:",
+          form_name_l:"Ad",form_email_l:"E-posta",form_msg_l:"Mesaj",form_send:"Gönder",
+          pin_soon:"Pinterest (yakında)"},
+      en:{nav_home:"Home",nav_about:"About",nav_works:"Works",nav_contact:"Contact",
+          about_h:"About",
+          about_p1:"Eureka Studio is a boutique atelier crafting handmade candles and refined objects.",
+          about_p2:"Produced in small batches with care: plant-based soy wax, cotton wicks and IFRA-compliant fragrances.",
+          works_h:"Our Works",f_all:"All",f_candles:"Candles",f_resin:"Resin",
+          contact_h:"Contact",contact_p:"For questions and orders:",
+          form_name_l:"Name",form_email_l:"Email",form_msg_l:"Message",form_send:"Send",
+          pin_soon:"Pinterest (soon)"},
+      he:{nav_home:"דף הבית",nav_about:"אודות",nav_works:"עבודות",nav_contact:"יצירת קשר",
+          about_h:"אודות",
+          about_p1:"Eureka Studio הוא סטודיו בוטיק ליצירת נרות בעבודת יד וחפצים מעודנים.",
+          about_p2:"מיוצר בסדרות קטנות ובקפדנות: שעוות סויה צמחית, פתילי כותנה וניחוחות תואמי IFRA.",
+          works_h:"העבודות שלנו",f_all:"הכול",f_candles:"נרות",f_resin:"אפוקסי",
+          contact_h:"יצירת קשר",contact_p:"לשאלות והזמנות:",
+          form_name_l:"שם",form_email_l:"אימייל",form_msg_l:"הודעה",form_send:"שלח",
+          pin_soon:"Pinterest (בקרוב)"}
     };
 
-    let currentLang="tr", currentCat="all";
-    const cardsRoot=document.querySelector("#cards");
+    /* ==== STATE ==== */
+    let currentLang = "tr";
+    let currentCat  = "all";
 
+    /* ==== HELPERS ==== */
     function applyI18N(){
       document.querySelectorAll("[data-i18n]").forEach(el=>{
-        const k=el.getAttribute("data-i18n");
-        if(I18N[currentLang][k]) el.textContent=I18N[currentLang][k];
+        const k = el.getAttribute("data-i18n");
+        if(I18N[currentLang][k]) el.textContent = I18N[currentLang][k];
       });
     }
     function applyDir(){
-      const html=document.documentElement;
+      const html = document.documentElement;
       if(currentLang==="he"){ html.setAttribute("dir","rtl"); html.setAttribute("lang","he"); }
       else { html.setAttribute("dir","ltr"); html.setAttribute("lang", currentLang==="en"?"en":"tr"); }
     }
     function renderCards(){
-      cardsRoot.innerHTML="";
+      const root = document.getElementById("cards");
+      root.innerHTML = "";
       PRODUCTS.filter(p=>currentCat==="all"||p.cat===currentCat).forEach(p=>{
-        const t=p.t[currentLang]||p.t.tr;
-        cardsRoot.innerHTML+=`
-          <article class="card">
-            <div class="top"><img src="${p.img}" alt="${t.title}"></div>
-            <div class="body">
-              <div class="title">${t.title}</div>
-              <p class="desc">${t.desc}</p>
-              <a href="#" class="btn" aria-label="${t.title}">Detay</a>
-            </div>
-          </article>`;
+        const t = p.t[currentLang] || p.t.tr;
+        const el = document.createElement("article");
+        el.className = "card";
+        el.innerHTML = `
+          <div class="top"><img src="${p.img}" alt="${t.title}"></div>
+          <div class="body">
+            <div class="title">${t.title}</div>
+            <p class="desc">${t.desc}</p>
+            <a href="#" class="btn">Detay</a>
+          </div>`;
+        root.appendChild(el);
       });
     }
 
+    /* ==== EVENTS ==== */
+    // Nav smooth scroll
     document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
-      a.addEventListener("click",e=>{
+      a.addEventListener("click", e=>{
         const id=a.getAttribute("href"); const t=document.querySelector(id);
         if(t){ e.preventDefault(); t.scrollIntoView({behavior:"smooth",block:"start"}); }
       });
     });
-
+    // Language switch
     document.querySelectorAll(".lang-btn").forEach(btn=>{
       btn.addEventListener("click", ()=>{
         if(btn.dataset.lang===currentLang) return;
         document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
         btn.classList.add("active");
-        currentLang=btn.dataset.lang;
-        applyI18
+        currentLang = btn.dataset.lang;
+        applyI18N(); applyDir(); renderCards();
+      });
+    });
+    // Filters
+    document.querySelectorAll(".filter-btn").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
+        b.classList.add("active");
+        currentCat = b.dataset.cat;
+        renderCards();
+      });
+    });
+
+    /* ==== INIT ==== */
+    document.addEventListener("DOMContentLoaded", ()=>{
+      applyI18N();
+      applyDir();
+      renderCards();
+    });
+  </script>
+</body>
+</html>
