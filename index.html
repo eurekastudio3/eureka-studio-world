@@ -78,15 +78,17 @@
     .desc{color:var(--ink-2)}
     .btn{margin-top:auto; display:inline-block; background:#141414; color:#fff; padding:8px 12px; border-radius:10px; font-weight:900}
 
-    /* Modal (X fix: z-index) */
+    /* Modal */
     .modal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; padding:18px; z-index:60}
     .modal.show{display:flex}
     .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .sheet .top{position:relative}
-    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover}
+    /* <<< KRİTİK DÜZELTME: görsel tıklamayı engellemesin */
+    .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover; pointer-events:none;}
     .close{
       position:absolute; right:10px; top:10px; width:36px; height:36px; display:grid; place-items:center;
-      background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer; z-index:3;
+      background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer;
+      z-index:999; pointer-events:auto;
     }
     .content{padding:16px}
     .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
@@ -410,13 +412,17 @@
       mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
       modal.classList.add("show");
     }
+    // X butonu
     $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
+    // Arka plana tıklayınca
     modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
+    // Delegasyon: .close tıklanınca da kapat (yedek)
     document.addEventListener("click", e=>{
       const trg = e.target.closest("[data-open]");
       if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
-      if(e.target.closest('.close')){ modal.classList.remove('show'); } // yedek
+      if(e.target.closest(".close")){ modal.classList.remove("show"); }
     });
+    // ESC ile kapat
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape' && modal.classList.contains('show')) modal.classList.remove('show');
     });
