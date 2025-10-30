@@ -46,7 +46,7 @@ nav a{color:var(--ink);text-decoration:none;font-weight:600}
 .filter[aria-selected="true"]{background:var(--amber);border-color:var(--amber);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
 .card-fig{background:#fff;border:1px solid #ece9e4;border-radius:10px;overflow:hidden}
-.card-img{width:100%;aspect-ratio: 4 / 5; object-fit:cover; display:block}
+.card-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
 .card-title{padding:10px 12px}
 
 /* IG */
@@ -130,8 +130,7 @@ footer{text-align:center;background:var(--stone);font-size:.9rem}
       <h2 id="worksTitle" data-i18n="works.title">Our Works</h2>
       <p data-i18n="works.subtitle">Each piece is handmade — unique in form, scent, and emotion.</p>
     </div>
-
-    <!-- Multilingual filters -->
+    <!-- DİLE GÖRE KATEGORİLER -->
     <div class="filters" role="tablist" aria-label="Filter">
       <button class="filter" data-cat="all" role="tab" aria-selected="true" data-i18n="filters.all">All</button>
       <button class="filter" data-cat="candles" role="tab" aria-selected="false" data-i18n="filters.candles">Candles</button>
@@ -166,6 +165,10 @@ footer{text-align:center;background:var(--stone);font-size:.9rem}
       <img class="card-img" src="./bedside.lamb.png.JPG" alt="Bedside Calm – soy candle" loading="lazy">
       <figcaption class="card-title">Bedside Calm</figcaption>
     </figure>
+    <figure class="card-fig" data-cat="candles">
+      <img class="card-img" src="./candles.png.jpg" alt="Assorted handcrafted candles" loading="lazy">
+      <figcaption class="card-title">Assorted Candles</figcaption>
+    </figure>
 
     <!-- Epoxy -->
     <figure class="card-fig" data-cat="epoxy">
@@ -181,6 +184,10 @@ footer{text-align:center;background:var(--stone);font-size:.9rem}
     <figure class="card-fig" data-cat="accessories">
       <img class="card-img" src="./pati.kunye.png.jpg" alt="Epoxy Pet Tag" loading="lazy">
       <figcaption class="card-title">Pet Tags</figcaption>
+    </figure>
+    <figure class="card-fig" data-cat="accessories">
+      <img class="card-img" src="./patis.kunye.png.jpg" alt="Epoxy Pet Tag – variant" loading="lazy">
+      <figcaption class="card-title">Pet Tags (Alt)</figcaption>
     </figure>
   </div>
 </section>
@@ -241,7 +248,7 @@ footer{text-align:center;background:var(--stone);font-size:.9rem}
 </footer>
 
 <script>
-/* --- i18n dictionary (EN/TR/HE) --- */
+/* i18n — kategoriler dahil */
 const I18N={
   en:{
     'nav.home':'Home','nav.about':'About','nav.works':'Works','nav.instagram':'Instagram','nav.contact':'Contact',
@@ -277,10 +284,8 @@ function setLang(lang){
   });
   document.documentElement.setAttribute('dir', lang==='he' ? 'rtl' : 'ltr');
   const msg=document.getElementById('message'); if(msg) msg.setAttribute('dir', lang==='he'?'rtl':'ltr');
-  // filtre butonlarının genişlikleri değiştiğinde kayma olmasın diye:
-  document.querySelectorAll('.filter').forEach(b=>b.style.minWidth='auto');
 }
-/* Works filters with a11y */
+/* WORKS filters + a11y */
 const filterButtons=[...document.querySelectorAll('.filter')];
 function applyFilter(cat){
   document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{
@@ -294,11 +299,10 @@ filterButtons.forEach(b=>{
     applyFilter(b.dataset.cat);
   });
 });
-// initial states
-applyFilter('all'); // show all by default
+applyFilter('all');
 document.querySelector('.filter[data-cat="all"]')?.setAttribute('aria-selected','true');
 
-/* Contact form handler (Formspree style) */
+/* CONTACT form handler (Formspree style) */
 const form=document.getElementById('contact-form');
 const statusEl=document.getElementById('status');
 if(form){
