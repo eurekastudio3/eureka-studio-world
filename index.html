@@ -26,7 +26,7 @@
     header{position:sticky; top:0; z-index:50; background:var(--panel); border-bottom:1px solid rgba(0,0,0,.06)}
     .wrap{max-width:1100px; margin:0 auto; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:18px}
     .brand-wrap{display:flex; align-items:center; gap:12px; min-width:0}
-    .brand-logo{width:44px; height:44px; object-fit:contain; flex:0 0 auto}
+    .brand-logo{width:52px; height:52px; object-fit:contain; flex:0 0 auto}
     .brand{font-weight:900; letter-spacing:.2px; font-size:24px; line-height:1; white-space:nowrap}
     nav{display:flex; gap:22px; font-weight:800; color:var(--ink-2); flex:1; justify-content:center}
     nav a:hover{text-decoration:underline}
@@ -40,10 +40,10 @@
 
     /* Hero */
     .hero{position:relative; max-width:980px; margin:6px auto 22px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow)}
-    .hero img{width:100%; height:auto; object-fit:cover; filter:brightness(.92) saturate(.95) contrast(1.02)}
+    .hero img{width:100%; height:auto; object-fit:cover; filter:brightness(.9) saturate(.95) contrast(1.02)}
     .banner{
       position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-      background:rgba(255,255,255,.74); backdrop-filter:blur(2px);
+      background:rgba(255,255,255,.68); backdrop-filter:blur(2px);
       padding:10px 14px; border-radius:14px; border:1px solid rgba(0,0,0,.06);
       box-shadow:0 12px 28px rgba(0,0,0,.18);
       text-align:center; max-width:min(70%,520px);
@@ -52,7 +52,7 @@
       font-size:clamp(16px, 3.2vw, 24px); color:#1f1b18;
     }
 
-    /* About (hidden by default) */
+    /* About (toggle) */
     #about.is-hidden{display:none}
     .about-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:18px}
     .about-card p{color:var(--ink-2)}
@@ -66,7 +66,7 @@
     .filter-btn{background:#fff; border:1px solid rgba(0,0,0,.12); border-radius:999px; padding:10px 14px; font-weight:900; color:var(--ink-2); cursor:pointer}
     .filter-btn.active{background:#141414; color:#fff}
 
-    /* Grid: desktop 3, mobil/tablet 2 */
+    /* Grid: desktop 3, tablet/mobil 2 */
     .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:12px}
     @media (max-width:920px){ .grid{grid-template-columns:repeat(2,1fr)} }
     @media (max-width:520px){ .grid{gap:14px} }
@@ -78,13 +78,16 @@
     .desc{color:var(--ink-2)}
     .btn{margin-top:auto; display:inline-block; background:#141414; color:#fff; padding:8px 12px; border-radius:10px; font-weight:900}
 
-    /* Modal */
+    /* Modal (X fix: z-index) */
     .modal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; padding:18px; z-index:60}
     .modal.show{display:flex}
     .sheet{max-width:860px; width:min(96vw,860px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .sheet .top{position:relative}
     .sheet .top img{width:100%; height:auto; max-height:420px; object-fit:cover}
-    .close{position:absolute; right:10px; top:10px; width:36px; height:36px; display:grid; place-items:center; background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer}
+    .close{
+      position:absolute; right:10px; top:10px; width:36px; height:36px; display:grid; place-items:center;
+      background:rgba(0,0,0,.55); color:#fff; border-radius:50%; font-weight:900; cursor:pointer; z-index:3;
+    }
     .content{padding:16px}
     .meta{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:10px}
     .chip{background:#fff7ef; border:1px dashed rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; font-weight:700}
@@ -96,10 +99,7 @@
     .row{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
     @media (max-width:560px){ .row{grid-template-columns:1fr} }
     label{font-weight:900; font-size:14px; color:var(--ink-2)}
-    input, textarea{
-      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(0,0,0,.12); background:#fff;
-      font:inherit; color:var(--ink);
-    }
+    input, textarea{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(0,0,0,.12); background:#fff; font:inherit; color:var(--ink)}
     textarea{min-height:120px; resize:vertical}
     .send{margin-top:12px; background:#141414; color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:900; cursor:pointer}
 
@@ -112,19 +112,19 @@
     html[dir="rtl"] nav{flex-direction: row-reverse; gap:18px;}
     html[dir="rtl"] .wrap{flex-direction: row-reverse}
     html[dir="rtl"] .brand{text-align:right}
-    html[dir="rtl"] .about-card,
+    html[dir="rtl"] .about-card, 
     html[dir="rtl"] .contact-card,
-    html[dir="rtl"] .lead,
-    html[dir="rtl"] h1,
-    html[dir="rtl"] h2,
-    html[dir="rtl"] .title,
-    html[dir="rtl"] .desc,
+    html[dir="rtl"] .lead, 
+    html[dir="rtl"] h1, 
+    html[dir="rtl"] h2, 
+    html[dir="rtl"] .title, 
+    html[dir="rtl"] .desc, 
     html[dir="rtl"] label{ text-align:right }
 
     /* Mobile header fixes */
     @media (max-width:720px){
       .wrap{flex-wrap:wrap; row-gap:10px}
-      .brand-logo{width:38px; height:38px}
+      .brand-logo{width:44px; height:44px}
       .brand{font-size:20px}
       nav{order:3; width:100%; justify-content:space-around; gap:16px}
     }
@@ -168,7 +168,7 @@
       <figcaption class="banner">Eureka Studio<br>handmade candles</figcaption>
     </figure>
 
-    <!-- ABOUT (başlangıçta gizli, nav ile aç/kapa) -->
+    <!-- ABOUT (nav ile aç/kapa) -->
     <section id="about" class="is-hidden">
       <h2 data-i18n="about_h">Hakkımızda</h2>
       <article class="about-card">
@@ -256,9 +256,8 @@
   </div>
 
   <script>
-    /* ===== DATA (mevcut ürünler + 5 yeni görsel) ===== */
+    /* ===== DATA ===== */
     const PRODUCTS = [
-      /* --- Mevcutlar --- */
       { key:"evil", cat:"candles", img:"evil-eye.jpg.jpg",
         t:{ tr:{title:"Evil Eye",desc:"Sakinlik ve denge getiren koruyucu bir sembol.",facts:[{k:"Malzemeler",v:"Soya mumu, pamuk fitil, cam"},{k:"Koku",v:"Deniz tuzu • Beyaz misk"},{k:"Yanma Süresi",v:"~30–35 saat"},{k:"Ağırlık",v:"~220 g"}]},
             en:{title:"Evil Eye",desc:"A protective symbol that brings calm and balance.",facts:[{k:"Materials",v:"Soy wax, cotton wick, glass"},{k:"Fragrance",v:"Sea salt • White musk"},{k:"Burn Time",v:"~30–35 h"},{k:"Weight",v:"~220 g"}]},
@@ -284,27 +283,27 @@
             en:{title:"Sunset Orange",desc:"Citrus glow inspired by golden-hour skies.",facts:[{k:"Fragrance",v:"Orange • Neroli"},{k:"Burn Time",v:"~26–30 h"}]},
             he:{title:"סאנסט אורנג׳",desc:"זוהר הדרים בהשראת רגעי שקיעה.",facts:[{k:"ניחוח",v:"תפוז • נרולי"},{k:"זמן בערה",v:"~26–30 ש׳"}]} } },
 
-      /* --- Yeni eklenen 5 görsel --- */
-      { key:"bedside-lamb", cat:"resin", img:"bedside.lamb.png.JPG",
-        t:{ tr:{title:"Bedside Lamb", desc:"Zarif epoksi masa lambası, sıcak ışık.", facts:[{k:"Kategori",v:"Epoksi"},{k:"Öne Çıkan",v:"Sade & zarif"}]},
-            en:{title:"Bedside Lamp", desc:"Elegant epoxy bedside lamp with warm glow.", facts:[{k:"Category",v:"Resin"},{k:"Highlight",v:"Clean & elegant"}]},
-            he:{title:"מנורת לילה", desc:"מנורת לילה מאלמנטי אפוקסי עם אור חמים.", facts:[{k:"קטגוריה",v:"אפוקסי"},{k:"דגש",v:"נקי ואלגנטי"}]} } },
-      { key:"candles-mix", cat:"candles", img:"candles.png.jpg",
-        t:{ tr:{title:"Classic Candles", desc:"Sade ve zarif mum kompozisyonu.", facts:[{k:"Kategori",v:"Mum"},{k:"Stil",v:"Minimal"}]},
-            en:{title:"Classic Candles", desc:"Simple and elegant candle composition.", facts:[{k:"Category",v:"Candles"},{k:"Style",v:"Minimal"}]},
-            he:{title:"נרות קלאסיים", desc:"קומפוזיציית נרות פשוטה ואלגנטית.", facts:[{k:"קטגוריה",v:"נרות"},{k:"סגנון",v:"מינימליסטי"}]} } },
-      { key:"cutting-board", cat:"resin", img:"kesme.tahtasi.png.jpg",
-        t:{ tr:{title:"Kesme Tahtası", desc:"Ahşap & epoksi karışımı sunum/kesme tahtası.", facts:[{k:"Kategori",v:"Epoksi"},{k:"Kullanım",v:"Mutfak & servis"}]},
-            en:{title:"Cutting Board", desc:"Wood & resin mixed serving/cutting board.", facts:[{k:"Category",v:"Resin"},{k:"Use",v:"Kitchen & serving"}]},
-            he:{title:"קרש חיתוך", desc:"קרש עץ בשילוב אפוקסי לשימוש במטבח.", facts:[{k:"קטגוריה",v:"אפוקסי"},{k:"שימוש",v:"מטבח"}]} } },
-      { key:"pet-tag", cat:"resin", img:"pati.kunye.png.jpg",
-        t:{ tr:{title:"Pati Künyesi", desc:"Evcil dostlar için kişiye özel epoksi künye.", facts:[{k:"Kategori",v:"Epoksi"},{k:"Özelleştirme",v:"İsim & renk"}]},
-            en:{title:"Pet Tag", desc:"Custom epoxy pet tag for furry friends.", facts:[{k:"Category",v:"Resin"},{k:"Custom",v:"Name & color"}]},
-            he:{title:"תג חיות", desc:"תג אפוקסי מותאם אישית לחיות מחמד.", facts:[{k:"קטגוריה",v:"אפוקסי"},{k:"התאמה",v:"שם וצבע"}]} } },
-      { key:"pet-tag-mini", cat:"resin", img:"patis.kunye.png.jpg",
-        t:{ tr:{title:"Pati Künyesi (Mini)", desc:"Küçük ırklar için hafif mini künye.", facts:[{k:"Kategori",v:"Epoksi"},{k:"Boyut",v:"Mini"}]},
-            en:{title:"Pet Tag (Mini)", desc:"Lightweight mini tag for small breeds.", facts:[{k:"Category",v:"Resin"},{k:"Size",v:"Mini"}]},
-            he:{title:"תג חיות קטן", desc:"תג קל במיוחד לכלבים קטנים.", facts:[{k:"קטגוריה",v:"אפוקסי"},{k:"מידה",v:"מיני"}]} } },
+      /* —— Senin eklediklerin —— */
+      { key:"bedside", cat:"resin", img:"bedside.lamb.png.JPG",
+        t:{ tr:{title:"Bedside Lamb",desc:"Epoksi bedside obje."},
+            en:{title:"Bedside Lamb",desc:"Resin bedside object."},
+            he:{title:"Bedside Lamb",desc:"אובייקט אפוקסי לשידה."} } },
+      { key:"candlespng", cat:"candles", img:"candles.png.jpg",
+        t:{ tr:{title:"Candles Set",desc:"Mum koleksiyonu görseli."},
+            en:{title:"Candles Set",desc:"Candles collection visual."},
+            he:{title:"Candles Set",desc:"תצלום קולקציית נרות."} } },
+      { key:"kesme", cat:"resin", img:"kesme.tahtasi.png.jpg",
+        t:{ tr:{title:"Kesme Tahtası",desc:"Epoksi kesme tahtası tasarımı."},
+            en:{title:"Cutting Board",desc:"Resin cutting board design."},
+            he:{title:"קרש חיתוך",desc:"עיצוב קרש חיתוך אפוקסי."} } },
+      { key:"pati1", cat:"resin", img:"pati.kunye.png.jpg",
+        t:{ tr:{title:"Pati Künyesi",desc:"Kişiselleştirilebilir epoksi künye."},
+            en:{title:"Paw Tag",desc:"Customizable resin tag."},
+            he:{title:"תגית כף",desc:"תגית אפוקסי בהתאמה אישית."} } },
+      { key:"pati2", cat:"resin", img:"patis.kunye.png.jpg",
+        t:{ tr:{title:"Pati Künyesi 2",desc:"Farklı renk seçenekleri."},
+            en:{title:"Paw Tag 2",desc:"Different colorways."},
+            he:{title:"תגית כף 2",desc:"גוונים נוספים."} } },
     ];
 
     const I18N = {
@@ -361,13 +360,14 @@
     const $ = s => document.querySelector(s);
     const cardsRoot = $("#cards");
     const aboutSec  = $("#about");
+    const modal = $("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
 
     /* ===== Render cards ===== */
     function renderCards(){
       const list = PRODUCTS.filter(p => currentCat==="all" ? true : p.cat===currentCat);
       cardsRoot.innerHTML = "";
       list.forEach(p=>{
-        const t = p.t[currentLang];
+        const t = p.t[currentLang] ?? p.t.tr;
         const el = document.createElement("article");
         el.className = "card";
         el.innerHTML = `
@@ -389,6 +389,38 @@
       });
     }
 
+    /* ===== Filters ===== */
+    document.querySelectorAll(".filter-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        currentCat = btn.dataset.cat;
+        renderCards();
+      });
+    });
+
+    /* ===== Modal (open/close) ===== */
+    function openModal(key){
+      const prod = PRODUCTS.find(p=>p.key===key);
+      if(!prod) return;
+      const t = prod.t[currentLang] ?? prod.t.tr;
+      mImg.src = prod.img; mImg.alt = t.title;
+      mTitle.textContent = t.title;
+      mDesc.textContent = t.desc;
+      mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
+      modal.classList.add("show");
+    }
+    $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
+    modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
+    document.addEventListener("click", e=>{
+      const trg = e.target.closest("[data-open]");
+      if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
+      if(e.target.closest('.close')){ modal.classList.remove('show'); } // yedek
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && modal.classList.contains('show')) modal.classList.remove('show');
+    });
+
     /* ===== DIR & Lang switch ===== */
     function applyDir(){
       const html = document.documentElement;
@@ -404,16 +436,6 @@
       });
     });
 
-    /* ===== Filters ===== */
-    document.querySelectorAll(".filter-btn").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        currentCat = btn.dataset.cat;
-        renderCards();
-      });
-    });
-
     /* ===== About toggle from nav ===== */
     const aboutLink = document.querySelector('a[href="#about"]');
     if(aboutLink){
@@ -426,31 +448,11 @@
       });
     }
     document.addEventListener("click", e=>{
-      const btn = e.target.closest(".about-close");
-      if(btn){
+      if(e.target.closest(".about-close")){
         aboutSec.classList.add("is-hidden");
         window.scrollTo({top:0, behavior:"smooth"});
       }
     });
-
-    /* ===== Modal ===== */
-    const modal = $("#modal"), mImg=$("#mImg"), mTitle=$("#mTitle"), mDesc=$("#mDesc"), mMeta=$("#mMeta");
-    function openModal(key){
-      const prod = PRODUCTS.find(p=>p.key===key);
-      if(!prod) return;
-      const t = prod.t[currentLang];
-      mImg.src = prod.img; mImg.alt = t.title;
-      mTitle.textContent = t.title;
-      mDesc.textContent = t.desc;
-      mMeta.innerHTML = (t.facts||[]).map(f=>`<div class="chip"><strong>${f.k}</strong>${f.v}</div>`).join("");
-      modal.classList.add("show");
-    }
-    document.addEventListener("click", e=>{
-      const trg = e.target.closest("[data-open]");
-      if(trg){ e.preventDefault(); openModal(trg.dataset.open); }
-    });
-    $("#mClose").addEventListener("click", ()=>modal.classList.remove("show"));
-    modal.addEventListener("click", e=>{ if(e.target===modal) modal.classList.remove("show"); });
 
     /* ===== INIT ===== */
     applyI18N();
