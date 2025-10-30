@@ -1,169 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eureka Studio</title>
   <meta name="description" content="Eureka Studio — Handmade soy candles and epoxy creations by Eddy." />
   <link rel="icon" href="logo.png1.PNG" type="image/png" />
+  <meta property="og:title" content="Eureka Studio" />
+  <meta property="og:description" content="Handmade soy candles & epoxy creations." />
+  <meta property="og:image" content="home-candles-hero.JPG" />
+
   <style>
-    body {
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      background-color: #faf8f6;
-      color: #222;
-      margin: 0;
-      padding: 0;
-      text-align: center;
+    :root{
+      --bg:#faf8f6;
+      --fg:#222;
+      --muted:#666;
+      --card:#fff;
+      --soft:#f1efed;
     }
-
-    header {
-      padding: 40px 0;
+    *{box-sizing:border-box}
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background:var(--bg);
+      color:var(--fg);
+      margin:0;
+      text-align:center;
+      line-height:1.5;
     }
-
-    nav {
-      margin-top: 10px;
+    header{padding:36px 16px}
+    h1{font-size:2.2rem;margin:0 0 8px}
+    .subtitle{color:var(--muted);margin:0 0 16px}
+    nav{margin:8px 0 0}
+    nav a{
+      display:inline-block; padding:8px 10px; margin:0 6px;
+      text-decoration:none; color:var(--fg); border-radius:6px;
     }
-
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
+    nav a:hover{background:var(--soft)}
+    .lang-switch{
+      margin-top:14px; display:inline-flex; gap:6px; align-items:center;
+      border:1px solid #ddd; border-radius:999px; padding:4px;
+      background:#fff;
     }
-
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 10px;
+    .lang-btn{
+      border:0; background:transparent; cursor:pointer;
+      padding:6px 10px; border-radius:999px; font-weight:600;
     }
-
-    .lang-switch {
-      margin-top: 15px;
+    .lang-btn.active{background:var(--soft)}
+    .hero{
+      max-width:1040px; margin:0 auto; padding:0 16px;
     }
-
-    .works {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px auto;
-      max-width: 1000px;
+    .hero img{width:100%; height:auto; border-radius:12px}
+    .section{padding:40px 16px 10px}
+    .category-title{font-size:1.6rem; margin:18px 0}
+    .works{
+      display:flex; flex-wrap:wrap; justify-content:center; gap:26px;
+      max-width:1100px; margin:0 auto 28px;
     }
-
-    .item {
-      width: 280px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.3s;
+    .item{
+      width:280px; background:var(--card); border-radius:12px; overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,.08); transition:transform .25s ease;
+      text-align:start;
     }
-
-    .item:hover {
-      transform: translateY(-5px);
+    .item:hover{transform:translateY(-4px)}
+    .item img{width:100%; height:auto; display:block}
+    .item .meta{padding:10px 12px}
+    .item h3{margin:4px 0 4px; font-size:1.05rem}
+    .item p{margin:0; color:var(--muted); font-size:.92rem}
+    .cta{
+      margin:8px 0 36px;
     }
-
-    .item img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .cta a{
+      display:inline-block; padding:10px 14px; border-radius:10px;
+      text-decoration:none; background:#fff; border:1px solid #ddd; color:#000;
     }
-
-    .item h3 {
-      margin: 10px 0;
+    footer{
+      margin-top:34px; padding:22px 16px; background:#f2f2f2; color:#333;
     }
-
-    footer {
-      margin-top: 50px;
-      padding: 20px;
-      background: #f2f2f2;
-    }
-
-    .category-title {
-      margin-top: 60px;
-      font-size: 1.8rem;
-    }
-
-    .instagram {
-      margin-top: 15px;
+    /* RTL küçük dokunuş */
+    [dir="rtl"] .item{text-align:end}
+    /* Mobil */
+    @media (max-width:520px){
+      .item{width:94%}
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>Eureka Studio</h1>
-    <p>Handmade Soy Candles & Epoxy Creations</p>
-    <nav>
-      <a href="#candles">Candles</a>
-      <a href="#epoxy">Epoxy</a>
-      <a href="https://www.instagram.com/eurekastudio3/" target="_blank">Instagram</a>
+    <h1 data-i18n="brand">Eureka Studio</h1>
+    <p class="subtitle" data-i18n="tagline">Handmade Soy Candles & Epoxy Creations</p>
+
+    <nav aria-label="main">
+      <a href="#candles" data-i18n="nav.candles">Candles</a>
+      <a href="#epoxy" data-i18n="nav.epoxy">Epoxy</a>
+      <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener" data-i18n="nav.instagram">Instagram</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
-    <div class="lang-switch">
-      <a href="#">EN</a> | 
-      <a href="#">TR</a> | 
-      <a href="#">HE</a>
+
+    <div class="lang-switch" role="group" aria-label="language switcher">
+      <button class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="tr" aria-label="Turkish">TR</button>
+      <button class="lang-btn" data-lang="he" aria-label="Hebrew">HE</button>
     </div>
   </header>
 
-  <section id="candles">
-    <h2 class="category-title">Candles</h2>
+  <div class="hero" aria-hidden="true">
+    <img src="home-candles-hero.JPG" alt="Eureka Studio candles and epoxy creations hero" loading="lazy">
+  </div>
+
+  <!-- Candles -->
+  <section id="candles" class="section">
+    <h2 class="category-title" data-i18n="cat.candles">Candles</h2>
     <div class="works">
       <div class="item">
-        <img src="caramel-crumble.JPG" alt="Caramel Crumble Candle" loading="lazy" />
-        <h3>Caramel Crumble</h3>
+        <img src="caramel-crumble.JPG" alt="Caramel Crumble candle" loading="lazy" />
+        <div class="meta">
+          <h3>Caramel Crumble</h3>
+          <p data-i18n="desc.candle_generic">Hand-poured soy candle.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="choco-cream.JPG" alt="Choco Cream Candle" loading="lazy" />
-        <h3>Choco Cream</h3>
+        <img src="choco-cream.JPG" alt="Choco Cream candle" loading="lazy" />
+        <div class="meta">
+          <h3>Choco Cream</h3>
+          <p data-i18n="desc.candle_generic">Hand-poured soy candle.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="golden-noir.PNG" alt="Golden Noir Candle" loading="lazy" />
-        <h3>Golden Noir</h3>
+        <img src="golden-noir.PNG" alt="Golden Noir candle" loading="lazy" />
+        <div class="meta">
+          <h3>Golden Noir</h3>
+          <p data-i18n="desc.candle_generic">Hand-poured soy candle.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="summer-cocktail.JPG" alt="Summer Cocktail Candle" loading="lazy" />
-        <h3>Summer Cocktail</h3>
+        <img src="summer-cocktail.JPG" alt="Summer Cocktail candle" loading="lazy" />
+        <div class="meta">
+          <h3>Summer Cocktail</h3>
+          <p data-i18n="desc.candle_generic">Hand-poured soy candle.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="sunset-orange.JPG" alt="Sunset Orange Candle" loading="lazy" />
-        <h3>Sunset Orange</h3>
+        <img src="sunset-orange.JPG" alt="Sunset Orange candle" loading="lazy" />
+        <div class="meta">
+          <h3>Sunset Orange</h3>
+          <p data-i18n="desc.candle_generic">Hand-poured soy candle.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="bedside.lamb.png.JPG" alt="Bedside Lamp Candle" loading="lazy" />
-        <h3>Bedside Lamp</h3>
+        <img src="bedside.lamb.png.JPG" alt="Bedside Lamp candle" loading="lazy" />
+        <div class="meta">
+          <h3>Bedside Lamp</h3>
+          <p data-i18n="desc.candle_generic">Hand-poured soy candle.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="epoxy">
-    <h2 class="category-title">Epoxy</h2>
+  <!-- Epoxy -->
+  <section id="epoxy" class="section">
+    <h2 class="category-title" data-i18n="cat.epoxy">Epoxy</h2>
     <div class="works">
       <div class="item">
-        <img src="kesme.tahtasi.png.jpg" alt="Epoxy Board" loading="lazy" />
-        <h3>Epoxy Board</h3>
+        <img src="kesme.tahtasi.png.jpg" alt="Epoxy board" loading="lazy" />
+        <div class="meta">
+          <h3 data-i18n="prod.board">Epoxy Board</h3>
+          <p data-i18n="desc.epoxy_generic">Epoxy handmade piece.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="evil-eye.jpg.jpg" alt="Evil Eye Epoxy" loading="lazy" />
-        <h3>Evil Eye</h3>
+        <img src="evil-eye.jpg.jpg" alt="Evil Eye epoxy" loading="lazy" />
+        <div class="meta">
+          <h3 data-i18n="prod.evil">Evil Eye</h3>
+          <p data-i18n="desc.epoxy_generic">Epoxy handmade piece.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="pati.kunye.png.jpg" alt="Paw Tag" loading="lazy" />
-        <h3>Paw Tag</h3>
+        <img src="pati.kunye.png.jpg" alt="Paw Tag epoxy" loading="lazy" />
+        <div class="meta">
+          <h3 data-i18n="prod.paw1">Paw Tag</h3>
+          <p data-i18n="desc.epoxy_generic">Epoxy handmade piece.</p>
+        </div>
       </div>
+
       <div class="item">
-        <img src="patis.kunye.png.jpg" alt="Double Paw Tag" loading="lazy" />
-        <h3>Double Paw Tag</h3>
+        <img src="patis.kunye.png.jpg" alt="Double Paw Tag epoxy" loading="lazy" />
+        <div class="meta">
+          <h3 data-i18n="prod.paw2">Double Paw Tag</h3>
+          <p data-i18n="desc.epoxy_generic">Epoxy handmade piece.</p>
+        </div>
       </div>
+    </div>
+
+    <div class="cta">
+      <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener" data-i18n="cta.instagram">See more on Instagram</a>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Eureka Studio — Handmade with calm & care.</p>
-    <div class="instagram">
-      <a href="https://www.instagram.com/eurekastudio3/" target="_blank">
-        Follow on Instagram
-      </a>
-    </div>
+  <footer id="contact">
+    <p data-i18n="footer.copy">© 2025 Eureka Studio — Handmade with calm & care.</p>
+    <p><a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener" data-i18n="footer.follow">Follow on Instagram</a></p>
   </footer>
+
+  <script>
+    // Basit i18n sözlüğü
+    const messages = {
+      en: {
+        brand: "Eureka Studio",
+        tagline: "Handmade Soy Candles & Epoxy Creations",
+        "nav.candles": "Candles",
+        "nav.epoxy": "Epoxy",
+        "nav.instagram": "Instagram",
+        "nav.contact": "Contact",
+        "cat.candles": "Candles",
+        "cat.epoxy": "Epoxy",
+        "prod.board": "Epoxy Board",
+        "prod.evil": "Evil Eye",
+        "prod.paw1": "Paw Tag",
+        "prod.paw2": "Double Paw Tag",
+        "desc.candle_generic": "Hand-poured soy candle.",
+        "desc.epoxy_generic": "Epoxy handmade piece.",
+        "cta.instagram": "See more on Instagram",
+        "footer.copy": "© 2025 Eureka Studio — Handmade with calm & care.",
+        "footer.follow": "Follow on Instagram",
+      },
+      tr: {
+        brand: "Eureka Studio",
+        tagline: "Elde döküm soya mumları & epoksi tasarımlar",
+        "nav.candles": "Mumlar",
+        "nav.epoxy": "Epoksi",
+        "nav.instagram": "Instagram",
+        "nav.contact": "İletişim",
+        "cat.candles": "Mumlar",
+        "cat.epoxy": "Epoksi",
+        "prod.board": "Epoksi Kesme Tahtası",
+        "prod.evil": "Nazar",
+        "prod.paw1": "Pati Künyesi",
+        "prod.paw2": "Çift Pati Künyesi",
+        "desc.candle_generic": "Elde döküm soya mumu.",
+        "desc.epoxy_generic": "El yapımı epoksi ürün.",
+        "cta.instagram": "Daha fazlası Instagram’da",
+        "footer.copy": "© 2025 Eureka Studio — Sakinlik ve özenle elde üretim.",
+        "footer.follow": "Instagram’da Takip Et",
+      },
+      he: {
+        brand: "Eureka Studio",
+        tagline: "נרות סויה עבודת יד ויצירות אפוקסי",
+        "nav.candles": "נרות",
+        "nav.epoxy": "אפוקסי",
+        "nav.instagram": "אינסטגרם",
+        "nav.contact": "צור קשר",
+        "cat.candles": "נרות",
+        "cat.epoxy": "אפוקסי",
+        "prod.board": "לוח אפוקסי",
+        "prod.evil": "עין הרע",
+        "prod.paw1": "תג כף",
+        "prod.paw2": "תג כפול",
+        "desc.candle_generic": "נר סויה שנמזג בעבודת יד.",
+        "desc.epoxy_generic": "יצירה בעבודת יד מאפוקסי.",
+        "cta.instagram": "עוד עבודות באינסטגרם",
+        "footer.copy": "© 2025 Eureka Studio — בעדינות וברוגע, עבודת יד.",
+        "footer.follow": "עקבו באינסטגרם",
+      }
+    };
+
+    const htmlEl = document.documentElement;
+    const langButtons = document.querySelectorAll(".lang-btn");
+
+    function applyTranslations(lang){
+      const dict = messages[lang] || messages.en;
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.textContent = dict[key];
+      });
+      // html lang & direction
+      htmlEl.lang = lang;
+      htmlEl.dir = (lang === "he") ? "rtl" : "ltr";
+      // buton aktifliği
+      langButtons.forEach(b=>{
+        b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+      });
+      // kalıcılaştır
+      try { localStorage.setItem("eureka_lang", lang); } catch(e){}
+    }
+
+    // Dil tıklamaları
+    langButtons.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        applyTranslations(btn.getAttribute("data-lang"));
+      });
+    });
+
+    // Başlangıç dili (localStorage > tarayıcı > en)
+    (function initLang(){
+      let start = "en";
+      try {
+        const saved = localStorage.getItem("eureka_lang");
+        if (saved) start = saved;
+        else {
+          const nav = (navigator.language || "en").toLowerCase();
+          if (nav.startsWith("tr")) start = "tr";
+          if (nav.startsWith("he") || nav.startsWith("iw")) start = "he";
+        }
+      } catch(e){}
+      applyTranslations(start);
+    })();
+  </script>
 </body>
 </html>
