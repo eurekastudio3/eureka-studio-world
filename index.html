@@ -4,7 +4,10 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</title>
+<link rel="canonical" href="https://www.eurekastudio.org/">
+
 <meta name="description" content="Eureka Studio: el dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
+<meta property="og:site_name" content="Eureka Studio">
 <meta property="og:title" content="Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar"/>
 <meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:type" content="website"/>
@@ -15,6 +18,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="theme-color" content="#e9e3da"/>
 <link rel="icon" href="./logo.png1.PNG"/>
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
@@ -42,7 +46,7 @@ nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);background:rgba
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.03em}
 .brand img{height:30px}
 nav ul{list-style:none;display:flex;gap:16px;flex-wrap:wrap}
-nav a{text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+nav a{text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px;min-width:64px}
 nav a.active{background:var(--line)}
 .lang button{background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:600}
 .lang button:is(:hover,:focus-visible){border-color:#bbb}
@@ -53,7 +57,7 @@ nav a.active{background:var(--line)}
 .hero .hero-img{object-fit:cover;object-position:center;aspect-ratio:16/9}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.38) 45%,rgba(0,0,0,.22))}
 .hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px}
-.hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(32px,5vw,56px);line-height:1.07;margin-bottom:.35em;text-shadow:0 2px 6px rgba(0,0,0,.4)}
+.hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(30px,4.6vw,56px);line-height:1.07;margin-bottom:.35em;text-shadow:0 2px 6px rgba(0,0,0,.4)}
 .hero p{font-size:clamp(15px,2.1vw,18px);opacity:.95;max-width:720px;margin:0 auto .9em}
 .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-block;font-weight:700;text-decoration:none;cursor:pointer;padding:12px 22px;border-radius:999px;border:2px solid rgba(255,255,255,.85);background:transparent;color:#fff;transition:.3s ease all}
@@ -99,7 +103,7 @@ nav a.active{background:var(--line)}
 
 /* Instagram / Contact / Footer / Custom */
 .ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.ig-grid img{border-radius:10px}
+.ig-grid img{border-radius:10px;image-rendering:auto}
 form{display:grid;gap:12px;max-width:520px}
 input,textarea,select{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}
 button[type="submit"]{border-radius:999px}
@@ -182,7 +186,9 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
       <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener" class="cta">@eurekastudio3</a>
     </div>
   </div>
-  <div class="scroll-hint" aria-hidden="true"><span class="dot"></span><span data-i18n="hero.scroll">Kaydır</span></div>
+  <div class="scroll-hint" role="button" tabindex="0" aria-label="Galeriyi gör">
+    <span class="dot"></span><span data-i18n="hero.scroll">Kaydır</span>
+  </div>
 </section>
 
 <!-- ABOUT (enriched) -->
@@ -353,9 +359,10 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </footer>
 
 <script>
-/* I18N (EN/TR/HE) */
+/* I18N (EN/TR/HE) + meta.title */
 const I18N={
   en:{
+    'meta.title':'Eureka Studio — Handcrafted Candles & Calm Creations',
     'nav.home':'Home','nav.about':'About','nav.works':'Works','nav.instagram':'Instagram','nav.custom':'Custom','nav.contact':'Contact','nav.faq':'FAQ',
     'hero.title':'Eureka Studio — Handcrafted Candles & Calm Creations',
     'hero.subtitle':'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.',
@@ -382,6 +389,7 @@ const I18N={
     'footer':'Handcrafted with calm and care.'
   },
   tr:{
+    'meta.title':'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',
     'nav.home':'Ana Sayfa','nav.about':'Hakkımızda','nav.works':'Çalışmalar','nav.instagram':'Instagram','nav.custom':'Özel','nav.contact':'İletişim','nav.faq':'SSS',
     'hero.title':'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',
     'hero.subtitle':'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.',
@@ -408,6 +416,7 @@ const I18N={
     'footer':'Özen ve huzurla el yapımıdır.'
   },
   he:{
+    'meta.title':'Eureka Studio — נרות בעבודת יד ויצירות רגועות',
     'nav.home':'בית','nav.about':'אודות','nav.works':'יצירות','nav.instagram':'אינסטגרם','nav.custom':'מותאם','nav.contact':'צור קשר','nav.faq':'שאלות',
     'hero.title':'Eureka Studio — נרות בעבודת יד ויצירות רגועות',
     'hero.subtitle':'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.',
@@ -435,19 +444,27 @@ const I18N={
   }
 };
 
+/* Çok dilli durum metinleri (form) */
+const STATUS={
+  en:{sending:'Sending…', ok:'Thank you! Your message has been received.', err:'Hmm, something went wrong.', net:'Connection issue.'},
+  tr:{sending:'Gönderiliyor…', ok:'Teşekkürler! Mesajınız ulaştı.', err:'Bir sorun oluştu.', net:'Bağlantı sorunu.'},
+  he:{sending:'שולח…', ok:'תודה! ההודעה נשלחה.', err:'משהו השתבש.', net:'בעיה בחיבור.'}
+};
+
 function setLang(lang){
-  // metinler
+  // Metinler
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.getAttribute('data-i18n');
     if(I18N[lang] && I18N[lang][k]) el.textContent = I18N[lang][k];
   });
-  // nav etiketleri
+  // Nav etiketleri
   const navMap=['home','about','works','instagram','custom','contact','faq'];
   document.querySelectorAll('[data-nav]').forEach((a,i)=>a.textContent=I18N[lang]['nav.'+navMap[i]]);
+  // <title> çevirisi
+  if(I18N[lang]['meta.title']) document.title = I18N[lang]['meta.title'];
   // yön + lang
   document.documentElement.setAttribute('dir', lang==='he' ? 'rtl' : 'ltr');
   document.documentElement.lang = lang;
-  // persist
   try{ localStorage.setItem('eureka_lang', lang); }catch(_){}
   // hero alt yazı
   const HERO_ALT = {
@@ -456,15 +473,17 @@ function setLang(lang){
     he:'נרות בעבודת יד על משטח רגוע ונייטרלי'
   };
   document.querySelector('#home .hero-img')?.setAttribute('alt', HERO_ALT[lang] || HERO_ALT.tr);
-  // mesaj alanı yönü
+  // Mesaj alanı yönü
   const msg=document.getElementById('message'); if(msg) msg.setAttribute('dir', lang==='he'?'rtl':'ltr');
 }
 const savedLang = (()=>{ try{ return localStorage.getItem('eureka_lang'); }catch(e){ return null } })() || 'tr';
 setLang(savedLang);
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
-/* Scroll hint tıklandığında works'e in */
-document.querySelector('#home .scroll-hint')?.addEventListener('click',()=>document.getElementById('works')?.scrollIntoView({behavior:'smooth'}));
+/* Scroll hint — tıkla/klavye ile çalışsın */
+const sh=document.querySelector('#home .scroll-hint');
+sh?.addEventListener('click',()=>document.getElementById('works')?.scrollIntoView({behavior:'smooth'}));
+sh?.addEventListener('keydown',e=>{ if(e.key==='Enter' || e.key===' ') document.getElementById('works')?.scrollIntoView({behavior:'smooth'}); });
 
 /* Filtreler */
 const filterButtons=[...document.querySelectorAll('.filter')];
@@ -519,16 +538,27 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft') prevLB();
 });
 
-/* Contact form (Formspree) */
+/* Custom order → Mesaj alanına ekle */
+document.getElementById('c-add')?.addEventListener('click',()=>{
+  const s=document.getElementById('c-scent').value;
+  const c=document.getElementById('c-color').value;
+  const q=document.getElementById('c-qty').value;
+  const t=document.getElementById('message');
+  if(!t) return;
+  const line = `\n— Özel Sipariş: Koku: ${s} | Renk: ${c} | Adet: ${q}`;
+  t.value = (t.value||'') + line; t.focus();
+});
+
+/* Contact form (Formspree) — dilli durum metinleriyle */
 const form=document.getElementById('contact-form'); const statusEl=document.getElementById('status');
 if(form){
   form.addEventListener('submit',async e=>{
-    e.preventDefault(); if(statusEl) statusEl.textContent=(savedLang==='he'?'שולח…': savedLang==='en'?'Sending…':'Gönderiliyor…');
+    e.preventDefault(); if(statusEl) statusEl.textContent=STATUS[savedLang].sending;
     try{
       const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
-      if(res.ok){form.reset(); if(statusEl) statusEl.textContent=(savedLang==='he'?'תודה! ההודעה נשלחה.': savedLang==='en'?'Thank you! Your message has been received.':'Teşekkürler! Mesajınız ulaştı.');}
-      else{if(statusEl) statusEl.textContent=(savedLang==='he'?'משהו השתבש.': savedLang==='en'?'Hmm, something went wrong.':'Bir sorun oluştu.');}
-    }catch(_){if(statusEl) statusEl.textContent=(savedLang==='he'?'בעיה בחיבור.': savedLang==='en'?'Connection issue.':'Bağlantı sorunu.');}
+      if(res.ok){form.reset(); if(statusEl) statusEl.textContent=STATUS[savedLang].ok;}
+      else{if(statusEl) statusEl.textContent=STATUS[savedLang].err;}
+    }catch(_){if(statusEl) statusEl.textContent=STATUS[savedLang].net;}
   });
 }
 </script>
