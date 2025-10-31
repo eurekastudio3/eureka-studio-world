@@ -230,7 +230,7 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
   <h2 id="contactTitle" style="font-family:'Playfair Display',serif">Birlikte güzel şeyler yaratalım</h2>
   <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
 
-  <!-- FormSubmit (yeni adres: eddyeswork@gmail.com) -->
+  <!-- FormSubmit (adres: eddyeswork@gmail.com) -->
   <form id="contact-form" action="https://formsubmit.co/ajax/eddyeswork@gmail.com" method="POST" novalidate>
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
     <input type="hidden" name="_subject" value="Eureka Studio | Yeni iletişim mesajı">
@@ -361,50 +361,73 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
   a.addEventListener('click',()=>{ if(window.plausible) plausible('Instagram Click'); },{passive:true});
 });
 
-/* Form: geçerli olmadan gönder butonu aktif olmasın */
+/* FORM — geçerli olmadan gönderme + başarı mesajı GARANTİ */
 (function(){
-  const form=document.getElementById('contact-form');
-  const btn=document.getElementById('sendBtn');
-  const status=document.getElementById('status');
-  if(!form||!btn) return;
+  const form   = document.getElementById('contact-form');
+  const btn    = document.getElementById('sendBtn');
+  const status = document.getElementById('status');
+  const toast  = document.getElementById('toast');
+  if(!form || !btn) return;
+
   function validate(){
-    const email=form.querySelector('[name="email"]').value.trim();
-    const msg=form.querySelector('[name="message"]').value.trim();
-    btn.disabled=!(email&&msg.length>=5);
+    const email = (form.querySelector('[name="email"]')?.value||'').trim();
+    const msg   = (form.querySelector('[name="message"]')?.value||'').trim();
+    btn.disabled = !(email && msg.length >= 5);
   }
-  form.addEventListener('input',validate,{passive:true});
+  form.addEventListener('input', validate, {passive:true});
   validate();
 
-  /* FormSubmit AJAX */
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     if(btn.disabled) return;
-    btn.disabled=true;
-    if(status) status.textContent='Gönderiliyor…';
+
+    // UI: gönderiliyor
+    const oldText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Gönderiliyor…';
+    if(status){ status.style.color='inherit'; status.textContent='Gönderiliyor…'; }
+
     try{
-      const res=await fetch(form.action,{
+      const payload = {
+        name:    form.querySelector('[name="name"]')?.value||'',
+        email:   form.querySelector('[name="email"]')?.value||'',
+        message: form.querySelector('[name="message"]')?.value||'',
+        _subject:'Eureka Studio | Yeni iletişim mesajı',
+        _template:'table',
+        _autoresponse:'Merhaba! Mesajınızı aldık ve en kısa sürede döneceğiz. — Eureka Studio'
+      };
+
+      const res = await fetch(form.action, {
         method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({
-          name: form.querySelector('[name="name"]')?.value||'',
-          email: form.querySelector('[name="email"]')?.value||'',
-          message: form.querySelector('[name="message"]')?.value||'',
-          _subject:'Eureka Studio | Yeni iletişim mesajı',
-          _template:'table',
-          _autoresponse:'Merhaba! Mesajınızı aldık ve en kısa sürede döneceğiz. — Eureka Studio'
-        })
+        body: JSON.stringify(payload)
       });
+
       if(res.ok){
+        // Plausible
         if(window.plausible) plausible('Contact Form Submit');
+
+        // Formu sıfırla
         form.reset(); validate();
-        if(status) status.textContent='';
-        const t=document.getElementById('toast'); if(t){t.style.display='block'; setTimeout(()=>t.style.display='none',2800);}
+
+        // Kalıcı yeşil mesaj
+        if(status){
+          status.style.color = '#1f7a4f';
+          status.textContent = 'Teşekkürler! Mesajınız ulaştı.';
+        }
+
+        // Toast göster + kullanıcıyı mesaja indir
+        if(toast){ toast.style.display='block'; setTimeout(()=> toast.style.display='none', 2800); }
+        status?.scrollIntoView({behavior:'smooth', block:'center'});
       }else{
-        if(status) status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.';
+        if(status){ status.style.color='crimson'; status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.'; }
       }
     }catch(err){
-      if(status) status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.';
-    }finally{btn.disabled=false;}
+      if(status){ status.style.color='crimson'; status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.'; }
+    }finally{
+      btn.disabled = false;
+      btn.textContent = oldText || 'Gönder';
+    }
   });
 })();
 </script>
