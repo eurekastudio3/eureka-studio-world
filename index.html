@@ -71,23 +71,12 @@ nav a.active{background:var(--line)}
   border-radius:999px; padding:10px 12px; box-shadow:var(--shadow); font-weight:700;
 }
 
-/* HERO */
+/* HERO (daha koyu overlay + okunurluk) */
 .hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat;border-bottom:1px solid var(--line)}
-/* 👇 Hero’yu belirginleştiren koyu overlay */
-.hero .overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.55) 45%,rgba(0,0,0,.35));
-}
-:root[data-theme="dark"] .hero .overlay{
-  background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.6));
-}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.55) 45%,rgba(0,0,0,.35))}
+:root[data-theme="dark"] .hero .overlay{background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.6))}
 .hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
-.hero h1{
-  font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;
-  font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;
-  /* 👇 Yazıyı fondan ayıran yumuşak ışık */
-  text-shadow:0 3px 12px rgba(0,0,0,.65);
-}
+.hero h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 12px rgba(0,0,0,.65)}
 .hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-block;border:2px solid rgba(255,255,255,.92);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
@@ -116,12 +105,7 @@ nav a.active{background:var(--line)}
 .item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative}
 .item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .35s ease;max-height:280px}
 .item:hover img{transform:scale(1.03)}
-/* hover parıltı */
-.item::after{
-  content:""; position:absolute; inset:auto -20% 35% -20%; height:60%;
-  background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%);
-  opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px);
-}
+.item::after{content:""; position:absolute; inset:auto -20% 35% -20%; height:60%; background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%); opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px)}
 .item:hover::after{opacity:.7; transform:translateY(-8px)}
 
 /* LIGHTBOX */
@@ -136,6 +120,22 @@ nav a.active{background:var(--line)}
 #instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
 #instagram .ig-grid a:active img{transform:scale(.98)}
+/* 👇 Instagram CTA daha görünür */
+#instagram .cta{
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fffaf3;
+  box-shadow: 0 3px 10px rgba(0,0,0,.15);
+  transition: background .3s ease, transform .25s ease, box-shadow .25s ease;
+}
+#instagram .cta:hover,#instagram .cta:focus-visible{
+  background: color-mix(in srgb, var(--brand), #ffffff 15%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+:root[data-theme="dark"] #instagram .cta{
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+}
 
 /* CONTACT / FOOTER */
 form{display:grid;gap:10px;max-width:520px}
@@ -443,7 +443,7 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
         if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';}
         if(check){
           check.classList.add('show');
-          check.style.display='flex'; /* görünürlüğü zorla */
+          check.style.display='flex';
         }
         if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);}
         status?.scrollIntoView({behavior:'smooth',block:'center'});
