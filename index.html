@@ -15,6 +15,10 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="theme-color" content="#e9e3da"/>
 <link rel="icon" href="./logo.png1.PNG"/>
+<link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180">
+<!-- Hero görselini önden yükle -->
+<link rel="preload" as="image" href="./home-candles-hero.JPG" imagesrcset="./home-candles-hero.JPG 1200w, ./home-candles-hero.JPG 2000w" imagesizes="100vw">
+<!-- Yazılar -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
@@ -40,14 +44,15 @@ nav a.active{background:var(--line)}
 .lang button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-weight:600}
 
 /* HERO */
-.hero{position:relative;min-height:58svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat}
-.hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.3) 45%,rgba(0,0,0,.18))}
-.hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px}
-.hero h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;font-size:clamp(28px,5.5vw,44px);line-height:1.12;margin-bottom:.35em;text-shadow:0 2px 6px rgba(0,0,0,.4)}
-.hero p{font-size:clamp(15px,2.2vw,18px);opacity:.95;max-width:720px;margin:0 auto .9em}
+.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.58),rgba(0,0,0,.36) 45%,rgba(0,0,0,.24))}
+.hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
+.hero h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.cta{display:inline-block;border:2px solid rgba(255,255,255,.85);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
-.scroll-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:#fff;font-size:.9rem;opacity:.9}
+.cta{display:inline-block;border:2px solid rgba(255,255,255,.92);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
+.cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
+.scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
 
 /* ABOUT */
 #about h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.4em}
@@ -62,8 +67,9 @@ nav a.active{background:var(--line)}
 .works-head h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
 .muted{color:var(--muted)}
 .filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-weight:600}
+.filter{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600}
 .filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.filter:active{transform:scale(.98)}
 .masonry{column-gap:14px;column-count:1;margin-top:14px}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
@@ -79,13 +85,20 @@ nav a.active{background:var(--line)}
 .lb-img{max-width:100%;max-height:88vh;border-radius:12px}
 .lb-cap{color:#fff;text-align:center;margin-top:8px}
 
-/* INSTAGRAM / CONTACT / FOOTER */
-.ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.ig-grid img{border-radius:10px}
+/* INSTAGRAM */
+#instagram .ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+#instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden}
+#instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
+#instagram .ig-grid a:active img{transform:scale(.98)}
+
+/* CONTACT / FOOTER */
 form{display:grid;gap:10px;max-width:520px}
 input,textarea,select{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}
 button[type="submit"],.cta{cursor:pointer}
 footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;font-size:.95rem;padding:18px 6%}
+
+/* Motion */
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.item img,.cta{transition:none}}
 </style>
 </head>
 
@@ -114,18 +127,17 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 
 <!-- HERO -->
 <section id="home" class="hero" aria-labelledby="heroTitle">
-  <!-- IMG kullanıyoruz, JS başarısız olursa cache kırıp alternatif yolları dener -->
-  <img
-    src="./home-candles-hero.JPG?v=1"
-    alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
-    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1"
-    id="heroImg" decoding="async" loading="eager">
+  <!-- IMG: cache kır + alternatif yolları JS ile dener -->
+  <img id="heroImg" src="./home-candles-hero.JPG?v=3"
+       alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
+       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1"
+       loading="eager" decoding="async">
   <div class="overlay" aria-hidden="true"></div>
   <div class="inner">
-    <h1 id="heroTitle" data-i18n="hero.title">Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</h1>
-    <p data-i18n="hero.subtitle">El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.</p>
+    <h1 id="heroTitle">Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</h1>
+    <p>El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.</p>
     <div class="ctas">
-      <a href="#works" class="cta" data-i18n="hero.cta1">Çalışmaları Keşfet</a>
+      <a href="#works" class="cta">Çalışmaları Keşfet</a>
       <a href="https://www.instagram.com/eurekastudio3/" class="cta" target="_blank" rel="noopener">@eurekastudio3</a>
     </div>
   </div>
@@ -134,17 +146,17 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 
 <!-- ABOUT -->
 <section id="about" aria-labelledby="aboutTitle">
-  <h2 id="aboutTitle" data-i18n="about.title">Sakin. El emeği. Duyarlı.</h2>
+  <h2 id="aboutTitle">Sakin. El emeği. Duyarlı.</h2>
   <div class="about-wrap">
     <div>
-      <p class="about-lead" data-i18n="about.lead">
+      <p class="about-lead">
         Eureka Studio, doğanın dinginliğinden ilham alan el yapımı mumlar ve epoksi parçalar üretir.
         Işık, koku ve doku ile günlük ritüellere sıcaklık katıyoruz.
       </p>
       <div class="kv-cards">
-        <div class="kv-card"><h4 data-i18n="about.materials.title">Malzemeler</h4><p data-i18n="about.materials.body">%100 soya bazlı karışım, pamuk/ahşap fitiller, seçilmiş esanslar.</p></div>
-        <div class="kv-card"><h4 data-i18n="about.scents.title">Kokular</h4><p data-i18n="about.scents.body">Vanilya & kakao, turunçgiller, odunsu notalar.</p></div>
-        <div class="kv-card"><h4 data-i18n="about.custom.title">Kişiselleştirme</h4><p data-i18n="about.custom.body">Etiket, renk, koku ve hediye setleri.</p></div>
+        <div class="kv-card"><h4>Malzemeler</h4><p>%100 soya bazlı karışım, pamuk/ahşap fitiller, seçilmiş esanslar.</p></div>
+        <div class="kv-card"><h4>Kokular</h4><p>Vanilya & kakao, turunçgiller, odunsu notalar.</p></div>
+        <div class="kv-card"><h4>Kişiselleştirme</h4><p>Etiket, renk, koku ve hediye setleri.</p></div>
       </div>
     </div>
   </div>
@@ -154,14 +166,14 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 <section id="works" aria-labelledby="worksTitle">
   <div class="works-head">
     <div>
-      <h2 id="worksTitle" data-i18n="works.title">Galeri</h2>
-      <p class="muted" data-i18n="works.subtitle">Her parça; formu, kokusu ve duygusuyla benzersiz.</p>
+      <h2 id="worksTitle">Galeri</h2>
+      <p class="muted">Her parça; formu, kokusu ve duygusuyla benzersiz.</p>
     </div>
     <div class="filters" role="tablist" aria-label="Galeri filtresi">
-      <button class="filter" data-cat="all" role="tab" aria-selected="true" data-i18n="filters.all">Tümü</button>
-      <button class="filter" data-cat="candles" role="tab" aria-selected="false" data-i18n="filters.candles">Mumlar</button>
-      <button class="filter" data-cat="epoxy" role="tab" aria-selected="false" data-i18n="filters.epoxy">Epoksi</button>
-      <button class="filter" data-cat="accessories" role="tab" aria-selected="false" data-i18n="filters.accessories">Aksesuarlar</button>
+      <button class="filter" data-cat="all" role="tab" aria-selected="true">Tümü</button>
+      <button class="filter" data-cat="candles" role="tab" aria-selected="false">Mumlar</button>
+      <button class="filter" data-cat="epoxy" role="tab" aria-selected="false">Epoksi</button>
+      <button class="filter" data-cat="accessories" role="tab" aria-selected="false">Aksesuarlar</button>
     </div>
   </div>
 
@@ -193,34 +205,36 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 
 <!-- INSTAGRAM -->
 <section id="instagram" aria-labelledby="igTitle">
-  <h2 id="igTitle" style="font-family:'Playfair Display',serif" data-i18n="ig.title">Instagram’dan</h2>
-  <p class="muted" data-i18n="ig.subtitle">Sakin üretim sürecimizi ve paylaşımlarımızı takip et.</p>
+  <h2 id="igTitle" style="font-family:'Playfair Display',serif">Instagram’dan</h2>
+  <p class="muted">Sakin üretim sürecimizi ve paylaşımlarımızı takip et.</p>
   <div class="ig-grid" style="margin-top:12px">
-    <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener"><img src="./choco-cream.JPG" alt="Stüdyo — Choco Cream" loading="lazy" decoding="async"></a>
-    <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener"><img src="./evil-eye.jpg.jpg" alt="Stüdyo — Evil Eye (soya mumu)" loading="lazy" decoding="async"></a>
-    <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener"><img src="./sunset-orange.JPG" alt="Stüdyo — Sunset Orange" loading="lazy" decoding="async"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./choco-cream.JPG" alt="Stüdyo — Choco Cream" loading="lazy" decoding="async"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./evil-eye.jpg.jpg" alt="Stüdyo — Evil Eye (soya mumu)" loading="lazy" decoding="async"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./sunset-orange.JPG" alt="Stüdyo — Sunset Orange" loading="lazy" decoding="async"></a>
   </div>
-  <div style="margin-top:14px"><a class="cta" href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></div>
+  <div style="margin-top:14px;text-align:center">
+    <a class="cta" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=button" target="_blank" rel="noopener">@eurekastudio3’ü Takip Et</a>
+  </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" aria-labelledby="contactTitle">
-  <h2 id="contactTitle" style="font-family:'Playfair Display',serif" data-i18n="contact.title">Birlikte güzel şeyler yaratalım</h2>
-  <p class="muted" data-i18n="contact.intro">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
+  <h2 id="contactTitle" style="font-family:'Playfair Display',serif">Birlikte güzel şeyler yaratalım</h2>
+  <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
 
-  <!-- Formspree endpoint’ini değiştir: YOUR_ENDPOINT -->
+  <!-- Formspree endpoint’ini kendi form kodunla değiştir -->
   <form id="contact-form" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" novalidate>
     <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true"/>
-    <label for="name" data-i18n="contact.nameLabel">İsim</label>
+    <label for="name">İsim</label>
     <input id="name" name="name" required placeholder="İsminiz" aria-required="true"/>
 
-    <label for="email" data-i18n="contact.emailLabel">E-posta</label>
+    <label for="email">E-posta</label>
     <input id="email" name="email" type="email" required placeholder="you@example.com" aria-required="true"/>
 
-    <label for="message" data-i18n="contact.messageLabel">Mesaj</label>
+    <label for="message">Mesaj</label>
     <textarea id="message" name="message" rows="6" required placeholder="Fikrinizi bize yazın…" aria-required="true"></textarea>
 
-    <button type="submit" class="cta" data-i18n="contact.send">Gönder</button>
+    <button type="submit" class="cta">Gönder</button>
     <p id="status" role="status" aria-live="polite" class="muted" style="margin-top:6px"></p>
   </form>
 
@@ -234,18 +248,19 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </footer>
 
 <script>
-/* Basit i18n (TR/EN/HE) */
+/* Basit dil anahtarı (varsayılan TR) */
 const I18N={
-  en:{'hero.title':'Eureka Studio — Handcrafted Candles & Calm Creations','hero.subtitle':'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.','hero.cta1':'Explore Works','about.title':'Calm. Crafted. Conscious.','about.lead':'Eureka Studio crafts handmade candles and epoxy pieces inspired by quiet nature.','works.title':'Gallery','works.subtitle':'Each piece is unique in form, scent and emotion.','filters.all':'All','filters.candles':'Candles','filters.epoxy':'Epoxy','filters.accessories':'Accessories','ig.title':'From Instagram','ig.subtitle':'Follow our calm creations and process.','contact.title':"Let's Create Something Beautiful",'contact.intro':'Custom orders, collaborations, or just to say hello.','contact.nameLabel':'Name','contact.emailLabel':'Email','contact.messageLabel':'Message','contact.send':'Send'},
-  tr:{'hero.title':'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar','hero.subtitle':'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.','hero.cta1':'Çalışmaları Keşfet','about.title':'Sakin. El emeği. Duyarlı.','about.lead':'Eureka Studio, doğanın dinginliğinden ilham alan el yapımı mumlar ve epoksi parçalar üretir.','works.title':'Galeri','works.subtitle':'Her parça; formu, kokusu ve duygusuyla benzersiz.','filters.all':'Tümü','filters.candles':'Mumlar','filters.epoxy':'Epoksi','filters.accessories':'Aksesuarlar','ig.title':'Instagram’dan','ig.subtitle':'Sakin üretim sürecimizi ve paylaşımlarımızı takip et.','contact.title':'Birlikte güzel şeyler yaratalım','contact.intro':'Özel siparişler, işbirlikleri veya sadece merhaba demek için.','contact.nameLabel':'İsim','contact.emailLabel':'E-posta','contact.messageLabel':'Mesaj','contact.send':'Gönder'},
-  he:{'hero.title':'Eureka Studio — נרות בעבודת יד ויצירות רגועות','hero.subtitle':'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.','hero.cta1':'לצפייה ביצירות','about.title':'רגוע. בעבודת יד. מודע.','about.lead':'סטודיו יוריקה יוצר נרות בעבודת יד ופריטי אפוקסי בהשראת הטבע השקט.','works.title':'גלריה','works.subtitle':'כל יצירה ייחודית בצורה, בריח וברגש.','filters.all':'הכל','filters.candles':'נרות','filters.epoxy':'אפוקסי','filters.accessories':'אביזרים','ig.title':'מהאינסטגרם','ig.subtitle':'עקבו אחרי היצירות והתהליך השקט שלנו.','contact.title':'בואו ניצור משהו יפה','contact.intro':'להזמנות מותאמות אישית, שיתופי פעולה או פשוט לומר שלום.','contact.nameLabel':'שם','contact.emailLabel':'דוא״ל','contact.messageLabel':'הודעה','contact.send':'שלח'}
+  en:{'heroTitle':'Eureka Studio — Handcrafted Candles & Calm Creations','heroSub':'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.','ctaWorks':'Explore Works'},
+  tr:{'heroTitle':'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar','heroSub':'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.','ctaWorks':'Çalışmaları Keşfet'},
+  he:{'heroTitle':'Eureka Studio — נרות בעבודת יד ויצירות רגועות','heroSub':'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.','ctaWorks':'לצפייה ביצירות'}
 };
 function setLang(lang){
   document.documentElement.setAttribute('dir', lang==='he'?'rtl':'ltr');
   document.documentElement.lang=lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n'); if(I18N[lang][k]) el.textContent=I18N[lang][k];
-  });
+  const t=I18N[lang]||I18N.tr;
+  document.querySelector('#home h1').textContent=t.heroTitle;
+  document.querySelector('#home p').textContent=t.heroSub;
+  document.querySelector('#home .ctas a[href="#works"]').textContent=t.ctaWorks;
   try{localStorage.setItem('eureka_lang',lang)}catch(e){}
 }
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
@@ -274,7 +289,7 @@ filterButtons.forEach(b=>b.addEventListener('click',()=>{
 }));
 applyFilter('all');
 
-/* Lightbox (çok basit) */
+/* Lightbox */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
 document.querySelectorAll('#works-grid figure').forEach(fig=>{
   fig.addEventListener('click',()=>{
@@ -283,32 +298,64 @@ document.querySelectorAll('#works-grid figure').forEach(fig=>{
 });
 lb.addEventListener('click',e=>{ if(e.target===lb) { lb.classList.remove('open'); document.body.style.overflow='auto'; }});
 
-/* Görsellerde çift uzantı düzeltme (jpg.jpg / png.jpg vs) */
-document.querySelectorAll('#works-grid img, #instagram img, #heroImg').forEach(img=>{
-  img.addEventListener('error', function(){
-    let src=this.getAttribute('src');
-    if(/\.jpg\.jpg$/i.test(src)) src=src.replace(/\.jpg\.jpg$/i,'.jpg');
-    if(/\.png\.jpg$/i.test(src)) src=src.replace(/\.png\.jpg$/i,'.jpg');
-    if(/\.JPG$/i.test(src)) src=src.replace(/\.JPG$/i,'.jpg');
-    if(/\.PNG$/i.test(src)) src=src.replace(/\.PNG$/i,'.png');
-    this.src=src;
+/* Görsellerde çift uzantı ve büyük/küçük düzeltme */
+document.querySelectorAll('img').forEach(function(el){
+  el.addEventListener('error', function(){
+    let s=this.getAttribute('src')||this.src;
+    s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg')
+       .replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');
+    if(s!==this.src) this.src=s+(s.includes('?')?'':'?v='+Date.now());
   });
 });
 
-/* HERO fallback: cache’i kır + farklı yolları sırayla dene, en sonda galerinin ilk görseline düş */
+/* HERO: farklı yolları sırayla dene; olmazsa galerinin ilk görseline düş */
 (function(){
   const img=document.getElementById('heroImg'); if(!img) return;
   const tries=[
-    './home-candles-hero.JPG?v='+(Date.now()),
-    './home-candles-hero.jpg?v='+(Date.now()),
-    '/home-candles-hero.JPG?v='+(Date.now()),
-    '/home-candles-hero.jpg?v='+(Date.now()),
-    './images/home-candles-hero.JPG?v='+(Date.now())
+    './home-candles-hero.JPG?v='+Date.now(),
+    './home-candles-hero.jpg?v='+Date.now(),
+    '/home-candles-hero.JPG?v='+Date.now()
   ];
-  let i=0, switched=false;
-  img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; switched=true; } });
-  // 2 sn içinde hiç yüklenmezse galeri ilk görsele düş
-  setTimeout(()=>{ if(!img.complete || img.naturalWidth===0){ const first=document.querySelector('#works-grid img'); if(first) img.src=first.src; } }, 2000);
+  let i=0;
+  img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
+  setTimeout(()=>{ if(!img.complete||img.naturalWidth===0){ const f=document.querySelector('#works img'); if(f) img.src=f.src; } },1500);
 })();
+
+/* Anchor ofset: sticky nav altında kesilmesin */
+(function(){
+  function offsetHash(){
+    const id=location.hash?.slice(1); if(!id) return;
+    const el=document.getElementById(id); if(!el) return;
+    const top=el.getBoundingClientRect().top + scrollY - 70;
+    scrollTo({top, behavior:'smooth'});
+  }
+  addEventListener('hashchange', offsetHash);
+  if(location.hash) setTimeout(offsetHash, 60);
+})();
+
+/* Olası ikinci kopyayı temizle (bazı mobil hostlar append ediyor) */
+(function(){
+  const IDS=['home','about','works','instagram','contact'];
+  IDS.forEach(id=>{
+    const els=document.querySelectorAll('#'+id);
+    for(let i=1;i<els.length;i++){ els[i].remove(); }
+  });
+  const navs=document.querySelectorAll('nav'); for(let i=1;i<navs.length;i++){ navs[i].remove(); }
+  const fts=document.querySelectorAll('footer'); for(let i=1;i<fts.length;i++){ fts[i].remove(); }
+})();
+
+/* Contact form (Formspree örneği) */
+const form=document.getElementById('contact-form'); const statusEl=document.getElementById('status');
+if(form){
+  form.addEventListener('submit',async e=>{
+    e.preventDefault(); if(statusEl) statusEl.textContent='Gönderiliyor…';
+    try{
+      const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+      if(res.ok){form.reset(); if(statusEl) statusEl.textContent='Teşekkürler! Mesajınız ulaştı.';}
+      else{if(statusEl) statusEl.textContent='Bir sorun oluştu.';}
+    }catch(_){if(statusEl) statusEl.textContent='Bağlantı sorunu.';}
+  });
+}
 </script>
 </body>
+</html>
