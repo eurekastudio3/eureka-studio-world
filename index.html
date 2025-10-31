@@ -32,8 +32,14 @@
   --ok:#1f7a4f; --gold:#caa469;
 }
 :root[data-theme="dark"]{
-  --bg:#2b231b; --panel:#332a21; --ink:#efe7dc; --muted:#cbb9a5;
-  --line:#4a3e33; --brand:#caa469; --gold:#b68e60; --shadow:0 14px 40px rgba(0,0,0,.35);
+  --bg:#2b231b;       /* koyu kahve */
+  --panel:#332a21;
+  --ink:#efe7dc;
+  --muted:#cbb9a5;
+  --line:#4a3e33;
+  --brand:#caa469;
+  --gold:#b68e60;
+  --shadow:0 14px 40px rgba(0,0,0,.35);
 }
 
 /* BASE */
@@ -100,12 +106,7 @@ nav a.active{background:var(--line)}
 .item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative}
 .item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .35s ease;max-height:280px}
 .item:hover img{transform:scale(1.03)}
-/* hover parıltı */
-.item::after{
-  content:""; position:absolute; inset:auto -20% 35% -20%; height:60%;
-  background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%);
-  opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px);
-}
+.item::after{content:""; position:absolute; inset:auto -20% 35% -20%; height:60%; background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%); opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px)}
 .item:hover::after{opacity:.7; transform:translateY(-8px)}
 
 /* LIGHTBOX */
@@ -120,6 +121,7 @@ nav a.active{background:var(--line)}
 #instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
 #instagram .ig-grid a:active img{transform:scale(.98)}
+/* Instagram CTA daha görünür */
 #instagram .cta{
   background: var(--brand);
   border-color: var(--brand);
@@ -253,9 +255,15 @@ footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 
     <!-- KESME TAHTASI → epoxy -->
     <figure class="item reveal" data-cat="epoxy"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async"><figcaption>Epoxy Board</figcaption></figure>
 
-    <!-- Aksesuarlar (istersen bunları da epoksi yapabiliriz) -->
+    <!-- Accessories -->
     <figure class="item reveal" data-cat="accessories"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi" loading="lazy" decoding="async"><figcaption>Pet Tags</figcaption></figure>
     <figure class="item reveal" data-cat="accessories"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif" loading="lazy" decoding="async"><figcaption>Pet Tags (Alt)</figcaption></figure>
+
+    <!-- NEW: Eureka Lumi Collection (Candles) -->
+    <figure class="item reveal" data-cat="candles">
+      <img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — soya mumu" loading="lazy" decoding="async">
+      <figcaption>Eureka Lumi Collection</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -468,7 +476,10 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
         form.reset(); validate();
 
         if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';}
-        if(check){check.classList.add('show'); check.style.display='flex';}
+        if(check){
+          check.classList.add('show');
+          check.style.display='flex';
+        }
         if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);}
         status?.scrollIntoView({behavior:'smooth',block:'center'});
       }else{
