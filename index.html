@@ -73,10 +73,22 @@ nav a.active{background:var(--line)}
 
 /* HERO */
 .hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat;border-bottom:1px solid var(--line)}
-.hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.58),rgba(0,0,0,.36) 45%,rgba(0,0,0,.24))}
+/* 👇 Hero’yu belirginleştiren koyu overlay */
+.hero .overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.55) 45%,rgba(0,0,0,.35));
+}
+:root[data-theme="dark"] .hero .overlay{
+  background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.6));
+}
 .hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
-.hero h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
-.hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.hero h1{
+  font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;
+  font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;
+  /* 👇 Yazıyı fondan ayıran yumuşak ışık */
+  text-shadow:0 3px 12px rgba(0,0,0,.65);
+}
+.hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-block;border:2px solid rgba(255,255,255,.92);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
@@ -430,8 +442,8 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
 
         if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';}
         if(check){
-          check.classList.add('show');      /* animasyon sınıfı */
-          check.style.display='flex';       /* <-- FİX: zorla görünür */
+          check.classList.add('show');
+          check.style.display='flex'; /* görünürlüğü zorla */
         }
         if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);}
         status?.scrollIntoView({behavior:'smooth',block:'center'});
