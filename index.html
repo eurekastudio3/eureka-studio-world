@@ -32,14 +32,8 @@
   --ok:#1f7a4f; --gold:#caa469;
 }
 :root[data-theme="dark"]{
-  --bg:#2b231b;       /* koyu kahve */
-  --panel:#332a21;
-  --ink:#efe7dc;
-  --muted:#cbb9a5;
-  --line:#4a3e33;
-  --brand:#caa469;
-  --gold:#b68e60;
-  --shadow:0 14px 40px rgba(0,0,0,.35);
+  --bg:#2b231b; --panel:#332a21; --ink:#efe7dc; --muted:#cbb9a5;
+  --line:#4a3e33; --brand:#caa469; --gold:#b68e60; --shadow:0 14px 40px rgba(0,0,0,.35);
 }
 
 /* BASE */
@@ -96,8 +90,9 @@ nav a.active{background:var(--line)}
 .works-head h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
 .muted{color:var(--muted)}
 .filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--ink)}
+.filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--ink);position:relative}
 .filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.filter .count{opacity:.8;font-weight:700;margin-left:.35em}
 .filter:active{transform:scale(.98)}
 .masonry{column-gap:14px;column-count:1;margin-top:14px}
 @media(min-width:620px){.masonry{column-count:2}}
@@ -105,7 +100,12 @@ nav a.active{background:var(--line)}
 .item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative}
 .item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .35s ease;max-height:280px}
 .item:hover img{transform:scale(1.03)}
-.item::after{content:""; position:absolute; inset:auto -20% 35% -20%; height:60%; background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%); opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px)}
+/* hover parıltı */
+.item::after{
+  content:""; position:absolute; inset:auto -20% 35% -20%; height:60%;
+  background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%);
+  opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px);
+}
 .item:hover::after{opacity:.7; transform:translateY(-8px)}
 
 /* LIGHTBOX */
@@ -120,7 +120,6 @@ nav a.active{background:var(--line)}
 #instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
 #instagram .ig-grid a:active img{transform:scale(.98)}
-/* 👇 Instagram CTA daha görünür */
 #instagram .cta{
   background: var(--brand);
   border-color: var(--brand);
@@ -133,9 +132,7 @@ nav a.active{background:var(--line)}
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
-:root[data-theme="dark"] #instagram .cta{
-  box-shadow: 0 4px 14px rgba(0,0,0,.35);
-}
+:root[data-theme="dark"] #instagram .cta{box-shadow: 0 4px 14px rgba(0,0,0,.35)}
 
 /* CONTACT / FOOTER */
 form{display:grid;gap:10px;max-width:520px}
@@ -232,10 +229,10 @@ footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 
       <p class="muted">Her parça; formu, kokusu ve duygusuyla benzersiz.</p>
     </div>
     <div class="filters" role="tablist" aria-label="Galeri filtresi">
-      <button class="filter" data-cat="all" role="tab" aria-selected="true">Tümü</button>
-      <button class="filter" data-cat="candles" role="tab" aria-selected="false">Mumlar</button>
-      <button class="filter" data-cat="epoxy" role="tab" aria-selected="false">Epoksi</button>
-      <button class="filter" data-cat="accessories" role="tab" aria-selected="false">Aksesuarlar</button>
+      <button class="filter" data-cat="all" role="tab" aria-selected="true">Tümü <span class="count" id="c-all"></span></button>
+      <button class="filter" data-cat="candles" role="tab" aria-selected="false">Mumlar <span class="count" id="c-candles"></span></button>
+      <button class="filter" data-cat="epoxy" role="tab" aria-selected="false">Epoksi <span class="count" id="c-epoxy"></span></button>
+      <button class="filter" data-cat="accessories" role="tab" aria-selected="false">Aksesuarlar <span class="count" id="c-accessories"></span></button>
     </div>
   </div>
 
@@ -243,15 +240,20 @@ footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 
     <!-- Candles -->
     <figure class="item reveal" data-cat="candles"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu" loading="lazy" decoding="async"><figcaption>Caramel Crumble</figcaption></figure>
     <figure class="item reveal" data-cat="candles"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu" loading="lazy" decoding="async"><figcaption>Choco Cream</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./golden-noir.PNG" alt="Golden Noir — soya mumu" loading="lazy" decoding="async"><figcaption>Golden Noir</figcaption></figure>
+
+    <!-- GOLDEN NOIR → epoxy -->
+    <figure class="item reveal" data-cat="epoxy"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi obje" loading="lazy" decoding="async"><figcaption>Golden Noir (Epoksi)</figcaption></figure>
+
     <figure class="item reveal" data-cat="candles"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu" loading="lazy" decoding="async"><figcaption>Summer Cocktail</figcaption></figure>
     <figure class="item reveal" data-cat="candles"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu" loading="lazy" decoding="async"><figcaption>Sunset Orange</figcaption></figure>
     <figure class="item reveal" data-cat="candles"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu" loading="lazy" decoding="async"><figcaption>Bedside Calm</figcaption></figure>
     <figure class="item reveal" data-cat="candles"><img src="./candles.png.jpg" alt="El yapımı farklı mumlar" loading="lazy" decoding="async"><figcaption>Assorted Candles</figcaption></figure>
     <figure class="item reveal" data-cat="candles"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — soya mumu" loading="lazy" decoding="async"><figcaption>Evil Eye Candle</figcaption></figure>
 
-    <!-- Accessories -->
-    <figure class="item reveal" data-cat="accessories"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async"><figcaption>Epoxy Board</figcaption></figure>
+    <!-- KESME TAHTASI → epoxy -->
+    <figure class="item reveal" data-cat="epoxy"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async"><figcaption>Epoxy Board</figcaption></figure>
+
+    <!-- Aksesuarlar (istersen bunları da epoksi yapabiliriz) -->
     <figure class="item reveal" data-cat="accessories"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi" loading="lazy" decoding="async"><figcaption>Pet Tags</figcaption></figure>
     <figure class="item reveal" data-cat="accessories"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif" loading="lazy" decoding="async"><figcaption>Pet Tags (Alt)</figcaption></figure>
   </div>
@@ -348,10 +350,28 @@ document.addEventListener('scroll', setActive, {passive:true}); setActive();
 const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* FILTERS */
+/* FILTERS + COUNTS */
 const filterButtons=[...document.querySelectorAll('.filter')];
-function applyFilter(cat){document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';});}
-filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat); if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});})); 
+function countAndLabel(){
+  const all=[...document.querySelectorAll('#works-grid [data-cat]')];
+  const counts={all:all.length,candles:0,epoxy:0,accessories:0};
+  all.forEach(el=>{counts[el.dataset.cat]=(counts[el.dataset.cat]||0)+1;});
+  for(const k of Object.keys(counts)){
+    const el=document.getElementById('c-'+k); if(el) el.textContent='('+counts[k]+')';
+  }
+}
+function applyFilter(cat){
+  document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{
+    card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
+  });
+}
+filterButtons.forEach(b=>b.addEventListener('click',()=>{
+  filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');
+  applyFilter(b.dataset.cat);
+  if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});
+}));
+countAndLabel();
 applyFilter('all');
 
 /* LIGHTBOX */
@@ -385,11 +405,18 @@ document.querySelectorAll('img').forEach(function(el){
 /* HASH OFFSET */
 (function(){function offsetHash(){const id=location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(!el)return;const top=el.getBoundingClientRect().top+scrollY-70;scrollTo({top,behavior:'smooth'});}addEventListener('hashchange',offsetHash);if(location.hash)setTimeout(offsetHash,60);})();
 
-/* DEDUPE (bazı hostlar ikinci kopya ekliyor) */
-(function(){const IDS=['home','about','works','instagram','contact'];IDS.forEach(id=>{const els=document.querySelectorAll('#'+id);for(let i=1;i<els.length;i++){els[i].remove();}});const navs=document.querySelectorAll('nav');for(let i=1;i<navs.length;i++){navs[i].remove();}const fts=document.querySelectorAll('footer');for(let i=1;i<fts.length;i++){fts[i].remove();}})();
+/* DEDUPE */
+(function(){
+  const IDS=['home','about','works','instagram','contact'];
+  IDS.forEach(id=>{const els=document.querySelectorAll('#'+id);for(let i=1;i<els.length;i++){els[i].remove();}});
+  const navs=document.querySelectorAll('nav');for(let i=1;i<navs.length;i++){navs[i].remove();}
+  const fts=document.querySelectorAll('footer');for(let i=1;i<fts.length;i++){fts[i].remove();}
+})();
 
 /* INSTAGRAM CLICK */
-document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{a.addEventListener('click',()=>{if(window.plausible) plausible('Instagram Click');},{passive:true});});
+document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
+  a.addEventListener('click',()=>{if(window.plausible) plausible('Instagram Click');},{passive:true});
+});
 
 /* THEME TOGGLE */
 (function(){
@@ -441,10 +468,7 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
         form.reset(); validate();
 
         if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';}
-        if(check){
-          check.classList.add('show');
-          check.style.display='flex';
-        }
+        if(check){check.classList.add('show'); check.style.display='flex';}
         if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);}
         status?.scrollIntoView({behavior:'smooth',block:'center'});
       }else{
