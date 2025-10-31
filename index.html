@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="light">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -25,7 +25,24 @@
 <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 
 <style>
-:root{--bg:#f5efe7;--ink:#111;--muted:#5b5b5b;--line:#e5dfd7;--brand:#c6a886;--panel:#fff;--radius:12px;--shadow:0 10px 30px rgba(0,0,0,.06);--ok:#1f7a4f}
+/* ---------- THEME TOKENS ---------- */
+:root{
+  --bg:#f5efe7; --ink:#111; --muted:#5b5b5b; --line:#e5dfd7;
+  --brand:#c6a886; --panel:#fff; --radius:12px; --shadow:0 10px 30px rgba(0,0,0,.06);
+  --ok:#1f7a4f; --accent:#d1b28f; --gold:#caa469;
+}
+:root[data-theme="dark"]{
+  --bg:#2b231b;        /* koyu kahve */
+  --panel:#332a21;     /* daha koyu panel */
+  --ink:#efe7dc;       /* açık bej yazı */
+  --muted:#cbb9a5;     /* yumuşak bej */
+  --line:#4a3e33;      /* kahve çizgi */
+  --brand:#caa469;     /* altın vurgu */
+  --accent:#b68e60;    /* sıcak alt ton */
+  --shadow:0 14px 40px rgba(0,0,0,.35);
+}
+
+/* ---------- BASE ---------- */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);line-height:1.65;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
@@ -33,9 +50,11 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 section,footer{padding:48px 6%}
+.reveal{opacity:0;transform:translateY(14px);will-change:opacity,transform;transition:opacity .6s ease, transform .6s ease}
+.reveal.show{opacity:1;transform:none}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(245,239,231,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--bg) 85%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav-inner{padding:12px 6%;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700}
 .brand img{height:32px;width:auto}
@@ -43,10 +62,17 @@ nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:14px;align-items:center;m
 nav a{padding:8px 10px;border-radius:8px;font-weight:600}
 nav a.active{background:var(--line)}
 .lang{display:flex;gap:6px;margin-left:10px}
-.lang button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-weight:600}
+.lang button{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:6px 10px;font-weight:600;color:var(--ink)}
 
-/* HERO */
-.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat}
+/* ---------- THEME TOGGLE ---------- */
+.theme-toggle{
+  position:fixed; right:14px; bottom:14px; z-index:9999;
+  border:1px solid var(--line); background:var(--panel); color:var(--ink);
+  border-radius:999px; padding:10px 12px; box-shadow:var(--shadow); font-weight:700;
+}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat;border-bottom:1px solid var(--line)}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.58),rgba(0,0,0,.36) 45%,rgba(0,0,0,.24))}
 .hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
 .hero h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
@@ -56,7 +82,7 @@ nav a.active{background:var(--line)}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
 .scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
 
-/* ABOUT */
+/* ---------- ABOUT ---------- */
 #about h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.4em}
 #about p{color:var(--muted)}
 .about-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
@@ -64,55 +90,72 @@ nav a.active{background:var(--line)}
 .kv-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow)}
 .kv-card h4{font-size:1rem;margin-bottom:.25em}
 
-/* WORKS */
+/* ---------- WORKS ---------- */
 .works-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
 .works-head h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
 .muted{color:var(--muted)}
 .filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600}
+.filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--ink)}
 .filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .filter:active{transform:scale(.98)}
 .masonry{column-gap:14px;column-count:1;margin-top:14px}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
-.item{break-inside:avoid;margin:0 0 14px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in}
-.item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .3s ease;border-radius:8px;max-height:280px}
-.item:hover img{transform:scale(1.02)}
-.item figcaption{padding:10px 12px;text-align:center;font-weight:600}
+.item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative}
+.item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .35s ease;max-height:280px}
+.item:hover img{transform:scale(1.03)}
+/* hover parıltı */
+.item::after{
+  content:""; position:absolute; inset:auto -20% 35% -20%; height:60%;
+  background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%);
+  opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px);
+}
+.item:hover::after{opacity:.7; transform:translateY(-8px)}
 
-/* LIGHTBOX */
+/* ---------- LIGHTBOX ---------- */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999}
 .lb.open{display:flex}
 .lb-inner{max-width:min(92vw,1200px);max-height:90vh}
 .lb-img{max-width:100%;max-height:88vh;border-radius:12px}
 .lb-cap{color:#fff;text-align:center;margin-top:8px}
 
-/* INSTAGRAM */
+/* ---------- INSTAGRAM ---------- */
 #instagram .ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-#instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden}
+#instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
 #instagram .ig-grid a:active img{transform:scale(.98)}
 
-/* CONTACT / FOOTER */
+/* ---------- CONTACT / FOOTER ---------- */
 form{display:grid;gap:10px;max-width:520px}
-input,textarea,select{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}
+input,textarea,select{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);font:inherit}
 button[type="submit"],.cta{cursor:pointer}
-footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;font-size:.95rem;padding:18px 6%}
+footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 92%, #fff 8%);text-align:center;font-size:.95rem;padding:18px 6%}
 
-/* Toast */
+/* ---------- TOAST & CHECK ---------- */
 .toast{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#e7f4ed;border:1px solid #cfe9dc;color:var(--ok);padding:10px 14px;border-radius:10px;box-shadow:var(--shadow);display:none;z-index:9999}
+:root[data-theme="dark"] .toast{background:#143a2a;border-color:#1f573f;color:#b7f0cf}
+.checkwrap{display:none;align-items:center;gap:8px;color:var(--ok);margin-top:6px}
+.checkwrap svg{width:22px;height:22px;stroke:var(--ok);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60}
+.checkwrap.show{display:flex}
+.checkwrap.show svg{animation:draw .8s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
 
-/* Motion */
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.item img,.cta{transition:none}}
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+  .item img,.cta,.item::after{transition:none}
+}
 </style>
 </head>
 
 <body>
 
+<button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">🌙</button>
 <div id="toast" class="toast" role="status" aria-live="polite">Teşekkürler! Mesajınız ulaştı.</div>
 
 <!-- NAV -->
-<nav aria-label="Primary">
+<nav aria-label="Primary" class="reveal">
   <div class="nav-inner">
     <div class="brand">
       <img src="./logo.png1.PNG" alt="Eureka Studio logo" width="32" height="32" decoding="async">
@@ -134,7 +177,7 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </nav>
 
 <!-- HERO -->
-<section id="home" class="hero" aria-labelledby="heroTitle">
+<section id="home" class="hero reveal" aria-labelledby="heroTitle">
   <img id="heroImg" src="./home-candles-hero.JPG?v=3"
        alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1"
@@ -152,7 +195,7 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </section>
 
 <!-- ABOUT -->
-<section id="about" aria-labelledby="aboutTitle">
+<section id="about" class="reveal" aria-labelledby="aboutTitle">
   <h2 id="aboutTitle">Sakin. El emeği. Duyarlı.</h2>
   <div class="about-wrap">
     <div>
@@ -170,7 +213,7 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </section>
 
 <!-- WORKS -->
-<section id="works" aria-labelledby="worksTitle">
+<section id="works" class="reveal" aria-labelledby="worksTitle">
   <div class="works-head">
     <div>
       <h2 id="worksTitle">Galeri</h2>
@@ -186,19 +229,19 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 
   <div class="masonry" id="works-grid">
     <!-- Candles -->
-    <figure class="item" data-cat="candles"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu" loading="lazy" decoding="async"><figcaption>Caramel Crumble</figcaption></figure>
-    <figure class="item" data-cat="candles"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu" loading="lazy" decoding="async"><figcaption>Choco Cream</figcaption></figure>
-    <figure class="item" data-cat="candles"><img src="./golden-noir.PNG" alt="Golden Noir — soya mumu" loading="lazy" decoding="async"><figcaption>Golden Noir</figcaption></figure>
-    <figure class="item" data-cat="candles"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu" loading="lazy" decoding="async"><figcaption>Summer Cocktail</figcaption></figure>
-    <figure class="item" data-cat="candles"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu" loading="lazy" decoding="async"><figcaption>Sunset Orange</figcaption></figure>
-    <figure class="item" data-cat="candles"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu" loading="lazy" decoding="async"><figcaption>Bedside Calm</figcaption></figure>
-    <figure class="item" data-cat="candles"><img src="./candles.png.jpg" alt="El yapımı farklı mumlar" loading="lazy" decoding="async"><figcaption>Assorted Candles</figcaption></figure>
-    <figure class="item" data-cat="candles"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — soya mumu" loading="lazy" decoding="async"><figcaption>Evil Eye Candle</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu" loading="lazy" decoding="async"><figcaption>Caramel Crumble</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu" loading="lazy" decoding="async"><figcaption>Choco Cream</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./golden-noir.PNG" alt="Golden Noir — soya mumu" loading="lazy" decoding="async"><figcaption>Golden Noir</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu" loading="lazy" decoding="async"><figcaption>Summer Cocktail</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu" loading="lazy" decoding="async"><figcaption>Sunset Orange</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu" loading="lazy" decoding="async"><figcaption>Bedside Calm</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./candles.png.jpg" alt="El yapımı farklı mumlar" loading="lazy" decoding="async"><figcaption>Assorted Candles</figcaption></figure>
+    <figure class="item reveal" data-cat="candles"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — soya mumu" loading="lazy" decoding="async"><figcaption>Evil Eye Candle</figcaption></figure>
 
     <!-- Accessories -->
-    <figure class="item" data-cat="accessories"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async"><figcaption>Epoxy Board</figcaption></figure>
-    <figure class="item" data-cat="accessories"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi" loading="lazy" decoding="async"><figcaption>Pet Tags</figcaption></figure>
-    <figure class="item" data-cat="accessories"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif" loading="lazy" decoding="async"><figcaption>Pet Tags (Alt)</figcaption></figure>
+    <figure class="item reveal" data-cat="accessories"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async"><figcaption>Epoxy Board</figcaption></figure>
+    <figure class="item reveal" data-cat="accessories"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi" loading="lazy" decoding="async"><figcaption>Pet Tags</figcaption></figure>
+    <figure class="item reveal" data-cat="accessories"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif" loading="lazy" decoding="async"><figcaption>Pet Tags (Alt)</figcaption></figure>
   </div>
 </section>
 
@@ -212,7 +255,7 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </div>
 
 <!-- INSTAGRAM -->
-<section id="instagram" aria-labelledby="igTitle">
+<section id="instagram" class="reveal" aria-labelledby="igTitle">
   <h2 id="igTitle" style="font-family:'Playfair Display',serif">Instagram’dan</h2>
   <p class="muted">Sakin üretim sürecimizi ve paylaşımlarımızı takip et.</p>
   <div class="ig-grid" style="margin-top:12px">
@@ -226,7 +269,7 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </section>
 
 <!-- CONTACT -->
-<section id="contact" aria-labelledby="contactTitle">
+<section id="contact" class="reveal" aria-labelledby="contactTitle">
   <h2 id="contactTitle" style="font-family:'Playfair Display',serif">Birlikte güzel şeyler yaratalım</h2>
   <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
 
@@ -248,6 +291,12 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 
     <button id="sendBtn" type="submit" class="cta" disabled>Gönder</button>
     <p id="status" role="status" aria-live="polite" class="muted" style="margin-top:6px"></p>
+
+    <!-- Animasyonlu check -->
+    <div id="checkwrap" class="checkwrap" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg>
+      <strong>Teşekkürler! Mesajınız ulaştı.</strong>
+    </div>
   </form>
 
   <p style="margin-top:10px"><strong>Email:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
@@ -255,178 +304,141 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer class="reveal">
   <p>© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p>
 </footer>
 
 <script>
-/* Dil anahtarı (varsayılan TR) */
+/* ---------- I18N ---------- */
 const I18N={
-  en:{'heroTitle':'Eureka Studio — Handcrafted Candles & Calm Creations','heroSub':'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.','ctaWorks':'Explore Works'},
-  tr:{'heroTitle':'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar','heroSub':'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.','ctaWorks':'Çalışmaları Keşfet'},
-  he:{'heroTitle':'Eureka Studio — נרות בעבודת יד ויצירות רגועות','heroSub':'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.','ctaWorks':'לצפייה ביצירות'}
+  en:{heroTitle:'Eureka Studio — Handcrafted Candles & Calm Creations',heroSub:'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.',ctaWorks:'Explore Works'},
+  tr:{heroTitle:'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',heroSub:'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.',ctaWorks:'Çalışmaları Keşfet'},
+  he:{heroTitle:'Eureka Studio — נרות בעבודת יד ויצירות רגועות',heroSub:'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.',ctaWorks:'לצפייה ביצירות'}
 };
 function setLang(lang){
   document.documentElement.setAttribute('dir', lang==='he'?'rtl':'ltr');
   document.documentElement.lang=lang;
   const t=I18N[lang]||I18N.tr;
-  document.querySelector('#home h1').textContent=t.heroTitle;
-  document.querySelector('#home p').textContent=t.heroSub;
-  document.querySelector('#home .ctas a[href="#works"]').textContent=t.ctaWorks;
+  const h=document.querySelector('#home h1'), p=document.querySelector('#home p'), c=document.querySelector('#home .ctas a[href="#works"]');
+  if(h) h.textContent=t.heroTitle; if(p) p.textContent=t.heroSub; if(c) c.textContent=t.ctaWorks;
   try{localStorage.setItem('eureka_lang',lang)}catch(e){}
 }
-document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang); if(window.plausible) plausible('Language Switch',{props:{lang:b.dataset.lang}});})); 
 setLang(localStorage.getItem('eureka_lang')||'tr');
 
-/* Sticky nav aktif link */
+/* ---------- ACTIVE NAV ---------- */
 const links=[...document.querySelectorAll('nav a[data-nav]')];
 const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
-function setActive(){
-  let idx=0; secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top<=110) idx=i; });
-  links.forEach(l=>{ l.classList.remove('active'); l.removeAttribute('aria-current'); });
-  if(links[idx]){ links[idx].classList.add('active'); links[idx].setAttribute('aria-current','true'); }
-}
+function setActive(){let idx=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110) idx=i;});links.forEach(l=>{l.classList.remove('active');l.removeAttribute('aria-current');});if(links[idx]){links[idx].classList.add('active');links[idx].setAttribute('aria-current','true');}}
 document.addEventListener('scroll', setActive, {passive:true}); setActive();
 
-/* Filtreler */
+/* ---------- REVEAL ON SCROLL ---------- */
+const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- FILTERS ---------- */
 const filterButtons=[...document.querySelectorAll('.filter')];
-function applyFilter(cat){
-  document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{
-    card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
-  });
-}
-filterButtons.forEach(b=>b.addEventListener('click',()=>{
-  filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));
-  b.setAttribute('aria-selected','true'); applyFilter(b.dataset.cat);
-  if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});
-}));
+function applyFilter(cat){document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';});}
+filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat); if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});})); 
 applyFilter('all');
 
-/* Lightbox */
+/* ---------- LIGHTBOX ---------- */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
 document.querySelectorAll('#works-grid figure').forEach(fig=>{
   fig.addEventListener('click',()=>{
     const im=fig.querySelector('img'); lbImg.src=im.src; lbImg.alt=im.alt;
-    const cap=fig.querySelector('figcaption')?.textContent||'';
-    lbCap.textContent=cap; lb.classList.add('open'); document.body.style.overflow='hidden';
+    const cap=fig.querySelector('figcaption')?.textContent||''; lbCap.textContent=cap;
+    lb.classList.add('open'); document.body.style.overflow='hidden';
     if(window.plausible) plausible('Gallery Lightbox Open',{props:{title:cap,category:fig.dataset.cat||'unknown'}});
   });
 });
-document.getElementById('lbClose')?.addEventListener('click',()=>{ lb.classList.remove('open'); document.body.style.overflow='auto'; });
-lb.addEventListener('click',e=>{ if(e.target===lb){ lb.classList.remove('open'); document.body.style.overflow='auto'; }});
+document.getElementById('lbClose')?.addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow='auto';});
+lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='auto';}});
 
-/* Çift uzantı ve büyük/küçük düzeltme */
+/* ---------- IMG EXT FIX + HERO FALLBACK ---------- */
 document.querySelectorAll('img').forEach(function(el){
   el.addEventListener('error', function(){
     let s=this.getAttribute('src')||this.src;
-    s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg')
-       .replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');
+    s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');
     if(s!==this.src) this.src=s+(s.includes('?')?'':'?v='+Date.now());
   });
 });
-
-/* HERO: farklı yolları sırayla dene; olmazsa galeri ilk görsele düş */
 (function(){
   const img=document.getElementById('heroImg'); if(!img) return;
-  const tries=[
-    './home-candles-hero.JPG?v='+Date.now(),
-    './home-candles-hero.jpg?v='+Date.now(),
-    '/home-candles-hero.JPG?v='+Date.now(),
-    '/home-candles-hero.jpg?v='+Date.now(),
-    './images/home-candles-hero.JPG?v='+Date.now()
-  ];
+  const tries=['./home-candles-hero.JPG?v='+Date.now(),'./home-candles-hero.jpg?v='+Date.now(),'/home-candles-hero.JPG?v='+Date.now(),'/home-candles-hero.jpg?v='+Date.now(),'./images/home-candles-hero.JPG?v='+Date.now()];
   let i=0; img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
   setTimeout(()=>{ if(!img.complete||img.naturalWidth===0){ const f=document.querySelector('#works img'); if(f) img.src=f.src; } },1500);
 })();
 
-/* Anchor ofset */
+/* ---------- HASH OFFSET ---------- */
+(function(){function offsetHash(){const id=location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(!el)return;const top=el.getBoundingClientRect().top+scrollY-70;scrollTo({top,behavior:'smooth'});}addEventListener('hashchange',offsetHash);if(location.hash)setTimeout(offsetHash,60);})();
+
+/* ---------- DEDUPE (bazı hostlar ikinci kopya ekliyor) ---------- */
+(function(){const IDS=['home','about','works','instagram','contact'];IDS.forEach(id=>{const els=document.querySelectorAll('#'+id);for(let i=1;i<els.length;i++){els[i].remove();}});const navs=document.querySelectorAll('nav');for(let i=1;i<navs.length;i++){navs[i].remove();}const fts=document.querySelectorAll('footer');for(let i=1;i<fts.length;i++){fts[i].remove();}})();
+
+/* ---------- INSTAGRAM CLICK ---------- */
+document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{a.addEventListener('click',()=>{if(window.plausible) plausible('Instagram Click');},{passive:true});});
+
+/* ---------- THEME TOGGLE (dark coffee-beige) ---------- */
 (function(){
-  function offsetHash(){ const id=location.hash?.slice(1); if(!id) return;
-    const el=document.getElementById(id); if(!el) return;
-    const top=el.getBoundingClientRect().top + scrollY - 70; scrollTo({top,behavior:'smooth'});}
-  addEventListener('hashchange', offsetHash);
-  if(location.hash) setTimeout(offsetHash,60);
+  const btn=document.getElementById('themeToggle');
+  function apply(t){document.documentElement.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('eureka_theme',t)}catch(e){}}
+  let saved=localStorage.getItem('eureka_theme'); if(!saved){saved='light';}
+  apply(saved);
+  btn.addEventListener('click',()=>apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
 })();
 
-/* Olası ikinci kopyayı temizle (bazı hostlar append ediyor) */
+/* ---------- FORM (validate + toast + animated check + Plausible) ---------- */
 (function(){
-  const IDS=['home','about','works','instagram','contact'];
-  IDS.forEach(id=>{ const els=document.querySelectorAll('#'+id); for(let i=1;i<els.length;i++){ els[i].remove(); }});
-  const navs=document.querySelectorAll('nav'); for(let i=1;i<navs.length;i++){ navs[i].remove(); }
-  const fts=document.querySelectorAll('footer'); for(let i=1;i<fts.length;i++){ fts[i].remove(); }
-})();
-
-/* Instagram tıklama event’i */
-document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
-  a.addEventListener('click',()=>{ if(window.plausible) plausible('Instagram Click'); },{passive:true});
-});
-
-/* FORM — geçerli olmadan gönderme + başarı mesajı GARANTİ */
-(function(){
-  const form   = document.getElementById('contact-form');
-  const btn    = document.getElementById('sendBtn');
-  const status = document.getElementById('status');
-  const toast  = document.getElementById('toast');
-  if(!form || !btn) return;
+  const form=document.getElementById('contact-form');
+  const btn=document.getElementById('sendBtn');
+  const status=document.getElementById('status');
+  const toast=document.getElementById('toast');
+  const check=document.getElementById('checkwrap');
+  if(!form||!btn) return;
 
   function validate(){
-    const email = (form.querySelector('[name="email"]')?.value||'').trim();
-    const msg   = (form.querySelector('[name="message"]')?.value||'').trim();
-    btn.disabled = !(email && msg.length >= 5);
+    const email=(form.querySelector('[name="email"]')?.value||'').trim();
+    const msg=(form.querySelector('[name="message"]')?.value||'').trim();
+    btn.disabled=!(email && msg.length>=5);
   }
-  form.addEventListener('input', validate, {passive:true});
-  validate();
+  form.addEventListener('input',validate,{passive:true}); validate();
 
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     if(btn.disabled) return;
 
-    // UI: gönderiliyor
-    const oldText = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Gönderiliyor…';
-    if(status){ status.style.color='inherit'; status.textContent='Gönderiliyor…'; }
+    const oldText=btn.textContent;
+    btn.disabled=true; btn.textContent='Gönderiliyor…';
+    if(status){status.style.color='inherit'; status.textContent='Gönderiliyor…';}
+    check?.classList.remove('show');
 
     try{
-      const payload = {
-        name:    form.querySelector('[name="name"]')?.value||'',
-        email:   form.querySelector('[name="email"]')?.value||'',
-        message: form.querySelector('[name="message"]')?.value||'',
+      const payload={
+        name:form.querySelector('[name="name"]')?.value||'',
+        email:form.querySelector('[name="email"]')?.value||'',
+        message:form.querySelector('[name="message"]')?.value||'',
         _subject:'Eureka Studio | Yeni iletişim mesajı',
         _template:'table',
         _autoresponse:'Merhaba! Mesajınızı aldık ve en kısa sürede döneceğiz. — Eureka Studio'
       };
 
-      const res = await fetch(form.action, {
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify(payload)
-      });
-
+      const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
       if(res.ok){
-        // Plausible
         if(window.plausible) plausible('Contact Form Submit');
-
-        // Formu sıfırla
         form.reset(); validate();
 
-        // Kalıcı yeşil mesaj
-        if(status){
-          status.style.color = '#1f7a4f';
-          status.textContent = 'Teşekkürler! Mesajınız ulaştı.';
-        }
-
-        // Toast göster + kullanıcıyı mesaja indir
-        if(toast){ toast.style.display='block'; setTimeout(()=> toast.style.display='none', 2800); }
-        status?.scrollIntoView({behavior:'smooth', block:'center'});
+        if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';}
+        if(check){check.classList.add('show');}
+        if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);}
+        status?.scrollIntoView({behavior:'smooth',block:'center'});
       }else{
-        if(status){ status.style.color='crimson'; status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.'; }
+        if(status){status.style.color='crimson'; status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.';}
       }
     }catch(err){
-      if(status){ status.style.color='crimson'; status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.'; }
+      if(status){status.style.color='crimson'; status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.';}
     }finally{
-      btn.disabled = false;
-      btn.textContent = oldText || 'Gönder';
+      btn.disabled=false; btn.textContent=oldText||'Gönder';
     }
   });
 })();
