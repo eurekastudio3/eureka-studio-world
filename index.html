@@ -16,9 +16,7 @@
 <meta name="theme-color" content="#e9e3da"/>
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180">
-<!-- Hero görselini önden yükle -->
 <link rel="preload" as="image" href="./home-candles-hero.JPG" imagesrcset="./home-candles-hero.JPG 1200w, ./home-candles-hero.JPG 2000w" imagesizes="100vw">
-<!-- Yazılar -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
@@ -36,82 +34,70 @@ a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 section,footer{padding:48px 6%}
 
-/* NAV — hizalama fix */
-nav{
-  position:sticky; top:0; z-index:100;
-  background:rgba(245,239,231,.85); backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line)
-}
-.nav-inner{
-  padding:12px 6%;
-  display:flex; gap:20px; align-items:center; justify-content:space-between;
-  flex-wrap:wrap;
-}
-.brand{display:flex; align-items:center; gap:10px; font-weight:700}
-.brand img{height:32px; width:auto}
-nav ul{list-style:none; display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-left:auto}
-nav a{padding:8px 10px; border-radius:8px; font-weight:600}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(245,239,231,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{padding:12px 6%;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand img{height:32px;width:auto}
+nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-left:auto}
+nav a{padding:8px 10px;border-radius:8px;font-weight:600}
 nav a.active{background:var(--line)}
-.lang{display:flex; gap:6px; margin-left:10px}
-.lang button{border:1px solid var(--line); background:#fff; border-radius:8px; padding:6px 10px; font-weight:600}
+.lang{display:flex;gap:6px;margin-left:10px}
+.lang button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-weight:600}
 
 /* HERO */
-.hero{
-  position:relative; min-height:70svh;
-  display:grid; place-items:center; padding:40px 6%;
-  isolation:isolate; background:#111 center/cover no-repeat
-}
-.hero .overlay{position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,.58),rgba(0,0,0,.36) 45%,rgba(0,0,0,.24))}
-.hero .inner{position:relative; z-index:2; color:#fff; text-align:center; max-width:900px; margin-inline:auto}
-.hero h1{font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.01em; font-size:clamp(26px,6vw,44px); line-height:1.12; margin-bottom:.4em; text-shadow:0 2px 8px rgba(0,0,0,.45)}
-.hero p{font-size:clamp(15px,2.6vw,18px); opacity:.96; max-width:720px; margin:0 auto 1em; text-shadow:0 2px 8px rgba(0,0,0,.35)}
-.ctas{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
-.cta{display:inline-block; border:2px solid rgba(255,255,255,.92); border-radius:999px; padding:12px 20px; color:#fff; font-weight:700}
+.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.58),rgba(0,0,0,.36) 45%,rgba(0,0,0,.24))}
+.hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
+.hero h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cta{display:inline-block;border:2px solid rgba(255,255,255,.92);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
-.scroll-hint{position:absolute; bottom:12px; left:50%; transform:translateX(-50%); opacity:.9; font-size:.95rem}
+.scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
 
 /* ABOUT */
-#about h2{font-family:"Playfair Display",serif; font-weight:700; font-size:clamp(22px,4.6vw,28px); margin-bottom:.4em}
+#about h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.4em}
 #about p{color:var(--muted)}
-.about-wrap{display:grid; grid-template-columns:1fr; gap:18px; margin-top:8px}
-.kv-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; margin:10px 0 8px}
-.kv-card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; box-shadow:var(--shadow)}
-.kv-card h4{font-size:1rem; margin-bottom:.25em}
+.about-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
+.kv-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:10px 0 8px}
+.kv-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow)}
+.kv-card h4{font-size:1rem;margin-bottom:.25em}
 
 /* WORKS */
-.works-head{display:flex; justify-content:space-between; gap:12px; align-items:end; flex-wrap:wrap}
-.works-head h2{font-family:"Playfair Display",serif; font-weight:700; font-size:clamp(22px,4.6vw,28px)}
+.works-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
+.works-head h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
 .muted{color:var(--muted)}
-.filters{display:flex; gap:8px; flex-wrap:wrap}
-.filter{background:#fff; border:1px solid var(--line); padding:10px 14px; border-radius:999px; font-weight:600}
-.filter[aria-selected="true"]{background:var(--brand); border-color:var(--brand); color:#fff}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600}
+.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .filter:active{transform:scale(.98)}
-.masonry{column-gap:14px; column-count:1; margin-top:14px}
+.masonry{column-gap:14px;column-count:1;margin-top:14px}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
-.item{break-inside:avoid; margin:0 0 14px; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow); cursor:zoom-in}
-.item img{width:100%; height:auto; display:block; object-fit:cover; transition:transform .3s ease; border-radius:8px; max-height:280px}
+.item{break-inside:avoid;margin:0 0 14px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in}
+.item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .3s ease;border-radius:8px;max-height:280px}
 .item:hover img{transform:scale(1.02)}
-.item figcaption{padding:10px 12px; text-align:center; font-weight:600}
+.item figcaption{padding:10px 12px;text-align:center;font-weight:600}
 
 /* LIGHTBOX */
-.lb{position:fixed; inset:0; background:rgba(0,0,0,.82); display:none; align-items:center; justify-content:center; z-index:999}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999}
 .lb.open{display:flex}
-.lb-inner{max-width:min(92vw,1200px); max-height:90vh}
-.lb-img{max-width:100%; max-height:88vh; border-radius:12px}
-.lb-cap{color:#fff; text-align:center; margin-top:8px}
+.lb-inner{max-width:min(92vw,1200px);max-height:90vh}
+.lb-img{max-width:100%;max-height:88vh;border-radius:12px}
+.lb-cap{color:#fff;text-align:center;margin-top:8px}
 
 /* INSTAGRAM */
-#instagram .ig-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px}
-#instagram .ig-grid a{display:block; border-radius:12px; overflow:hidden}
-#instagram .ig-grid img{width:100%; height:auto; aspect-ratio:1/1; object-fit:cover; display:block; transition:transform .25s}
+#instagram .ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+#instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden}
+#instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
 #instagram .ig-grid a:active img{transform:scale(.98)}
 
 /* CONTACT / FOOTER */
-form{display:grid; gap:10px; max-width:520px}
-input,textarea,select{padding:12px; border:1px solid var(--line); border-radius:12px; background:#fff; font:inherit}
+form{display:grid;gap:10px;max-width:520px}
+input,textarea,select{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}
 button[type="submit"],.cta{cursor:pointer}
-footer{border-top:1px solid var(--line); background:#f0eae1; text-align:center; font-size:.95rem; padding:18px 6%}
+footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;font-size:.95rem;padding:18px 6%}
 
 /* Motion */
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.item img,.cta{transition:none}}
@@ -144,7 +130,6 @@ footer{border-top:1px solid var(--line); background:#f0eae1; text-align:center; 
 
 <!-- HERO -->
 <section id="home" class="hero" aria-labelledby="heroTitle">
-  <!-- IMG: cache kır + alternatif yolları JS ile dener -->
   <img id="heroImg" src="./home-candles-hero.JPG?v=3"
        alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1"
@@ -240,15 +225,22 @@ footer{border-top:1px solid var(--line); background:#f0eae1; text-align:center; 
   <h2 id="contactTitle" style="font-family:'Playfair Display',serif">Birlikte güzel şeyler yaratalım</h2>
   <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
 
-  <!-- Formspree endpoint’ini kendi form kodunla değiştir -->
-  <form id="contact-form" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" novalidate>
-    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true"/>
+  <!-- FormSubmit AJAX (Formspree yerine, hesap gerektirmez) -->
+  <form id="contact-form" action="https://formsubmit.co/ajax/hello@eurekastudio.org" method="POST" novalidate>
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="hidden" name="_subject" value="Eureka Studio | Yeni iletişim mesajı">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="true">
+
     <label for="name">İsim</label>
     <input id="name" name="name" required placeholder="İsminiz" aria-required="true"/>
+
     <label for="email">E-posta</label>
     <input id="email" name="email" type="email" required placeholder="you@example.com" aria-required="true"/>
+
     <label for="message">Mesaj</label>
     <textarea id="message" name="message" rows="6" required placeholder="Fikrinizi bize yazın…" aria-required="true"></textarea>
+
     <button type="submit" class="cta">Gönder</button>
     <p id="status" role="status" aria-live="polite" class="muted" style="margin-top:6px"></p>
   </form>
@@ -263,7 +255,7 @@ footer{border-top:1px solid var(--line); background:#f0eae1; text-align:center; 
 </footer>
 
 <script>
-/* Basit dil anahtarı (varsayılan TR) */
+/* Dil anahtarı (varsayılan TR) */
 const I18N={
   en:{'heroTitle':'Eureka Studio — Handcrafted Candles & Calm Creations','heroSub':'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.','ctaWorks':'Explore Works'},
   tr:{'heroTitle':'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar','heroSub':'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.','ctaWorks':'Çalışmaları Keşfet'},
@@ -273,8 +265,9 @@ function setLang(lang){
   document.documentElement.setAttribute('dir', lang==='he'?'rtl':'ltr');
   document.documentElement.lang=lang;
   const t=I18N[lang]||I18N.tr;
-  const h=document.querySelector('#home h1'), p=document.querySelector('#home p'), c=document.querySelector('#home .ctas a[href="#works"]');
-  if(h) h.textContent=t.heroTitle; if(p) p.textContent=t.heroSub; if(c) c.textContent=t.ctaWorks;
+  document.querySelector('#home h1').textContent=t.heroTitle;
+  document.querySelector('#home p').textContent=t.heroSub;
+  document.querySelector('#home .ctas a[href="#works"]').textContent=t.ctaWorks;
   try{localStorage.setItem('eureka_lang',lang)}catch(e){}
 }
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
@@ -300,6 +293,7 @@ function applyFilter(cat){
 filterButtons.forEach(b=>b.addEventListener('click',()=>{
   filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));
   b.setAttribute('aria-selected','true'); applyFilter(b.dataset.cat);
+  if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});
 }));
 applyFilter('all');
 
@@ -307,20 +301,16 @@ applyFilter('all');
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
 document.querySelectorAll('#works-grid figure').forEach(fig=>{
   fig.addEventListener('click',()=>{
-    const im=fig.querySelector('img');
-    lbImg.src=im.src; lbImg.alt=im.alt;
-    lbCap.textContent=fig.querySelector('figcaption')?.textContent||'';
-    lb.classList.add('open'); document.body.style.overflow='hidden';
-    // Plausible lightbox event
-    const cap=(fig.querySelector('figcaption')?.textContent||'Unknown').trim();
-    const cat=fig.getAttribute('data-cat')||'unknown';
-    plausible('Gallery Lightbox Open', {props:{title:cap, category:cat}});
+    const im=fig.querySelector('img'); lbImg.src=im.src; lbImg.alt=im.alt;
+    const cap=fig.querySelector('figcaption')?.textContent||'';
+    lbCap.textContent=cap; lb.classList.add('open'); document.body.style.overflow='hidden';
+    if(window.plausible) plausible('Gallery Lightbox Open',{props:{title:cap,category:fig.dataset.cat||'unknown'}});
   });
 });
 document.getElementById('lbClose')?.addEventListener('click',()=>{ lb.classList.remove('open'); document.body.style.overflow='auto'; });
-lb?.addEventListener('click',e=>{ if(e.target===lb) { lb.classList.remove('open'); document.body.style.overflow='auto'; }});
+lb.addEventListener('click',e=>{ if(e.target===lb){ lb.classList.remove('open'); document.body.style.overflow='auto'; }});
 
-/* Görsellerde çift uzantı ve büyük/küçük düzeltme */
+/* Çift uzantı ve büyük/küçük düzeltme */
 document.querySelectorAll('img').forEach(function(el){
   el.addEventListener('error', function(){
     let s=this.getAttribute('src')||this.src;
@@ -330,7 +320,7 @@ document.querySelectorAll('img').forEach(function(el){
   });
 });
 
-/* HERO: farklı yolları sırayla dene; olmazsa galerinin ilk görseline düş */
+/* HERO: farklı yolları sırayla dene; olmazsa galeri ilk görsele düş */
 (function(){
   const img=document.getElementById('heroImg'); if(!img) return;
   const tries=[
@@ -340,58 +330,68 @@ document.querySelectorAll('img').forEach(function(el){
     '/home-candles-hero.jpg?v='+Date.now(),
     './images/home-candles-hero.JPG?v='+Date.now()
   ];
-  let i=0;
-  img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
+  let i=0; img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
   setTimeout(()=>{ if(!img.complete||img.naturalWidth===0){ const f=document.querySelector('#works img'); if(f) img.src=f.src; } },1500);
 })();
 
-/* Anchor ofset: sticky nav altında kesilmesin */
+/* Anchor ofset */
 (function(){
-  function offsetHash(){
-    const id=location.hash?.slice(1); if(!id) return;
+  function offsetHash(){ const id=location.hash?.slice(1); if(!id) return;
     const el=document.getElementById(id); if(!el) return;
-    const top=el.getBoundingClientRect().top + scrollY - 70;
-    scrollTo({top, behavior:'smooth'});
-  }
+    const top=el.getBoundingClientRect().top + scrollY - 70; scrollTo({top,behavior:'smooth'});}
   addEventListener('hashchange', offsetHash);
-  if(location.hash) setTimeout(offsetHash, 60);
+  if(location.hash) setTimeout(offsetHash,60);
 })();
 
-/* Olası ikinci kopyayı temizle (bazı mobil hostlar append ediyor) */
+/* Olası ikinci kopyayı temizle (bazı hostlar append ediyor) */
 (function(){
   const IDS=['home','about','works','instagram','contact'];
-  IDS.forEach(id=>{
-    const els=document.querySelectorAll('#'+id);
-    for(let i=1;i<els.length;i++){ els[i].remove(); }
-  });
+  IDS.forEach(id=>{ const els=document.querySelectorAll('#'+id); for(let i=1;i<els.length;i++){ els[i].remove(); }});
   const navs=document.querySelectorAll('nav'); for(let i=1;i<navs.length;i++){ navs[i].remove(); }
   const fts=document.querySelectorAll('footer'); for(let i=1;i<fts.length;i++){ fts[i].remove(); }
 })();
 
-/* Contact form (Formspree örneği) + Plausible form event */
-const form=document.getElementById('contact-form'); const statusEl=document.getElementById('status');
-if(form){
-  form.addEventListener('submit',async e=>{
-    plausible('Contact Form Submit');  // Plausible
-    e.preventDefault(); if(statusEl) statusEl.textContent='Gönderiliyor…';
-    try{
-      const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
-      if(res.ok){form.reset(); if(statusEl) statusEl.textContent='Teşekkürler! Mesajınız ulaştı.';}
-      else{if(statusEl) statusEl.textContent='Bir sorun oluştu.';}
-    }catch(_){if(statusEl) statusEl.textContent='Bağlantı sorunu.';}
-  });
-}
-
-/* Plausible ek eventler: IG tıklaması, dil değişimi, filtre */
+/* Instagram tıklama event’i */
 document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
-  a.addEventListener('click', ()=> plausible('Instagram Click'), {passive:true});
+  a.addEventListener('click',()=>{ if(window.plausible) plausible('Instagram Click'); },{passive:true});
 });
-document.querySelectorAll('[data-lang]').forEach(btn=>{
-  btn.addEventListener('click', ()=> plausible('Language Switch', {props:{lang:btn.dataset.lang||'unknown'}}), {passive:true});
-});
-document.querySelectorAll('.filter[data-cat]').forEach(b=>{
-  b.addEventListener('click', ()=> plausible('Gallery Filter', {props:{category:b.getAttribute('data-cat')||'unknown'}}), {passive:true});
-});
+
+/* İLETİŞİM FORMU — FormSubmit AJAX */
+(function(){
+  const form=document.getElementById('contact-form');
+  const status=document.getElementById('status');
+  if(!form) return;
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email=(form.querySelector('[name="email"]')?.value||'').trim();
+    const msg=(form.querySelector('[name="message"]')?.value||'').trim();
+    if(!email || !msg){ if(status) status.textContent='Lütfen e-posta ve mesaj alanını doldurun.'; return; }
+
+    if(status) status.textContent='Gönderiliyor…';
+    try{
+      const res=await fetch(form.action,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          name: form.querySelector('[name="name"]')?.value||'',
+          email, message: msg,
+          _subject: 'Eureka Studio | Yeni iletişim mesajı',
+          _template:'table'
+        })
+      });
+      if(res.ok){
+        if(window.plausible) plausible('Contact Form Submit');
+        form.reset();
+        if(status) status.textContent='Teşekkürler! Mesajınız ulaştı.';
+      }else{
+        if(status) status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.';
+      }
+    }catch(err){
+      if(status) status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.';
+    }
+  });
+})();
 </script>
 </body>
 </html>
