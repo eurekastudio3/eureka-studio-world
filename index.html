@@ -32,23 +32,74 @@ a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 section,footer{padding:48px 6%}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(245,239,231,.75);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-inner{padding:10px 6%;display:flex;gap:12px;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700}
-.brand img{height:28px}
-nav ul{list-style:none;display:flex;gap:12px;align-items:center}
-nav a{padding:8px 10px;border-radius:8px;font-weight:600}
-nav a.active{background:var(--line)}
-.lang{display:flex;gap:6px}
-.lang button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-weight:600}
+/* NAV — hizalama fix */
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(245,239,231,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  padding:12px 6%;
+  display:flex;
+  gap:20px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+}
+.brand img{
+  height:32px;
+  width:auto;
+}
+nav ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center;
+  margin-left:auto; /* logo–menü hizası */
+}
+nav a{
+  padding:8px 10px;
+  border-radius:8px;
+  font-weight:600;
+}
+nav a.active{ background:var(--line) }
+.lang{
+  display:flex;
+  gap:6px;
+  margin-left:10px;
+}
+.lang button{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:8px;
+  padding:6px 10px;
+  font-weight:600;
+}
 
 /* HERO */
-.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat}
+.hero{
+  position:relative;
+  min-height:70svh;
+  display:grid;
+  place-items:center;
+  padding:40px 6%;
+  isolation:isolate;
+  background:#111 center/cover no-repeat
+}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.58),rgba(0,0,0,.36) 45%,rgba(0,0,0,.24))}
 .hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
 .hero h1{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.01em;font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
-.hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em}
+.hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.35)}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-block;border:2px solid rgba(255,255,255,.92);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
@@ -74,7 +125,15 @@ nav a.active{background:var(--line)}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
 .item{break-inside:avoid;margin:0 0 14px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in}
-.item img{transition:transform .3s ease}
+.item img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  transition:transform .3s ease;
+  border-radius:8px;
+  max-height:280px; /* daha zarif boyut */
+}
 .item:hover img{transform:scale(1.02)}
 .item figcaption{padding:10px 12px;text-align:center;font-weight:600}
 
@@ -107,7 +166,7 @@ footer{border-top:1px solid var(--line);background:#f0eae1;text-align:center;fon
 <nav aria-label="Primary">
   <div class="nav-inner">
     <div class="brand">
-      <img src="./logo.png1.PNG" alt="Eureka Studio logo" width="28" height="28" decoding="async">
+      <img src="./logo.png1.PNG" alt="Eureka Studio logo" width="32" height="32" decoding="async">
       <span>EUREKA STUDIO</span>
     </div>
     <ul>
@@ -272,7 +331,7 @@ const secs=['home','about','works','instagram','contact'].map(id=>document.getEl
 function setActive(){
   let idx=0; secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top<=110) idx=i; });
   links.forEach(l=>{ l.classList.remove('active'); l.removeAttribute('aria-current'); });
-  if(links[idx]){ links[idx].classList.add('active'); links[idx].setAttribute('aria-current','true'); }
+  if(links[idx]){ l=links[idx]; l.classList.add('active'); l.setAttribute('aria-current','true'); }
 }
 document.addEventListener('scroll', setActive, {passive:true}); setActive();
 
