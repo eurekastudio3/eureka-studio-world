@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</title>
+<title>Eureka Studio  El Yapımı Mumlar & Sakin Tasarımlar</title>
 <link rel="canonical" href="https://www.eurekastudio.org/"/>
 
 <!-- SEO & Sosyal -->
@@ -11,7 +11,7 @@
 <meta name="keywords" content="el yapımı mum, soya mumu, epoksi tasarım, dekor, hediye, Eureka Studio"/>
 <meta property="og:site_name" content="Eureka Studio"/>
 <meta property="og:title" content="Eureka Studio  El Yapımı Mumlar & Sakin Tasarımlar"/>
-<meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar minimal, sıcak ve özenle üretilir."/>
+<meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar  minimal, sıcak ve özenle üretilir."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.eurekastudio.org/"/>
 <meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero.JPG"/>
@@ -27,7 +27,7 @@
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml"/>
 
 <!-- Kahraman görsel preload -->
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=5" fetchpriority="high"/>
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=6" fetchpriority="high"/>
 
 <!-- Yazı tipleri (TR/EN: Fraunces + Inter, HE: Heebo) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +85,7 @@ section,footer{padding:48px 6%}
 @media(max-width:480px){.brand-modern img{height:32px}.brand-modern span{display:none}.nav-right{gap:6px}.lang-pill{padding:6px 8px;font-size:.8rem}.btn-mini{padding:8px 10px;font-size:.8rem}.burger{padding:6px 8px}}
 .nav-modern{min-height:56px}
 
-/* RTL NAV düzenlemeleri */
+/* RTL NAV */
 :root[dir="rtl"] .nav-wrap{flex-direction:row-reverse}
 :root[dir="rtl"] .nav-right{margin-right:auto;margin-left:0;flex-direction:row-reverse;gap:8px}
 :root[dir="rtl"] .nav-center{margin-left:auto;margin-right:auto}
@@ -93,20 +93,31 @@ section,footer{padding:48px 6%}
 :root[dir="rtl"] .brand-modern{flex-direction:row-reverse}
 :root[dir="rtl"] .burger{order:2}
 
-/* HERO */
+/* HERO (overlay güçlendirildi) */
 @keyframes fadeInHero{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:scale(1)}}
-.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;border-bottom:1px solid var(--line);animation:fadeInHero 1.2s ease-out;color:#fff;text-align:center;background-image:url("./home-candles-hero.JPG?v=5"),url("./home-candles-hero-optimized.jpg?v=5");background-size:cover;background-repeat:no-repeat;background-position:center 46%}
+.hero{
+  position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;
+  isolation:isolate;border-bottom:1px solid var(--line);animation:fadeInHero 1.2s ease-out;
+  color:#fff;text-align:center;
+  background-image:url("./home-candles-hero.JPG?v=6"),url("./home-candles-hero-optimized.jpg?v=6");
+  background-size:cover;background-repeat:no-repeat;background-position:center 46%;
+}
 @media(min-width:900px){.hero{background-position:center 50%}}
-.hero::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(to bottom,rgba(0,0,0,.34),rgba(0,0,0,.26) 45%,rgba(0,0,0,.18))}
+/* Daha koyu: opaklık artırıldı */
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.62), rgba(0,0,0,.52) 45%, rgba(0,0,0,.42));
+}
 .hero .inner{position:relative;z-index:1;max-width:900px;margin-inline:auto}
-.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(24px,5.6vw,40px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.4)}
-.hero p{font-size:clamp(14px,2.4vw,17px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 7px rgba(0,0,0,.35)}
+.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(24px,5.6vw,40px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.5)}
+.hero p{font-size:clamp(14px,2.4vw,17px);opacity:.98;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 7px rgba(0,0,0,.45)}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-block;border:2px solid color-mix(in srgb,var(--gold),#ffffff 20%);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700;transition:transform .14s ease}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12);transform:translateY(-1px)}
 .scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
 
-/* RTL tipografi: gövde ve başlıklar Heebo, aralıklar */
+/* RTL tipografi */
 :root[dir="rtl"] body{font-family:Heebo, system-ui, -apple-system, Segoe UI, Arial, sans-serif; line-height:1.75; letter-spacing:.02em; word-spacing:.04em}
 :root[dir="rtl"] h1, :root[dir="rtl"] h2, :root[dir="rtl"] h3, :root[dir="rtl"] h4{font-family:Heebo, sans-serif; letter-spacing:.01em}
 :root[dir="rtl"] .hero h1{font-size:clamp(24px,5.2vw,38px)}
@@ -132,7 +143,7 @@ section,footer{padding:48px 6%}
 .step strong{display:block;margin-bottom:.25em}
 .badge{display:inline-block;background:color-mix(in srgb,var(--brand) 14%, #fff 86%);border:1px solid var(--brand);color:var(--brand-strong);border-radius:999px;padding:6px 10px;font-weight:800;font-size:.9rem}
 
-/* RTL içerik hizaları */
+/* RTL içerik */
 :root[dir="rtl"] #about{text-align:right}
 :root[dir="rtl"] .about-grid{direction:rtl}
 :root[dir="rtl"] .pills{justify-content:flex-end}
@@ -163,7 +174,7 @@ section,footer{padding:48px 6%}
 .lb-cap{color:#fff;text-align:center;margin-top:8px}
 .lb-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer}
 
-/* RTL küçük dokunuşlar */
+/* RTL dokunuşlar */
 :root[dir="rtl"] .works-head{flex-direction:row-reverse}
 :root[dir="rtl"] .filters{flex-direction:row-reverse}
 :root[dir="rtl"] .lb-close{left:8px;right:auto}
@@ -231,7 +242,8 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <button class="lang-pill" data-lang="he" aria-label="עברית">HE</button>
       <div class="ig-cta">
         <a class="btn-mini" href="#works">Shop</a>
-        <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener">DM</a>
+        <!-- DM DÜZELTİLDİ -->
+        <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener" aria-label="Instagram DM">DM</a>
       </div>
       <button class="burger" id="openMenu" aria-label="Menüyü aç">☰</button>
     </div>
@@ -258,7 +270,8 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       </div>
       <div class="ig-cta" style="margin-top:8px;display:flex;gap:8px">
         <a class="btn-mini" href="#works">Shop</a>
-        <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener">DM</a>
+        <!-- DM DÜZELTİLDİ (Mobil) -->
+        <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener" aria-label="Instagram DM">DM</a>
       </div>
     </div>
   </div>
@@ -267,7 +280,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 <!-- HERO -->
 <section id="home" class="hero reveal" aria-labelledby="heroTitle">
   <div class="inner">
-    <h1 id="heroTitle" data-i18n="heroTitle">Eureka Studio El Yapımı Mumlar & Sakin Tasarımlar</h1>
+    <h1 id="heroTitle" data-i18n="heroTitle">Eureka Studio  El Yapımı Mumlar & Sakin Tasarımlar</h1>
     <p data-i18n="heroSub">El dökümü soya mumları ve epoksi tasarımlar minimal, sıcak ve özenle üretilir.</p>
     <div class="ctas">
       <a href="#works" class="cta" data-i18n="ctaWorks">Çalışmaları Keşfet</a>
@@ -277,7 +290,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
   <div class="scroll-hint" aria-hidden="true">↓</div>
 </section>
 
-<!-- ABOUT (çok dilli) -->
+<!-- ABOUT -->
 <section id="about" class="reveal" aria-labelledby="aboutTitle">
   <div class="intro">
     <h2 id="aboutTitle" data-i18n="aboutTitle">Sakin. El emeği. Duyarlı.</h2>
@@ -306,7 +319,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
         </div>
         <div class="step">
           <strong data-i18n="proc3Title">3) Kür & Etiket</strong>
-          <p data-i18n="proc3Text">Kürlenme tamamlandığında yüzey finisajı, etiket ve paket  hepsi elde.</p>
+          <p data-i18n="proc3Text">Kürlenme tamamlandığında yüzey finisajı, etiket ve paket hepsi elde.</p>
         </div>
       </div>
       <div class="kv-cards">
@@ -512,7 +525,7 @@ function applyTranslations(lang){
   });
 }
 
-/* Dil kurulum + RTL font/ayarları otomatik */
+/* Dil kurulum + RTL */
 function setLang(lang){
   document.documentElement.lang=lang;
   document.documentElement.dir=(lang==='he')?'rtl':'ltr';
@@ -533,7 +546,7 @@ const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting)
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* Mobile menu + focus trap */
-(function(){const mm=document.getElementById('mobileMenu');const open=document.getElementById('openMenu');const close=document.getElementById('closeMenu');let lastFocus=null;function focusTrap(e){const f=mm.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])']);if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.key==='Tab'){if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}else if(e.key==='Escape'){hide();}}function show(){lastFocus=document.activeElement;mm.hidden=false;document.body.style.overflow='hidden';mm.addEventListener('keydown',focusTrap);mm.querySelector('a,button')?.focus();window.plausible&&plausible('Mobile Menu Open');}function hide(){mm.hidden=true;document.body.style.overflow='auto';mm.removeEventListener('keydown',focusTrap);lastFocus?.focus();}open?.addEventListener('click',show);close?.addEventListener('click',hide);mm?.addEventListener('click',e=>{if(e.target===mm)hide();});document.querySelectorAll('[data-mm]').forEach(a=>a.addEventListener('click',hide));})();
+(function(){const mm=document.getElementById('mobileMenu');const open=document.getElementById('openMenu');const close=document.getElementById('closeMenu');let lastFocus=null;function focusTrap(e){const f=mm.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])');if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.key==='Tab'){if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}else if(e.key==='Escape'){hide();}}function show(){lastFocus=document.activeElement;mm.hidden=false;document.body.style.overflow='hidden';mm.addEventListener('keydown',focusTrap);mm.querySelector('a,button')?.focus();window.plausible&&plausible('Mobile Menu Open');}function hide(){mm.hidden=true;document.body.style.overflow='auto';mm.removeEventListener('keydown',focusTrap);lastFocus?.focus();}open?.addEventListener('click',show);close?.addEventListener('click',hide);mm?.addEventListener('click',e=>{if(e.target===mm)hide();});document.querySelectorAll('[data-mm]').forEach(a=>a.addEventListener('click',hide));})();
 
 /* Filtre + sayılar */
 const filterButtons=[...document.querySelectorAll('.filter')];
