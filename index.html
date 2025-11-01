@@ -1,164 +1,110 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="light">
+<html lang="tr" dir="ltr" data-theme="light">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</title>
 <link rel="canonical" href="https://www.eurekastudio.org/"/>
-<meta name="description" content="Eureka Studio: el dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
+
+<!-- (2) SEO & Sosyal -->
+<meta name="description" content="Eureka Studio: el dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir. El emeği mum koleksiyonlarını keşfedin."/>
+<meta name="keywords" content="el yapımı mum, soya mumu, epoksi tasarım, dekor, hediye, Eureka Studio"/>
 <meta property="og:site_name" content="Eureka Studio"/>
 <meta property="og:title" content="Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar"/>
 <meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.eurekastudio.org/"/>
 <meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero.JPG"/>
+<meta property="og:image:width" content="2000"/>
+<meta property="og:image:height" content="1200"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="theme-color" content="#e9e3da"/>
+<meta name="twitter:title" content="Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar"/>
+<meta name="twitter:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
+<meta name="twitter:image" content="https://www.eurekastudio.org/home-candles-hero.JPG"/>
+<!-- Site doğrulama alanları (yerine kendi kodlarını koy) -->
+<!-- <meta name="google-site-verification" content="..."> -->
+<!-- <meta name="msvalidate.01" content="..."> -->
+
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180"/>
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml"/>
 
-<!-- Kahraman görseli: orijinali preload + cache-bust -->
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=2" fetchpriority="high"/>
+<!-- (3) Performans: Kahraman görsel preload + cache-bust -->
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=3" fetchpriority="high"/>
 
-<!-- Yazı tipleri -->
+<!-- (3) Performans: Font preload + display swap -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
 <!-- Plausible -->
 <script defer data-domain="eurekastudio.org" src="https://plausible.io/js/script.js"></script>
 <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 
 <style>
-/* ===== THEME TOKENS ===== */
+/* ====== (3) Kritik CSS + Tema ====== */
 :root{
   --bg:#f5efe7; --ink:#111; --muted:#5b5b5b; --line:#e5dfd7;
   --brand:#C0844A; --brand-strong:#9A5A2E; --panel:#fff; --radius:12px; --shadow:0 10px 30px rgba(0,0,0,.06);
-  --ok:#1f7a4f; --gold:#D6A56A;
+  --ok:#1f7a4f; --gold:#D6A56A; --a11y:#0a7; --danger:#cc1439;
 }
 :root[data-theme="dark"]{
   --bg:#2b231b; --panel:#332a21; --ink:#efe7dc; --muted:#cbb9a5;
   --line:#4a3e33; --brand:#D09A66; --brand-strong:#B37444; --gold:#C79663; --shadow:0 14px 40px rgba(0,0,0,.35);
 }
-
-/* ===== BASE ===== */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);line-height:1.65;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-img{max-width:100%;display:block}
+img{max-width:100%;display:block;height:auto}
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
 section,footer{padding:48px 6%}
 .reveal{opacity:0;transform:translateY(14px);will-change:opacity,transform;transition:opacity .6s ease, transform .6s ease}
 .reveal.show{opacity:1;transform:none}
 
-/* Tema butonu */
-.theme-toggle{
-  position:fixed; right:14px; bottom:14px; z-index:9999;
-  border:1px solid var(--line); background:var(--panel); color:var(--ink);
-  border-radius:999px; padding:10px 12px; box-shadow:var(--shadow); font-weight:700;
-}
+/* Tema ve erişilebilirlik yardımcıları */
+.theme-toggle{position:fixed;right:14px;bottom:14px;z-index:9999;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:10px 12px;box-shadow:var(--shadow);font-weight:700}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* ===== NAV (cam + bakır, burger en sağda) ===== */
-.nav-modern{
-  position:sticky; top:0; z-index:1000;
-  backdrop-filter: blur(14px);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, #000 20%);
-  transition: box-shadow .25s ease, background .25s ease, transform .25s ease;
-}
-.nav-modern::after{
-  content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px;
-  background: linear-gradient(90deg, transparent, var(--brand-strong), var(--brand), transparent);
-  opacity:.85;
-}
-.nav-modern.scrolled{
-  background: color-mix(in srgb, var(--bg) 96%, #fff 4%);
-  box-shadow: 0 10px 28px rgba(0,0,0,.12);
-}
-.nav-wrap{max-width:1200px; margin:0 auto; padding:10px 6%; display:flex; align-items:center; gap:18px}
-.brand-modern{display:flex; align-items:center; gap:10px; font-family:Fraunces,serif; font-weight:700; letter-spacing:.04em}
-.brand-modern img{height:40px; width:auto}
+/* ====== NAV (1: mikro animasyonlar) ====== */
+.nav-modern{position:sticky;top:0;z-index:1000;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 80%, #000 20%);transition:box-shadow .25s ease, background .25s ease, transform .25s ease}
+.nav-modern::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-strong),var(--brand),transparent);opacity:.85}
+.nav-modern.scrolled{background:color-mix(in srgb,var(--bg) 96%,#fff 4%);box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.nav-wrap{max-width:1200px;margin:0 auto;padding:10px 6%;display:flex;align-items:center;gap:18px}
+.brand-modern{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;letter-spacing:.04em}
+.brand-modern img{height:40px;width:auto}
 .brand-modern span{font-size:1.05rem}
-
-.nav-center{margin-left:auto; margin-right:auto}
-.nav-menu{list-style:none; display:flex; gap:18px; align-items:center; flex-wrap:wrap}
-.nav-link{position:relative; padding:12px 10px; font-weight:700; letter-spacing:.01em; opacity:.95}
-.nav-link::after{
-  content:""; position:absolute; left:16%; right:16%; bottom:8px; height:2px;
-  background: linear-gradient(90deg, transparent, var(--brand-strong), var(--brand), transparent);
-  transform: scaleX(0); transform-origin:center; transition: transform .28s ease;
-}
-.nav-link:hover::after, .nav-link[aria-current="true"]::after{ transform: scaleX(1) }
-.nav-link[aria-current="true"]{ opacity:1 }
-
-/* Sağ blok (burger en sağda) */
-.nav-right{margin-left:auto; justify-content:flex-end; display:flex; align-items:center; gap:8px}
-.lang-pill{
-  border:1px solid var(--line); background:var(--panel); color:var(--ink);
-  padding:9px 12px; border-radius:999px; font-weight:700; line-height:1;
-}
-.ig-cta{ display:flex; gap:8px }
-.btn-mini{
-  border:1px solid var(--brand-strong); color:#fff;
-  background: linear-gradient(180deg, var(--brand) 0%, var(--brand-strong) 100%);
-  padding:9px 12px; border-radius:999px; font-weight:800; line-height:1;
-  box-shadow: 0 0 10px color-mix(in srgb, var(--brand) 60%, transparent); transition: transform .2s, box-shadow .2s, filter .2s;
-}
-.btn-mini:hover{ transform: translateY(-1px); box-shadow:0 0 14px var(--brand); filter:saturate(1.05) }
-
-.burger{
-  order:2; /* en sağ uç */
-  margin-left:0; margin-right:4px;
-  border:1px solid var(--line); background:var(--panel);
-  border-radius:10px; padding:8px 10px; font-weight:800;
-  box-shadow:0 0 8px color-mix(in srgb, var(--gold) 45%, transparent);
-  transition:box-shadow .2s, transform .2s;
-}
-.burger:hover{box-shadow:0 0 14px var(--gold); transform:scale(1.05);}
-
-@media (max-width:1024px){ .nav-center{display:none} }
-.nav-wrap{padding:10px 4%; gap:12px}
-@media (max-width:480px){
-  .brand-modern img{height:32px}
-  .brand-modern span{display:none}
-  .nav-right{gap:6px}
-  .lang-pill{padding:6px 8px; font-size:.8rem}
-  .btn-mini{padding:8px 10px; font-size:.8rem}
-  .burger{padding:6px 8px}
-}
+.nav-center{margin-left:auto;margin-right:auto}
+.nav-menu{list-style:none;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.nav-link{position:relative;padding:12px 10px;font-weight:700;letter-spacing:.01em;opacity:.95;transform:translateZ(0)}
+.nav-link::after{content:"";position:absolute;left:16%;right:16%;bottom:8px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-strong),var(--brand),transparent);transform:scaleX(0);transform-origin:center;transition:transform .28s ease}
+.nav-link:hover::after,.nav-link[aria-current="true"]::after{transform:scaleX(1)}
+.nav-right{margin-left:auto;justify-content:flex-end;display:flex;align-items:center;gap:8px}
+.lang-pill{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 12px;border-radius:999px;font-weight:700;line-height:1}
+.btn-mini{border:1px solid var(--brand-strong);color:#fff;background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%);padding:9px 12px;border-radius:999px;font-weight:800;line-height:1;box-shadow:0 0 10px color-mix(in srgb,var(--brand) 60%,transparent);transition:transform .15s ease, box-shadow .2s ease}
+.btn-mini:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 0 14px var(--brand)}
+.burger{order:2;margin-left:0;margin-right:4px;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 10px;font-weight:800;box-shadow:0 0 8px color-mix(in srgb,var(--gold) 45%,transparent);transition:box-shadow .2s, transform .12s}
+.burger:hover{box-shadow:0 0 14px var(--gold);transform:scale(1.05)}
+@media(max-width:1024px){.nav-center{display:none}}
+.nav-wrap{padding:10px 4%;gap:12px}
+@media(max-width:480px){.brand-modern img{height:32px}.brand-modern span{display:none}.nav-right{gap:6px}.lang-pill{padding:6px 8px;font-size:.8rem}.btn-mini{padding:8px 10px;font-size:.8rem}.burger{padding:6px 8px}}
 .nav-modern{min-height:56px}
 
-/* ===== HERO (arka plan resmi ile net ve stabil) ===== */
-.hero{
-  position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;
-  isolation:isolate;border-bottom:1px solid var(--line);animation:fadeInHero 1.2s ease-out;
-  color:#fff;text-align:center;
-  /* Görsel doğrudan arka plan olarak; cache-bust ile */
-  background-image: url("./home-candles-hero.JPG?v=2"), url("./home-candles-hero-optimized.jpg?v=2");
-  background-size: cover; background-repeat: no-repeat;
-  /* Kadraj: mobilde biraz yukarı, desktopta merkez */
-  background-position: center 42%;
-}
-/* Kadrajı geniş ekranda hafif aşağı al */
-@media(min-width:900px){ .hero{ background-position: center 50%; } }
-
-/* Karartmayı minimuma indir — yazı okunur kalsın, foto boğulmasın */
-.hero::before{
-  content:""; position:absolute; inset:0; z-index:0;
-  background: linear-gradient(to bottom, rgba(0,0,0,.34), rgba(0,0,0,.26) 45%, rgba(0,0,0,.18));
-}
+/* ====== HERO (3: kaynak sabitleme) ====== */
+@keyframes fadeInHero{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:scale(1)}}
+.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;border-bottom:1px solid var(--line);animation:fadeInHero 1.2s ease-out;color:#fff;text-align:center;background-image:url("./home-candles-hero.JPG?v=3"),url("./home-candles-hero-optimized.jpg?v=3");background-size:cover;background-repeat:no-repeat;background-position:center 46%}
+@media(min-width:900px){.hero{background-position:center 50%}}
+.hero::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(to bottom,rgba(0,0,0,.34),rgba(0,0,0,.26) 45%,rgba(0,0,0,.18))}
 .hero .inner{position:relative;z-index:1;max-width:900px;margin-inline:auto}
-.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(24px,5.6vw,40px);line-height:1.12;margin-bottom:.4em;
-  text-shadow:0 3px 10px rgba(0,0,0,.4)}
+.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(24px,5.6vw,40px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.4)}
 .hero p{font-size:clamp(14px,2.4vw,17px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 7px rgba(0,0,0,.35)}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.cta{display:inline-block;border:2px solid color-mix(in srgb, var(--gold), #ffffff 20%);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
-.cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
+.cta{display:inline-block;border:2px solid color-mix(in srgb,var(--gold),#ffffff 20%);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700;transition:transform .14s ease}
+.cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12);transform:translateY(-1px)}
 .scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
-@keyframes fadeInHero { from{opacity:0; transform:scale(1.03)} to{opacity:1; transform:scale(1)} }
 
-/* ===== ABOUT ===== */
+/* ====== ABOUT ====== */
 #about{background:#f8f1e8;text-align:center;padding:80px 6%}
 #about h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.4em}
 #about p{color:var(--muted)}
@@ -167,7 +113,7 @@ section,footer{padding:48px 6%}
 .kv-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow)}
 .kv-card h4{font-size:1rem;margin-bottom:.25em}
 
-/* ===== WORKS + Masonry ===== */
+/* ====== WORKS (1: fade-in) ====== */
 #works{background:#fdf8f3;text-align:center;padding:80px 6%}
 .works-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
 .works-head h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
@@ -176,7 +122,6 @@ section,footer{padding:48px 6%}
 .filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--ink);position:relative;transition:all .25s ease}
 .filter:hover,.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .filter .count{opacity:.85;font-weight:700;margin-left:.35em}
-
 .masonry{column-gap:14px;column-count:1;margin-top:14px}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
@@ -184,31 +129,34 @@ section,footer{padding:48px 6%}
 .item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .35s ease;max-height:280px}
 .item:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.12)}
 .item:hover img{transform:scale(1.03)}
-.item::after{content:""; position:absolute; inset:auto -20% 35% -20%; height:60%; background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%); opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px)}
-.item:hover::after{opacity:.7; transform:translateY(-8px)}
+.item::after{content:"";position:absolute;inset:auto -20% 35% -20%;height:60%;background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb,var(--gold),transparent 45%), transparent 70%);opacity:0;transition:opacity .35s ease, transform .35s ease;pointer-events:none;filter:blur(8px)}
+.item:hover::after{opacity:.7;transform:translateY(-8px)}
 
-/* Lightbox */
+/* Lightbox (1: anim + 4: a11y) */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999}
-.lb.open{display:flex}
-.lb-inner{max-width:min(92vw,1200px);max-height:90vh}
+.lb.open{display:flex;animation:fadeInHero .18s ease}
+.lb-inner{max-width:min(92vw,1200px);max-height:90vh;position:relative}
 .lb-img{max-width:100%;max-height:88vh;border-radius:12px}
 .lb-cap{color:#fff;text-align:center;margin-top:8px}
+.lb-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer}
 
-/* ===== INSTAGRAM ===== */
+/* ====== INSTAGRAM (6: hover caption + events) ====== */
 #instagram .ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-#instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+#instagram .ig-grid a{position:relative;display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
-#instagram .ig-grid a:active img{transform:scale(.98)}
+#instagram .ig-grid a:hover img{transform:scale(1.04)}
+#instagram .ig-grid a .cap{position:absolute;inset:auto 0 0 0;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent);color:#fff;padding:6px 8px;font-size:.9rem;opacity:0;transform:translateY(8px);transition:opacity .2s, transform .2s}
+#instagram .ig-grid a:hover .cap{opacity:1;transform:translateY(0)}
 #instagram .cta{background:var(--brand);border-color:var(--brand);color:#fffaf3;box-shadow:0 3px 10px rgba(0,0,0,.15);transition:background .3s, transform .25s, box-shadow .25s}
-#instagram .cta:hover,#instagram .cta:focus-visible{background:color-mix(in srgb, var(--brand), #ffffff 15%);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
+#instagram .cta:hover,#instagram .cta:focus-visible{background:color-mix(in srgb,var(--brand),#ffffff 15%);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
 
-/* ===== CONTACT ===== */
-#contact{background:color-mix(in srgb, var(--bg) 94%, #fff 6%);border-top:1px solid var(--line);padding:72px 6%}
+/* ====== CONTACT ====== */
+#contact{background:color-mix(in srgb,var(--bg) 94%,#fff 6%);border-top:1px solid var(--line);padding:72px 6%}
 #contact h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.35em}
 .contact-card{max-width:640px;margin:16px auto 0;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
 #contact label{display:block;margin-top:8px;font-weight:600}
 #contact input,#contact textarea{width:100%;margin:.3rem 0 .7rem;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;transition:border-color .25s, box-shadow .25s}
-#contact input:focus,#contact textarea:focus{border-color:color-mix(in srgb, var(--brand), #fff 10%);box-shadow:0 0 0 4px color-mix(in srgb, var(--brand) 20%, transparent)}
+#contact input:focus,#contact textarea:focus{border-color:color-mix(in srgb,var(--brand),#fff 10%);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 20%, transparent)}
 #sendBtn{transition:transform .18s, box-shadow .25s, background .25s;box-shadow:0 3px 10px rgba(0,0,0,.06)}
 #sendBtn:hover:not([disabled]){transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
 .checkwrap{display:none;align-items:center;gap:8px;color:var(--ok);margin-top:10px}
@@ -217,32 +165,30 @@ section,footer{padding:48px 6%}
 .checkwrap.show svg{animation:draw .8s ease forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 
-/* ===== FOOTER + Back-to-Top ===== */
-footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%;font-size:.95rem}
+/* ====== FOOTER + Back-to-Top ====== */
+footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%;font-size:.95rem}
 #toTopBtn{position:fixed;right:14px;bottom:66px;z-index:9998;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:10px 12px;box-shadow:var(--shadow);font-weight:700;cursor:pointer;display:none}
 #toTopBtn:hover{transform:translateY(-1px)}
 
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
   .item img,.cta,.item::after,#toTopBtn:hover{transition:none;transform:none}
 }
 </style>
 </head>
-
 <body>
 
 <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">🌙</button>
-<div id="toast" class="toast" role="status" aria-live="polite" style="display:none">Teşekkürler! Mesajınız ulaştı.</div>
+<div id="toast" class="toast sr-only" role="status" aria-live="polite">Teşekkürler! Mesajınız ulaştı.</div>
 
 <!-- ===== NAV ===== -->
 <nav class="nav-modern" aria-label="Primary">
   <div class="nav-wrap">
     <a class="brand-modern" href="#home">
-      <img src="./logo.png1.PNG" alt="Eureka Studio" width="180" height="180" decoding="async" loading="eager" fetchpriority="high">
+      <img src="./logo.png1.PNG" alt="Eureka Studio logosu" width="180" height="180" decoding="async" loading="eager" fetchpriority="high">
       <span>EUREKA STUDIO</span>
     </a>
-
     <div class="nav-center" role="navigation">
       <ul class="nav-menu">
         <li><a class="nav-link" href="#home" data-nav>Home</a></li>
@@ -252,46 +198,44 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
         <li><a class="nav-link" href="#contact" data-nav>Contact</a></li>
       </ul>
     </div>
-
     <div class="nav-right">
-      <button class="lang-pill" data-lang="en">EN</button>
-      <button class="lang-pill" data-lang="tr">TR</button>
-      <button class="lang-pill" data-lang="he">HE</button>
+      <button class="lang-pill" data-lang="en" aria-label="Switch to English">EN</button>
+      <button class="lang-pill" data-lang="tr" aria-label="Türkçe">TR</button>
+      <button class="lang-pill" data-lang="he" aria-label="עברית">HE</button>
       <div class="ig-cta">
         <a class="btn-mini" href="#works">Shop</a>
         <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener">DM</a>
       </div>
-      <button class="burger" id="openMenu" aria-label="Menü">☰</button>
+      <button class="burger" id="openMenu" aria-label="Menüyü aç">☰</button>
     </div>
   </div>
 </nav>
 
-<!-- Mobile overlay -->
-<div class="mobile-menu" id="mobileMenu" aria-modal="true" role="dialog" aria-label="Site menu" style="display:none;position:fixed;inset:0;z-index:1100;background: color-mix(in srgb, var(--bg) 96%, #000 4%);backdrop-filter: blur(10px);">
+<!-- Mobile menu (4: a11y focus trap) -->
+<div class="mobile-menu" id="mobileMenu" aria-modal="true" role="dialog" aria-label="Site menu" hidden style="position:fixed;inset:0;z-index:1100;background:color-mix(in srgb,var(--bg) 96%, #000 4%);backdrop-filter:blur(10px);">
   <div class="mm-inner" style="max-width:1200px;margin:0 auto;padding:18px 6% 32px">
     <div class="mm-top" style="display:flex;align-items:center;justify-content:space-between">
       <strong style="font-family:Fraunces,serif">EUREKA STUDIO</strong>
-      <button class="mm-close" id="closeMenu" style="border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:8px 10px; font-weight:800">✕</button>
+      <button class="mm-close" id="closeMenu" aria-label="Menüyü kapat" style="border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 10px;font-weight:800">✕</button>
     </div>
-    <div class="mm-list" style="margin-top:18px; display:grid; gap:8px">
-      <a href="#home" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Home</a>
-      <a href="#about" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">About</a>
-      <a href="#works" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Works</a>
-      <a href="#instagram" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Instagram</a>
-      <a href="#contact" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Contact</a>
-      <div style="display:flex; gap:8px; margin-top:8px">
+    <div class="mm-list" style="margin-top:18px;display:grid;gap:8px">
+      <a href="#home" data-mm style="padding:14px 10px;border:1px solid var(--line);border-radius:12px;font-weight:700">Home</a>
+      <a href="#about" data-mm style="padding:14px 10px;border:1px solid var(--line);border-radius:12px;font-weight:700">About</a>
+      <a href="#works" data-mm style="padding:14px 10px;border:1px solid var(--line);border-radius:12px;font-weight:700">Works</a>
+      <a href="#instagram" data-mm style="padding:14px 10px;border:1px solid var(--line);border-radius:12px;font-weight:700">Instagram</a>
+      <a href="#contact" data-mm style="padding:14px 10px;border:1px solid var(--line);border-radius:12px;font-weight:700">Contact</a>
+      <div style="display:flex;gap:8px;margin-top:8px">
         <button class="lang-pill" data-lang="en">EN</button>
         <button class="lang-pill" data-lang="tr">TR</button>
         <button class="lang-pill" data-lang="he">HE</button>
       </div>
-      <div class="ig-cta" style="margin-top:8px; display:flex; gap:8px">
+      <div class="ig-cta" style="margin-top:8px;display:flex;gap:8px">
         <a class="btn-mini" href="#works">Shop</a>
         <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener">DM</a>
       </div>
     </div>
   </div>
 </div>
-<!-- ===== /NAV ===== -->
 
 <!-- ===== HERO ===== -->
 <section id="home" class="hero reveal" aria-labelledby="heroTitle">
@@ -339,73 +283,117 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
     </div>
   </div>
 
-  <div class="masonry" id="works-grid">
+  <div class="masonry" id="works-grid" aria-live="polite">
     <!-- Candles -->
-    <figure class="item reveal" data-cat="candles"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu" loading="lazy" decoding="async" width="800" height="600"><figcaption>Caramel Crumble</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu" loading="lazy" decoding="async" width="800" height="600"><figcaption>Choco Cream</figcaption></figure>
+    <figure class="item reveal" data-cat="candles">
+      <img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu, karamelli doku" loading="lazy" decoding="async" width="800" height="600">
+      <figcaption>Caramel Crumble</figcaption>
+    </figure>
+    <figure class="item reveal" data-cat="candles">
+      <img src="./choco-cream.JPG" alt="Choco Cream — soya mumu, kakao krem notaları" loading="lazy" decoding="async" width="800" height="600">
+      <figcaption>Choco Cream</figcaption>
+    </figure>
 
     <!-- GOLDEN NOIR → epoxy -->
-    <figure class="item reveal" data-cat="epoxy"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi obje" loading="lazy" decoding="async" width="800" height="800"><figcaption>Golden Noir (Epoksi)</figcaption></figure>
+    <figure class="item reveal" data-cat="epoxy">
+      <img src="./golden-noir.PNG" alt="Golden Noir — epoksi obje, siyah ve altın dokular" loading="lazy" decoding="async" width="800" height="800">
+      <figcaption>Golden Noir (Epoksi)</figcaption>
+    </figure>
 
-    <figure class="item reveal" data-cat="candles"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu" loading="lazy" decoding="async" width="800" height="600"><figcaption>Summer Cocktail</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu" loading="lazy" decoding="async" width="800" height="600"><figcaption>Sunset Orange</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu" loading="lazy" decoding="async" width="800" height="800"><figcaption>Bedside Calm</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./candles.png.jpg" alt="El yapımı farklı mumlar" loading="lazy" decoding="async" width="800" height="600"><figcaption>Assorted Candles</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — soya mumu" loading="lazy" decoding="async" width="800" height="800"><figcaption>Evil Eye Candle</figcaption></figure>
+    <figure class="item reveal" data-cat="candles">
+      <img src="./summer-cocktail.JPG" alt="Summer Cocktail — yaz notalarıyla soya mumu" loading="lazy" decoding="async" width="800" height="600">
+      <figcaption>Summer Cocktail</figcaption>
+    </figure>
+    <figure class="item reveal" data-cat="candles">
+      <img src="./sunset-orange.JPG" alt="Sunset Orange — gün batımı tonlarında soya mumu" loading="lazy" decoding="async" width="800" height="600">
+      <figcaption>Sunset Orange</figcaption>
+    </figure>
+    <figure class="item reveal" data-cat="candles">
+      <img src="./bedside.lamb.png.JPG" alt="Bedside Calm — başucuna uygun sakin mumu" loading="lazy" decoding="async" width="800" height="800">
+      <figcaption>Bedside Calm</figcaption>
+    </figure>
+    <figure class="item reveal" data-cat="candles">
+      <img src="./candles.png.jpg" alt="Assorted — farklı form ve boyutlarda el yapımı mumlar" loading="lazy" decoding="async" width="800" height="600">
+      <figcaption>Assorted Candles</figcaption>
+    </figure>
+    <figure class="item reveal" data-cat="candles">
+      <img src="./evil-eye.jpg.jpg" alt="Evil Eye — nazar boncuk temalı soya mumu" loading="lazy" decoding="async" width="800" height="800">
+      <figcaption>Evil Eye Candle</figcaption>
+    </figure>
 
     <!-- KESME TAHTASI → epoxy -->
-    <figure class="item reveal" data-cat="epoxy"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async" width="800" height="600"><figcaption>Epoxy Board</figcaption></figure>
+    <figure class="item reveal" data-cat="epoxy">
+      <img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası — mermerimsi geçişler" loading="lazy" decoding="async" width="800" height="600">
+      <figcaption>Epoxy Board</figcaption>
+    </figure>
 
     <!-- Accessories -->
-    <figure class="item reveal" data-cat="accessories"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi" loading="lazy" decoding="async" width="800" height="800"><figcaption>Pet Tags</figcaption></figure>
-    <figure class="item reveal" data-cat="accessories"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif" loading="lazy" decoding="async" width="800" height="800"><figcaption>Pet Tags (Alt)</figcaption></figure>
+    <figure class="item reveal" data-cat="accessories">
+      <img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi — kişiselleştirilebilir" loading="lazy" decoding="async" width="800" height="800">
+      <figcaption>Pet Tags</figcaption>
+    </figure>
+    <figure class="item reveal" data-cat="accessories">
+      <img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif model" loading="lazy" decoding="async" width="800" height="800">
+      <figcaption>Pet Tags (Alt)</figcaption>
+    </figure>
 
     <!-- NEW: Eureka Lumi Collection (Candles) -->
     <figure class="item reveal" data-cat="candles">
-      <img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — soya mumu" loading="lazy" decoding="async" width="800" height="800">
+      <img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — seçki soya mumları" loading="lazy" decoding="async" width="800" height="800">
       <figcaption>Eureka Lumi Collection</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- ===== LIGHTBOX ===== -->
-<div class="lb" id="lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox" aria-modal="true" role="dialog" aria-label="Büyük görsel">
   <div class="lb-inner">
     <img class="lb-img" id="lbImg" alt="">
     <div class="lb-cap" id="lbCap"></div>
-    <button class="lb-close" id="lbClose" aria-label="Kapat" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:40px;height:40px;font-size:20px;cursor:pointer">✕</button>
+    <button class="lb-close" id="lbClose" aria-label="Kapat">✕</button>
   </div>
 </div>
 
-<!-- ===== INSTAGRAM ===== -->
+<!-- INSTAGRAM -->
 <section id="instagram" class="reveal" aria-labelledby="igTitle">
   <h2 id="igTitle" style="font-family:Fraunces,serif">Instagram’dan</h2>
   <p class="muted">Sakin üretim sürecimizi ve paylaşımlarımızı takip et.</p>
   <div class="ig-grid" style="margin-top:12px">
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./choco-cream.JPG" alt="Stüdyo — Choco Cream" loading="lazy" decoding="async" width="800" height="800"></a>
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./evil-eye.jpg.jpg" alt="Stüdyo — Evil Eye (soya mumu)" loading="lazy" decoding="async" width="800" height="800"></a>
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./sunset-orange.JPG" alt="Stüdyo — Sunset Orange" loading="lazy" decoding="async" width="800" height="800"></a>
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./eureka.lumi.JPG" alt="Stüdyo — Eureka Lumi Collection" loading="lazy" decoding="async" width="800" height="800"></a>
+    <a class="ig-link" data-ig="Choco Cream" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <img src="./choco-cream.JPG" alt="Instagram — Choco Cream sahnesi" loading="lazy" decoding="async" width="800" height="800">
+      <span class="cap">@eurekastudio3</span>
+    </a>
+    <a class="ig-link" data-ig="Evil Eye" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <img src="./evil-eye.jpg.jpg" alt="Instagram — Evil Eye detayı" loading="lazy" decoding="async" width="800" height="800">
+      <span class="cap">@eurekastudio3</span>
+    </a>
+    <a class="ig-link" data-ig="Sunset Orange" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <img src="./sunset-orange.JPG" alt="Instagram — Sunset Orange renkleri" loading="lazy" decoding="async" width="800" height="800">
+      <span class="cap">@eurekastudio3</span>
+    </a>
+    <a class="ig-link" data-ig="Lumi" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <img src="./eureka.lumi.JPG" alt="Instagram — Eureka Lumi Collection" loading="lazy" decoding="async" width="800" height="800">
+      <span class="cap">@eurekastudio3</span>
+    </a>
   </div>
   <div style="margin-top:14px;text-align:center">
     <a class="cta" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=button" target="_blank" rel="noopener">@eurekastudio3’ü Takip Et</a>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
+<!-- CONTACT -->
 <section id="contact" class="reveal" aria-labelledby="contactTitle">
   <h2 id="contactTitle">Birlikte güzel şeyler yaratalım</h2>
   <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
-
   <div class="contact-card">
     <form id="contact-form" action="https://formsubmit.co/ajax/eddyeswork@gmail.com" method="POST" novalidate>
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="_subject" value="Eureka Studio | Yeni iletişim mesajı">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_autoresponse" value="Merhaba! Eureka Studio ile iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve en kısa zamanda dönüş yapacağız. Sevgiler, Eureka Studio.">
 
       <label for="name">İsim</label>
-      <input id="name" name="name" required placeholder="İsminiz" aria-required="true" autocapitalize="words"/>
+      <input id="name" name="name" required placeholder="İsminiz" aria-required="true" autocapitalize="words" inputmode="text"/>
 
       <label for="email">E-posta</label>
       <input id="email" name="email" type="email" required placeholder="you@example.com" aria-required="true" inputmode="email"/>
@@ -422,7 +410,6 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
       </div>
     </form>
   </div>
-
   <p style="margin-top:14px"><strong>Email:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
   <p><strong>Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></p>
 </section>
@@ -431,53 +418,146 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
 <button id="toTopBtn" aria-label="Yukarı çık">↑</button>
 
 <script>
-/* I18N */
-const I18N={en:{heroTitle:'Eureka Studio — Handcrafted Candles & Calm Creations',heroSub:'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.',ctaWorks:'Explore Works'},tr:{heroTitle:'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',heroSub:'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.',ctaWorks:'Çalışmaları Keşfet'},he:{heroTitle:'Eureka Studio — נרות בעבודת יד ויצירות רגועות',heroSub:'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.',ctaWorks:'לצפייה ביצירות'}};
-function setLang(lang){document.documentElement.setAttribute('dir', lang==='he'?'rtl':'ltr');document.documentElement.lang=lang;const t=I18N[lang]||I18N.tr;const h=document.querySelector('#home h1'), p=document.querySelector('#home p'), c=document.querySelector('#home .ctas a[href="#works"]');if(h) h.textContent=t.heroTitle; if(p) p.textContent=t.heroSub; if(c) c.textContent=t.ctaWorks; try{localStorage.setItem('eureka_lang',lang)}catch(e){}}
-document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang); if(window.plausible) plausible('Language Switch',{props:{lang:b.dataset.lang}});})); 
+/* ===== 4) I18N + RTL ===== */
+const I18N={
+  en:{heroTitle:'Eureka Studio — Handcrafted Candles & Calm Creations',heroSub:'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.',ctaWorks:'Explore Works'},
+  tr:{heroTitle:'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',heroSub:'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.',ctaWorks:'Çalışmaları Keşfet'},
+  he:{heroTitle:'Eureka Studio — נרות בעבודת יד ויצירות רגועות',heroSub:'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.',ctaWorks:'לצפייה ביצירות'}
+};
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.documentElement.dir = (lang==='he') ? 'rtl' : 'ltr';
+  const t=I18N[lang]||I18N.tr;
+  const h=document.querySelector('#home h1'), p=document.querySelector('#home p'), c=document.querySelector('#home .ctas a[href="#works"]');
+  if(h) h.textContent=t.heroTitle; if(p) p.textContent=t.heroSub; if(c) c.textContent=t.ctaWorks;
+  try{localStorage.setItem('eureka_lang',lang)}catch(e){}
+}
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang); window.plausible&&plausible('Language Switch',{props:{lang:b.dataset.lang}});})); 
 setLang(localStorage.getItem('eureka_lang')||'tr');
 
-/* NAV aktif link + scroll */
-(function(){const header=document.querySelector('.nav-modern');const links=[...document.querySelectorAll('.nav-link')];const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));function onScroll(){header?.classList.toggle('scrolled', window.scrollY>8);let idx=0; secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110) idx=i;});links.forEach(l=>l.removeAttribute('aria-current'));if(links[idx]) links[idx].setAttribute('aria-current','true');}addEventListener('scroll', onScroll, {passive:true}); onScroll();})();
+/* ===== 1) NAV aktif link + mikro animasyon tetik ===== */
+(function(){
+  const header=document.querySelector('.nav-modern');
+  const links=[...document.querySelectorAll('.nav-link')];
+  const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
+  function onScroll(){
+    header?.classList.toggle('scrolled', window.scrollY>8);
+    let idx=0; secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110) idx=i;});
+    links.forEach(l=>l.removeAttribute('aria-current'));
+    if(links[idx]) links[idx].setAttribute('aria-current','true');
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
 
-/* REVEAL */
+/* ===== 1) Reveal on scroll ===== */
 const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* MOBILE MENU */
-(function(){const mm=document.getElementById('mobileMenu');const open=document.getElementById('openMenu');const close=document.getElementById('closeMenu');function show(){mm.style.display='block';document.body.style.overflow='hidden'; if(window.plausible) plausible('Mobile Menu Open');}function hide(){mm.style.display='none';document.body.style.overflow='auto';}open?.addEventListener('click', show);close?.addEventListener('click', hide);mm?.addEventListener('click', e=>{ if(e.target===mm) hide(); });document.querySelectorAll('[data-mm]').forEach(a=>a.addEventListener('click', hide));})();
+/* ===== 1 & 4) MOBILE MENU + Focus Trap ===== */
+(function(){
+  const mm=document.getElementById('mobileMenu');
+  const open=document.getElementById('openMenu');
+  const close=document.getElementById('closeMenu');
+  let lastFocus=null;
+  function focusTrap(e){
+    const focusables=mm.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])');
+    if(!focusables.length) return;
+    const first=focusables[0], last=focusables[focusables.length-1];
+    if(e.key==='Tab'){
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }else if(e.key==='Escape'){ hide(); }
+  }
+  function show(){ lastFocus=document.activeElement; mm.hidden=false; document.body.style.overflow='hidden'; mm.addEventListener('keydown', focusTrap); mm.querySelector('a,button')?.focus(); window.plausible&&plausible('Mobile Menu Open');}
+  function hide(){ mm.hidden=true; document.body.style.overflow='auto'; mm.removeEventListener('keydown', focusTrap); lastFocus?.focus(); }
+  open?.addEventListener('click', show);
+  close?.addEventListener('click', hide);
+  mm?.addEventListener('click', e=>{ if(e.target===mm) hide(); });
+  document.querySelectorAll('[data-mm]').forEach(a=>a.addEventListener('click', hide));
+})();
 
-/* FILTER + COUNT */
+/* ===== 2) Filtre sayıları + 1) filtre anim tetik ===== */
 const filterButtons=[...document.querySelectorAll('.filter')];
-function countAndLabel(){const all=[...document.querySelectorAll('#works-grid [data-cat]')];const counts={all:all.length,candles:0,epoxy:0,accessories:0};all.forEach(el=>{counts[el.dataset.cat]=(counts[el.dataset.cat]||0)+1;});for(const k of Object.keys(counts)){const el=document.getElementById('c-'+k); if(el) el.textContent='('+counts[k]+')';}}
-function applyFilter(cat){document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';});}
-filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat);if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});}));countAndLabel(); applyFilter('all');
+function countAndLabel(){
+  const all=[...document.querySelectorAll('#works-grid [data-cat]')];
+  const counts={all:all.length,candles:0,epoxy:0,accessories:0};
+  all.forEach(el=>{counts[el.dataset.cat]=(counts[el.dataset.cat]||0)+1;});
+  Object.keys(counts).forEach(k=>{const el=document.getElementById('c-'+k); if(el) el.textContent='('+counts[k]+')';});
+}
+function applyFilter(cat){
+  document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{
+    card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
+  });
+}
+filterButtons.forEach(b=>b.addEventListener('click',()=>{
+  filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');
+  applyFilter(b.dataset.cat);
+  window.plausible&&plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});
+}));
+countAndLabel(); applyFilter('all');
 
-/* LIGHTBOX */
-const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
-document.querySelectorAll('#works-grid figure').forEach(fig=>{fig.addEventListener('click',()=>{const im=fig.querySelector('img'); lbImg.src=im.src; lbImg.alt=im.alt; const cap=fig.querySelector('figcaption')?.textContent||''; lbCap.textContent=cap; lb.classList.add('open'); document.body.style.overflow='hidden'; if(window.plausible) plausible('Gallery Lightbox Open',{props:{title:cap,category:fig.dataset.cat||'unknown'}});});});
-document.getElementById('lbClose')?.addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow='auto';});lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='auto';}});
+/* ===== 1 & 4) LIGHTBOX: klavye kapatma + odak ===== */
+const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap'), lbClose=document.getElementById('lbClose');
+let lastFocusLB=null;
+document.querySelectorAll('#works-grid figure').forEach(fig=>{
+  fig.addEventListener('click',()=>{
+    const im=fig.querySelector('img'); lbImg.src=im.src; lbImg.alt=im.alt;
+    const cap=fig.querySelector('figcaption')?.textContent||''; lbCap.textContent=cap;
+    lb.classList.add('open'); document.body.style.overflow='hidden'; lastFocusLB=document.activeElement; lbClose.focus();
+    window.plausible&&plausible('Gallery Lightbox Open',{props:{title:cap,category:fig.dataset.cat||'unknown'}});
+  });
+});
+function closeLB(){lb.classList.remove('open'); document.body.style.overflow='auto'; lbImg.removeAttribute('src'); lastFocusLB?.focus();}
+lbClose?.addEventListener('click',closeLB);
+lb.addEventListener('click',e=>{if(e.target===lb) closeLB();});
+addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); });
 
-/* IMG uzantı fix */
-document.querySelectorAll('img').forEach(function(el){el.addEventListener('error', function(){let s=this.getAttribute('src')||this.src; s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png'); if(s!==this.src) this.src=s+(s.includes('?')?'':'?v='+Date.now());});});
+/* ===== 3) IMG uzantı fix + lazy boost ===== */
+document.querySelectorAll('img').forEach(function(el){
+  el.addEventListener('error', function(){
+    let s=this.getAttribute('src')||this.src;
+    s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');
+    if(s!==this.src) this.src=s+(s.includes('?')?'':'?v='+Date.now());
+  });
+});
+(function(){
+  const nearIo=new IntersectionObserver((ents,obs)=>{
+    ents.forEach(ent=>{
+      if(ent.isIntersecting){
+        const img=ent.target;
+        img.decoding='async';
+        if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+        img.setAttribute('fetchpriority','low');
+        obs.unobserve(img);
+      }
+    });
+  },{rootMargin:'600px 0px'});
+  document.querySelectorAll('img[loading="lazy"]').forEach(img=>nearIo.observe(img));
+})();
 
-/* LAZY-LOAD BOOST */
-(function(){const nearIo=new IntersectionObserver((ents,obs)=>{ents.forEach(ent=>{if(ent.isIntersecting){const img=ent.target;img.decoding='async';if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');img.setAttribute('fetchpriority','low');obs.unobserve(img);}});},{rootMargin:'600px 0px'});document.querySelectorAll('img[loading="lazy"]').forEach(img=>nearIo.observe(img));})();
+/* ===== 5) robots/sitemap bilgi amaçlı (isteğe bağlı log) ===== */
+console.info('Sitemap: /sitemap.xml  | Robots: /robots.txt');
 
-/* HASH OFFSET */
-(function(){function offsetHash(){const id=location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(!el)return;const top=el.getBoundingClientRect().top+scrollY-70;scrollTo({top,behavior:'smooth'});}addEventListener('hashchange',offsetHash);if(location.hash)setTimeout(offsetHash,60);})();
+/* ===== Back-to-top + Tema toggle ===== */
+(function(){
+  const btn = document.getElementById('toTopBtn'), showAt=300;
+  function toggleBtn(){ btn.style.display = (window.scrollY>showAt)?'inline-block':'none'; }
+  addEventListener('scroll', toggleBtn, {passive:true}); toggleBtn();
+  btn.addEventListener('click', function(){ window.plausible&&plausible('BackToTop Click'); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+(function(){
+  const btn=document.getElementById('themeToggle');
+  function apply(t){document.documentElement.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('eureka_theme',t)}catch(e){}}
+  let saved=localStorage.getItem('eureka_theme')||'light'; apply(saved);
+  btn.addEventListener('click',()=>apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
+})();
 
-/* DEDUPE SAFETY */
-(function(){const IDS=['home','about','works','instagram','contact'];IDS.forEach(id=>{const els=document.querySelectorAll('#'+id);for(let i=1;i<els.length;i++){els[i].remove();}});const navs=document.querySelectorAll('nav');for(let i=1;i<navs.length;i++){navs[i].remove();}const fts=document.querySelectorAll('footer#site-footer');for(let i=1;i<fts.length;i++){fts[i].remove();}const tops=document.querySelectorAll('#toTopBtn');for(let i=1;i<tops.length;i++){tops[i].remove();}})();
-
-/* THEME TOGGLE */
-(function(){const btn=document.getElementById('themeToggle');function apply(t){document.documentElement.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('eureka_theme',t)}catch(e){}}let saved=localStorage.getItem('eureka_theme'); if(!saved){saved='light';}apply(saved);btn.addEventListener('click',()=>apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));})();
-
-/* CONTACT FORM (FormSubmit Ajax) */
-(function(){const form=document.getElementById('contact-form');const btn=document.getElementById('sendBtn');const status=document.getElementById('status');const toast=document.getElementById('toast');const check=document.getElementById('checkwrap');if(!form||!btn) return;function validate(){const email=(form.querySelector('[name="email"]')?.value||'').trim();const msg=(form.querySelector('[name="message"]')?.value||'').trim();btn.disabled=!(email && msg.length>=5);}form.addEventListener('input',validate,{passive:true}); validate();form.addEventListener('submit', async function(e){e.preventDefault();if(btn.disabled) return;const oldText=btn.textContent;btn.disabled=true; btn.textContent='Gönderiliyor…'; if(status){status.style.color='inherit'; status.textContent='Gönderiliyor…';} if(check){check.classList.remove('show'); check.style.display='none';}try{const payload={name:form.querySelector('[name="name"]')?.value||'',email:form.querySelector('[name="email"]')?.value||'',message:form.querySelector('[name="message"]')?.value||'',_subject:'Eureka Studio | Yeni iletişim mesajı',_template:'table',_autoresponse:'Merhaba! Mesajınızı aldık ve en kısa sürede döneceğiz. — Eureka Studio'};const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});if(res.ok){if(window.plausible) plausible('Contact Form Submit'); form.reset(); validate(); if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';} if(check){check.classList.add('show'); check.style.display='flex';} if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);} status?.scrollIntoView({behavior:'smooth',block:'center'});}else{if(status){status.style.color='crimson'; status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.';}}}catch(err){if(status){status.style.color='crimson'; status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.';}}finally{btn.disabled=false; btn.textContent=oldText||'Gönder';}});})();
-
-/* BACK TO TOP */
-(function(){const btn = document.getElementById('toTopBtn'), showAt=300;function toggleBtn(){ btn.style.display = (window.scrollY>showAt)?'inline-block':'none'; }addEventListener('scroll', toggleBtn, {passive:true}); toggleBtn();btn.addEventListener('click', function(){ if(window.plausible) plausible('BackToTop Click'); window.scrollTo({ top: 0, behavior: 'smooth' }); });})();
+/* ===== 6) Instagram ayrı ölçüm ===== */
+document.querySelectorAll('.ig-link').forEach(a=>{
+  a.addEventListener('click',()=>{window.plausible&&plausible('Instagram Grid Click',{props:{item:a.dataset.ig}});},{passive:true});
+});
+document.querySelector('a[href*="utm_medium=button"]')?.addEventListener('click',()=>{window.plausible&&plausible('Instagram Follow Button');},{passive:true});
 </script>
 </body>
 </html>
