@@ -11,12 +11,15 @@
 <meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.eurekastudio.org/"/>
-<meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero.JPG"/>
+<meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero-optimized.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="theme-color" content="#e9e3da"/>
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180">
-<link rel="preload" as="image" href="./home-candles-hero.JPG" imagesrcset="./home-candles-hero.JPG 1200w, ./home-candles-hero.JPG 2000w" imagesizes="100vw">
+
+<!-- LCP için preload -->
+<link rel="preload" as="image" href="./home-candles-hero-optimized.jpg" imagesrcset="./home-candles-hero-optimized.jpg 1600w, ./home-candles-hero-optimized.jpg 2000w" imagesizes="100vw" fetchpriority="high">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
@@ -65,8 +68,9 @@ nav a.active{background:var(--line)}
   border-radius:999px; padding:10px 12px; box-shadow:var(--shadow); font-weight:700;
 }
 
-/* HERO */
-.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat;border-bottom:1px solid var(--line)}
+/* HERO (fade-in + okunurluk) */
+@keyframes fadeInHero { from{opacity:0; transform:scale(1.05)} to{opacity:1; transform:scale(1)} }
+.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat;border-bottom:1px solid var(--line);animation:fadeInHero 1.4s ease-out}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.55) 45%,rgba(0,0,0,.35))}
 :root[data-theme="dark"] .hero .overlay{background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.6))}
 .hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
@@ -77,7 +81,9 @@ nav a.active{background:var(--line)}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
 .scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
 
-/* ABOUT */
+/* ABOUT (fade-in) */
+@keyframes fadeInAbout { from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:translateY(0)} }
+#about{background:#f8f1e8;text-align:center;padding:80px 6%;animation:fadeInAbout 1.2s ease-out}
 #about h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.4em}
 #about p{color:var(--muted)}
 .about-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
@@ -85,20 +91,22 @@ nav a.active{background:var(--line)}
 .kv-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow)}
 .kv-card h4{font-size:1rem;margin-bottom:.25em}
 
-/* WORKS */
+/* WORKS (fade-in + masonry) */
+@keyframes fadeInWorks { from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:translateY(0)} }
+#works{background:#fdf8f3;text-align:center;padding:80px 6%;animation:fadeInWorks 1.2s ease-out}
 .works-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
 .works-head h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
 .muted{color:var(--muted)}
-.filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--ink);position:relative}
-.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
-.filter .count{opacity:.8;font-weight:700;margin-left:.35em}
-.filter:active{transform:scale(.98)}
-.masonry{column-gap:14px;column-count:1;margin-top:14px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--ink);position:relative;transition:all .25s ease}
+.filter:hover,.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.filter .count{opacity:.85;font-weight:700;margin-left:.35em}
+.masonry{column-gap:14px;column-count:1;margin-top:14px;animation:fadeInWorks 1.4s ease-out}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
-.item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative}
+.item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative;transition:transform .35s ease, box-shadow .35s}
 .item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .35s ease;max-height:280px}
+.item:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.12)}
 .item:hover img{transform:scale(1.03)}
 .item::after{content:""; position:absolute; inset:auto -20% 35% -20%; height:60%; background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb, var(--gold), transparent 45%), transparent 70%); opacity:0; transition:opacity .35s ease, transform .35s ease; pointer-events:none; filter:blur(8px)}
 .item:hover::after{opacity:.7; transform:translateY(-8px)}
@@ -115,41 +123,35 @@ nav a.active{background:var(--line)}
 #instagram .ig-grid a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
 #instagram .ig-grid a:active img{transform:scale(.98)}
-/* Instagram CTA daha görünür */
-#instagram .cta{
-  background: var(--brand);
-  border-color: var(--brand);
-  color: #fffaf3;
-  box-shadow: 0 3px 10px rgba(0,0,0,.15);
-  transition: background .3s ease, transform .25s ease, box-shadow .25s ease;
-}
-#instagram .cta:hover,#instagram .cta:focus-visible{
-  background: color-mix(in srgb, var(--brand), #ffffff 15%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.18);
-}
-:root[data-theme="dark"] #instagram .cta{box-shadow: 0 4px 14px rgba(0,0,0,.35)}
+#instagram .cta{background:var(--brand);border-color:var(--brand);color:#fffaf3;box-shadow:0 3px 10px rgba(0,0,0,.15);transition:background .3s, transform .25s, box-shadow .25s}
+#instagram .cta:hover,#instagram .cta:focus-visible{background:color-mix(in srgb, var(--brand), #ffffff 15%);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
+:root[data-theme="dark"] #instagram .cta{box-shadow:0 4px 14px rgba(0,0,0,.35)}
 
-/* CONTACT / FOOTER */
-form{display:grid;gap:10px;max-width:520px}
-input,textarea,select{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);font:inherit}
-button[type="submit"],.cta{cursor:pointer}
-footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 92%, #fff 8%);text-align:center;font-size:.95rem;padding:18px 6%}
-
-/* TOAST & CHECK */
-.toast{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#e7f4ed;border:1px solid #cfe9dc;color:var(--ok);padding:10px 14px;border-radius:10px;box-shadow:var(--shadow);display:none;z-index:9999}
-:root[data-theme="dark"] .toast{background:#143a2a;border-color:#1f573f;color:#b7f0cf}
-.checkwrap{display:none;align-items:center;gap:8px;color:var(--ok);margin-top:6px}
+/* CONTACT (fade-in + mikro etkileşim) */
+@keyframes fadeInContact { from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:translateY(0)} }
+#contact.contact-fade{background:color-mix(in srgb, var(--bg) 94%, #fff 6%);border-top:1px solid var(--line);padding:72px 6%;animation:fadeInContact 1.2s ease-out both}
+#contact.contact-fade h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.35em}
+.contact-card{max-width:640px;margin:16px auto 0;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+#contact input,#contact textarea{transition:border-color .25s, box-shadow .25s, background .25s}
+#contact input:focus,#contact textarea:focus{border-color:color-mix(in srgb, var(--brand), #fff 10%);box-shadow:0 0 0 4px color-mix(in srgb, var(--brand) 20%, transparent)}
+#sendBtn{transition:transform .18s, box-shadow .25s, background .25s;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+#sendBtn:hover:not([disabled]){transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+#sendBtn:active:not([disabled]){transform:translateY(0) scale(.99)}
+.checkwrap{display:none;align-items:center;gap:8px;color:var(--ok);margin-top:10px}
 .checkwrap svg{width:22px;height:22px;stroke:var(--ok);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60}
 .checkwrap.show{display:flex}
 .checkwrap.show svg{animation:draw .8s ease forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 
-/* REDUCED MOTION */
+/* FOOTER + Back-to-Top */
+@keyframes fadeInFooter { from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:translateY(0)} }
+footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%;font-size:.95rem}
+#toTopBtn{position:fixed;right:14px;bottom:66px;z-index:9998;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:10px 12px;box-shadow:var(--shadow);font-weight:700;cursor:pointer;display:none}
+#toTopBtn:hover{transform:translateY(-1px)}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none}
-  .item img,.cta,.item::after{transition:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .item img,.cta,.item::after,#toTopBtn:hover{transition:none;transform:none}
 }
 </style>
 </head>
@@ -157,13 +159,13 @@ footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 
 <body>
 
 <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">🌙</button>
-<div id="toast" class="toast" role="status" aria-live="polite">Teşekkürler! Mesajınız ulaştı.</div>
+<div id="toast" class="toast" role="status" aria-live="polite" style="display:none">Teşekkürler! Mesajınız ulaştı.</div>
 
 <!-- NAV -->
 <nav aria-label="Primary" class="reveal">
   <div class="nav-inner">
     <div class="brand">
-      <img src="./logo.png1.PNG" alt="Eureka Studio logo" width="32" height="32" decoding="async">
+      <img src="./logo.png1.PNG" alt="Eureka Studio logo" width="32" height="32" decoding="async" loading="eager" fetchpriority="high">
       <span>EUREKA STUDIO</span>
     </div>
     <ul>
@@ -183,10 +185,14 @@ footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 
 
 <!-- HERO -->
 <section id="home" class="hero reveal" aria-labelledby="heroTitle">
-  <img id="heroImg" src="./home-candles-hero.JPG?v=3"
-       alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
-       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1"
-       loading="eager" decoding="async">
+  <!-- WebP varsa tercih, yoksa JPEG -->
+  <picture>
+    <source srcset="./home-candles-hero.webp" type="image/webp">
+    <img id="heroImg" src="./home-candles-hero-optimized.jpg"
+         alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(60%)"
+         loading="eager" decoding="async" fetchpriority="high">
+  </picture>
   <div class="overlay" aria-hidden="true"></div>
   <div class="inner">
     <h1 id="heroTitle">Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</h1>
@@ -287,47 +293,50 @@ footer{border-top:1px solid var(--line);background:color-mix(in srgb, var(--bg) 
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="reveal" aria-labelledby="contactTitle">
-  <h2 id="contactTitle" style="font-family:'Playfair Display',serif">Birlikte güzel şeyler yaratalım</h2>
+<section id="contact" class="reveal contact-fade" aria-labelledby="contactTitle">
+  <h2 id="contactTitle">Birlikte güzel şeyler yaratalım</h2>
   <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
 
-  <!-- FormSubmit (adres: eddyeswork@gmail.com) -->
-  <form id="contact-form" action="https://formsubmit.co/ajax/eddyeswork@gmail.com" method="POST" novalidate>
-    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <input type="hidden" name="_subject" value="Eureka Studio | Yeni iletişim mesajı">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_autoresponse" value="Merhaba! Eureka Studio ile iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve en kısa zamanda dönüş yapacağız. Sevgiler, Eureka Studio.">
+  <div class="contact-card">
+    <!-- FormSubmit (adres: eddyeswork@gmail.com) -->
+    <form id="contact-form" action="https://formsubmit.co/ajax/eddyeswork@gmail.com" method="POST" novalidate>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="_subject" value="Eureka Studio | Yeni iletişim mesajı">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="Merhaba! Eureka Studio ile iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve en kısa zamanda dönüş yapacağız. Sevgiler, Eureka Studio.">
 
-    <label for="name">İsim</label>
-    <input id="name" name="name" required placeholder="İsminiz" aria-required="true" autocapitalize="words"/>
+      <label for="name">İsim</label>
+      <input id="name" name="name" required placeholder="İsminiz" aria-required="true" autocapitalize="words"/>
 
-    <label for="email">E-posta</label>
-    <input id="email" name="email" type="email" required placeholder="you@example.com" aria-required="true" inputmode="email"/>
+      <label for="email">E-posta</label>
+      <input id="email" name="email" type="email" required placeholder="you@example.com" aria-required="true" inputmode="email"/>
 
-    <label for="message">Mesaj</label>
-    <textarea id="message" name="message" rows="6" required placeholder="Fikrinizi bize yazın…" aria-required="true" minlength="5"></textarea>
+      <label for="message">Mesaj</label>
+      <textarea id="message" name="message" rows="6" required placeholder="Fikrinizi bize yazın…" aria-required="true" minlength="5"></textarea>
 
-    <button id="sendBtn" type="submit" class="cta" disabled>Gönder</button>
-    <p id="status" role="status" aria-live="polite" class="muted" style="margin-top:6px"></p>
+      <button id="sendBtn" type="submit" class="cta" disabled>Gönder</button>
+      <p id="status" role="status" aria-live="polite" class="muted" style="margin-top:6px"></p>
 
-    <!-- Animasyonlu check -->
-    <div id="checkwrap" class="checkwrap" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg>
-      <strong>Teşekkürler! Mesajınız ulaştı.</strong>
-    </div>
-  </form>
+      <!-- Animasyonlu check -->
+      <div id="checkwrap" class="checkwrap" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg>
+        <strong>Teşekkürler! Mesajınız ulaştı.</strong>
+      </div>
+    </form>
+  </div>
 
-  <p style="margin-top:10px"><strong>Email:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
+  <p style="margin-top:14px"><strong>Email:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
   <p><strong>Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></p>
 </section>
 
-<!-- FOOTER -->
-<footer class="reveal">
+<!-- FOOTER + BACK TO TOP -->
+<footer class="reveal footer-fade" id="site-footer">
   <p>© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p>
 </footer>
+<button id="toTopBtn" aria-label="Yukarı çık">↑</button>
 
 <script>
-/* I18N */
+/* ===== I18N ===== */
 const I18N={
   en:{heroTitle:'Eureka Studio — Handcrafted Candles & Calm Creations',heroSub:'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.',ctaWorks:'Explore Works'},
   tr:{heroTitle:'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',heroSub:'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.',ctaWorks:'Çalışmaları Keşfet'},
@@ -344,17 +353,17 @@ function setLang(lang){
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang); if(window.plausible) plausible('Language Switch',{props:{lang:b.dataset.lang}});})); 
 setLang(localStorage.getItem('eureka_lang')||'tr');
 
-/* ACTIVE NAV */
+/* ===== ACTIVE NAV ===== */
 const links=[...document.querySelectorAll('nav a[data-nav]')];
 const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
 function setActive(){let idx=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110) idx=i;});links.forEach(l=>{l.classList.remove('active');l.removeAttribute('aria-current');});if(links[idx]){links[idx].classList.add('active');links[idx].setAttribute('aria-current','true');}}
 document.addEventListener('scroll', setActive, {passive:true}); setActive();
 
-/* REVEAL ON SCROLL */
+/* ===== REVEAL ON SCROLL ===== */
 const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* FILTERS + COUNTS */
+/* ===== FILTERS + COUNTS ===== */
 const filterButtons=[...document.querySelectorAll('.filter')];
 function countAndLabel(){
   const all=[...document.querySelectorAll('#works-grid [data-cat]')];
@@ -378,7 +387,7 @@ filterButtons.forEach(b=>b.addEventListener('click',()=>{
 countAndLabel();
 applyFilter('all');
 
-/* LIGHTBOX */
+/* ===== LIGHTBOX ===== */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
 document.querySelectorAll('#works-grid figure').forEach(fig=>{
   fig.addEventListener('click',()=>{
@@ -391,7 +400,7 @@ document.querySelectorAll('#works-grid figure').forEach(fig=>{
 document.getElementById('lbClose')?.addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow='auto';});
 lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='auto';}});
 
-/* IMG EXT FIX + HERO FALLBACK */
+/* ===== IMG EXT FIX + HERO FALLBACK ===== */
 document.querySelectorAll('img').forEach(function(el){
   el.addEventListener('error', function(){
     let s=this.getAttribute('src')||this.src;
@@ -401,28 +410,45 @@ document.querySelectorAll('img').forEach(function(el){
 });
 (function(){
   const img=document.getElementById('heroImg'); if(!img) return;
-  const tries=['./home-candles-hero.JPG?v='+Date.now(),'./home-candles-hero.jpg?v='+Date.now(),'/home-candles-hero.JPG?v='+Date.now(),'/home-candles-hero.jpg?v='+Date.now(),'./images/home-candles-hero.JPG?v='+Date.now()];
+  const tries=['./home-candles-hero-optimized.jpg?v='+Date.now(),'./home-candles-hero.JPG?v='+Date.now(),'./home-candles-hero.jpg?v='+Date.now(),'/home-candles-hero-optimized.jpg?v='+Date.now()];
   let i=0; img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
-  setTimeout(()=>{ if(!img.complete||img.naturalWidth===0){ const f=document.querySelector('#works img'); if(f) img.src=f.src; } },1500);
 })();
 
-/* HASH OFFSET */
+/* ===== LAZY-LOAD İYİLEŞTİRME (yakın görünüm öncesi preload) ===== */
+(function(){
+  const nearIo=new IntersectionObserver((ents,obs)=>{
+    ents.forEach(ent=>{
+      if(ent.isIntersecting){
+        const img=ent.target;
+        // Yakında görülecek görsellere küçük bir öncelik
+        img.decoding='async';
+        if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+        img.setAttribute('fetchpriority','low');
+        obs.unobserve(img);
+      }
+    });
+  },{rootMargin:'600px 0px'});
+  document.querySelectorAll('img[loading="lazy"]').forEach(img=>nearIo.observe(img));
+})();
+
+/* ===== HASH OFFSET ===== */
 (function(){function offsetHash(){const id=location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(!el)return;const top=el.getBoundingClientRect().top+scrollY-70;scrollTo({top,behavior:'smooth'});}addEventListener('hashchange',offsetHash);if(location.hash)setTimeout(offsetHash,60);})();
 
-/* DEDUPE */
+/* ===== DEDUPE SAFETY ===== */
 (function(){
   const IDS=['home','about','works','instagram','contact'];
   IDS.forEach(id=>{const els=document.querySelectorAll('#'+id);for(let i=1;i<els.length;i++){els[i].remove();}});
   const navs=document.querySelectorAll('nav');for(let i=1;i<navs.length;i++){navs[i].remove();}
-  const fts=document.querySelectorAll('footer');for(let i=1;i<fts.length;i++){fts[i].remove();}
+  const fts=document.querySelectorAll('footer#site-footer');for(let i=1;i<fts.length;i++){fts[i].remove();}
+  const tops=document.querySelectorAll('#toTopBtn');for(let i=1;i<tops.length;i++){tops[i].remove();}
 })();
 
-/* INSTAGRAM CLICK */
+/* ===== INSTAGRAM CLICK EVENT ===== */
 document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
   a.addEventListener('click',()=>{if(window.plausible) plausible('Instagram Click');},{passive:true});
 });
 
-/* THEME TOGGLE */
+/* ===== THEME TOGGLE ===== */
 (function(){
   const btn=document.getElementById('themeToggle');
   function apply(t){document.documentElement.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('eureka_theme',t)}catch(e){}}
@@ -431,7 +457,7 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
   btn.addEventListener('click',()=>apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
 })();
 
-/* FORM (validate + toast + animated check + Plausible) */
+/* ===== CONTACT FORM (submit + toast + check + Plausible) ===== */
 (function(){
   const form=document.getElementById('contact-form');
   const btn=document.getElementById('sendBtn');
@@ -470,12 +496,8 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
       if(res.ok){
         if(window.plausible) plausible('Contact Form Submit');
         form.reset(); validate();
-
         if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';}
-        if(check){
-          check.classList.add('show');
-          check.style.display='flex';
-        }
+        if(check){check.classList.add('show'); check.style.display='flex';}
         if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);}
         status?.scrollIntoView({behavior:'smooth',block:'center'});
       }else{
@@ -487,6 +509,14 @@ document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
       btn.disabled=false; btn.textContent=oldText||'Gönder';
     }
   });
+})();
+
+/* ===== BACK TO TOP ===== */
+(function(){
+  const btn = document.getElementById('toTopBtn'), showAt=300;
+  function toggleBtn(){ btn.style.display = (window.scrollY>showAt)?'inline-block':'none'; }
+  addEventListener('scroll', toggleBtn, {passive:true}); toggleBtn();
+  btn.addEventListener('click', function(){ if(window.plausible) plausible('BackToTop Click'); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 })();
 </script>
 </body>
