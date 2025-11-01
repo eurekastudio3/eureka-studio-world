@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Eureka Studio El Yapımı Mumlar & Sakin Tasarımlar</title>
+<title>Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</title>
 <link rel="canonical" href="https://www.eurekastudio.org/"/>
 
-<meta name="description" content="Eureka Studio: El dökümü soya mumları ve epoksi tasarımlar minimal, sıcak ve özenle üretilir."/>
+<meta name="description" content="Eureka Studio: el dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:site_name" content="Eureka Studio"/>
-<meta property="og:title" content="Eureka Studio El Yapımı Mumlar & Sakin Tasarımlar"/>
-<meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar minimal, sıcak ve özenle üretilir."/>
+<meta property="og:title" content="Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar"/>
+<meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.eurekastudio.org/"/>
 <meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero.JPG"/>
 
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180"/>
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=15" fetchpriority="high"/>
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=16" fetchpriority="high"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,43 +25,63 @@
 <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 
 <style>
-:root{--bg:#f5efe7;--ink:#111;--muted:#5b5b5b;--line:#e5dfd7;--brand:#C0844A;--brand-strong:#9A5A2E;--panel:#fff;--shadow:0 10px 30px rgba(0,0,0,.06);--ok:#1f7a4f}
-:root[data-theme="dark"]{--bg:#2b231b;--panel:#332a21;--ink:#efe7dc;--muted:#cbb9a5;--line:#4a3e33;--brand:#D09A66;--brand-strong:#B37444;--shadow:0 14px 40px rgba(0,0,0,.35)}
+/* ---------- Base ---------- */
+:root{
+  --bg:#f5efe7; --ink:#111; --muted:#5b5b5b; --line:#e5dfd7;
+  --brand:#C0844A; --brand-strong:#9A5A2E; --panel:#fff; --shadow:0 10px 30px rgba(0,0,0,.06);
+  --ok:#1f7a4f; --capH:46px; /* kapsül yüksekliği */
+}
+:root[data-theme="dark"]{
+  --bg:#2b231b; --panel:#332a21; --ink:#efe7dc; --muted:#cbb9a5; --line:#4a3e33;
+  --brand:#D09A66; --brand-strong:#B37444; --shadow:0 14px 40px rgba(0,0,0,.35);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);line-height:1.65;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
 img{max-width:100%;display:block;height:auto}
 a{color:inherit;text-decoration:none}
 section,footer{padding:48px 6%}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* NAV */
-.nav-modern{position:sticky;top:0;z-index:1000;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 80%, #000 20%);transition:box-shadow .25s ease, background .25s ease}
+/* ---------- NAV (Grid ile hizalı) ---------- */
+.nav-modern{
+  position:sticky;top:0;z-index:1000;backdrop-filter:blur(14px);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--line) 80%, #000 20%);
+  transition:box-shadow .25s ease, background .25s ease;
+}
 .nav-modern.scrolled{background:color-mix(in srgb,var(--bg) 96%,#fff 4%);box-shadow:0 10px 28px rgba(0,0,0,.12)}
-.nav-wrap{max-width:1200px;margin:0 auto;padding:10px 6%;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
-.brand-modern{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;letter-spacing:.04em}
-.brand-modern img{height:40px}
-.brand-modern span{font-size:1.05rem;white-space:nowrap}
-.nav-center{flex:1 1 auto;display:flex;justify-content:center}
+.nav-wrap{
+  max-width:1200px;margin:0 auto;
+  padding:calc(8px + env(safe-area-inset-top)) 6% 8px;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
+  min-height:calc(var(--capH) + 20px);
+}
+.brand-modern{display:inline-grid;grid-auto-flow:column;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;letter-spacing:.04em;line-height:1}
+.brand-modern img{height:36px;width:auto;object-fit:contain}
+.brand-modern span{font-size:1.06rem;white-space:nowrap}
+.nav-center{justify-self:center}
 .nav-menu{list-style:none;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.nav-link{position:relative;padding:12px 10px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
-.nav-link::after{content:"";position:absolute;left:16%;right:16%;bottom:8px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-strong),var(--brand),transparent);transform:scaleX(0);transition:transform .28s ease}
+.nav-link{position:relative;padding:10px 8px;font-weight:700;white-space:nowrap;line-height:1}
+.nav-link::after{content:"";position:absolute;left:16%;right:16%;bottom:4px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-strong),var(--brand),transparent);transform:scaleX(0);transition:transform .28s ease}
 .nav-link:hover::after,.nav-link[aria-current="true"]::after{transform:scaleX(1)}
-.nav-right{display:flex;align-items:center;gap:8px}
-.lang-pill{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:10px 13px;border-radius:999px;font-weight:800}
-.btn-mini{border:1px solid var(--brand-strong);color:#fff;background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%);padding:10px 13px;border-radius:999px;font-weight:800}
-.burger{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:14px 18px;font-weight:900;font-size:30px;line-height:1;min-width:58px;min-height:58px;display:flex;align-items:center;justify-content:center}
+.nav-right{display:inline-grid;grid-auto-flow:column;gap:8px;align-items:center;justify-items:center}
+.lang-pill,.btn-mini,.burger{height:var(--capH);min-width:var(--capH);padding:0 14px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;line-height:1;font-weight:800}
+.lang-pill{border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.btn-mini{border:1px solid var(--brand-strong);color:#fff;background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%)}
+.burger{border:1px solid var(--line);background:var(--panel);border-radius:12px;font-size:28px}
 @media(max-width:1024px){.nav-center{display:none}}
 
-/* HERO */
-.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;color:#fff;text-align:center;border-bottom:1px solid var(--line);background-image:url("./home-candles-hero.JPG?v=15");background-size:cover;background-position:center 50%}
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;color:#fff;text-align:center;border-bottom:1px solid var(--line);
+  background-image:url("./home-candles-hero.JPG?v=16");background-size:cover;background-position:center 50%}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.60) 45%, rgba(0,0,0,.52))}
 .hero .inner{position:relative;z-index:1;max-width:900px}
 .hero h1{font-family:Fraunces,serif;font-weight:700;font-size:clamp(24px,5.4vw,38px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.55)}
 .hero p{font-size:clamp(14px,2.4vw,17px);opacity:.98;max-width:720px;margin:0 auto 1em}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-/* ABOUT */
+/* ---------- ABOUT ---------- */
 #about{background:#f8f1e8;text-align:left;padding:90px 6%}
 #about .intro{max-width:900px;margin:0 auto 22px;text-align:center}
 #about h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.35em}
@@ -82,7 +102,7 @@ section,footer{padding:48px 6%}
 .step strong{display:block;margin-bottom:.25em}
 .badge{display:inline-block;background:color-mix(in srgb,var(--brand) 14%, #fff 86%);border:1px solid var(--brand);color:var(--brand-strong);border-radius:999px;padding:6px 10px;font-weight:800;font-size:.9rem}
 
-/* WORKS */
+/* ---------- WORKS ---------- */
 #works{background:#fdf8f3;text-align:center;padding:80px 6%}
 .works-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
 .works-head h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(20px,3.9vw,26px)}
@@ -92,7 +112,7 @@ section,footer{padding:48px 6%}
 .filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600}
 .filter:hover,.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 
-/* GRID kare */
+/* Kare grid: görseller eşit */
 .masonry{display:grid;grid-template-columns:repeat(2, 1fr);gap:14px;margin-top:14px}
 @media(min-width:980px){.masonry{grid-template-columns:repeat(3, 1fr)}}
 .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;transition:transform .3s ease, box-shadow .3s ease}
@@ -112,7 +132,7 @@ section,footer{padding:48px 6%}
 .lb-cap{color:#fff;text-align:center;margin-top:8px}
 .lb-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer}
 
-/* IG */
+/* Instagram */
 #instagram .ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
 #instagram .ig-grid a{position:relative;display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
@@ -130,20 +150,21 @@ section,footer{padding:48px 6%}
 .checkwrap.show{display:flex}
 footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%}
 
-/* RTL tipografi */
+/* RTL */
 :root[dir="rtl"] body{font-family:Heebo,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.75;letter-spacing:.02em;word-spacing:.04em}
 :root[dir="rtl"] .about-grid{direction:rtl}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ---------- NAV ---------- -->
 <nav class="nav-modern" aria-label="Primary">
   <div class="nav-wrap">
     <a class="brand-modern" href="#home">
-      <img src="./logo.png1.PNG" alt="Eureka Studio logosu" width="180" height="180" loading="eager" fetchpriority="high">
+      <img src="./logo.png1.PNG" alt="Eureka Studio logosu" width="140" height="140" loading="eager" fetchpriority="high">
       <span>EUREKA STUDIO</span>
     </a>
+
     <div class="nav-center" role="navigation">
       <ul class="nav-menu">
         <li><a class="nav-link" href="#home" data-nav data-i18n="navHome">Ana Sayfa</a></li>
@@ -153,6 +174,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
         <li><a class="nav-link" href="#contact" data-nav data-i18n="navContact">İletişim</a></li>
       </ul>
     </div>
+
     <div class="nav-right">
       <button class="lang-pill" data-lang="en" aria-label="Switch to English">EN</button>
       <button class="lang-pill" data-lang="tr" aria-label="Türkçe">TR</button>
@@ -163,11 +185,11 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ---------- HERO ---------- -->
 <section id="home" class="hero" aria-labelledby="heroTitle">
   <div class="inner">
-    <h1 id="heroTitle" data-i18n="heroTitle">Eureka Studio El Yapımı Mumlar & Sakin Tasarımlar</h1>
-    <p data-i18n="heroSub">El dökümü soya mumları ve epoksi tasarımlar minimal, sıcak ve özenle üretilir.</p>
+    <h1 id="heroTitle" data-i18n="heroTitle">Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</h1>
+    <p data-i18n="heroSub">El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.</p>
     <div class="ctas">
       <a href="#works" class="btn-mini" data-i18n="ctaWorks">Çalışmaları Keşfet</a>
       <a href="https://www.instagram.com/eurekastudio3/" class="btn-mini" target="_blank" rel="noopener">@eurekastudio3</a>
@@ -175,7 +197,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ---------- ABOUT ---------- -->
 <section id="about" aria-labelledby="aboutTitle">
   <div class="intro">
     <h2 id="aboutTitle" data-i18n="aboutTitle">Sakin. El emeği. Duyarlı.</h2>
@@ -222,20 +244,18 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
           <p data-i18n="proc2Text">Küçük partiler halinde el dökümü; kontrollü ısı ve dinlendirme.</p>
         </div>
         <div class="step">
-          <!-- BURASI SENDE İNGİLİZCE KALMIŞTI -->
           <strong data-i18n="proc3Title">3) Kür & Etiket</strong>
-          <p data-i18n="proc3Text">Kürlenme ardından finisaj, etiket ve paket hepsi elde.</p>
+          <p data-i18n="proc3Text">Kürlenme ardından finisaj, etiket ve paket — hepsi elde.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WORKS -->
+<!-- ---------- WORKS ---------- -->
 <section id="works" aria-labelledby="worksTitle">
   <div class="works-head">
     <div>
-      <!-- BURASI DA İNGİLİZCE KALIYORDU -->
       <h2 id="worksTitle" data-i18n="worksTitle">Galeri</h2>
       <p class="muted" data-i18n="worksLead">Her parça; formu, kokusu ve duygusuyla benzersiz.</p>
     </div>
@@ -265,7 +285,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
   </div>
 </section>
 
-<!-- INSTAGRAM -->
+<!-- ---------- INSTAGRAM ---------- -->
 <section id="instagram" aria-labelledby="igTitle">
   <h2 id="igTitle" style="font-family:Fraunces,serif" data-i18n="igTitle">Instagram’dan</h2>
   <p class="muted" data-i18n="igLead">Sakin üretim sürecimizi ve paylaşımlarımızı takip et.</p>
@@ -280,7 +300,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ---------- CONTACT ---------- -->
 <section id="contact" aria-labelledby="contactTitle">
   <h2 id="contactTitle" data-i18n="contactTitle">Birlikte güzel şeyler yaratalım</h2>
   <p class="muted" data-i18n="contactLead">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
@@ -316,114 +336,77 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 <footer><p data-i18n="footerText">© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p></footer>
 
 <script>
-/* ==== I18N STRINGS ==== */
-const I18N={
-  tr:{navHome:"Ana Sayfa",navAbout:"Hakkımızda",navWorks:"Çalışmalar",navInstagram:"Instagram",navContact:"İletişim",
-      heroTitle:"Eureka Studio El Yapımı Mumlar & Sakin Tasarımlar",
-      heroSub:"El dökümü soya mumları ve epoksi tasarımlar minimal, sıcak ve özenle üretilir.",
-      ctaWorks:"Çalışmaları Keşfet",
-      aboutTitle:"Sakin. El emeği. Duyarlı.",
-      aboutLead:"Eureka Studio, gündelik hayatın telaşını yumuşatan küçük ritüellere inanır. Her mumu ve her epoksi parçayı; ışığın, kokunun ve dokunun denge hâlini hatırlatması için tasarlıyoruz.",
-      storyTitle:"Hikâyemiz",
-      storyText:"Bir notayı gereğinden fazla uzatmayan, doğru yerde susan bir melodi düşün… İşte üretimimiz de böyle: gösterişsiz, sıcak ve samimi. İlk mumumuzu döktüğümüz günden beri amacımız; mekânlara yumuşak bir huzur, sofralara davet eden bir sıcaklık katmak.",
-      proc1Title:"1) Formül",proc1Text:"%100 soya bazlı karışım; fitil ve esans oranları her koku için ayrı dengelenir.",
-      proc2Title:"2) Döküm",proc2Text:"Küçük partiler halinde el dökümü; kontrollü ısı ve dinlendirme.",
-      proc3Title:"3) Kür & Etiket",proc3Text:"Kürlenme ardından finisaj, etiket ve paket hepsi elde.",
-      kv1Text:"Yumuşak notalar & minimal formlar.",kv2Text:"Epoksi dokular & kontrast altın detaylar.",
-      valuesTitle:"Değerlerimiz",valuesText:"Her parça; dürüst malzeme, yavaş üretim ve uzun ömürlü kullanım için tasarlanır.",
-      val1:"El emeği & dikkat: her aşama gözden geçer.",val2:"Duyarlı tasarım: sakinlik ve yalınlık önce gelir.",val3:"Özenli iletişim: kişiselleştirme taleplerinde hızlı dönüş.",
-      igTitle:"Instagram’dan",igLead:"Sakin üretim sürecimizi ve paylaşımlarımızı takip et.",igFollow:"@eurekastudio3’ü Takip Et",
-      worksTitle:"Galeri",worksLead:"Her parça; formu, kokusu ve duygusuyla benzersiz.",
-      fAll:"Tümü",fCandles:"Mumlar",fEpoxy:"Epoksi",fAccessories:"Aksesuarlar",
-      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoksi)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Mum",
-      contactTitle:"Birlikte güzel şeyler yaratalım",contactLead:"Özel siparişler, işbirlikleri veya sadece merhaba demek için.",
-      labelName:"İsim",labelEmail:"E-posta",labelMessage:"Mesaj",btnSend:"Gönder",
-      thanksText:"Teşekkürler! Mesajınız ulaştı.",thanksToast:"Teşekkürler! Mesajınız ulaştı.",
-      phName:"İsminiz",phEmail:"you@example.com",phMessage:"Fikrinizi bize yazın…",
-      sending:"Gönderiliyor…",
-      emailLabel:"E-posta:",instagramLabel:"Instagram:",
-      footerText:"© 2025 Eureka Studio 🍀 Özen ve huzurla el yapımıdır."},
-
-  en:{navHome:"Home",navAbout:"About",navWorks:"Works",navInstagram:"Instagram",navContact:"Contact",
-      heroTitle:"Eureka Studio  Handcrafted Candles & Calm Creations",
-      heroSub:"Hand-poured soy candles and epoxy designs minimal, warm, and made with care.",
-      ctaWorks:"Explore Works",
-      aboutTitle:"Calm. Handcrafted. Considered.",
-      aboutLead:"We believe in little rituals that soften everyday rush. Each candle and epoxy piece is designed to recall balance through light, scent, and touch.",
-      storyTitle:"Our Story",
-      storyText:"Think of a melody that never overstays a note that’s how we craft: understated, warm, sincere. Since our first pour, our aim has been gentle calm and inviting warmth.",
-      proc1Title:"1) Formula",proc1Text:"100% soy blend; wick and fragrance ratios tuned per scent.",
-      proc2Title:"2) Pour",proc2Text:"Small-batch hand pouring; controlled heat and resting.",
-      proc3Title:"3) Cure & Label",proc3Text:"After curing, we finish, label and package all by hand.",
-      kv1Text:"Soft notes & minimal forms.",kv2Text:"Epoxy textures & bold gold contrasts.",
-      valuesTitle:"Our Values",valuesText:"Each piece is designed for honest materials, slow making, and long lasting use.",
-      val1:"Craft & care: every step is inspected.",val2:"Considered design: calm and simplicity first.",val3:"Thoughtful contact: quick responses for personalization.",
-      igTitle:"From Instagram",igLead:"Follow our calm making process and daily shares.",igFollow:"Follow @eurekastudio3",
-      worksTitle:"Gallery",worksLead:"Each piece is unique in form, scent, and feeling.",
-      fAll:"All",fCandles:"Candles",fEpoxy:"Epoxy",fAccessories:"Accessories",
-      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoxy)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Candle",
-      contactTitle:"Let’s Create Beautiful Things",contactLead:"For custom orders, collaborations, or just to say hi.",
-      labelName:"Name",labelEmail:"Email",labelMessage:"Message",btnSend:"Send",
-      thanksText:"Thanks! Your message has been received.",thanksToast:"Thanks! Your message has been received.",
-      phName:"Your name",phEmail:"you@example.com",phMessage:"Tell us your idea…",
-      sending:"Sending…",
-      emailLabel:"Email:",instagramLabel:"Instagram:",
-      footerText:"© 2025 Eureka Studio 🍀  Handmade with care and calm."},
-
-  he:{navHome:"בית",navAbout:"אודות",navWorks:"עבודות",navInstagram:"אינסטגרם",navContact:"צור קשר",
-      heroTitle:"Eureka Studio נרות בעבודת יד ויצירות רגועות",
-      heroSub:"נרות סויה יצוקים ביד ועיצובי אפוקסי מינימליים, חמימים ובאהבה.",
-      ctaWorks:"לצפייה ביצירות",
-      aboutTitle:"רגוע. בעבודת יד. מתוך מחשבה.",
-      aboutLead:"אנחנו מאמינים בטקסים קטנים שמרככים את היום־יום. כל נר וחפץ אפוקסי מעוצבים להזכיר איזון דרך אור, ריח ומגע.",
-      storyTitle:"הסיפור שלנו",
-      storyText:"חשבו על מנגינה שלא מאריכה מעבר לנדרש כך אנחנו יוצרים: צנוע, חם וכן. מאז היציקה הראשונה מטרתנו להביא רוגע וחום מזמין.",
-      proc1Title:"1) פורמולה",proc1Text:"תערובת סויה 100%; יחס פתיל ותמציות מכויל לכל ניחוח.",
-      proc2Title:"2) יציקה",proc2Text:"ייצור בסדרות קטנות; חימום מבוקר ומנוחה.",
-      proc3Title:"3) יישון ותווית",proc3Text:"לאחר היישון גימור, תיוג ואריזה ידנית.",
-      kv1Text:"נימות רכות וצורות מינימליות.",kv2Text:"מרקמי אפוקסי ונגיעות זהב מודגשות.",
-      valuesTitle:"הערכים שלנו",valuesText:"חומרים כנים, עשייה איטית ושימוש ארוך טווח.",
-      val1:"עשייה קפדנית: כל שלב נבדק.",val2:"עיצוב מתוך מחשבה: רוגע ופשטות קודמים.",val3:"תקשורת קשובה: מענה מהיר להתאמות אישיות.",
-      igTitle:"מהאינסטגרם",igLead:"עקבו אחרי תהליך היצירה הרגוע והשיתופים שלנו.",igFollow:"עקבו אחרי @eurekastudio3",
-      worksTitle:"גלריה",worksLead:"כל יצירה ייחודית בצורה, בריח ובהרגשה.",
-      fAll:"הכול",fCandles:"נרות",fEpoxy:"אפוקסי",fAccessories:"אביזרים",
-      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (אפוקסי)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"תגי חיות",capPetTag2:"תגי חיות (חלופי)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland נר",
-      contactTitle:"בואו ניצור דברים יפים",contactLead:"להזמנות מותאמות, שיתופי פעולה או סתם שלום.",
-      labelName:"שם",labelEmail:"אימייל",labelMessage:"הודעה",btnSend:"שליחה",
-      thanksText:"תודה! ההודעה התקבלה.",thanksToast:"תודה! ההודעה התקבלה.",
-      phName:"השם שלך",phEmail:"you@example.com",phMessage:"ספרו לנו על הרעיון…",
-      sending:"נשלח…",
-      emailLabel:"אימייל:",instagramLabel:"אינסטגרם:",
-      footerText:"© 2025 Eureka Studio 🍀 מעשה יד באהבה וברוגע."}
-};
-
-/* ==== Uygulama ==== */
+/* ===== I18N ===== */
+const I18N={tr:{navHome:"Ana Sayfa",navAbout:"Hakkımızda",navWorks:"Çalışmalar",navInstagram:"Instagram",navContact:"İletişim",
+heroTitle:"Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar",heroSub:"El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.",ctaWorks:"Çalışmaları Keşfet",
+aboutTitle:"Sakin. El emeği. Duyarlı.",aboutLead:"Eureka Studio, gündelik hayatın telaşını yumuşatan küçük ritüellere inanır. Her mumu ve her epoksi parçayı; ışığın, kokunun ve dokunun denge hâlini hatırlatması için tasarlıyoruz.",
+storyTitle:"Hikâyemiz",storyText:"Bir notayı gereğinden fazla uzatmayan, doğru yerde susan bir melodi düşün… İşte üretimimiz de böyle: gösterişsiz, sıcak ve samimi. İlk mumumuzu döktüğümüz günden beri amacımız; mekânlara yumuşak bir huzur, sofralara davet eden bir sıcaklık katmak.",
+proc1Title:"1) Formül",proc1Text:"%100 soya bazlı karışım; fitil ve esans oranları her koku için ayrı dengelenir.",proc2Title:"2) Döküm",proc2Text:"Küçük partiler halinde el dökümü; kontrollü ısı ve dinlendirme.",proc3Title:"3) Kür & Etiket",proc3Text:"Kürlenme ardından finisaj, etiket ve paket — hepsi elde.",
+kv1Text:"Yumuşak notalar & minimal formlar.",kv2Text:"Epoksi dokular & kontrast altın detaylar.",
+valuesTitle:"Değerlerimiz",valuesText:"Her parça; dürüst malzeme, yavaş üretim ve uzun ömürlü kullanım için tasarlanır.",
+val1:"El emeği & dikkat: her aşama gözden geçer.",val2:"Duyarlı tasarım: sakinlik ve yalınlık önce gelir.",val3:"Özenli iletişim: kişiselleştirme taleplerinde hızlı dönüş.",
+igTitle:"Instagram’dan",igLead:"Sakin üretim sürecimizi ve paylaşımlarımızı takip et.",igFollow:"@eurekastudio3’ü Takip Et",
+worksTitle:"Galeri",worksLead:"Her parça; formu, kokusu ve duygusuyla benzersiz.",
+fAll:"Tümü",fCandles:"Mumlar",fEpoxy:"Epoksi",fAccessories:"Aksesuarlar",
+capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoksi)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Mum",
+contactTitle:"Birlikte güzel şeyler yaratalım",contactLead:"Özel siparişler, işbirlikleri veya sadece merhaba demek için.",
+labelName:"İsim",labelEmail:"E-posta",labelMessage:"Mesaj",btnSend:"Gönder",
+thanksText:"Teşekkürler! Mesajınız ulaştı.",thanksToast:"Teşekkürler! Mesajınız ulaştı.",
+phName:"İsminiz",phEmail:"you@example.com",phMessage:"Fikrinizi bize yazın…",
+sending:"Gönderiliyor…",
+emailLabel:"E-posta:",instagramLabel:"Instagram:",
+footerText:"© 2025 Eureka Studio — Özen ve huzurla el yapımıdır."},
+en:{navHome:"Home",navAbout:"About",navWorks:"Works",navInstagram:"Instagram",navContact:"Contact",
+heroTitle:"Eureka Studio — Handcrafted Candles & Calm Creations",heroSub:"Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.",ctaWorks:"Explore Works",
+aboutTitle:"Calm. Handcrafted. Considered.",aboutLead:"We believe in little rituals that soften everyday rush. Each candle and epoxy piece is designed to recall balance through light, scent, and touch.",
+storyTitle:"Our Story",storyText:"Think of a melody that never overstays a note — that’s how we craft: understated, warm, sincere. Since our first pour, our aim has been gentle calm and inviting warmth.",
+proc1Title:"1) Formula",proc1Text:"100% soy blend; wick and fragrance ratios tuned per scent.",proc2Title:"2) Pour",proc2Text:"Small-batch hand pouring; controlled heat and resting.",proc3Title:"3) Cure & Label",proc3Text:"After curing, we finish, label and package — all by hand.",
+kv1Text:"Soft notes & minimal forms.",kv2Text:"Epoxy textures & bold gold contrasts.",
+valuesTitle:"Our Values",valuesText:"Each piece is designed for honest materials, slow making, and long-lasting use.",
+val1:"Craft & care: every step is inspected.",val2:"Considered design: calm and simplicity first.",val3:"Thoughtful contact: quick responses for personalization.",
+igTitle:"From Instagram",igLead:"Follow our calm making process and daily shares.",igFollow:"Follow @eurekastudio3",
+worksTitle:"Gallery",worksLead:"Each piece is unique in form, scent, and feeling.",
+fAll:"All",fCandles:"Candles",fEpoxy:"Epoxy",fAccessories:"Accessories",
+capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoxy)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Candle",
+contactTitle:"Let’s Create Beautiful Things",contactLead:"For custom orders, collaborations, or just to say hi.",
+labelName:"Name",labelEmail:"Email",labelMessage:"Message",btnSend:"Send",
+thanksText:"Thanks! Your message has been received.",thanksToast:"Thanks! Your message has been received.",
+phName:"Your name",phEmail:"you@example.com",phMessage:"Tell us your idea…",
+sending:"Sending…",
+emailLabel:"Email:",instagramLabel:"Instagram:",
+footerText:"© 2025 Eureka Studio — Handmade with care and calm."},
+he:{navHome:"בית",navAbout:"אודות",navWorks:"עבודות",navInstagram:"אינסטגרם",navContact:"צור קשר",
+heroTitle:"Eureka Studio — נרות בעבודת יד ויצירות רגועות",heroSub:"נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.",ctaWorks:"לצפייה ביצירות",
+aboutTitle:"רגוע. בעבודת יד. מתוך מחשבה.",aboutLead:"אנחנו מאמינים בטקסים קטנים שמרככים את היום־יום. כל נר וחפץ אפוקסי מעוצבים להזכיר איזון דרך אור, ריח ומגע.",
+storyTitle:"הסיפור שלנו",storyText:"חשבו על מנגינה שלא מאריכה מעבר לנדרש — כך אנחנו יוצרים: צנוע, חם וכן. מאז היציקה הראשונה מטרתנו להביא רוגע וחום מזמין.",
+proc1Title:"1) פורמולה",proc1Text:"תערובת סויה 100%; יחס פתיל ותמציות מכויל לכל ניחוח.",proc2Title:"2) יציקה",proc2Text:"ייצור בסדרות קטנות; חימום מבוקר ומנוחה.",proc3Title:"3) יישון ותווית",proc3Text:"לאחר היישון — גימור, תיוג ואריזה ידנית.",
+kv1Text:"נימות רכות וצורות מינימליות.",kv2Text:"מרקמי אפוקסי ונגיעות זהב מודגשות.",
+valuesTitle:"הערכים שלנו",valuesText:"חומרים כנים, עשייה איטית ושימוש ארוך טווח.",
+val1:"עשייה קפדנית: כל שלב נבדק.",val2:"עיצוב מתוך מחשבה: רוגע ופשטות קודמים.",val3:"תקשורת קשובה: מענה מהיר להתאמות אישיות.",
+igTitle:"מהאינסטגרם",igLead:"עקבו אחרי תהליך היצירה הרגוע והשיתופים שלנו.",igFollow:"עקבו אחרי @eurekastudio3",
+worksTitle:"גלריה",worksLead:"כל יצירה ייחודית בצורה, בריח ובהרגשה.",
+fAll:"הכול",fCandles:"נרות",fEpoxy:"אפוקסי",fAccessories:"אביזרים",
+capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (אפוקסי)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland נר",
+contactTitle:"בואו ניצור דברים יפים",contactLead:"להזמנות מותאמות, שיתופי פעולה או סתם שלום.",
+labelName:"שם",labelEmail:"אימייל",labelMessage:"הודעה",btnSend:"שליחה",
+thanksText:"תודה! ההודעה התקבלה.",thanksToast:"תודה! ההודעה התקבלה.",
+phName:"השם שלך",phEmail:"you@example.com",phMessage:"ספרו לנו על הרעיון…",
+sending:"נשלח…",
+emailLabel:"אימייל:",instagramLabel:"אינסטגרם:",
+footerText:"© 2025 Eureka Studio — מעשה יד באהבה וברוגע."}};
 function applyTranslations(lang){
   const t=I18N[lang]||I18N.tr;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.textContent=t[k];
-  });
-  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
-    const k=el.getAttribute('data-i18n-ph'); if(t[k]!==undefined) el.setAttribute('placeholder',t[k]);
-  });
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.textContent=t[k];});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph'); if(t[k]!==undefined) el.setAttribute('placeholder',t[k]);});
 }
-function setLang(lang){
-  document.documentElement.lang=lang;
-  document.documentElement.dir=(lang==='he')?'rtl':'ltr';
-  applyTranslations(lang);
-  try{localStorage.setItem('eureka_lang',lang)}catch(e){}
-}
+function setLang(lang){document.documentElement.lang=lang;document.documentElement.dir=(lang==='he')?'rtl':'ltr';applyTranslations(lang);try{localStorage.setItem('eureka_lang',lang)}catch(e){}}
 
 window.addEventListener('DOMContentLoaded',()=>{
-  // Dil butonları
-  document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{
-    const lang=b.dataset.lang; setLang(lang);
-    window.plausible && plausible('Language Switch',{props:{lang}});
-  }));
-  // İlk dil
+  // Dil
+  document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang);window.plausible&&plausible('Language Switch',{props:{lang:b.dataset.lang}});})); 
   setLang(localStorage.getItem('eureka_lang')||'tr');
 
-  // Nav aktif ve gölge
+  // Nav gölge/aktif
   const header=document.querySelector('.nav-modern');
   const links=[...document.querySelectorAll('.nav-link')];
   const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
@@ -433,8 +416,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   // Filtre
   const filterButtons=[...document.querySelectorAll('.filter')];
   function applyFilter(cat){document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';});}
-  filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat);}));
-  applyFilter('all');
+  filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat);})); applyFilter('all');
 
   // Lightbox
   (function(){const lb=document.createElement('div');lb.className='lb';lb.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999';
@@ -443,7 +425,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('#works-grid figure').forEach(fig=>{fig.addEventListener('click',()=>{const im=fig.querySelector('img');img.src=im.src;img.alt=im.alt;cap.textContent=fig.querySelector('figcaption')?.textContent||'';lb.style.display='flex';document.body.style.overflow='hidden';});});
     lb.addEventListener('click',e=>{if(e.target===lb||e.target===close){lb.style.display='none';document.body.style.overflow='auto';img.removeAttribute('src');}});})();
 
-  // Hatalı uzantı düzeltme
+  // Görsel uzantı güvenliği
   document.querySelectorAll('img').forEach(function(el){
     el.addEventListener('error',function(){
       let s=this.getAttribute('src')||this.src;
@@ -452,7 +434,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     });
   });
 
-  // Form UX
+  // Form
   (function(){
     const form=document.getElementById('contact-form'),send=document.getElementById('sendBtn'),status=document.getElementById('status'),check=document.getElementById('checkwrap');
     function t(k){const lang=document.documentElement.lang;return (I18N[lang]&&I18N[lang][k])||I18N.tr[k]||'';}
@@ -465,7 +447,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     });
   })();
 
-  /* Emniyet: dil değişiminden 1 frame sonra yeniden uygula (geç kaldıysa yakalar) */
+  // Dil değişince bir frame sonra tekrar uygula
   document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>requestAnimationFrame(()=>applyTranslations(document.documentElement.lang))));
 });
 </script>
