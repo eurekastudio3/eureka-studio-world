@@ -16,9 +16,10 @@
 
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180"/>
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=11" fetchpriority="high"/>
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=12" fetchpriority="high"/>
 
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
@@ -42,7 +43,7 @@ a{color:inherit;text-decoration:none}
 section,footer{padding:48px 6%}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* NAV — hizalama düzeltildi */
+/* NAV — hizalama + büyük hamburger */
 .nav-modern{
   position:sticky;top:0;z-index:1000;
   backdrop-filter:blur(14px);
@@ -53,7 +54,7 @@ section,footer{padding:48px 6%}
 .nav-modern.scrolled{background:color-mix(in srgb,var(--bg) 96%,#fff 4%);box-shadow:0 10px 28px rgba(0,0,0,.12)}
 .nav-wrap{
   max-width:1200px;margin:0 auto;padding:10px 6%;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;
 }
 .brand-modern{flex:0 0 auto;display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;letter-spacing:.04em}
 .brand-modern img{height:40px;width:auto;display:block}
@@ -64,16 +65,20 @@ section,footer{padding:48px 6%}
 .nav-link::after{content:"";position:absolute;left:16%;right:16%;bottom:8px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-strong),var(--brand),transparent);transform:scaleX(0);transform-origin:center;transition:transform .28s ease}
 .nav-link:hover::after,.nav-link[aria-current="true"]::after{transform:scaleX(1)}
 .nav-right{flex:0 0 auto;display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
-.lang-pill{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 12px;border-radius:999px;font-weight:800}
-.btn-mini{border:1px solid var(--brand-strong);color:#fff;background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%);padding:9px 12px;border-radius:999px;font-weight:800;white-space:nowrap}
-.burger{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 10px;font-weight:800}
+.lang-pill{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:10px 13px;border-radius:999px;font-weight:800}
+.btn-mini{border:1px solid var(--brand-strong);color:#fff;background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%);padding:10px 13px;border-radius:999px;font-weight:800;white-space:nowrap}
+.burger{
+  border:1px solid var(--line);background:var(--panel);border-radius:12px;
+  padding:10px 14px;font-weight:900;font-size:22px;line-height:1;min-width:44px;min-height:44px;
+  display:flex;align-items:center;justify-content:center;
+}
 @media(max-width:1024px){.nav-center{display:none}}
 
 /* HERO */
 .hero{
   position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;
   color:#fff;text-align:center;border-bottom:1px solid var(--line);
-  background-image:url("./home-candles-hero.JPG?v=11");background-size:cover;background-position:center 50%;
+  background-image:url("./home-candles-hero.JPG?v=12");background-size:cover;background-position:center 50%;
 }
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.60) 45%, rgba(0,0,0,.52))}
 .hero .inner{position:relative;z-index:1;max-width:900px}
@@ -105,7 +110,7 @@ section,footer{padding:48px 6%}
 /* WORKS */
 #works{background:#fdf8f3;text-align:center;padding:80px 6%}
 .works-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
-.works-head h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(20px,3.9vw,26px)} /* küçük dokunuş */
+.works-head h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(20px,3.9vw,26px)}
 #works .muted{font-size:.97rem}
 .muted{color:var(--muted)}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
@@ -149,17 +154,13 @@ section,footer{padding:48px 6%}
 .checkwrap{display:none;align-items:center;gap:8px;color:var(--ok);margin-top:10px}
 .checkwrap.show{display:flex}
 footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%}
-
-/* RTL tipografi */
-:root[dir="rtl"] body{font-family:Heebo,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.75;letter-spacing:.02em;word-spacing:.04em}
-:root[dir="rtl"] .about-grid{direction:rtl}
 </style>
 </head>
 <body>
 
 <!-- TOAST / TEMA -->
 <button class="sr-only" id="themeToggle" aria-label="Tema"></button>
-<div id="toast" class="sr-only" role="status" aria-live="polite">Teşekkürler! Mesajınız ulaştı.</div>
+<div id="toast" class="sr-only" role="status" aria-live="polite" data-i18n="thanksToast">Teşekkürler! Mesajınız ulaştı.</div>
 
 <!-- NAV -->
 <nav class="nav-modern" aria-label="Primary">
@@ -170,11 +171,11 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
     </a>
     <div class="nav-center" role="navigation">
       <ul class="nav-menu">
-        <li><a class="nav-link" href="#home" data-nav data-i18n="navHome">Home</a></li>
-        <li><a class="nav-link" href="#about" data-nav data-i18n="navAbout">About</a></li>
-        <li><a class="nav-link" href="#works" data-nav data-i18n="navWorks">Works</a></li>
+        <li><a class="nav-link" href="#home" data-nav data-i18n="navHome">Ana Sayfa</a></li>
+        <li><a class="nav-link" href="#about" data-nav data-i18n="navAbout">Hakkımızda</a></li>
+        <li><a class="nav-link" href="#works" data-nav data-i18n="navWorks">Çalışmalar</a></li>
         <li><a class="nav-link" href="#instagram" data-nav data-i18n="navInstagram">Instagram</a></li>
-        <li><a class="nav-link" href="#contact" data-nav data-i18n="navContact">Contact</a></li>
+        <li><a class="nav-link" href="#contact" data-nav data-i18n="navContact">İletişim</a></li>
       </ul>
     </div>
     <div class="nav-right">
@@ -229,7 +230,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <div class="pills">
         <span class="pill" data-i18n="pill1">Küçük Parti Üretim</span>
         <span class="pill" data-i18n="pill2">Temiz İçerik</span>
-        <span class="pill" data-i18n="pill3">Uzun Yanım Süresi</span>
+        <span class="pill" data-i18n="pill3">Uzun Yanma Süresi</span>
         <span class="pill" data-i18n="pill4">Geri Dönüşüme Uygun Ambalaj</span>
       </div>
       <div style="margin-top:12px">
@@ -271,34 +272,75 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 
   <div class="masonry" id="works-grid" aria-live="polite">
     <!-- Candles -->
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu"></div><figcaption>Caramel Crumble</figcaption></figure>
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu"></div><figcaption>Choco Cream</figcaption></figure>
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu"></div>
+      <figcaption data-i18n="capCaramel">Caramel Crumble</figcaption>
+    </figure>
+
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu"></div>
+      <figcaption data-i18n="capChoco">Choco Cream</figcaption>
+    </figure>
 
     <!-- New: Woodland (Mum) -->
     <figure class="item" data-cat="candles">
       <div class="thumb"><img src="./eureka.woodland.JPG" alt="Woodland — doğal notalara sahip mum"></div>
-      <figcaption data-i18n="woodlandCap">Woodland Candle</figcaption>
+      <figcaption data-i18n="woodlandCap">Woodland Mum</figcaption>
     </figure>
 
     <!-- Epoxy -->
-    <figure class="item" data-cat="epoxy"><div class="thumb"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi"></div><figcaption>Golden Noir (Epoksi)</figcaption></figure>
+    <figure class="item" data-cat="epoxy">
+      <div class="thumb"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi"></div>
+      <figcaption data-i18n="capGoldenNoir">Golden Noir (Epoksi)</figcaption>
+    </figure>
 
     <!-- More candles -->
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu"></div><figcaption>Summer Cocktail</figcaption></figure>
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu"></div><figcaption>Sunset Orange</figcaption></figure>
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu"></div><figcaption>Bedside Calm</figcaption></figure>
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./candles.png.jpg" alt="Assorted Candles — el yapımı mumlar"></div><figcaption>Assorted Candles</figcaption></figure>
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — nazar boncuk temalı mumu"></div><figcaption>Evil Eye Candle</figcaption></figure>
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu"></div>
+      <figcaption data-i18n="capSummer">Summer Cocktail</figcaption>
+    </figure>
+
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu"></div>
+      <figcaption data-i18n="capSunset">Sunset Orange</figcaption>
+    </figure>
+
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu"></div>
+      <figcaption data-i18n="capBedside">Bedside Calm</figcaption>
+    </figure>
+
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./candles.png.jpg" alt="Assorted Candles — el yapımı mumlar"></div>
+      <figcaption data-i18n="capAssorted">Assorted Candles</figcaption>
+    </figure>
+
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — nazar boncuk temalı mumu"></div>
+      <figcaption data-i18n="capEvilEye">Evil Eye Candle</figcaption>
+    </figure>
 
     <!-- Epoxy -->
-    <figure class="item" data-cat="epoxy"><div class="thumb"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası"></div><figcaption>Epoxy Board</figcaption></figure>
+    <figure class="item" data-cat="epoxy">
+      <div class="thumb"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası"></div>
+      <figcaption data-i18n="capBoard">Epoxy Board</figcaption>
+    </figure>
 
     <!-- Accessories -->
-    <figure class="item" data-cat="accessories"><div class="thumb"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi"></div><figcaption>Pet Tags</figcaption></figure>
-    <figure class="item" data-cat="accessories"><div class="thumb"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi alternatif"></div><figcaption>Pet Tags (Alt)</figcaption></figure>
+    <figure class="item" data-cat="accessories">
+      <div class="thumb"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi"></div>
+      <figcaption data-i18n="capPetTag1">Pet Tags</figcaption>
+    </figure>
+    <figure class="item" data-cat="accessories">
+      <div class="thumb"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi alternatif"></div>
+      <figcaption data-i18n="capPetTag2">Pet Tags (Alt)</figcaption>
+    </figure>
 
     <!-- Lumi -->
-    <figure class="item" data-cat="candles"><div class="thumb"><img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — seçki"></div><figcaption>Eureka Lumi Collection</figcaption></figure>
+    <figure class="item" data-cat="candles">
+      <div class="thumb"><img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — seçki"></div>
+      <figcaption data-i18n="capLumi">Eureka Lumi Collection</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -346,16 +388,18 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       </div>
     </form>
   </div>
-  <p style="margin-top:14px"><strong>Email:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
+  <p style="margin-top:14px"><strong data-i18n="emailLabel">E-posta:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
   <p><strong>Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></p>
 </section>
 
-<footer><p>© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p></footer>
+<footer>
+  <p data-i18n="footerText">© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p>
+</footer>
 
 <script>
 /* ==== I18N (TR / EN / HE) ==== */
 const I18N={
-  tr:{navHome:"Home",navAbout:"About",navWorks:"Works",navInstagram:"Instagram",navContact:"Contact",
+  tr:{navHome:"Ana Sayfa",navAbout:"Hakkımızda",navWorks:"Çalışmalar",navInstagram:"Instagram",navContact:"İletişim",
       heroTitle:"Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar",
       heroSub:"El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.",
       ctaWorks:"Çalışmaları Keşfet",
@@ -369,15 +413,18 @@ const I18N={
       kv1Title:"İmza Kokular",kv1Text:"Vanilya & kakao, turunç & bergamot, odunsu notalar.",
       kv2Title:"Koleksiyonlar",kv2Text:"Lumi Collection, Golden Noir (epoksi), mevsimsel seriler.",
       kv3Title:"Özel Sipariş",kv3Text:"Düğün/kurumsal, hediye seti, kişiselleştirilmiş etiket.",
-      pill1:"Küçük Parti Üretim",pill2:"Temiz İçerik",pill3:"Uzun Yanım Süresi",pill4:"Geri Dönüşüme Uygun Ambalaj",
+      pill1:"Küçük Parti Üretim",pill2:"Temiz İçerik",pill3:"Uzun Yanma Süresi",pill4:"Geri Dönüşüme Uygun Ambalaj",
       valuesTitle:"Değerlerimiz",valuesText:"Her parça; dürüst malzeme, yavaş üretim ve uzun ömürlü kullanım için tasarlanır.",
       val1:"El emeği & dikkat: her aşama gözden geçer.",val2:"Duyarlı tasarım: sakinlik ve yalınlık önce gelir.",val3:"Özenli iletişim: kişiselleştirme taleplerinde hızlı dönüş.",
       igTitle:"Instagram’dan",igLead:"Sakin üretim sürecimizi ve paylaşımlarımızı takip et.",igFollow:"@eurekastudio3’ü Takip Et",
       worksTitle:"Galeri",worksLead:"Her parça; formu, kokusu ve duygusuyla benzersiz.",
       fAll:"Tümü",fCandles:"Mumlar",fEpoxy:"Epoksi",fAccessories:"Aksesuarlar",
+      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoksi)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",
       woodlandCap:"Woodland Mum",
       contactTitle:"Birlikte güzel şeyler yaratalım",contactLead:"Özel siparişler, işbirlikleri veya sadece merhaba demek için.",
-      labelName:"İsim",labelEmail:"E-posta",labelMessage:"Mesaj",btnSend:"Gönder",thanksText:"Teşekkürler! Mesajınız ulaştı."},
+      labelName:"İsim",labelEmail:"E-posta",labelMessage:"Mesaj",btnSend:"Gönder",thanksText:"Teşekkürler! Mesajınız ulaştı.",thanksToast:"Teşekkürler! Mesajınız ulaştı.",
+      emailLabel:"E-posta:", footerText:"© 2025 Eureka Studio — Özen ve huzurla el yapımıdır."},
+
   en:{navHome:"Home",navAbout:"About",navWorks:"Works",navInstagram:"Instagram",navContact:"Contact",
       heroTitle:"Eureka Studio — Handcrafted Candles & Calm Creations",
       heroSub:"Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.",
@@ -397,9 +444,12 @@ const I18N={
       igTitle:"From Instagram",igLead:"Follow our calm making process and daily shares.",igFollow:"Follow @eurekastudio3",
       worksTitle:"Gallery",worksLead:"Each piece is unique in form, scent, and feeling.",
       fAll:"All",fCandles:"Candles",fEpoxy:"Epoxy",fAccessories:"Accessories",
+      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoxy)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",
       woodlandCap:"Woodland Candle",
       contactTitle:"Let’s Create Beautiful Things",contactLead:"For custom orders, collaborations, or just to say hi.",
-      labelName:"Name",labelEmail:"Email",labelMessage:"Message",btnSend:"Send",thanksText:"Thanks! Your message has been received."},
+      labelName:"Name",labelEmail:"Email",labelMessage:"Message",btnSend:"Send",thanksText:"Thanks! Your message has been received.",thanksToast:"Thanks! Your message has been received.",
+      emailLabel:"Email:", footerText:"© 2025 Eureka Studio — Handmade with care and calm."},
+
   he:{navHome:"בית",navAbout:"אודות",navWorks:"עבודות",navInstagram:"אינסטגרם",navContact:"צור קשר",
       heroTitle:"Eureka Studio — נרות בעבודת יד ויצירות רגועות",
       heroSub:"נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.",
@@ -419,10 +469,13 @@ const I18N={
       igTitle:"מהאינסטגרם",igLead:"עקבו אחרי תהליך היצירה הרגוע והשיתופים שלנו.",igFollow:"עקבו אחרי @eurekastudio3",
       worksTitle:"גלריה",worksLead:"כל יצירה ייחודית בצורה, בריח ובהרגשה.",
       fAll:"הכול",fCandles:"נרות",fEpoxy:"אפוקסי",fAccessories:"אביזרים",
+      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (אפוקסי)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"תגי חיות",capPetTag2:"תגי חיות (חלופי)",capLumi:"Eureka Lumi Collection",
       woodlandCap:"Woodland נר",
       contactTitle:"בואו ניצור דברים יפים",contactLead:"להזמנות מותאמות, שיתופי פעולה או סתם שלום.",
-      labelName:"שם",labelEmail:"אימייל",labelMessage:"הודעה",btnSend:"שליחה",thanksText:"תודה! ההודעה התקבלה."}
+      labelName:"שם",labelEmail:"אימייל",labelMessage:"הודעה",btnSend:"שליחה",thanksText:"תודה! ההודעה התקבלה.",thanksToast:"תודה! ההודעה התקבלה.",
+      emailLabel:"אימייל:", footerText:"© 2025 Eureka Studio — מעשה יד באהבה וברוגע."}
 };
+
 function applyTranslations(lang){
   const t=I18N[lang]||I18N.tr;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
@@ -464,7 +517,7 @@ document.querySelectorAll('img').forEach(function(el){el.addEventListener('error
   form.addEventListener('input',()=>{send.disabled=!(form.name.value.trim()&&form.email.value.includes('@')&&form.message.value.trim().length>4);});
   form.addEventListener('submit',async (e)=>{
     e.preventDefault();
-    send.disabled=true; status.textContent='Gönderiliyor…';
+    send.disabled=true; status.textContent=I18N[document.documentElement.lang]?.btnSend||'Gönderiliyor…';
     try{
       const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:form.name.value,email:form.email.value,message:form.message.value})});
       if(res.ok){status.textContent=''; check.classList.add('show'); form.reset(); window.plausible&&plausible('Contact Form Submitted');}
