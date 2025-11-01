@@ -17,8 +17,8 @@
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180"/>
 
-<!-- Hero: orijinal JPG'i önceliklendir -->
-<link rel="preload" as="image" href="./home-candles-hero.JPG" fetchpriority="high"/>
+<!-- Kahraman görseli: orijinali preload + cache-bust -->
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=2" fetchpriority="high"/>
 
 <!-- Yazı tipleri -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -129,18 +129,34 @@ section,footer{padding:48px 6%}
 }
 .nav-modern{min-height:56px}
 
-/* ===== HERO (net görünüm) ===== */
-@keyframes fadeInHero { from{opacity:0; transform:scale(1.05)} to{opacity:1; transform:scale(1)} }
-.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;isolation:isolate;background:#111 center/cover no-repeat;border-bottom:1px solid var(--line);animation:fadeInHero 1.4s ease-out}
-.hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.48),rgba(0,0,0,.40) 45%,rgba(0,0,0,.28))}
-:root[data-theme="dark"] .hero .overlay{background:linear-gradient(to bottom,rgba(0,0,0,.58),rgba(0,0,0,.48) 45%,rgba(0,0,0,.34))}
-.hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
-.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(24px,5.6vw,40px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.55)}
-.hero p{font-size:clamp(14px,2.4vw,17px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.40)}
+/* ===== HERO (arka plan resmi ile net ve stabil) ===== */
+.hero{
+  position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;
+  isolation:isolate;border-bottom:1px solid var(--line);animation:fadeInHero 1.2s ease-out;
+  color:#fff;text-align:center;
+  /* Görsel doğrudan arka plan olarak; cache-bust ile */
+  background-image: url("./home-candles-hero.JPG?v=2"), url("./home-candles-hero-optimized.jpg?v=2");
+  background-size: cover; background-repeat: no-repeat;
+  /* Kadraj: mobilde biraz yukarı, desktopta merkez */
+  background-position: center 42%;
+}
+/* Kadrajı geniş ekranda hafif aşağı al */
+@media(min-width:900px){ .hero{ background-position: center 50%; } }
+
+/* Karartmayı minimuma indir — yazı okunur kalsın, foto boğulmasın */
+.hero::before{
+  content:""; position:absolute; inset:0; z-index:0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.34), rgba(0,0,0,.26) 45%, rgba(0,0,0,.18));
+}
+.hero .inner{position:relative;z-index:1;max-width:900px;margin-inline:auto}
+.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(24px,5.6vw,40px);line-height:1.12;margin-bottom:.4em;
+  text-shadow:0 3px 10px rgba(0,0,0,.4)}
+.hero p{font-size:clamp(14px,2.4vw,17px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 7px rgba(0,0,0,.35)}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-block;border:2px solid color-mix(in srgb, var(--gold), #ffffff 20%);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
 .scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
+@keyframes fadeInHero { from{opacity:0; transform:scale(1.03)} to{opacity:1; transform:scale(1)} }
 
 /* ===== ABOUT ===== */
 #about{background:#f8f1e8;text-align:center;padding:80px 6%}
@@ -238,16 +254,13 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
     </div>
 
     <div class="nav-right">
-      <!-- diller -->
       <button class="lang-pill" data-lang="en">EN</button>
       <button class="lang-pill" data-lang="tr">TR</button>
       <button class="lang-pill" data-lang="he">HE</button>
-      <!-- Shop / DM -->
       <div class="ig-cta">
         <a class="btn-mini" href="#works">Shop</a>
         <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener">DM</a>
       </div>
-      <!-- burger en sağda -->
       <button class="burger" id="openMenu" aria-label="Menü">☰</button>
     </div>
   </div>
@@ -280,22 +293,8 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
 </div>
 <!-- ===== /NAV ===== -->
 
-<!-- ===== HERO (picture ile net kaynak seçimi) ===== -->
+<!-- ===== HERO ===== -->
 <section id="home" class="hero reveal" aria-labelledby="heroTitle">
-  <picture id="heroPic" style="position:absolute;inset:0;z-index:-1">
-    <!-- İleride webp/avif eklemek istersen bu source’ları açabiliriz
-    <source type="image/avif" srcset="./home-candles-hero.avif">
-    <source type="image/webp" srcset="./home-candles-hero-optimized.webp">
-    -->
-    <img id="heroImg"
-         src="./home-candles-hero.JPG"
-         srcset="./home-candles-hero.JPG 2000w, ./home-candles-hero-optimized.jpg 1600w"
-         sizes="100vw"
-         alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
-         style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"
-         loading="eager" decoding="async" fetchpriority="high" width="2000" height="1200">
-  </picture>
-  <div class="overlay" aria-hidden="true"></div>
   <div class="inner">
     <h1 id="heroTitle">Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</h1>
     <p>El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.</p>
@@ -399,7 +398,6 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
   <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
 
   <div class="contact-card">
-    <!-- FormSubmit (eddyeswork@gmail.com) -->
     <form id="contact-form" action="https://formsubmit.co/ajax/eddyeswork@gmail.com" method="POST" novalidate>
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="_subject" value="Eureka Studio | Yeni iletişim mesajı">
@@ -429,218 +427,57 @@ footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px soli
   <p><strong>Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></p>
 </section>
 
-<!-- ===== FOOTER + BACK TO TOP ===== -->
-<footer id="site-footer">
-  <p>© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p>
-</footer>
+<footer id="site-footer"><p>© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p></footer>
 <button id="toTopBtn" aria-label="Yukarı çık">↑</button>
 
 <script>
-/* ===== I18N ===== */
-const I18N={
-  en:{heroTitle:'Eureka Studio — Handcrafted Candles & Calm Creations',heroSub:'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.',ctaWorks:'Explore Works'},
-  tr:{heroTitle:'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',heroSub:'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.',ctaWorks:'Çalışmaları Keşfet'},
-  he:{heroTitle:'Eureka Studio — נרות בעבודת יד ויצירות רגועות',heroSub:'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.',ctaWorks:'לצפייה ביצירות'}
-};
-function setLang(lang){
-  document.documentElement.setAttribute('dir', lang==='he'?'rtl':'ltr');
-  document.documentElement.lang=lang;
-  const t=I18N[lang]||I18N.tr;
-  const h=document.querySelector('#home h1'), p=document.querySelector('#home p'), c=document.querySelector('#home .ctas a[href="#works"]');
-  if(h) h.textContent=t.heroTitle; if(p) p.textContent=t.heroSub; if(c) c.textContent=t.ctaWorks;
-  try{localStorage.setItem('eureka_lang',lang)}catch(e){}
-}
+/* I18N */
+const I18N={en:{heroTitle:'Eureka Studio — Handcrafted Candles & Calm Creations',heroSub:'Hand-poured soy candles and epoxy designs — minimal, warm, and made with care.',ctaWorks:'Explore Works'},tr:{heroTitle:'Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar',heroSub:'El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.',ctaWorks:'Çalışmaları Keşfet'},he:{heroTitle:'Eureka Studio — נרות בעבודת יד ויצירות רגועות',heroSub:'נרות סויה יצוקים ביד ועיצובי אפוקסי — מינימליים, חמימים ובאהבה.',ctaWorks:'לצפייה ביצירות'}};
+function setLang(lang){document.documentElement.setAttribute('dir', lang==='he'?'rtl':'ltr');document.documentElement.lang=lang;const t=I18N[lang]||I18N.tr;const h=document.querySelector('#home h1'), p=document.querySelector('#home p'), c=document.querySelector('#home .ctas a[href="#works"]');if(h) h.textContent=t.heroTitle; if(p) p.textContent=t.heroSub; if(c) c.textContent=t.ctaWorks; try{localStorage.setItem('eureka_lang',lang)}catch(e){}}
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang); if(window.plausible) plausible('Language Switch',{props:{lang:b.dataset.lang}});})); 
 setLang(localStorage.getItem('eureka_lang')||'tr');
 
-/* ===== NAV: scroll + aktif link ===== */
-(function(){
-  const header=document.querySelector('.nav-modern');
-  const links=[...document.querySelectorAll('.nav-link')];
-  const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
-  function onScroll(){
-    header?.classList.toggle('scrolled', window.scrollY>8);
-    let idx=0; secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110) idx=i;});
-    links.forEach(l=>l.removeAttribute('aria-current'));
-    if(links[idx]) links[idx].setAttribute('aria-current','true');
-  }
-  addEventListener('scroll', onScroll, {passive:true}); onScroll();
-})();
+/* NAV aktif link + scroll */
+(function(){const header=document.querySelector('.nav-modern');const links=[...document.querySelectorAll('.nav-link')];const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));function onScroll(){header?.classList.toggle('scrolled', window.scrollY>8);let idx=0; secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110) idx=i;});links.forEach(l=>l.removeAttribute('aria-current'));if(links[idx]) links[idx].setAttribute('aria-current','true');}addEventListener('scroll', onScroll, {passive:true}); onScroll();})();
 
-/* ===== REVEAL ON SCROLL ===== */
+/* REVEAL */
 const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ===== MOBILE MENU ===== */
-(function(){
-  const mm=document.getElementById('mobileMenu');
-  const open=document.getElementById('openMenu');
-  const close=document.getElementById('closeMenu');
-  function show(){ mm.style.display='block'; document.body.style.overflow='hidden'; if(window.plausible) plausible('Mobile Menu Open'); }
-  function hide(){ mm.style.display='none'; document.body.style.overflow='auto'; }
-  open?.addEventListener('click', show);
-  close?.addEventListener('click', hide);
-  mm?.addEventListener('click', e=>{ if(e.target===mm) hide(); });
-  document.querySelectorAll('[data-mm]').forEach(a=>a.addEventListener('click', hide));
-})();
+/* MOBILE MENU */
+(function(){const mm=document.getElementById('mobileMenu');const open=document.getElementById('openMenu');const close=document.getElementById('closeMenu');function show(){mm.style.display='block';document.body.style.overflow='hidden'; if(window.plausible) plausible('Mobile Menu Open');}function hide(){mm.style.display='none';document.body.style.overflow='auto';}open?.addEventListener('click', show);close?.addEventListener('click', hide);mm?.addEventListener('click', e=>{ if(e.target===mm) hide(); });document.querySelectorAll('[data-mm]').forEach(a=>a.addEventListener('click', hide));})();
 
-/* ===== FILTERS + COUNTS ===== */
+/* FILTER + COUNT */
 const filterButtons=[...document.querySelectorAll('.filter')];
-function countAndLabel(){
-  const all=[...document.querySelectorAll('#works-grid [data-cat]')];
-  const counts={all:all.length,candles:0,epoxy:0,accessories:0};
-  all.forEach(el=>{counts[el.dataset.cat]=(counts[el.dataset.cat]||0)+1;});
-  for(const k of Object.keys(counts)){
-    const el=document.getElementById('c-'+k); if(el) el.textContent='('+counts[k]+')';
-  }
-}
-function applyFilter(cat){
-  document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{
-    card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
-  });
-}
-filterButtons.forEach(b=>b.addEventListener('click',()=>{
-  filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));
-  b.setAttribute('aria-selected','true');
-  applyFilter(b.dataset.cat);
-  if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});
-}));
-countAndLabel(); applyFilter('all');
+function countAndLabel(){const all=[...document.querySelectorAll('#works-grid [data-cat]')];const counts={all:all.length,candles:0,epoxy:0,accessories:0};all.forEach(el=>{counts[el.dataset.cat]=(counts[el.dataset.cat]||0)+1;});for(const k of Object.keys(counts)){const el=document.getElementById('c-'+k); if(el) el.textContent='('+counts[k]+')';}}
+function applyFilter(cat){document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';});}
+filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat);if(window.plausible) plausible('Gallery Filter',{props:{category:b.dataset.cat||'unknown'}});}));countAndLabel(); applyFilter('all');
 
-/* ===== LIGHTBOX ===== */
+/* LIGHTBOX */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
-document.querySelectorAll('#works-grid figure').forEach(fig=>{
-  fig.addEventListener('click',()=>{
-    const im=fig.querySelector('img'); lbImg.src=im.src; lbImg.alt=im.alt;
-    const cap=fig.querySelector('figcaption')?.textContent||''; lbCap.textContent=cap;
-    lb.classList.add('open'); document.body.style.overflow='hidden';
-    if(window.plausible) plausible('Gallery Lightbox Open',{props:{title:cap,category:fig.dataset.cat||'unknown'}});
-  });
-});
-document.getElementById('lbClose')?.addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow='auto';});
-lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='auto';}});
+document.querySelectorAll('#works-grid figure').forEach(fig=>{fig.addEventListener('click',()=>{const im=fig.querySelector('img'); lbImg.src=im.src; lbImg.alt=im.alt; const cap=fig.querySelector('figcaption')?.textContent||''; lbCap.textContent=cap; lb.classList.add('open'); document.body.style.overflow='hidden'; if(window.plausible) plausible('Gallery Lightbox Open',{props:{title:cap,category:fig.dataset.cat||'unknown'}});});});
+document.getElementById('lbClose')?.addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow='auto';});lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='auto';}});
 
-/* ===== IMG EXT FIX + HERO FALLBACK (orijinal önce) ===== */
-document.querySelectorAll('img').forEach(function(el){
-  el.addEventListener('error', function(){
-    let s=this.getAttribute('src')||this.src;
-    s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');
-    if(s!==this.src) this.src=s+(s.includes('?')?'':'?v='+Date.now());
-  });
-});
-(function(){
-  const img=document.getElementById('heroImg'); if(!img) return;
-  const tries=[
-    './home-candles-hero.JPG?v='+Date.now(),
-    './home-candles-hero-optimized.jpg?v='+Date.now(),
-    './home-candles-hero.jpg?v='+Date.now()
-  ];
-  let i=0; img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
-})();
+/* IMG uzantı fix */
+document.querySelectorAll('img').forEach(function(el){el.addEventListener('error', function(){let s=this.getAttribute('src')||this.src; s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png'); if(s!==this.src) this.src=s+(s.includes('?')?'':'?v='+Date.now());});});
 
-/* ===== LAZY-LOAD BOOST ===== */
-(function(){
-  const nearIo=new IntersectionObserver((ents,obs)=>{
-    ents.forEach(ent=>{
-      if(ent.isIntersecting){
-        const img=ent.target;
-        img.decoding='async';
-        if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
-        img.setAttribute('fetchpriority','low');
-        obs.unobserve(img);
-      }
-    });
-  },{rootMargin:'600px 0px'});
-  document.querySelectorAll('img[loading="lazy"]').forEach(img=>nearIo.observe(img));
-})();
+/* LAZY-LOAD BOOST */
+(function(){const nearIo=new IntersectionObserver((ents,obs)=>{ents.forEach(ent=>{if(ent.isIntersecting){const img=ent.target;img.decoding='async';if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');img.setAttribute('fetchpriority','low');obs.unobserve(img);}});},{rootMargin:'600px 0px'});document.querySelectorAll('img[loading="lazy"]').forEach(img=>nearIo.observe(img));})();
 
-/* ===== HASH OFFSET ===== */
+/* HASH OFFSET */
 (function(){function offsetHash(){const id=location.hash?.slice(1);if(!id)return;const el=document.getElementById(id);if(!el)return;const top=el.getBoundingClientRect().top+scrollY-70;scrollTo({top,behavior:'smooth'});}addEventListener('hashchange',offsetHash);if(location.hash)setTimeout(offsetHash,60);})();
 
-/* ===== DEDUPE SAFETY ===== */
-(function(){
-  const IDS=['home','about','works','instagram','contact'];
-  IDS.forEach(id=>{const els=document.querySelectorAll('#'+id);for(let i=1;i<els.length;i++){els[i].remove();}});
-  const navs=document.querySelectorAll('nav');for(let i=1;i<navs.length;i++){navs[i].remove();}
-  const fts=document.querySelectorAll('footer#site-footer');for(let i=1;i<fts.length;i++){fts[i].remove();}
-  const tops=document.querySelectorAll('#toTopBtn');for(let i=1;i<tops.length;i++){tops[i].remove();}
-})();
+/* DEDUPE SAFETY */
+(function(){const IDS=['home','about','works','instagram','contact'];IDS.forEach(id=>{const els=document.querySelectorAll('#'+id);for(let i=1;i<els.length;i++){els[i].remove();}});const navs=document.querySelectorAll('nav');for(let i=1;i<navs.length;i++){navs[i].remove();}const fts=document.querySelectorAll('footer#site-footer');for(let i=1;i<fts.length;i++){fts[i].remove();}const tops=document.querySelectorAll('#toTopBtn');for(let i=1;i<tops.length;i++){tops[i].remove();}})();
 
-/* ===== INSTAGRAM CLICK EVENT ===== */
-document.querySelectorAll('a[href*="instagram.com/eurekastudio3"]').forEach(a=>{
-  a.addEventListener('click',()=>{if(window.plausible) plausible('Instagram Click');},{passive:true});
-});
+/* THEME TOGGLE */
+(function(){const btn=document.getElementById('themeToggle');function apply(t){document.documentElement.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('eureka_theme',t)}catch(e){}}let saved=localStorage.getItem('eureka_theme'); if(!saved){saved='light';}apply(saved);btn.addEventListener('click',()=>apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));})();
 
-/* ===== THEME TOGGLE ===== */
-(function(){
-  const btn=document.getElementById('themeToggle');
-  function apply(t){document.documentElement.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('eureka_theme',t)}catch(e){}}
-  let saved=localStorage.getItem('eureka_theme'); if(!saved){saved='light';}
-  apply(saved);
-  btn.addEventListener('click',()=>apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
-})();
+/* CONTACT FORM (FormSubmit Ajax) */
+(function(){const form=document.getElementById('contact-form');const btn=document.getElementById('sendBtn');const status=document.getElementById('status');const toast=document.getElementById('toast');const check=document.getElementById('checkwrap');if(!form||!btn) return;function validate(){const email=(form.querySelector('[name="email"]')?.value||'').trim();const msg=(form.querySelector('[name="message"]')?.value||'').trim();btn.disabled=!(email && msg.length>=5);}form.addEventListener('input',validate,{passive:true}); validate();form.addEventListener('submit', async function(e){e.preventDefault();if(btn.disabled) return;const oldText=btn.textContent;btn.disabled=true; btn.textContent='Gönderiliyor…'; if(status){status.style.color='inherit'; status.textContent='Gönderiliyor…';} if(check){check.classList.remove('show'); check.style.display='none';}try{const payload={name:form.querySelector('[name="name"]')?.value||'',email:form.querySelector('[name="email"]')?.value||'',message:form.querySelector('[name="message"]')?.value||'',_subject:'Eureka Studio | Yeni iletişim mesajı',_template:'table',_autoresponse:'Merhaba! Mesajınızı aldık ve en kısa sürede döneceğiz. — Eureka Studio'};const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});if(res.ok){if(window.plausible) plausible('Contact Form Submit'); form.reset(); validate(); if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';} if(check){check.classList.add('show'); check.style.display='flex';} if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);} status?.scrollIntoView({behavior:'smooth',block:'center'});}else{if(status){status.style.color='crimson'; status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.';}}}catch(err){if(status){status.style.color='crimson'; status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.';}}finally{btn.disabled=false; btn.textContent=oldText||'Gönder';}});})();
 
-/* ===== CONTACT FORM ===== */
-(function(){
-  const form=document.getElementById('contact-form');
-  const btn=document.getElementById('sendBtn');
-  const status=document.getElementById('status');
-  const toast=document.getElementById('toast');
-  const check=document.getElementById('checkwrap');
-  if(!form||!btn) return;
-
-  function validate(){
-    const email=(form.querySelector('[name="email"]')?.value||'').trim();
-    const msg=(form.querySelector('[name="message"]')?.value||'').trim();
-    btn.disabled=!(email && msg.length>=5);
-  }
-  form.addEventListener('input',validate,{passive:true}); validate();
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    if(btn.disabled) return;
-
-    const oldText=btn.textContent;
-    btn.disabled=true; btn.textContent='Gönderiliyor…';
-    if(status){status.style.color='inherit'; status.textContent='Gönderiliyor…';}
-    if(check){check.classList.remove('show'); check.style.display='none';}
-
-    try{
-      const payload={
-        name:form.querySelector('[name="name"]')?.value||'',
-        email:form.querySelector('[name="email"]')?.value||'',
-        message:form.querySelector('[name="message"]')?.value||'',
-        _subject:'Eureka Studio | Yeni iletişim mesajı',
-        _template:'table',
-        _autoresponse:'Merhaba! Mesajınızı aldık ve en kısa sürede döneceğiz. — Eureka Studio'
-      };
-
-      const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
-      if(res.ok){
-        if(window.plausible) plausible('Contact Form Submit');
-        form.reset(); validate();
-        if(status){status.style.color='var(--ok)'; status.textContent='Teşekkürler! Mesajınız ulaştı.';}
-        if(check){check.classList.add('show'); check.style.display='flex';}
-        if(toast){toast.style.display='block'; setTimeout(()=>toast.style.display='none',2800);}
-        status?.scrollIntoView({behavior:'smooth',block:'center'});
-      }else{
-        if(status){status.style.color='crimson'; status.textContent='Bir sorun oluştu. Lütfen tekrar deneyin.';}
-      }
-    }catch(err){
-      if(status){status.style.color='crimson'; status.textContent='Bağlantı sorunu. İnternetinizi kontrol edin.';}
-    }finally{
-      btn.disabled=false; btn.textContent=oldText||'Gönder';
-    }
-  });
-})();
-
-/* ===== BACK TO TOP ===== */
-(function(){
-  const btn = document.getElementById('toTopBtn'), showAt=300;
-  function toggleBtn(){ btn.style.display = (window.scrollY>showAt)?'inline-block':'none'; }
-  addEventListener('scroll', toggleBtn, {passive:true}); toggleBtn();
-  btn.addEventListener('click', function(){ if(window.plausible) plausible('BackToTop Click'); window.scrollTo({ top: 0, behavior: 'smooth' }); });
-})();
+/* BACK TO TOP */
+(function(){const btn = document.getElementById('toTopBtn'), showAt=300;function toggleBtn(){ btn.style.display = (window.scrollY>showAt)?'inline-block':'none'; }addEventListener('scroll', toggleBtn, {passive:true}); toggleBtn();btn.addEventListener('click', function(){ if(window.plausible) plausible('BackToTop Click'); window.scrollTo({ top: 0, behavior: 'smooth' }); });})();
 </script>
 </body>
 </html>
