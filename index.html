@@ -152,30 +152,48 @@ section,footer{padding:48px 6%}
 .filter:hover,.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .filter .count{opacity:.85;font-weight:700;margin-left:.35em}
 
-/* >>> MASONRY: Mobilde 2 sütun <<< */
+/* Masonry — mobil 2 sütun */
 .masonry{column-gap:14px;column-count:2;margin-top:14px}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
 
-.item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative;transition:transform .35s ease, box-shadow .35s}
-.item img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .35s ease;max-height:280px}
+/* KARTLAR */
+.item{
+  break-inside:avoid;margin:0 0 14px;background:var(--panel);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  box-shadow:var(--shadow);cursor:zoom-in;position:relative;
+  transition:transform .35s ease, box-shadow .35s;
+}
 .item:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.12)}
-.item:hover img{transform:scale(1.03)}
-.item::after{content:"";position:absolute;inset:auto -20% 35% -20%;height:60%;background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb,var(--gold),transparent 45%), transparent 70%);opacity:0;transition:opacity .35s ease, transform .35s ease;pointer-events:none;filter:blur(8px)}
+.item::after{
+  content:"";position:absolute;inset:auto -20% 35% -20%;height:60%;
+  background:radial-gradient(50% 60% at 50% 100%, color-mix(in srgb,var(--gold),transparent 45%), transparent 70%);
+  opacity:0;transition:opacity .35s ease, transform .35s ease;pointer-events:none;filter:blur(8px)
+}
 .item:hover::after{opacity:.7;transform:translateY(-8px)}
 
-/* >>> Figcaption: Fraunces, daha büyük, hafif italik <<< */
+/* >>> GÖRSELLER EŞİT KARE <<< */
+.item img{
+  width:100%;
+  aspect-ratio:1/1;         /* tüm görseller kare */
+  object-fit:cover;         /* taşan kısımlar zarifçe kırpılır */
+  display:block;
+  transition:transform .35s ease;
+}
+.item:hover img{transform:scale(1.03)}
+
+/* >>> Figcaption: italik kaldırıldı + biraz küçültüldü <<< */
 #works figcaption{
   font-family:Fraunces,serif;
   font-weight:700;
-  font-style:italic;        /* yeni */
+  font-style:normal;        /* italik OFF */
   letter-spacing:.02em;
   line-height:1.2;
-  font-size:1.08rem;        /* mobilde biraz büyük */
-  padding:12px 12px 14px;   /* alt nefes */
+  font-size:1.02rem;        /* bir tık küçük */
+  padding:10px 12px 12px;
 }
 @media(min-width:480px){
-  #works figcaption{font-size:1.14rem;}  /* orta ekranlarda bir tık daha büyük */
+  #works figcaption{font-size:1.08rem;}
 }
 
 /* Lightbox */
@@ -433,7 +451,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <figcaption>Pet Tags (Alt)</figcaption>
     </figure>
 
-    <!-- NEW: Lumi -->
+    <!-- Lumi -->
     <figure class="item reveal" data-cat="candles">
       <img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — seçki soya mumları" loading="lazy" decoding="async" width="800" height="800">
       <figcaption>Eureka Lumi Collection</figcaption>
