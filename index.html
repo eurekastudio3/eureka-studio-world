@@ -11,14 +11,14 @@
 <meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.eurekastudio.org/"/>
-<meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero-optimized.jpg"/>
+<meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero-optimized.Jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="theme-color" content="#e9e3da"/>
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180">
 
 <!-- LCP için preload -->
-<link rel="preload" as="image" href="./home-candles-hero-optimized.jpg" imagesrcset="./home-candles-hero-optimized.jpg 1600w, ./home-candles-hero-optimized.jpg 2000w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="./home-candles-hero-optimized.Jpg" imagesrcset="./home-candles-hero-optimized.Jpg 1600w, ./home-candles-hero-optimized.Jpg 2000w" imagesizes="100vw" fetchpriority="high">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -188,7 +188,7 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
   <!-- WebP varsa tercih, yoksa JPEG -->
   <picture>
     <source srcset="./home-candles-hero.webp" type="image/webp">
-    <img id="heroImg" src="./home-candles-hero-optimized.jpg"
+    <img id="heroImg" src="./home-candles-hero-optimized.Jpg"
          alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(60%)"
          loading="eager" decoding="async" fetchpriority="high">
@@ -410,7 +410,7 @@ document.querySelectorAll('img').forEach(function(el){
 });
 (function(){
   const img=document.getElementById('heroImg'); if(!img) return;
-  const tries=['./home-candles-hero-optimized.jpg?v='+Date.now(),'./home-candles-hero.JPG?v='+Date.now(),'./home-candles-hero.jpg?v='+Date.now(),'/home-candles-hero-optimized.jpg?v='+Date.now()];
+  const tries=['./home-candles-hero-optimized.Jpg?v='+Date.now(),'./home-candles-hero.JPG?v='+Date.now(),'./home-candles-hero.Jpg?v='+Date.now(),'/home-candles-hero-optimized.Jpg?v='+Date.now()];
   let i=0; img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
 })();
 
