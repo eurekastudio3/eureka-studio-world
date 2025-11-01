@@ -11,14 +11,14 @@
 <meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.eurekastudio.org/"/>
-<meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero-optimized.Jpg"/>
+<meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero-optimized.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="theme-color" content="#e9e3da"/>
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180">
 
 <!-- LCP için preload -->
-<link rel="preload" as="image" href="./home-candles-hero-optimized.Jpg" imagesrcset="./home-candles-hero-optimized.Jpg 1600w, ./home-candles-hero-optimized.Jpg 2000w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="./home-candles-hero-optimized.jpg" imagesrcset="./home-candles-hero-optimized.jpg 1600w, ./home-candles-hero-optimized.jpg 2000w" imagesizes="100vw" fetchpriority="high">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -165,7 +165,7 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
 <nav aria-label="Primary" class="reveal">
   <div class="nav-inner">
     <div class="brand">
-      <img src="./logo.png1.PNG" alt="Eureka Studio logo" width="32" height="32" decoding="async" loading="eager" fetchpriority="high">
+      <img src="./logo.png1.PNG" alt="Eureka Studio logo" width="180" height="180" decoding="async" loading="eager" fetchpriority="high">
       <span>EUREKA STUDIO</span>
     </div>
     <ul>
@@ -185,13 +185,12 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
 
 <!-- HERO -->
 <section id="home" class="hero reveal" aria-labelledby="heroTitle">
-  <!-- WebP varsa tercih, yoksa JPEG -->
   <picture>
     <source srcset="./home-candles-hero.webp" type="image/webp">
-    <img id="heroImg" src="./home-candles-hero-optimized.Jpg"
+    <img id="heroImg" src="./home-candles-hero-optimized.jpg"
          alt="El yapımı mumlar — sakin, doğal bir yüzeyde"
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(60%)"
-         loading="eager" decoding="async" fetchpriority="high">
+         loading="eager" decoding="async" fetchpriority="high" width="2000" height="1200">
   </picture>
   <div class="overlay" aria-hidden="true"></div>
   <div class="inner">
@@ -240,28 +239,103 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
 
   <div class="masonry" id="works-grid">
     <!-- Candles -->
-    <figure class="item reveal" data-cat="candles"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu" loading="lazy" decoding="async"><figcaption>Caramel Crumble</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu" loading="lazy" decoding="async"><figcaption>Choco Cream</figcaption></figure>
+    <figure class="item reveal" data-cat="candles">
+      <picture>
+        <source srcset="./caramel-crumble.webp" type="image/webp">
+        <img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu" loading="lazy" decoding="async" width="800" height="600">
+      </picture>
+      <figcaption>Caramel Crumble</figcaption>
+    </figure>
+
+    <figure class="item reveal" data-cat="candles">
+      <picture>
+        <source srcset="./choco-cream.webp" type="image/webp">
+        <img src="./choco-cream.JPG" alt="Choco Cream — soya mumu" loading="lazy" decoding="async" width="800" height="600">
+      </picture>
+      <figcaption>Choco Cream</figcaption>
+    </figure>
 
     <!-- GOLDEN NOIR → epoxy -->
-    <figure class="item reveal" data-cat="epoxy"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi obje" loading="lazy" decoding="async"><figcaption>Golden Noir (Epoksi)</figcaption></figure>
+    <figure class="item reveal" data-cat="epoxy">
+      <picture>
+        <source srcset="./golden-noir.webp" type="image/webp">
+        <img src="./golden-noir.PNG" alt="Golden Noir — epoksi obje" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+      <figcaption>Golden Noir (Epoksi)</figcaption>
+    </figure>
 
-    <figure class="item reveal" data-cat="candles"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu" loading="lazy" decoding="async"><figcaption>Summer Cocktail</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu" loading="lazy" decoding="async"><figcaption>Sunset Orange</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu" loading="lazy" decoding="async"><figcaption>Bedside Calm</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./candles.png.jpg" alt="El yapımı farklı mumlar" loading="lazy" decoding="async"><figcaption>Assorted Candles</figcaption></figure>
-    <figure class="item reveal" data-cat="candles"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — soya mumu" loading="lazy" decoding="async"><figcaption>Evil Eye Candle</figcaption></figure>
+    <figure class="item reveal" data-cat="candles">
+      <picture>
+        <source srcset="./summer-cocktail.webp" type="image/webp">
+        <img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu" loading="lazy" decoding="async" width="800" height="600">
+      </picture>
+      <figcaption>Summer Cocktail</figcaption>
+    </figure>
+
+    <figure class="item reveal" data-cat="candles">
+      <picture>
+        <source srcset="./sunset-orange.webp" type="image/webp">
+        <img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu" loading="lazy" decoding="async" width="800" height="600">
+      </picture>
+      <figcaption>Sunset Orange</figcaption>
+    </figure>
+
+    <figure class="item reveal" data-cat="candles">
+      <picture>
+        <source srcset="./bedside.lamb.webp" type="image/webp">
+        <img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+      <figcaption>Bedside Calm</figcaption>
+    </figure>
+
+    <figure class="item reveal" data-cat="candles">
+      <picture>
+        <source srcset="./candles.webp" type="image/webp">
+        <img src="./candles.png.jpg" alt="El yapımı farklı mumlar" loading="lazy" decoding="async" width="800" height="600">
+      </picture>
+      <figcaption>Assorted Candles</figcaption>
+    </figure>
+
+    <figure class="item reveal" data-cat="candles">
+      <picture>
+        <source srcset="./evil-eye.webp" type="image/webp">
+        <img src="./evil-eye.jpg.jpg" alt="Evil Eye — soya mumu" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+      <figcaption>Evil Eye Candle</figcaption>
+    </figure>
 
     <!-- KESME TAHTASI → epoxy -->
-    <figure class="item reveal" data-cat="epoxy"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async"><figcaption>Epoxy Board</figcaption></figure>
+    <figure class="item reveal" data-cat="epoxy">
+      <picture>
+        <source srcset="./kesme.tahtasi.webp" type="image/webp">
+        <img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası" loading="lazy" decoding="async" width="800" height="600">
+      </picture>
+      <figcaption>Epoxy Board</figcaption>
+    </figure>
 
     <!-- Accessories -->
-    <figure class="item reveal" data-cat="accessories"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi" loading="lazy" decoding="async"><figcaption>Pet Tags</figcaption></figure>
-    <figure class="item reveal" data-cat="accessories"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif" loading="lazy" decoding="async"><figcaption>Pet Tags (Alt)</figcaption></figure>
+    <figure class="item reveal" data-cat="accessories">
+      <picture>
+        <source srcset="./pati.kunye.webp" type="image/webp">
+        <img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+      <figcaption>Pet Tags</figcaption>
+    </figure>
+
+    <figure class="item reveal" data-cat="accessories">
+      <picture>
+        <source srcset="./patis.kunye.webp" type="image/webp">
+        <img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi — alternatif" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+      <figcaption>Pet Tags (Alt)</figcaption>
+    </figure>
 
     <!-- NEW: Eureka Lumi Collection (Candles) -->
     <figure class="item reveal" data-cat="candles">
-      <img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — soya mumu" loading="lazy" decoding="async">
+      <picture>
+        <source srcset="./eureka.lumi.webp" type="image/webp">
+        <img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — soya mumu" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
       <figcaption>Eureka Lumi Collection</figcaption>
     </figure>
   </div>
@@ -281,11 +355,31 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
   <h2 id="igTitle" style="font-family:'Playfair Display',serif">Instagram’dan</h2>
   <p class="muted">Sakin üretim sürecimizi ve paylaşımlarımızı takip et.</p>
   <div class="ig-grid" style="margin-top:12px">
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./choco-cream.JPG" alt="Stüdyo — Choco Cream" loading="lazy" decoding="async"></a>
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./evil-eye.jpg.jpg" alt="Stüdyo — Evil Eye (soya mumu)" loading="lazy" decoding="async"></a>
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./sunset-orange.JPG" alt="Stüdyo — Sunset Orange" loading="lazy" decoding="async"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <picture>
+        <source srcset="./choco-cream.webp" type="image/webp">
+        <img src="./choco-cream.JPG" alt="Stüdyo — Choco Cream" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+    </a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <picture>
+        <source srcset="./evil-eye.webp" type="image/webp">
+        <img src="./evil-eye.jpg.jpg" alt="Stüdyo — Evil Eye (soya mumu)" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+    </a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <picture>
+        <source srcset="./sunset-orange.webp" type="image/webp">
+        <img src="./sunset-orange.JPG" alt="Stüdyo — Sunset Orange" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+    </a>
     <!-- NEW: Lumi in IG grid -->
-    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./eureka.lumi.JPG" alt="Stüdyo — Eureka Lumi Collection" loading="lazy" decoding="async"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener">
+      <picture>
+        <source srcset="./eureka.lumi.webp" type="image/webp">
+        <img src="./eureka.lumi.JPG" alt="Stüdyo — Eureka Lumi Collection" loading="lazy" decoding="async" width="800" height="800">
+      </picture>
+    </a>
   </div>
   <div style="margin-top:14px;text-align:center">
     <a class="cta" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=button" target="_blank" rel="noopener">@eurekastudio3’ü Takip Et</a>
@@ -410,17 +504,16 @@ document.querySelectorAll('img').forEach(function(el){
 });
 (function(){
   const img=document.getElementById('heroImg'); if(!img) return;
-  const tries=['./home-candles-hero-optimized.Jpg?v='+Date.now(),'./home-candles-hero.JPG?v='+Date.now(),'./home-candles-hero.Jpg?v='+Date.now(),'/home-candles-hero-optimized.Jpg?v='+Date.now()];
+  const tries=['./home-candles-hero-optimized.jpg?v='+Date.now(),'./home-candles-hero.JPG?v='+Date.now(),'./home-candles-hero.jpg?v='+Date.now(),'/home-candles-hero-optimized.jpg?v='+Date.now()];
   let i=0; img.addEventListener('error',()=>{ if(i<tries.length){ img.src=tries[i++]; }});
 })();
 
-/* ===== LAZY-LOAD İYİLEŞTİRME (yakın görünüm öncesi preload) ===== */
+/* ===== LAZY-LOAD İYİLEŞTİRME (yakın görünüm öncesi) ===== */
 (function(){
   const nearIo=new IntersectionObserver((ents,obs)=>{
     ents.forEach(ent=>{
       if(ent.isIntersecting){
         const img=ent.target;
-        // Yakında görülecek görsellere küçük bir öncelik
         img.decoding='async';
         if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
         img.setAttribute('fetchpriority','low');
