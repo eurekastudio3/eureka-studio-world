@@ -16,9 +16,11 @@
 <meta name="theme-color" content="#e9e3da"/>
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180">
-<link rel="preload" as="image" href="./home-candles-hero-optimized.jpg" imagesrcset="./home-candles-hero-optimized.jpg 1600w, ./home-candles-hero-optimized.jpg 2000w" imagesizes="100vw" fetchpriority="high">
 
-<!-- Yeni yazı tipleri -->
+<!-- LCP hero preload -->
+<link rel="preload" as="image" href="./home-candles-hero-optimized.jpg" fetchpriority="high">
+
+<!-- Yazı tipleri -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -49,14 +51,14 @@ section,footer{padding:48px 6%}
 .reveal{opacity:0;transform:translateY(14px);will-change:opacity,transform;transition:opacity .6s ease, transform .6s ease}
 .reveal.show{opacity:1;transform:none}
 
-/* THEME TOGGLE */
+/* Tema butonu */
 .theme-toggle{
   position:fixed; right:14px; bottom:14px; z-index:9999;
   border:1px solid var(--line); background:var(--panel); color:var(--ink);
   border-radius:999px; padding:10px 12px; box-shadow:var(--shadow); font-weight:700;
 }
 
-/* ===== MODERN GLASS NAV (daha dikkat çekici) ===== */
+/* ===== ÜST BAR (cam + gradient, mobil uyumlu) ===== */
 .nav-modern{
   position:sticky; top:0; z-index:1000;
   backdrop-filter: blur(14px);
@@ -64,7 +66,7 @@ section,footer{padding:48px 6%}
   border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, #000 20%);
   transition: box-shadow .25s ease, background .25s ease, transform .25s ease;
 }
-.nav-modern::after{ /* alt vurgulu çizgi (gradient) */
+.nav-modern::after{
   content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px;
   background: linear-gradient(90deg, transparent, var(--brand-strong), var(--brand), transparent);
   opacity:.85;
@@ -73,17 +75,14 @@ section,footer{padding:48px 6%}
   background: color-mix(in srgb, var(--bg) 96%, #fff 4%);
   box-shadow: 0 10px 28px rgba(0,0,0,.12);
 }
-.nav-wrap{max-width:1200px; margin:0 auto; padding: 10px 6%; display:flex; align-items:center; gap:18px}
+.nav-wrap{max-width:1200px; margin:0 auto; padding:10px 6%; display:flex; align-items:center; gap:18px}
 .brand-modern{display:flex; align-items:center; gap:10px; font-family:Fraunces,serif; font-weight:700; letter-spacing:.04em}
 .brand-modern img{height:44px; width:auto}
 .brand-modern span{font-size:1.05rem}
 
-/* Menü */
 .nav-center{margin-left:auto; margin-right:auto}
 .nav-menu{list-style:none; display:flex; gap:18px; align-items:center; flex-wrap:wrap}
-.nav-link{
-  position:relative; padding:12px 10px; font-weight:700; opacity:.95; letter-spacing:.01em
-}
+.nav-link{position:relative; padding:12px 10px; font-weight:700; letter-spacing:.01em; opacity:.95}
 .nav-link::after{
   content:""; position:absolute; left:16%; right:16%; bottom:8px; height:2px;
   background: linear-gradient(90deg, transparent, var(--brand-strong), var(--brand), transparent);
@@ -92,39 +91,34 @@ section,footer{padding:48px 6%}
 .nav-link:hover::after, .nav-link[aria-current="true"]::after{ transform: scaleX(1) }
 .nav-link[aria-current="true"]{ opacity:1 }
 
-/* Sağ taraf: diller + Shop/DM */
 .nav-right{display:flex; align-items:center; gap:10px}
 .lang-pill{
   border:1px solid var(--line); background:var(--panel); color:var(--ink);
-  padding:9px 12px; border-radius: 999px; font-weight:700; line-height:1;
+  padding:9px 12px; border-radius:999px; font-weight:700; line-height:1;
 }
 .ig-cta{ display:flex; gap:8px }
 .btn-mini{
-  border:1px solid var(--brand-strong); color:#fff; background: linear-gradient(180deg, var(--brand) 0%, var(--brand-strong) 100%);
+  border:1px solid var(--brand-strong); color:#fff;
+  background: linear-gradient(180deg, var(--brand) 0%, var(--brand-strong) 100%);
   padding:11px 14px; border-radius:999px; font-weight:800; line-height:1;
-  box-shadow: 0 8px 18px rgba(0,0,0,.12); transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,.12); transition: transform .2s, box-shadow .2s, filter .2s;
 }
 .btn-mini:hover{ transform: translateY(-1px); filter:saturate(1.05) }
 
-/* Burger (mobile) */
 .burger{display:none; margin-left:6px; border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:9px 12px; font-weight:800}
-@media (max-width: 980px){
-  .nav-center{display:none}
-  .burger{display:inline-block}
-}
+@media (max-width: 1024px){ .nav-center{display:none} .burger{display:inline-block} }
 
-/* Mobile overlay */
-.mobile-menu{
-  position:fixed; inset:0; z-index:1100; display:none;
-  background: color-mix(in srgb, var(--bg) 96%, #000 4%); backdrop-filter: blur(10px);
+/* Mobil boyut düzeltmeleri */
+.nav-wrap{padding:10px 4%; gap:12px}
+@media (max-width:480px){
+  .brand-modern img{height:32px}
+  .brand-modern span{display:none}
+  .nav-right{gap:6px}
+  .lang-pill{padding:6px 8px; font-size:.8rem}
+  .btn-mini{padding:8px 10px; font-size:.8rem}
+  .burger{padding:6px 8px}
 }
-.mobile-menu.open{display:block; animation: mmSlide .2s ease}
-@keyframes mmSlide{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
-.mm-inner{max-width:1200px; margin:0 auto; padding:18px 6% 32px}
-.mm-top{display:flex; align-items:center; justify-content:space-between}
-.mm-close{border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:8px 10px; font-weight:800}
-.mm-list{margin-top:18px; display:grid; gap:8px}
-.mm-list a{padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700}
+.nav-modern{min-height:56px}
 
 /* HERO */
 @keyframes fadeInHero { from{opacity:0; transform:scale(1.05)} to{opacity:1; transform:scale(1)} }
@@ -132,16 +126,15 @@ section,footer{padding:48px 6%}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.55) 45%,rgba(0,0,0,.35))}
 :root[data-theme="dark"] .hero .overlay{background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.6))}
 .hero .inner{position:relative;z-index:2;color:#fff;text-align:center;max-width:900px;margin-inline:auto}
-.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(26px,6vw,44px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 12px rgba(0,0,0,.65)}
-.hero p{font-size:clamp(15px,2.6vw,18px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.hero h1{font-family:Fraunces,serif;font-weight:700;letter-spacing:.01em;font-size:clamp(24px,5.6vw,40px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 12px rgba(0,0,0,.65)}
+.hero p{font-size:clamp(14px,2.4vw,17px);opacity:.96;max-width:720px;margin:0 auto 1em;text-shadow:0 2px 8px rgba(0,0,0,.45)}
 .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .cta{display:inline-block;border:2px solid rgba(255,255,255,.92);border-radius:999px;padding:12px 20px;color:#fff;font-weight:700}
 .cta:hover,.cta:focus-visible{background:rgba(255,255,255,.12)}
 .scroll-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);opacity:.9;font-size:.95rem}
 
 /* ABOUT */
-@keyframes fadeInAbout { from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:translateY(0)} }
-#about{background:#f8f1e8;text-align:center;padding:80px 6%;animation:fadeInAbout 1.2s ease-out}
+#about{background:#f8f1e8;text-align:center;padding:80px 6%}
 #about h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.4em}
 #about p{color:var(--muted)}
 .about-wrap{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
@@ -149,9 +142,8 @@ section,footer{padding:48px 6%}
 .kv-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow)}
 .kv-card h4{font-size:1rem;margin-bottom:.25em}
 
-/* WORKS */
-@keyframes fadeInWorks { from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:translateY(0)} }
-#works{background:#fdf8f3;text-align:center;padding:80px 6%;animation:fadeInWorks 1.2s ease-out}
+/* WORKS + Masonry */
+#works{background:#fdf8f3;text-align:center;padding:80px 6%}
 .works-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap}
 .works-head h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
 .muted{color:var(--muted)}
@@ -159,7 +151,7 @@ section,footer{padding:48px 6%}
 .filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600;color:var(--ink);position:relative;transition:all .25s ease}
 .filter:hover,.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .filter .count{opacity:.85;font-weight:700;margin-left:.35em}
-.masonry{column-gap:14px;column-count:1;margin-top:14px;animation:fadeInWorks 1.4s ease-out}
+.masonry{column-gap:14px;column-count:1;margin-top:14px}
 @media(min-width:620px){.masonry{column-count:2}}
 @media(min-width:980px){.masonry{column-count:3}}
 .item{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;position:relative;transition:transform .35s ease, box-shadow .35s}
@@ -183,18 +175,15 @@ section,footer{padding:48px 6%}
 #instagram .ig-grid a:active img{transform:scale(.98)}
 #instagram .cta{background:var(--brand);border-color:var(--brand);color:#fffaf3;box-shadow:0 3px 10px rgba(0,0,0,.15);transition:background .3s, transform .25s, box-shadow .25s}
 #instagram .cta:hover,#instagram .cta:focus-visible{background:color-mix(in srgb, var(--brand), #ffffff 15%);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
-:root[data-theme="dark"] #instagram .cta{box-shadow:0 4px 14px rgba(0,0,0,.35)}
 
 /* CONTACT */
-@keyframes fadeInContact { from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:translateY(0)} }
-#contact.contact-fade{background:color-mix(in srgb, var(--bg) 94%, #fff 6%);border-top:1px solid var(--line);padding:72px 6%;animation:fadeInContact 1.2s ease-out both}
-#contact.contact-fade h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.35em}
+#contact{background:color-mix(in srgb, var(--bg) 94%, #fff 6%);border-top:1px solid var(--line);padding:72px 6%}
+#contact h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px);margin-bottom:.35em}
 .contact-card{max-width:640px;margin:16px auto 0;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
-#contact input,#contact textarea{transition:border-color .25s, box-shadow .25s, background .25s}
+#contact input,#contact textarea{width:100%;margin:.3rem 0  .7rem;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;transition:border-color .25s, box-shadow .25s}
 #contact input:focus,#contact textarea:focus{border-color:color-mix(in srgb, var(--brand), #fff 10%);box-shadow:0 0 0 4px color-mix(in srgb, var(--brand) 20%, transparent)}
 #sendBtn{transition:transform .18s, box-shadow .25s, background .25s;box-shadow:0 3px 10px rgba(0,0,0,.06)}
 #sendBtn:hover:not([disabled]){transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
-#sendBtn:active:not([disabled]){transform:translateY(0) scale(.99)}
 .checkwrap{display:none;align-items:center;gap:8px;color:var(--ok);margin-top:10px}
 .checkwrap svg{width:22px;height:22px;stroke:var(--ok);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60}
 .checkwrap.show{display:flex}
@@ -202,8 +191,7 @@ section,footer{padding:48px 6%}
 @keyframes draw{to{stroke-dashoffset:0}}
 
 /* FOOTER + Back-to-Top */
-@keyframes fadeInFooter { from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:translateY(0)} }
-footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%;font-size:.95rem}
+footer{background:color-mix(in srgb, var(--bg) 92%, #fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%;font-size:.95rem}
 #toTopBtn{position:fixed;right:14px;bottom:66px;z-index:9998;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:10px 12px;box-shadow:var(--shadow);font-weight:700;cursor:pointer;display:none}
 #toTopBtn:hover{transform:translateY(-1px)}
 @media (prefers-reduced-motion: reduce){
@@ -219,7 +207,7 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
 <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">🌙</button>
 <div id="toast" class="toast" role="status" aria-live="polite" style="display:none">Teşekkürler! Mesajınız ulaştı.</div>
 
-<!-- ===== MODERN GLASS NAV ===== -->
+<!-- ===== NAV ===== -->
 <nav class="nav-modern" aria-label="Primary">
   <div class="nav-wrap">
     <a class="brand-modern" href="#home">
@@ -227,7 +215,6 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
       <span>EUREKA STUDIO</span>
     </a>
 
-    <!-- Centered menu -->
     <div class="nav-center" role="navigation">
       <ul class="nav-menu">
         <li><a class="nav-link" href="#home" data-nav>Home</a></li>
@@ -238,7 +225,6 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
       </ul>
     </div>
 
-    <!-- Right side -->
     <div class="nav-right">
       <button class="lang-pill" data-lang="en">EN</button>
       <button class="lang-pill" data-lang="tr">TR</button>
@@ -253,31 +239,31 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
 </nav>
 
 <!-- Mobile overlay -->
-<div class="mobile-menu" id="mobileMenu" aria-modal="true" role="dialog" aria-label="Site menu">
-  <div class="mm-inner">
-    <div class="mm-top">
+<div class="mobile-menu" id="mobileMenu" aria-modal="true" role="dialog" aria-label="Site menu" style="display:none;position:fixed;inset:0;z-index:1100;background: color-mix(in srgb, var(--bg) 96%, #000 4%);backdrop-filter: blur(10px);">
+  <div class="mm-inner" style="max-width:1200px;margin:0 auto;padding:18px 6% 32px">
+    <div class="mm-top" style="display:flex;align-items:center;justify-content:space-between">
       <strong style="font-family:Fraunces,serif">EUREKA STUDIO</strong>
-      <button class="mm-close" id="closeMenu">✕</button>
+      <button class="mm-close" id="closeMenu" style="border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:8px 10px; font-weight:800">✕</button>
     </div>
-    <div class="mm-list">
-      <a href="#home" data-mm>Home</a>
-      <a href="#about" data-mm>About</a>
-      <a href="#works" data-mm>Works</a>
-      <a href="#instagram" data-mm>Instagram</a>
-      <a href="#contact" data-mm>Contact</a>
+    <div class="mm-list" style="margin-top:18px; display:grid; gap:8px">
+      <a href="#home" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Home</a>
+      <a href="#about" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">About</a>
+      <a href="#works" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Works</a>
+      <a href="#instagram" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Instagram</a>
+      <a href="#contact" data-mm style="padding:14px 10px; border:1px solid var(--line); border-radius:12px; font-weight:700">Contact</a>
       <div style="display:flex; gap:8px; margin-top:8px">
         <button class="lang-pill" data-lang="en">EN</button>
         <button class="lang-pill" data-lang="tr">TR</button>
         <button class="lang-pill" data-lang="he">HE</button>
       </div>
-      <div class="ig-cta" style="margin-top:8px">
+      <div class="ig-cta" style="margin-top:8px; display:flex; gap:8px">
         <a class="btn-mini" href="#works">Shop</a>
         <a class="btn-mini" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener">DM</a>
       </div>
     </div>
   </div>
 </div>
-<!-- ===== /MODERN GLASS NAV ===== -->
+<!-- ===== /NAV ===== -->
 
 <!-- HERO -->
 <section id="home" class="hero reveal" aria-labelledby="heroTitle">
@@ -384,11 +370,12 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="reveal contact-fade" aria-labelledby="contactTitle">
+<section id="contact" class="reveal" aria-labelledby="contactTitle">
   <h2 id="contactTitle">Birlikte güzel şeyler yaratalım</h2>
   <p class="muted">Özel siparişler, işbirlikleri veya sadece merhaba demek için.</p>
 
   <div class="contact-card">
+    <!-- FormSubmit (eddyeswork@gmail.com) -->
     <form id="contact-form" action="https://formsubmit.co/ajax/eddyeswork@gmail.com" method="POST" novalidate>
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="_subject" value="Eureka Studio | Yeni iletişim mesajı">
@@ -419,7 +406,7 @@ footer.footer-fade{animation:fadeInFooter .9s ease-out both;background:color-mix
 </section>
 
 <!-- FOOTER + BACK TO TOP -->
-<footer class="reveal footer-fade" id="site-footer">
+<footer id="site-footer">
   <p>© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p>
 </footer>
 <button id="toTopBtn" aria-label="Yukarı çık">↑</button>
@@ -465,8 +452,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const mm=document.getElementById('mobileMenu');
   const open=document.getElementById('openMenu');
   const close=document.getElementById('closeMenu');
-  function show(){ mm.classList.add('open'); document.body.style.overflow='hidden'; if(window.plausible) plausible('Mobile Menu Open'); }
-  function hide(){ mm.classList.remove('open'); document.body.style.overflow='auto'; }
+  function show(){ mm.style.display='block'; document.body.style.overflow='hidden'; if(window.plausible) plausible('Mobile Menu Open'); }
+  function hide(){ mm.style.display='none'; document.body.style.overflow='auto'; }
   open?.addEventListener('click', show);
   close?.addEventListener('click', hide);
   mm?.addEventListener('click', e=>{ if(e.target===mm) hide(); });
