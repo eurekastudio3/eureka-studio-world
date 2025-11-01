@@ -16,10 +16,9 @@
 
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180"/>
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=12" fetchpriority="high"/>
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=13" fetchpriority="high"/>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
@@ -43,10 +42,9 @@ a{color:inherit;text-decoration:none}
 section,footer{padding:48px 6%}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* NAV — hizalama + büyük hamburger */
+/* NAV — hizalama + BÜYÜK hamburger */
 .nav-modern{
-  position:sticky;top:0;z-index:1000;
-  backdrop-filter:blur(14px);
+  position:sticky;top:0;z-index:1000;backdrop-filter:blur(14px);
   background:color-mix(in srgb,var(--bg) 88%,transparent);
   border-bottom:1px solid color-mix(in srgb,var(--line) 80%, #000 20%);
   transition:box-shadow .25s ease, background .25s ease
@@ -69,8 +67,11 @@ section,footer{padding:48px 6%}
 .btn-mini{border:1px solid var(--brand-strong);color:#fff;background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%);padding:10px 13px;border-radius:999px;font-weight:800;white-space:nowrap}
 .burger{
   border:1px solid var(--line);background:var(--panel);border-radius:12px;
-  padding:10px 14px;font-weight:900;font-size:22px;line-height:1;min-width:44px;min-height:44px;
-  display:flex;align-items:center;justify-content:center;
+  padding:12px 16px;font-weight:900;font-size:26px;line-height:1;
+  min-width:48px;min-height:48px;display:flex;align-items:center;justify-content:center;
+}
+@media(max-width:480px){
+  .burger{font-size:30px;padding:14px 18px;min-width:52px;min-height:52px}
 }
 @media(max-width:1024px){.nav-center{display:none}}
 
@@ -78,7 +79,7 @@ section,footer{padding:48px 6%}
 .hero{
   position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;
   color:#fff;text-align:center;border-bottom:1px solid var(--line);
-  background-image:url("./home-candles-hero.JPG?v=12");background-size:cover;background-position:center 50%;
+  background-image:url("./home-candles-hero.JPG?v=13");background-size:cover;background-position:center 50%;
 }
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.60) 45%, rgba(0,0,0,.52))}
 .hero .inner{position:relative;z-index:1;max-width:900px}
@@ -123,7 +124,7 @@ section,footer{padding:48px 6%}
 .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;transition:transform .3s ease, box-shadow .3s ease}
 .item:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.12)}
 .thumb{position:relative;width:100%}
-.thumb::before{content:"";display:block;padding-top:100%} /* her zaman kare */
+.thumb::before{content:"";display:block;padding-top:100%}
 .thumb>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .35s ease}
 .item:hover .thumb>img{transform:scale(1.03)}
 #works figcaption{font-family:Fraunces,serif;font-weight:700;font-style:normal;letter-spacing:.02em;line-height:1.2;font-size:1.02rem;padding:10px 12px 12px}
@@ -154,11 +155,15 @@ section,footer{padding:48px 6%}
 .checkwrap{display:none;align-items:center;gap:8px;color:var(--ok);margin-top:10px}
 .checkwrap.show{display:flex}
 footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid var(--line);text-align:center;padding:18px 6%}
+
+/* RTL tipografi */
+:root[dir="rtl"] body{font-family:Heebo,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.75;letter-spacing:.02em;word-spacing:.04em}
+:root[dir="rtl"] .about-grid{direction:rtl}
 </style>
 </head>
 <body>
 
-<!-- TOAST / TEMA -->
+<!-- SR helpers -->
 <button class="sr-only" id="themeToggle" aria-label="Tema"></button>
 <div id="toast" class="sr-only" role="status" aria-live="polite" data-i18n="thanksToast">Teşekkürler! Mesajınız ulaştı.</div>
 
@@ -282,7 +287,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <figcaption data-i18n="capChoco">Choco Cream</figcaption>
     </figure>
 
-    <!-- New: Woodland (Mum) -->
+    <!-- Woodland (Mum) -->
     <figure class="item" data-cat="candles">
       <div class="thumb"><img src="./eureka.woodland.JPG" alt="Woodland — doğal notalara sahip mum"></div>
       <figcaption data-i18n="woodlandCap">Woodland Mum</figcaption>
@@ -371,13 +376,13 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <input type="hidden" name="_autoresponse" value="Merhaba! Eureka Studio ile iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve en kısa zamanda dönüş yapacağız. Sevgiler, Eureka Studio.">
 
       <label for="name" data-i18n="labelName">İsim</label>
-      <input id="name" name="name" required placeholder="İsminiz" aria-required="true" autocapitalize="words" inputmode="text"/>
+      <input id="name" name="name" required placeholder="İsminiz" aria-required="true" autocapitalize="words" inputmode="text" data-i18n-ph="phName"/>
 
       <label for="email" data-i18n="labelEmail">E-posta</label>
-      <input id="email" name="email" type="email" required placeholder="you@example.com" aria-required="true" inputmode="email"/>
+      <input id="email" name="email" type="email" required placeholder="you@example.com" aria-required="true" inputmode="email" data-i18n-ph="phEmail"/>
 
       <label for="message" data-i18n="labelMessage">Mesaj</label>
-      <textarea id="message" name="message" rows="6" required placeholder="Fikrinizi bize yazın…" aria-required="true" minlength="5"></textarea>
+      <textarea id="message" name="message" rows="6" required placeholder="Fikrinizi bize yazın…" aria-required="true" minlength="5" data-i18n-ph="phMessage"></textarea>
 
       <button id="sendBtn" type="submit" class="btn-mini" disabled data-i18n="btnSend">Gönder</button>
       <p id="status" role="status" aria-live="polite" class="muted" style="margin-top:6px"></p>
@@ -389,12 +394,10 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
     </form>
   </div>
   <p style="margin-top:14px"><strong data-i18n="emailLabel">E-posta:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
-  <p><strong>Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></p>
+  <p><strong data-i18n="instagramLabel">Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></p>
 </section>
 
-<footer>
-  <p data-i18n="footerText">© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p>
-</footer>
+<footer><p data-i18n="footerText">© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p></footer>
 
 <script>
 /* ==== I18N (TR / EN / HE) ==== */
@@ -419,11 +422,14 @@ const I18N={
       igTitle:"Instagram’dan",igLead:"Sakin üretim sürecimizi ve paylaşımlarımızı takip et.",igFollow:"@eurekastudio3’ü Takip Et",
       worksTitle:"Galeri",worksLead:"Her parça; formu, kokusu ve duygusuyla benzersiz.",
       fAll:"Tümü",fCandles:"Mumlar",fEpoxy:"Epoksi",fAccessories:"Aksesuarlar",
-      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoksi)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",
-      woodlandCap:"Woodland Mum",
+      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoksi)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Mum",
       contactTitle:"Birlikte güzel şeyler yaratalım",contactLead:"Özel siparişler, işbirlikleri veya sadece merhaba demek için.",
-      labelName:"İsim",labelEmail:"E-posta",labelMessage:"Mesaj",btnSend:"Gönder",thanksText:"Teşekkürler! Mesajınız ulaştı.",thanksToast:"Teşekkürler! Mesajınız ulaştı.",
-      emailLabel:"E-posta:", footerText:"© 2025 Eureka Studio — Özen ve huzurla el yapımıdır."},
+      labelName:"İsim",labelEmail:"E-posta",labelMessage:"Mesaj",btnSend:"Gönder",
+      thanksText:"Teşekkürler! Mesajınız ulaştı.",thanksToast:"Teşekkürler! Mesajınız ulaştı.",
+      phName:"İsminiz",phEmail:"you@example.com",phMessage:"Fikrinizi bize yazın…",
+      sending:"Gönderiliyor…",
+      emailLabel:"E-posta:",instagramLabel:"Instagram:",
+      footerText:"© 2025 Eureka Studio — Özen ve huzurla el yapımıdır."},
 
   en:{navHome:"Home",navAbout:"About",navWorks:"Works",navInstagram:"Instagram",navContact:"Contact",
       heroTitle:"Eureka Studio — Handcrafted Candles & Calm Creations",
@@ -444,11 +450,14 @@ const I18N={
       igTitle:"From Instagram",igLead:"Follow our calm making process and daily shares.",igFollow:"Follow @eurekastudio3",
       worksTitle:"Gallery",worksLead:"Each piece is unique in form, scent, and feeling.",
       fAll:"All",fCandles:"Candles",fEpoxy:"Epoxy",fAccessories:"Accessories",
-      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoxy)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",
-      woodlandCap:"Woodland Candle",
+      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoxy)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Candle",
       contactTitle:"Let’s Create Beautiful Things",contactLead:"For custom orders, collaborations, or just to say hi.",
-      labelName:"Name",labelEmail:"Email",labelMessage:"Message",btnSend:"Send",thanksText:"Thanks! Your message has been received.",thanksToast:"Thanks! Your message has been received.",
-      emailLabel:"Email:", footerText:"© 2025 Eureka Studio — Handmade with care and calm."},
+      labelName:"Name",labelEmail:"Email",labelMessage:"Message",btnSend:"Send",
+      thanksText:"Thanks! Your message has been received.",thanksToast:"Thanks! Your message has been received.",
+      phName:"Your name",phEmail:"you@example.com",phMessage:"Tell us your idea…",
+      sending:"Sending…",
+      emailLabel:"Email:",instagramLabel:"Instagram:",
+      footerText:"© 2025 Eureka Studio — Handmade with care and calm."},
 
   he:{navHome:"בית",navAbout:"אודות",navWorks:"עבודות",navInstagram:"אינסטגרם",navContact:"צור קשר",
       heroTitle:"Eureka Studio — נרות בעבודת יד ויצירות רגועות",
@@ -469,17 +478,26 @@ const I18N={
       igTitle:"מהאינסטגרם",igLead:"עקבו אחרי תהליך היצירה הרגוע והשיתופים שלנו.",igFollow:"עקבו אחרי @eurekastudio3",
       worksTitle:"גלריה",worksLead:"כל יצירה ייחודית בצורה, בריח ובהרגשה.",
       fAll:"הכול",fCandles:"נרות",fEpoxy:"אפוקסי",fAccessories:"אביזרים",
-      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (אפוקסי)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"תגי חיות",capPetTag2:"תגי חיות (חלופי)",capLumi:"Eureka Lumi Collection",
-      woodlandCap:"Woodland נר",
+      capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (אפוקסי)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"תגי חיות",capPetTag2:"תגי חיות (חלופי)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland נר",
       contactTitle:"בואו ניצור דברים יפים",contactLead:"להזמנות מותאמות, שיתופי פעולה או סתם שלום.",
-      labelName:"שם",labelEmail:"אימייל",labelMessage:"הודעה",btnSend:"שליחה",thanksText:"תודה! ההודעה התקבלה.",thanksToast:"תודה! ההודעה התקבלה.",
-      emailLabel:"אימייל:", footerText:"© 2025 Eureka Studio — מעשה יד באהבה וברוגע."}
+      labelName:"שם",labelEmail:"אימייל",labelMessage:"הודעה",btnSend:"שליחה",
+      thanksText:"תודה! ההודעה התקבלה.",thanksToast:"תודה! ההודעה התקבלה.",
+      phName:"השם שלך",phEmail:"you@example.com",phMessage:"ספרו לנו על הרעיון…",
+      sending:"נשלח…",
+      emailLabel:"אימייל:",instagramLabel:"אינסטגרם:",
+      footerText:"© 2025 Eureka Studio — מעשה יד באהבה וברוגע."}
 };
 
+/* Uygula: text + placeholder + yön */
 function applyTranslations(lang){
   const t=I18N[lang]||I18N.tr;
+  // Metinler
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.textContent=t[k];
+  });
+  // Placeholder’lar
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const k=el.getAttribute('data-i18n-ph'); if(t[k]!==undefined) el.setAttribute('placeholder', t[k]);
   });
 }
 function setLang(lang){
@@ -494,30 +512,71 @@ document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',(
 }));
 setLang(localStorage.getItem('eureka_lang')||'tr');
 
-/* NAV aktif bağlantı */
-(function(){const header=document.querySelector('.nav-modern');const links=[...document.querySelectorAll('.nav-link')];const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));function onScroll(){header?.classList.toggle('scrolled',window.scrollY>8);let idx=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110)idx=i;});links.forEach(l=>l.removeAttribute('aria-current'));if(links[idx])links[idx].setAttribute('aria-current','true');}addEventListener('scroll',onScroll,{passive:true});onScroll();})();
+/* NAV aktif bağlantı ve gölge */
+(function(){
+  const header=document.querySelector('.nav-modern');
+  const links=[...document.querySelectorAll('.nav-link')];
+  const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
+  function onScroll(){
+    header?.classList.toggle('scrolled',window.scrollY>8);
+    let idx=0; secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110)idx=i;});
+    links.forEach(l=>l.removeAttribute('aria-current')); if(links[idx])links[idx].setAttribute('aria-current','true');
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
 
-/* Filtre */
+/* Galeri filtre */
 const filterButtons=[...document.querySelectorAll('.filter')];
-function applyFilter(cat){document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';});}
-filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat);}));applyFilter('all');
+function applyFilter(cat){
+  document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{
+    card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
+  });
+}
+filterButtons.forEach(b=>b.addEventListener('click',()=>{
+  filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true'); applyFilter(b.dataset.cat);
+}));
+applyFilter('all');
 
-/* Lightbox (basit) */
-(function(){const lb=document.createElement('div');lb.className='lb';lb.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999';lb.innerHTML='<div class="lb-inner" style="max-width:min(92vw,1200px);max-height:90vh;position:relative"><img class="lb-img" style="max-width:100%;max-height:88vh;border-radius:12px"/><div class="lb-cap" style="color:#fff;text-align:center;margin-top:8px"></div><button class="lb-close" aria-label="Kapat" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer">✕</button></div>';document.body.appendChild(lb);const img=lb.querySelector('.lb-img'),cap=lb.querySelector('.lb-cap'),close=lb.querySelector('.lb-close');document.querySelectorAll('#works-grid figure').forEach(fig=>{fig.addEventListener('click',()=>{const im=fig.querySelector('img');img.src=im.src;img.alt=im.alt;cap.textContent=fig.querySelector('figcaption')?.textContent||'';lb.style.display='flex';document.body.style.overflow='hidden';});});lb.addEventListener('click',e=>{if(e.target===lb||e.target===close){lb.style.display='none';document.body.style.overflow='auto';img.removeAttribute('src');}});})();
+/* Lightbox */
+(function(){
+  const lb=document.createElement('div');
+  lb.className='lb';
+  lb.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999';
+  lb.innerHTML='<div class="lb-inner" style="max-width:min(92vw,1200px);max-height:90vh;position:relative"><img class="lb-img" style="max-width:100%;max-height:88vh;border-radius:12px"/><div class="lb-cap" style="color:#fff;text-align:center;margin-top:8px"></div><button class="lb-close" aria-label="Kapat" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer">✕</button></div>';
+  document.body.appendChild(lb);
+  const img=lb.querySelector('.lb-img'),cap=lb.querySelector('.lb-cap'),close=lb.querySelector('.lb-close');
+  document.querySelectorAll('#works-grid figure').forEach(fig=>{
+    fig.addEventListener('click',()=>{
+      const im=fig.querySelector('img'); img.src=im.src; img.alt=im.alt;
+      cap.textContent=fig.querySelector('figcaption')?.textContent||''; lb.style.display='flex'; document.body.style.overflow='hidden';
+    });
+  });
+  lb.addEventListener('click',e=>{if(e.target===lb||e.target===close){lb.style.display='none';document.body.style.overflow='auto';img.removeAttribute('src');}});
+})();
 
 /* IMG uzantı düzeltme */
-document.querySelectorAll('img').forEach(function(el){el.addEventListener('error',function(){let s=this.getAttribute('src')||this.src;s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');if(s!==this.src)this.src=s+(s.includes('?')?'':'?v='+Date.now());});});
+document.querySelectorAll('img').forEach(function(el){
+  el.addEventListener('error',function(){
+    let s=this.getAttribute('src')||this.src;
+    s=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');
+    if(s!==this.src)this.src=s+(s.includes('?')?'':'?v='+Date.now());
+  });
+});
 
-/* Form UX: enable/feedback */
+/* Form UX: enable/feedback + i18n “Gönderiliyor…” */
 (function(){
   const form=document.getElementById('contact-form');
   const send=document.getElementById('sendBtn');
   const status=document.getElementById('status');
   const check=document.getElementById('checkwrap');
-  form.addEventListener('input',()=>{send.disabled=!(form.name.value.trim()&&form.email.value.includes('@')&&form.message.value.trim().length>4);});
+  function t(k){const lang=document.documentElement.lang;return (I18N[lang]&&I18N[lang][k])||I18N.tr[k]||'';}
+  form.addEventListener('input',()=>{
+    send.disabled=!(form.name.value.trim()&&form.email.value.includes('@')&&form.message.value.trim().length>4);
+  });
   form.addEventListener('submit',async (e)=>{
     e.preventDefault();
-    send.disabled=true; status.textContent=I18N[document.documentElement.lang]?.btnSend||'Gönderiliyor…';
+    send.disabled=true; status.textContent=t('sending'); // i18n
     try{
       const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:form.name.value,email:form.email.value,message:form.message.value})});
       if(res.ok){status.textContent=''; check.classList.add('show'); form.reset(); window.plausible&&plausible('Contact Form Submitted');}
