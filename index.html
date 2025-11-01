@@ -6,7 +6,7 @@
 <title>Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar</title>
 <link rel="canonical" href="https://www.eurekastudio.org/"/>
 
-<meta name="description" content="Eureka Studio: el dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir. El emeği mum koleksiyonlarını keşfedin."/>
+<meta name="description" content="Eureka Studio: el dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
 <meta property="og:site_name" content="Eureka Studio"/>
 <meta property="og:title" content="Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar"/>
 <meta property="og:description" content="El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir."/>
@@ -16,7 +16,7 @@
 
 <link rel="icon" href="./logo.png1.PNG"/>
 <link rel="apple-touch-icon" href="./logo.png1.PNG" sizes="180x180"/>
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=14" fetchpriority="high"/>
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=15" fetchpriority="high"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,14 +25,8 @@
 <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 
 <style>
-:root{
-  --bg:#f5efe7; --ink:#111; --muted:#5b5b5b; --line:#e5dfd7;
-  --brand:#C0844A; --brand-strong:#9A5A2E; --panel:#fff; --shadow:0 10px 30px rgba(0,0,0,.06);
-  --ok:#1f7a4f;
-}
-:root[data-theme="dark"]{
-  --bg:#2b231b; --panel:#332a21; --ink:#efe7dc; --muted:#cbb9a5; --line:#4a3e33; --brand:#D09A66; --brand-strong:#B37444; --shadow:0 14px 40px rgba(0,0,0,.35);
-}
+:root{--bg:#f5efe7;--ink:#111;--muted:#5b5b5b;--line:#e5dfd7;--brand:#C0844A;--brand-strong:#9A5A2E;--panel:#fff;--shadow:0 10px 30px rgba(0,0,0,.06);--ok:#1f7a4f}
+:root[data-theme="dark"]{--bg:#2b231b;--panel:#332a21;--ink:#efe7dc;--muted:#cbb9a5;--line:#4a3e33;--brand:#D09A66;--brand-strong:#B37444;--shadow:0 14px 40px rgba(0,0,0,.35)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);line-height:1.65;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
@@ -42,9 +36,7 @@ section,footer{padding:48px 6%}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* NAV */
-.nav-modern{position:sticky;top:0;z-index:1000;backdrop-filter:blur(14px);
-  background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 80%, #000 20%);
-  transition:box-shadow .25s ease, background .25s ease}
+.nav-modern{position:sticky;top:0;z-index:1000;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 80%, #000 20%);transition:box-shadow .25s ease, background .25s ease}
 .nav-modern.scrolled{background:color-mix(in srgb,var(--bg) 96%,#fff 4%);box-shadow:0 10px 28px rgba(0,0,0,.12)}
 .nav-wrap{max-width:1200px;margin:0 auto;padding:10px 6%;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
 .brand-modern{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;letter-spacing:.04em}
@@ -58,14 +50,11 @@ section,footer{padding:48px 6%}
 .nav-right{display:flex;align-items:center;gap:8px}
 .lang-pill{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:10px 13px;border-radius:999px;font-weight:800}
 .btn-mini{border:1px solid var(--brand-strong);color:#fff;background:linear-gradient(180deg,var(--brand) 0%,var(--brand-strong) 100%);padding:10px 13px;border-radius:999px;font-weight:800}
-.burger{border:1px solid var(--line);background:var(--panel);border-radius:12px;
-  padding:14px 18px;font-weight:900;font-size:30px;line-height:1;min-width:54px;min-height:54px;display:flex;align-items:center;justify-content:center}
-@media(min-width:481px){.burger{font-size:28px;min-width:58px;min-height:58px}}
+.burger{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:14px 18px;font-weight:900;font-size:30px;line-height:1;min-width:58px;min-height:58px;display:flex;align-items:center;justify-content:center}
 @media(max-width:1024px){.nav-center{display:none}}
 
 /* HERO */
-.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;color:#fff;text-align:center;border-bottom:1px solid var(--line);
-  background-image:url("./home-candles-hero.JPG?v=14");background-size:cover;background-position:center 50%}
+.hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;color:#fff;text-align:center;border-bottom:1px solid var(--line);background-image:url("./home-candles-hero.JPG?v=15");background-size:cover;background-position:center 50%}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.60) 45%, rgba(0,0,0,.52))}
 .hero .inner{position:relative;z-index:1;max-width:900px}
 .hero h1{font-family:Fraunces,serif;font-weight:700;font-size:clamp(24px,5.4vw,38px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.55)}
@@ -103,7 +92,7 @@ section,footer{padding:48px 6%}
 .filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600}
 .filter:hover,.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 
-/* GRID */
+/* GRID kare */
 .masonry{display:grid;grid-template-columns:repeat(2, 1fr);gap:14px;margin-top:14px}
 @media(min-width:980px){.masonry{grid-template-columns:repeat(3, 1fr)}}
 .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;transition:transform .3s ease, box-shadow .3s ease}
@@ -112,7 +101,7 @@ section,footer{padding:48px 6%}
 .thumb::before{content:"";display:block;padding-top:100%}
 .thumb>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .35s ease}
 .item:hover .thumb>img{transform:scale(1.03)}
-#works figcaption{font-family:Fraunces,serif;font-weight:700;font-style:normal;letter-spacing:.02em;line-height:1.2;font-size:1.02rem;padding:10px 12px 12px}
+#works figcaption{font-family:Fraunces,serif;font-weight:700;letter-spacing:.02em;line-height:1.2;font-size:1.02rem;padding:10px 12px 12px}
 @media(min-width:480px){#works figcaption{font-size:1.06rem}}
 
 /* Lightbox */
@@ -123,14 +112,14 @@ section,footer{padding:48px 6%}
 .lb-cap{color:#fff;text-align:center;margin-top:8px}
 .lb-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer}
 
-/* INSTAGRAM */
+/* IG */
 #instagram .ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
 #instagram .ig-grid a{position:relative;display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 #instagram .ig-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .25s}
 #instagram .ig-grid a:hover img{transform:scale(1.04)}
 #instagram .cta{background:var(--brand);border-color:var(--brand);color:#fff;border-radius:999px;padding:12px 20px;font-weight:800;display:inline-block;margin-top:12px}
 
-/* CONTACT & FOOTER */
+/* Contact & footer */
 #contact{background:color-mix(in srgb,var(--bg) 94%,#fff 6%);border-top:1px solid var(--line);padding:72px 6%}
 #contact h2{font-family:Fraunces,serif;font-weight:700;font-size:clamp(22px,4.6vw,28px)}
 .contact-card{max-width:640px;margin:16px auto 0;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
@@ -190,11 +179,9 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 <section id="about" aria-labelledby="aboutTitle">
   <div class="intro">
     <h2 id="aboutTitle" data-i18n="aboutTitle">Sakin. El emeği. Duyarlı.</h2>
-    <p class="lead" data-i18n="aboutLead">
-      Eureka Studio, gündelik hayatın telaşını yumuşatan küçük ritüellere inanır.
-      Her mumu ve her epoksi parçayı; ışığın, kokunun ve dokunun denge hâlini hatırlatması için tasarlıyoruz.
-    </p>
+    <p class="lead" data-i18n="aboutLead">Eureka Studio, gündelik hayatın telaşını yumuşatan küçük ritüellere inanır. Her mumu ve her epoksi parçayı; ışığın, kokunun ve dokunun denge hâlini hatırlatması için tasarlıyoruz.</p>
   </div>
+
   <div class="about-grid">
     <div class="about-card">
       <h3 data-i18n="valuesTitle">Değerlerimiz</h3>
@@ -208,19 +195,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
         <div class="kv-card"><h4>Lumi</h4><p data-i18n="kv1Text">Yumuşak notalar & minimal formlar.</p></div>
         <div class="kv-card"><h4>Golden Noir</h4><p data-i18n="kv2Text">Epoksi dokular & kontrast altın detaylar.</p></div>
       </div>
-    </div>
-
-    <div class="about-card">
-      <h3 data-i18n="storyTitle">Hikâyemiz</h3>
-      <p data-i18n="storyText">
-        Bir notayı gereğinden fazla uzatmayan, doğru yerde susan bir melodi düşün… İşte üretimimiz de böyle: gösterişsiz, sıcak ve samimi. İlk mumumuzu döktüğümüz günden beri amacımız; mekânlara yumuşak bir huzur, sofralara davet eden bir sıcaklık katmak.
-      </p>
-      <div class="process">
-        <div class="step"><strong data-i18n="proc1Title">1) Formül</strong><p data-i18n="proc1Text">%100 soya bazlı karışım; fitil ve esans oranları her koku için ayrı dengelenir.</p></div>
-        <div class="step"><strong data-i18n="proc2Title">2) Döküm</strong><p data-i18n="proc2Text">Küçük partiler halinde el dökümü; kontrollü ısı ve dinlendirme.</p></div>
-        <div class="step"><strong data-i18n="proc3Title">3) Kür & Etiket</strong><p data-i18n="proc3Text">Kürlenme ardından finisaj, etiket ve paket — hepsi elde.</p></div>
-      </div>
-      <div class="pills">
+      <div class="pills" style="margin-top:12px">
         <span class="pill" data-i18n="pill1">Küçük Parti Üretim</span>
         <span class="pill" data-i18n="pill2">Temiz İçerik</span>
         <span class="pill" data-i18n="pill3">Uzun Yanma Süresi</span>
@@ -232,6 +207,27 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
         <span class="badge">Sevgiyle Paket</span>
       </div>
     </div>
+
+    <div class="about-card">
+      <h3 data-i18n="storyTitle">Hikâyemiz</h3>
+      <p data-i18n="storyText">Bir notayı gereğinden fazla uzatmayan, doğru yerde susan bir melodi düşün… İşte üretimimiz de böyle: gösterişsiz, sıcak ve samimi. İlk mumumuzu döktüğümüz günden beri amacımız; mekânlara yumuşak bir huzur, sofralara davet eden bir sıcaklık katmak.</p>
+
+      <div class="process">
+        <div class="step">
+          <strong data-i18n="proc1Title">1) Formül</strong>
+          <p data-i18n="proc1Text">%100 soya bazlı karışım; fitil ve esans oranları her koku için ayrı dengelenir.</p>
+        </div>
+        <div class="step">
+          <strong data-i18n="proc2Title">2) Döküm</strong>
+          <p data-i18n="proc2Text">Küçük partiler halinde el dökümü; kontrollü ısı ve dinlendirme.</p>
+        </div>
+        <div class="step">
+          <!-- BURASI SENDE İNGİLİZCE KALMIŞTI -->
+          <strong data-i18n="proc3Title">3) Kür & Etiket</strong>
+          <p data-i18n="proc3Text">Kürlenme ardından finisaj, etiket ve paket — hepsi elde.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -239,6 +235,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 <section id="works" aria-labelledby="worksTitle">
   <div class="works-head">
     <div>
+      <!-- BURASI DA İNGİLİZCE KALIYORDU -->
       <h2 id="worksTitle" data-i18n="worksTitle">Galeri</h2>
       <p class="muted" data-i18n="worksLead">Her parça; formu, kokusu ve duygusuyla benzersiz.</p>
     </div>
@@ -252,58 +249,19 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 
   <div class="masonry" id="works-grid" aria-live="polite">
     <!-- Candles -->
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu"></div>
-      <figcaption data-i18n="capCaramel">Caramel Crumble</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu"></div>
-      <figcaption data-i18n="capChoco">Choco Cream</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./eureka.woodland.JPG" alt="Woodland — doğal notalara sahip mum"></div>
-      <figcaption data-i18n="woodlandCap">Woodland Mum</figcaption>
-    </figure>
-    <figure class="item" data-cat="epoxy">
-      <div class="thumb"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi"></div>
-      <figcaption data-i18n="capGoldenNoir">Golden Noir (Epoksi)</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu"></div>
-      <figcaption data-i18n="capSummer">Summer Cocktail</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu"></div>
-      <figcaption data-i18n="capSunset">Sunset Orange</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu"></div>
-      <figcaption data-i18n="capBedside">Bedside Calm</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./candles.png.jpg" alt="Assorted Candles — el yapımı mumlar"></div>
-      <figcaption data-i18n="capAssorted">Assorted Candles</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — nazar boncuk temalı mumu"></div>
-      <figcaption data-i18n="capEvilEye">Evil Eye Candle</figcaption>
-    </figure>
-    <figure class="item" data-cat="epoxy">
-      <div class="thumb"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası"></div>
-      <figcaption data-i18n="capBoard">Epoxy Board</figcaption>
-    </figure>
-    <figure class="item" data-cat="accessories">
-      <div class="thumb"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi"></div>
-      <figcaption data-i18n="capPetTag1">Pet Tags</figcaption>
-    </figure>
-    <figure class="item" data-cat="accessories">
-      <div class="thumb"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi alternatif"></div>
-      <figcaption data-i18n="capPetTag2">Pet Tags (Alt)</figcaption>
-    </figure>
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — seçki"></div>
-      <figcaption data-i18n="capLumi">Eureka Lumi Collection</figcaption>
-    </figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu"></div><figcaption data-i18n="capCaramel">Caramel Crumble</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu"></div><figcaption data-i18n="capChoco">Choco Cream</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./eureka.woodland.JPG" alt="Woodland — doğal notalara sahip mum"></div><figcaption data-i18n="woodlandCap">Woodland Mum</figcaption></figure>
+    <figure class="item" data-cat="epoxy"><div class="thumb"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi"></div><figcaption data-i18n="capGoldenNoir">Golden Noir (Epoksi)</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu"></div><figcaption data-i18n="capSummer">Summer Cocktail</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./sunset-orange.JPG" alt="Sunset Orange — soya mumu"></div><figcaption data-i18n="capSunset">Sunset Orange</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./bedside.lamb.png.JPG" alt="Bedside Calm — soya mumu"></div><figcaption data-i18n="capBedside">Bedside Calm</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./candles.png.jpg" alt="Assorted Candles — el yapımı mumlar"></div><figcaption data-i18n="capAssorted">Assorted Candles</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./evil-eye.jpg.jpg" alt="Evil Eye — nazar boncuk temalı mumu"></div><figcaption data-i18n="capEvilEye">Evil Eye Candle</figcaption></figure>
+    <figure class="item" data-cat="epoxy"><div class="thumb"><img src="./kesme.tahtasi.png.jpg" alt="Epoksi kesme tahtası"></div><figcaption data-i18n="capBoard">Epoxy Board</figcaption></figure>
+    <figure class="item" data-cat="accessories"><div class="thumb"><img src="./pati.kunye.png.jpg" alt="Epoksi pati künyesi"></div><figcaption data-i18n="capPetTag1">Pet Tags</figcaption></figure>
+    <figure class="item" data-cat="accessories"><div class="thumb"><img src="./patis.kunye.png.jpg" alt="Epoksi pati künyesi alternatif"></div><figcaption data-i18n="capPetTag2">Pet Tags (Alt)</figcaption></figure>
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./eureka.lumi.JPG" alt="Eureka Lumi Collection — seçki"></div><figcaption data-i18n="capLumi">Eureka Lumi Collection</figcaption></figure>
   </div>
 </section>
 
@@ -358,7 +316,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 <footer><p data-i18n="footerText">© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p></footer>
 
 <script>
-/* ===== I18N STRINGS ===== */
+/* ==== I18N STRINGS ==== */
 const I18N={
   tr:{navHome:"Ana Sayfa",navAbout:"Hakkımızda",navWorks:"Çalışmalar",navInstagram:"Instagram",navContact:"İletişim",
       heroTitle:"Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar",
@@ -439,14 +397,12 @@ const I18N={
       footerText:"© 2025 Eureka Studio — מעשה יד באהבה וברוגע."}
 };
 
-/* ===== Helpers ===== */
+/* ==== Uygulama ==== */
 function applyTranslations(lang){
   const t=I18N[lang]||I18N.tr;
-  // metinler
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.textContent=t[k];
   });
-  // placeholder’lar
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
     const k=el.getAttribute('data-i18n-ph'); if(t[k]!==undefined) el.setAttribute('placeholder',t[k]);
   });
@@ -458,58 +414,36 @@ function setLang(lang){
   try{localStorage.setItem('eureka_lang',lang)}catch(e){}
 }
 
-/* === DOM READY garanti === */
 window.addEventListener('DOMContentLoaded',()=>{
-  // dil düğmeleri
+  // Dil butonları
   document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{
     const lang=b.dataset.lang; setLang(lang);
     window.plausible && plausible('Language Switch',{props:{lang}});
   }));
-  // ilk dil
+  // İlk dil
   setLang(localStorage.getItem('eureka_lang')||'tr');
 
-  // nav aktif ve gölge
+  // Nav aktif ve gölge
   const header=document.querySelector('.nav-modern');
   const links=[...document.querySelectorAll('.nav-link')];
   const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
-  function onScroll(){
-    header?.classList.toggle('scrolled',window.scrollY>8);
-    let idx=0; secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110)idx=i;});
-    links.forEach(l=>l.removeAttribute('aria-current'));
-    if(links[idx])links[idx].setAttribute('aria-current','true');
-  }
+  function onScroll(){header?.classList.toggle('scrolled',window.scrollY>8);let idx=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=110)idx=i;});links.forEach(l=>l.removeAttribute('aria-current'));if(links[idx])links[idx].setAttribute('aria-current','true');}
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-  // filtre
+  // Filtre
   const filterButtons=[...document.querySelectorAll('.filter')];
-  function applyFilter(cat){
-    document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{
-      card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
-    });
-  }
-  filterButtons.forEach(b=>b.addEventListener('click',()=>{
-    filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));
-    b.setAttribute('aria-selected','true'); applyFilter(b.dataset.cat);
-  }));
+  function applyFilter(cat){document.querySelectorAll('#works-grid [data-cat]').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';});}
+  filterButtons.forEach(b=>b.addEventListener('click',()=>{filterButtons.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');applyFilter(b.dataset.cat);}));
   applyFilter('all');
 
-  // lightbox
-  (function(){
-    const lb=document.createElement('div');
-    lb.className='lb'; lb.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999';
+  // Lightbox
+  (function(){const lb=document.createElement('div');lb.className='lb';lb.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:999';
     lb.innerHTML='<div class="lb-inner" style="max-width:min(92vw,1200px);max-height:90vh;position:relative"><img class="lb-img" style="max-width:100%;max-height:88vh;border-radius:12px"/><div class="lb-cap" style="color:#fff;text-align:center;margin-top:8px"></div><button class="lb-close" aria-label="Kapat" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer">✕</button></div>';
-    document.body.appendChild(lb);
-    const img=lb.querySelector('.lb-img'),cap=lb.querySelector('.lb-cap'),close=lb.querySelector('.lb-close');
-    document.querySelectorAll('#works-grid figure').forEach(fig=>{
-      fig.addEventListener('click',()=>{
-        const im=fig.querySelector('img'); img.src=im.src; img.alt=im.alt;
-        cap.textContent=fig.querySelector('figcaption')?.textContent||''; lb.style.display='flex'; document.body.style.overflow='hidden';
-      });
-    });
-    lb.addEventListener('click',e=>{if(e.target===lb||e.target===close){lb.style.display='none';document.body.style.overflow='auto';img.removeAttribute('src');}});
-  })();
+    document.body.appendChild(lb);const img=lb.querySelector('.lb-img'),cap=lb.querySelector('.lb-cap'),close=lb.querySelector('.lb-close');
+    document.querySelectorAll('#works-grid figure').forEach(fig=>{fig.addEventListener('click',()=>{const im=fig.querySelector('img');img.src=im.src;img.alt=im.alt;cap.textContent=fig.querySelector('figcaption')?.textContent||'';lb.style.display='flex';document.body.style.overflow='hidden';});});
+    lb.addEventListener('click',e=>{if(e.target===lb||e.target===close){lb.style.display='none';document.body.style.overflow='auto';img.removeAttribute('src');}});})();
 
-  // resim uzantı düzeltme
+  // Hatalı uzantı düzeltme
   document.querySelectorAll('img').forEach(function(el){
     el.addEventListener('error',function(){
       let s=this.getAttribute('src')||this.src;
@@ -518,23 +452,21 @@ window.addEventListener('DOMContentLoaded',()=>{
     });
   });
 
-  // form UX
+  // Form UX
   (function(){
-    const form=document.getElementById('contact-form');
-    const send=document.getElementById('sendBtn');
-    const status=document.getElementById('status');
-    const check=document.getElementById('checkwrap');
+    const form=document.getElementById('contact-form'),send=document.getElementById('sendBtn'),status=document.getElementById('status'),check=document.getElementById('checkwrap');
     function t(k){const lang=document.documentElement.lang;return (I18N[lang]&&I18N[lang][k])||I18N.tr[k]||'';}
     form.addEventListener('input',()=>{send.disabled=!(form.name.value.trim()&&form.email.value.includes('@')&&form.message.value.trim().length>4);});
-    form.addEventListener('submit',async (e)=>{
-      e.preventDefault(); send.disabled=true; status.textContent=t('sending');
-      try{
-        const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:form.name.value,email:form.email.value,message:form.message.value})});
-        if(res.ok){status.textContent=''; check.classList.add('show'); form.reset(); window.plausible&&plausible('Contact Form Submitted');}
-        else{status.textContent='Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.'; send.disabled=false;}
-      }catch(err){status.textContent='Bağlantı hatası. Lütfen tekrar deneyin.'; send.disabled=false;}
+    form.addEventListener('submit',async (e)=>{e.preventDefault();send.disabled=true;status.textContent=t('sending');
+      try{const res=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:form.name.value,email:form.email.value,message:form.message.value})});
+        if(res.ok){status.textContent='';check.classList.add('show');form.reset();window.plausible&&plausible('Contact Form Submitted');}
+        else{status.textContent='Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.';send.disabled=false;}
+      }catch(err){status.textContent='Bağlantı hatası. Lütfen tekrar deneyin.';send.disabled=false;}
     });
   })();
+
+  /* Emniyet: dil değişiminden 1 frame sonra yeniden uygula (geç kaldıysa yakalar) */
+  document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>requestAnimationFrame(()=>applyTranslations(document.documentElement.lang))));
 });
 </script>
 </body>
