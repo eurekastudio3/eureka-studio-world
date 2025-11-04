@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://www.eurekastudio.org/">
 <meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero.JPG">
 
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=25" fetchpriority="high">
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=26" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -62,8 +62,8 @@ section,footer{padding:48px 6%}
 
 /* HERO */
 .hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;color:#fff;text-align:center;border-bottom:1px solid var(--line);
-  background-image:url("./home-candles-hero.JPG?v=25");background-size:cover;background-position:center 50%}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.80), rgba(0,0,0,.62) 45%, rgba(0,0,0,.55))}
+  background-image:url("./home-candles-hero.JPG?v=26");background-size:cover;background-position:center 50%}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.80), rgba(0,0,0,.62) 45%, rgba(0,0,0,.55));pointer-events:none;}
 .hero .inner{position:relative;z-index:1;max-width:900px}
 .hero h1{font-family:Fraunces,serif;font-weight:700;font-size:clamp(24px,5.2vw,38px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.55)}
 .hero p{font-size:clamp(14px,2.4vw,17px);opacity:.98;max-width:720px;margin:0 auto 1em}
@@ -142,7 +142,6 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <button class="lang" data-lang="en">EN</button>
       <button class="lang" data-lang="tr">TR</button>
       <button class="lang" data-lang="he">HE</button>
-      <!-- DM: evrensel ve stabil -->
       <a class="btn" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=dm_button" rel="noopener">DM</a>
       <button class="burger" id="burger" aria-label="Menü" aria-expanded="false">☰</button>
     </div>
@@ -173,7 +172,12 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
     <p data-i18n="heroSub">El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.</p>
     <div class="ctas">
       <a href="#works" class="btn" data-i18n="ctaWorks">Çalışmaları Keşfet</a>
-      <a href="https://www.instagram.com/eurekastudio3/" class="btn" target="_blank" rel="noopener">@eurekastudio3</a>
+      <!-- Instagram garantili açılış -->
+      <a href="https://www.instagram.com/eurekastudio3/"
+         class="btn"
+         data-ext="https://www.instagram.com/eurekastudio3/"
+         rel="noopener noreferrer"
+      >@eurekastudio3</a>
     </div>
   </div>
 </section>
@@ -342,7 +346,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   (function(){
     const img=document.getElementById('logo');
     const text=document.querySelector('.logo-text');
-    const list=['./logo.png1.PNG?v=9','./logo.png1.png?v=9','./logo.PNG?v=9','./logo.png?v=9','./logo.jpg?v=9'];
+    const list=['./logo.png1.PNG?v=10','./logo.png1.png?v=10','./logo.PNG?v=10','./logo.png?v=10','./logo.jpg?v=10'];
     (function trySrc(i=0){ if(i>=list.length){ text.style.display='inline'; return; }
       const test=new Image(); test.onload=()=>{ img.src=list[i]; img.style.display='block'; text.style.display='none'; };
       test.onerror=()=>trySrc(i+1); test.src=list[i];
@@ -371,7 +375,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.sheet a[data-close]').forEach(a=>a.addEventListener('click',closeSheet));
   document.addEventListener('keydown',e=>{ if(e.key==='Escape' && sheetHost.classList.contains('open')) closeSheet(); });
 
-  /* Filtreler */
+  /* Galeri filtreleri */
   const btns=[...document.querySelectorAll('.filter')];
   function apply(cat){ document.querySelectorAll('#grid .item').forEach(card=>{ card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';}); }
   btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.setAttribute('aria-selected','false')); b.setAttribute('aria-selected','true'); apply(b.dataset.cat);}));
@@ -384,6 +388,16 @@ window.addEventListener('DOMContentLoaded',()=>{
       const fixed=s.replace(/\.jpg\.jpg$/i,'.jpg').replace(/\.png\.jpg$/i,'.jpg').replace(/\.JPG$/g,'.jpg').replace(/\.PNG$/g,'.png');
       if(fixed!==this.src){ this.src=fixed+(fixed.includes('?')?'':'?v='+Date.now()); return; }
       this.removeEventListener('error',handler);
+    });
+  });
+
+  /* Instagram dış linkleri — garanti aç */
+  document.querySelectorAll('[data-ext]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const url=a.getAttribute('data-ext');
+      const w=window.open(url,'_blank','noopener');
+      if(!w){ location.href=url; }
     });
   });
 
