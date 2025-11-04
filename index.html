@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://www.eurekastudio.org/">
 <meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero.JPG">
 
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=20" fetchpriority="high">
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=21" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -42,9 +42,9 @@ section,footer{padding:48px 6%}
   transition:background .25s ease, box-shadow .25s ease}
 .nav.scrolled{background:color-mix(in srgb,var(--bg) 97%,#fff 3%);box-shadow:0 8px 24px rgba(0,0,0,.10)}
 .nav .wrap{max-width:1200px;margin:0 auto;padding:10px 6%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
-.brand{display:inline-grid;grid-auto-flow:column;gap:10px;align-items:center;font-family:Fraunces,serif;font-weight:700}
-.brand img{height:40px;display:none}
-.brand span{white-space:nowrap}
+.brand{display:inline-grid;grid-auto-flow:column;gap:10px;align-items:center}
+.brand .logo-img{height:32px;width:auto;display:none}
+.brand .logo-text{font-family:Fraunces,serif;font-weight:700;letter-spacing:.04em;white-space:nowrap}
 .menu{justify-self:center}
 .menu ul{list-style:none;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
 .menu a{position:relative;padding:10px 8px;font-weight:700}
@@ -56,10 +56,10 @@ section,footer{padding:48px 6%}
 .burger{height:var(--capH);width:var(--capH);border:1px solid var(--line);background:var(--panel);border-radius:12px;font-size:26px;display:none}
 @media(max-width:1024px){.menu{display:none}.burger{display:inline-grid}}
 
-/* Mobile panel */
-.panel{position:fixed;inset:0;z-index:1100;display:none}
-.panel.open{display:block}
-.backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px)}
+/* Mobile sheet — layout kaymasını engelle */
+.sheet-host{position:fixed;inset:0;z-index:1100;display:none}
+.sheet-host.open{display:block}
+.sheet-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px)}
 .sheet{position:absolute;right:0;top:0;height:100%;width:min(82vw,380px);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);padding:16px}
 .sheet .menu ul{flex-direction:column;gap:6px}
 .sheet .menu a{display:block;border:1px solid var(--line);border-radius:10px;padding:14px 10px}
@@ -67,7 +67,7 @@ section,footer{padding:48px 6%}
 
 /* HERO */
 .hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;color:#fff;text-align:center;border-bottom:1px solid var(--line);
-  background-image:url("./home-candles-hero.JPG?v=20");background-size:cover;background-position:center 50%}
+  background-image:url("./home-candles-hero.JPG?v=21");background-size:cover;background-position:center 50%}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.80), rgba(0,0,0,.62) 45%, rgba(0,0,0,.55))}
 .hero .inner{position:relative;z-index:1;max-width:900px}
 .hero h1{font-family:Fraunces,serif;font-weight:700;font-size:clamp(24px,5.2vw,38px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.55)}
@@ -130,8 +130,8 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 <nav class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#home" aria-label="Eureka Studio">
-      <img id="logo" alt="Eureka Studio logosu" width="140" height="40">
-      <span>EUREKA STUDIO</span>
+      <img class="logo-img" id="logo" alt="Eureka Studio logosu" width="120" height="32">
+      <span class="logo-text">EUREKA STUDIO</span>
     </a>
 
     <div class="menu" role="navigation" aria-label="Site">
@@ -148,30 +148,30 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <button class="lang" data-lang="en">EN</button>
       <button class="lang" data-lang="tr">TR</button>
       <button class="lang" data-lang="he">HE</button>
-      <a class="btn" href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener" data-ig="profile">@IG</a>
-      <a class="btn" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener" data-ig="dm">DM</a>
+      <!-- IG butonu kaldırıldı -->
+      <a class="btn" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener" aria-label="Instagram DM">DM</a>
       <button class="burger" id="burger" aria-label="Menü" aria-expanded="false">☰</button>
     </div>
   </div>
+</nav>
 
-  <!-- Mobile panel -->
-  <div class="panel" id="panel" aria-hidden="true">
-    <div class="backdrop" data-close></div>
-    <div class="sheet">
-      <div class="menu" role="dialog" aria-modal="true" aria-label="Mobil Menü">
-        <ul>
-          <li><a href="#home" data-close data-i18n="navHome">Ana Sayfa</a></li>
-          <li><a href="#about" data-close data-i18n="navAbout">Hakkımızda</a></li>
-          <li><a href="#works" data-close data-i18n="navWorks">Çalışmalar</a></li>
-          <li><a href="#instagram" data-close data-i18n="navInstagram">Instagram</a></li>
-          <li><a href="#contact" data-close data-i18n="navContact">İletişim</a></li>
-          <li><a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener" data-ig="profile">Instagram Profil</a></li>
-          <li><a href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener" data-ig="dm">Instagram DM</a></li>
-        </ul>
-      </div>
+<!-- Mobile sheet: nav dışına alındı ki layout hiç değişmesin -->
+<div class="sheet-host" id="sheetHost" aria-hidden="true">
+  <div class="sheet-backdrop" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="Mobil Menü">
+    <div class="menu">
+      <ul>
+        <li><a href="#home" data-close data-i18n="navHome">Ana Sayfa</a></li>
+        <li><a href="#about" data-close data-i18n="navAbout">Hakkımızda</a></li>
+        <li><a href="#works" data-close data-i18n="navWorks">Çalışmalar</a></li>
+        <li><a href="#instagram" data-close data-i18n="navInstagram">Instagram</a></li>
+        <li><a href="#contact" data-close data-i18n="navContact">İletişim</a></li>
+        <li><a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">Instagram Profil</a></li>
+        <li><a href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener">Instagram DM</a></li>
+      </ul>
     </div>
   </div>
-</nav>
+</div>
 
 <!-- HERO -->
 <section id="home" class="hero" aria-labelledby="heroTitle">
@@ -180,7 +180,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
     <p data-i18n="heroSub">El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.</p>
     <div class="ctas">
       <a href="#works" class="btn" data-i18n="ctaWorks">Çalışmaları Keşfet</a>
-      <a href="https://www.instagram.com/eurekastudio3/" class="btn" target="_blank" rel="noopener" data-ig="profile">@eurekastudio3</a>
+      <a href="https://www.instagram.com/eurekastudio3/" class="btn" target="_blank" rel="noopener">@eurekastudio3</a>
     </div>
   </div>
 </section>
@@ -229,13 +229,7 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
     <!-- Candles -->
     <figure class="item" data-cat="candles"><div class="thumb"><img src="./caramel-crumble.JPG" alt="Caramel Crumble — soya mumu"></div><figcaption data-i18n="capCaramel">Caramel Crumble</figcaption></figure>
     <figure class="item" data-cat="candles"><div class="thumb"><img src="./choco-cream.JPG" alt="Choco Cream — soya mumu"></div><figcaption data-i18n="capChoco">Choco Cream</figcaption></figure>
-
-    <!-- YENİ: eureka.coffee.JPG -->
-    <figure class="item" data-cat="candles">
-      <div class="thumb"><img src="./eureka.coffee.JPG" alt="Eureka Coffee — kahve notalı soya mumu"></div>
-      <figcaption data-i18n="capCoffee">Eureka Coffee</figcaption>
-    </figure>
-
+    <figure class="item" data-cat="candles"><div class="thumb"><img src="./eureka.coffee.JPG" alt="Eureka Coffee — kahve notalı soya mumu"></div><figcaption data-i18n="capCoffee">Eureka Coffee</figcaption></figure>
     <figure class="item" data-cat="candles"><div class="thumb"><img src="./eureka.woodland.JPG" alt="Woodland — doğal notalara sahip mum"></div><figcaption data-i18n="woodlandCap">Woodland Mum</figcaption></figure>
     <figure class="item" data-cat="epoxy"><div class="thumb"><img src="./golden-noir.PNG" alt="Golden Noir — epoksi"></div><figcaption data-i18n="capGoldenNoir">Golden Noir (Epoksi)</figcaption></figure>
     <figure class="item" data-cat="candles"><div class="thumb"><img src="./summer-cocktail.JPG" alt="Summer Cocktail — soya mumu"></div><figcaption data-i18n="capSummer">Summer Cocktail</figcaption></figure>
@@ -255,12 +249,12 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
   <h2 id="igTitle" style="font-family:Fraunces,serif" data-i18n="igTitle">Instagram’dan</h2>
   <p class="muted" data-i18n="igLead">Sakin üretim sürecimizi ve paylaşımlarımızı takip et.</p>
   <div class="ig-grid">
-    <a class="ig" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener" data-ig="profile"><img src="./eureka.coffee.JPG" alt="Instagram — Eureka Coffee"></a>
-    <a class="ig" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener" data-ig="profile"><img src="./choco-cream.JPG" alt="Instagram — Choco Cream"></a>
-    <a class="ig" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener" data-ig="profile"><img src="./sunset-orange.JPG" alt="Instagram — Sunset Orange"></a>
-    <a class="ig" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener" data-ig="profile"><img src="./eureka.lumi.JPG" alt="Instagram — Lumi"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./eureka.coffee.JPG" alt="Instagram — Eureka Coffee"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./choco-cream.JPG" alt="Instagram — Choco Cream"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./sunset-orange.JPG" alt="Instagram — Sunset Orange"></a>
+    <a href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=iggrid" target="_blank" rel="noopener"><img src="./eureka.lumi.JPG" alt="Instagram — Lumi"></a>
   </div>
-  <div style="text-align:center"><a class="btn" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=button" target="_blank" rel="noopener" data-ig="profile">@eurekastudio3’ü Takip Et</a></div>
+  <div style="text-align:center"><a class="btn" href="https://www.instagram.com/eurekastudio3/?utm_source=site&utm_medium=button" target="_blank" rel="noopener">@eurekastudio3’ü Takip Et</a></div>
 </section>
 
 <!-- CONTACT -->
@@ -293,13 +287,13 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
     </form>
   </div>
   <p style="margin-top:14px"><strong data-i18n="emailLabel">E-posta:</strong> <a href="mailto:eddyeswork@gmail.com">eddyeswork@gmail.com</a></p>
-  <p><strong data-i18n="instagramLabel">Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener" data-ig="profile">@eurekastudio3</a></p>
+  <p><strong data-i18n="instagramLabel">Instagram:</strong> <a href="https://www.instagram.com/eurekastudio3/" target="_blank" rel="noopener">@eurekastudio3</a></p>
 </section>
 
 <footer><p data-i18n="footerText">© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p></footer>
 
 <script>
-/* Metinler */
+/* I18N */
 const I18N={
 tr:{navHome:"Ana Sayfa",navAbout:"Hakkımızda",navWorks:"Çalışmalar",navInstagram:"Instagram",navContact:"İletişim",
 heroTitle:"Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar",heroSub:"El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.",ctaWorks:"Çalışmaları Keşfet",
@@ -309,7 +303,7 @@ storyTitle:"Hikâyemiz",storyText:"Bir notayı gereğinden fazla uzatmayan, doğ
 igTitle:"Instagram’dan",igLead:"Sakin üretim sürecimizi ve paylaşımlarımızı takip et.",igFollow:"@eurekastudio3’ü Takip Et",
 worksTitle:"Galeri",worksLead:"Her parça; formu, kokusu ve duygusuyla benzersiz.",
 fAll:"Tümü",fCandles:"Mumlar",fEpoxy:"Epoksi",fAccessories:"Aksesuarlar",
-capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoksi)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Mum",capCoffee:"Eureka Coffee",
+capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoksi)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Mum",capCoffee:"Eureka Coffee",
 contactTitle:"Birlikte güzel şeyler yaratalım",contactLead:"Özel siparişler, işbirlikleri veya sadece merhaba demek için.",
 labelName:"İsim",labelEmail:"E-posta",labelMessage:"Mesaj",btnSend:"Gönder",
 thanksText:"Teşekkürler! Mesajınız ulaştı.",phName:"İsminiz",phEmail:"you@example.com",phMessage:"Fikrinizi bize yazın…",
@@ -322,7 +316,7 @@ storyTitle:"Our Story",storyText:"Understated, warm, sincere since our first pou
 igTitle:"From Instagram",igLead:"Follow our calm making process and shares.",igFollow:"Follow @eurekastudio3",
 worksTitle:"Gallery",worksLead:"Each piece is unique in form, scent and feeling.",
 fAll:"All",fCandles:"Candles",fEpoxy:"Epoxy",fAccessories:"Accessories",
-capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoxy)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"Pet Tags",capPetTag2:"Pet Tags (Alt)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Candle",capCoffee:"Eureka Coffee",
+capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (Epoxy)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland Candle",capCoffee:"Eureka Coffee",
 contactTitle:"Let’s Create Beautiful Things",contactLead:"For custom orders, collabs or just to say hi.",
 labelName:"Name",labelEmail:"Email",labelMessage:"Message",btnSend:"Send",
 thanksText:"Thanks! Your message was received.",phName:"Your name",phEmail:"you@example.com",phMessage:"Tell us your idea…",
@@ -335,60 +329,75 @@ storyTitle:"הסיפור שלנו",storyText:"יצירה צנועה וחמה מ�
 igTitle:"מהאינסטגרם",igLead:"עקבו אחרי תהליך היצירה והשיתופים שלנו.",igFollow:"עקבו אחרי @eurekastudio3",
 worksTitle:"גלריה",worksLead:"כל יצירה ייחודית בצורה, בריח ובהרגשה.",
 fAll:"הכול",fCandles:"נרות",fEpoxy:"אפוקסי",fAccessories:"אביזרים",
-capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (אפוקסי)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capPetTag1:"תגי חיות",capPetTag2:"תגי חיות (חלופי)",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland נר",capCoffee:"Eureka Coffee",
+capCaramel:"Caramel Crumble",capChoco:"Choco Cream",capGoldenNoir:"Golden Noir (אפוקסי)",capSummer:"Summer Cocktail",capSunset:"Sunset Orange",capBedside:"Bedside Calm",capAssorted:"Assorted Candles",capEvilEye:"Evil Eye Candle",capBoard:"Epoxy Board",capLumi:"Eureka Lumi Collection",woodlandCap:"Woodland נר",capCoffee:"Eureka Coffee",
 contactTitle:"בואו ניצור דברים יפים",contactLead:"להזמנות מותאמות או לשיתוף פעולה.",
 labelName:"שם",labelEmail:"אימייל",labelMessage:"הודעה",btnSend:"שליחה",
 thanksText:"תודה! ההודעה התקבלה.",phName:"השם שלך",phEmail:"you@example.com",phMessage:"ספרו לנו על הרעיון…",
 sending:"נשלח…",emailLabel:"אימייל:",instagramLabel:"אינסטגרם:",footerText:"© 2025 Eureka Studio — מעשה יד באהבה וברוגע."}
 };
 
-function applyI18n(lang){
+function setLang(lang){
   const t=I18N[lang]||I18N.tr;
   document.documentElement.lang=lang;
   document.documentElement.dir=(lang==='he')?'rtl':'ltr';
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(t[k]!=null) el.textContent=t[k];});
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.dataset.i18nPh; if(t[k]!=null) el.setAttribute('placeholder',t[k]);});
+  try{localStorage.setItem('eureka_lang',lang)}catch(e){}
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-  /* Logo auto */
+  /* Logo: resim bulunursa göster, yoksa yazı kalsın */
   (function(){
     const img=document.getElementById('logo');
-    const list=['./logo.png1.PNG?v=4','./logo.png1.png?v=4','./logo.PNG?v=4','./logo.png?v=4','./logo.jpg?v=4'];
-    (function trySrc(i=0){ if(i>=list.length){return;} const test=new Image(); test.onload=()=>{img.src=list[i]; img.style.display='block';}; test.onerror=()=>trySrc(i+1); test.src=list[i]; })();
+    const text=document.querySelector('.logo-text');
+    const list=['./logo.png1.PNG?v=5','./logo.png1.png?v=5','./logo.PNG?v=5','./logo.png?v=5','./logo.jpg?v=5'];
+    (function trySrc(i=0){
+      if(i>=list.length){ text.style.display='inline'; return; }
+      const test=new Image();
+      test.onload=()=>{ img.src=list[i]; img.style.display='block'; text.style.display='none'; };
+      test.onerror=()=>trySrc(i+1);
+      test.src=list[i];
+    })();
   })();
 
-  /* Scroll state + active link */
+  /* Scroll state + aktif link */
   const nav=document.getElementById('nav');
   const links=[...document.querySelectorAll('.menu a[data-nav]')];
   const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
   function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8); let idx=0; secs.forEach((s,i)=>{if(s && s.getBoundingClientRect().top<=110) idx=i;}); links.forEach(a=>a.removeAttribute('aria-current')); if(links[idx]) links[idx].setAttribute('aria-current','true');}
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-  /* Language */
-  document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>{applyI18n(b.dataset.lang); try{localStorage.setItem('eureka_lang',b.dataset.lang)}catch(e){}; plausible&&plausible('Language Switch',{props:{lang:b.dataset.lang}})}));
-  applyI18n(localStorage.getItem('eureka_lang')||'tr');
+  /* Dil */
+  document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang); plausible&&plausible('Language Switch',{props:{lang:b.dataset.lang}})}));
+  setLang(localStorage.getItem('eureka_lang')||'tr');
 
-  /* Hamburger */
+  /* HAMBURGER: layout kayması yok */
   const burger=document.getElementById('burger');
-  const panel=document.getElementById('panel');
-  function open(){panel.classList.add('open'); panel.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden';}
-  function close(){panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); document.body.style.overflow='';}
-  burger.addEventListener('click',()=> panel.classList.contains('open')?close():open());
-  panel.addEventListener('click',e=>{ if(e.target.hasAttribute('data-close')||e.target.getAttribute('href')?.startsWith('#')) close();});
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && panel.classList.contains('open')) close();});
+  const sheetHost=document.getElementById('sheetHost');
 
-  /* IG safe open */
-  function safeOpen(url){ try{window.open(url,'_blank','noopener');}catch(e){location.href=url;} }
-  document.querySelectorAll('[data-ig]').forEach(el=>el.addEventListener('click',e=>{ const href=el.getAttribute('href'); if(href&&href.startsWith('http')){ e.preventDefault(); safeOpen(href); plausible&&plausible('Instagram Click',{props:{type:el.dataset.ig}}); } }));
+  function scrollbarW(){return window.innerWidth - document.documentElement.clientWidth;}
+  function openSheet(){
+    sheetHost.classList.add('open'); sheetHost.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true');
+    // Sadece masaüstünde scrollbar kaymasını telafi et
+    const sw=scrollbarW(); if(sw>0){ document.documentElement.style.setProperty('--pr',''+sw+'px'); document.body.style.paddingRight='var(--pr)'; }
+    document.body.style.overflow='hidden';
+  }
+  function closeSheet(){
+    sheetHost.classList.remove('open'); sheetHost.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false');
+    document.body.style.overflow=''; document.body.style.paddingRight='';
+  }
+  burger.addEventListener('click',()=> sheetHost.classList.contains('open')?closeSheet():openSheet());
+  sheetHost.addEventListener('click',e=>{ if(e.target.matches('[data-close], .sheet-host')) closeSheet(); });
+  document.querySelectorAll('.sheet a[data-close]').forEach(a=>a.addEventListener('click',closeSheet));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && sheetHost.classList.contains('open')) closeSheet(); });
 
-  /* Filters */
+  /* Filtreler */
   const btns=[...document.querySelectorAll('.filter')];
   function apply(cat){ document.querySelectorAll('#grid .item').forEach(card=>{ card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';}); }
   btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.setAttribute('aria-selected','false')); b.setAttribute('aria-selected','true'); apply(b.dataset.cat);}));
   apply('all');
 
-  /* Img extension fixer (double .jpg vs) */
+  /* Img uzantı düzeltici */
   document.querySelectorAll('img').forEach(el=>{
     el.addEventListener('error',function handler(){
       let s=this.getAttribute('src')||this.src;
