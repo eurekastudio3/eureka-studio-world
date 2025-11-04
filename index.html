@@ -13,12 +13,11 @@
 <meta property="og:url" content="https://www.eurekastudio.org/">
 <meta property="og:image" content="https://www.eurekastudio.org/home-candles-hero.JPG">
 
-<link rel="preload" as="image" href="./home-candles-hero.JPG?v=21" fetchpriority="high">
+<link rel="preload" as="image" href="./home-candles-hero.JPG?v=22" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;600;700&family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- Plausible -->
 <script defer data-domain="eurekastudio.org" src="https://plausible.io/js/script.js"></script>
 <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 
@@ -45,29 +44,32 @@ section,footer{padding:48px 6%}
 .brand{display:inline-grid;grid-auto-flow:column;gap:10px;align-items:center}
 .brand .logo-img{height:32px;width:auto;display:none}
 .brand .logo-text{font-family:Fraunces,serif;font-weight:700;letter-spacing:.04em;white-space:nowrap}
-.menu{justify-self:center}
-.menu ul{list-style:none;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.menu a{position:relative;padding:10px 8px;font-weight:700}
-.menu a::after{content:"";position:absolute;left:18%;right:18%;bottom:4px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-strong),var(--brand),transparent);transform:scaleX(0);transition:transform .25s}
-.menu a:hover::after,.menu a[aria-current="true"]::after{transform:scaleX(1)}
+
+/* SADECE ana menü için .main sınıfını kullanıyoruz */
+.menu.main{justify-self:center}
+.menu.main ul{list-style:none;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.menu.main a{position:relative;padding:10px 8px;font-weight:700}
+.menu.main a::after{content:"";position:absolute;left:18%;right:18%;bottom:4px;height:2px;background:linear-gradient(90deg,transparent,var(--brand-strong),var(--brand),transparent);transform:scaleX(0);transition:transform .25s}
+.menu.main a:hover::after,.menu.main a[aria-current="true"]::after{transform:scaleX(1)}
 .actions{display:inline-grid;grid-auto-flow:column;gap:8px;align-items:center}
 .lang{height:var(--capH);min-width:var(--capH);padding:0 14px;border:1px solid var(--line);background:var(--panel);border-radius:999px;font-weight:800}
 .btn{height:var(--capH);min-width:var(--capH);padding:0 14px;border:1px solid var(--brand-strong);background:linear-gradient(180deg,var(--brand),var(--brand-strong));color:#fff;border-radius:999px;font-weight:800}
 .burger{height:var(--capH);width:var(--capH);border:1px solid var(--line);background:var(--panel);border-radius:12px;font-size:26px;display:none}
-@media(max-width:1024px){.menu{display:none}.burger{display:inline-grid}}
+@media(max-width:1024px){.menu.main{display:none}.burger{display:inline-grid}}
 
-/* Mobile sheet — layout kaymasını engelle */
+/* Mobile sheet */
 .sheet-host{position:fixed;inset:0;z-index:1100;display:none}
 .sheet-host.open{display:block}
 .sheet-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(2px)}
-.sheet{position:absolute;right:0;top:0;height:100%;width:min(82vw,380px);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);padding:16px}
-.sheet .menu ul{flex-direction:column;gap:6px}
-.sheet .menu a{display:block;border:1px solid var(--line);border-radius:10px;padding:14px 10px}
+.sheet{position:absolute;right:0;top:0;height:100%;width:min(82vw,380px);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);padding:16px;overflow:auto}
+.sheet .menu{display:block}              /* <-- çekmece menüsü görünsün */
+.sheet .menu ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.sheet .menu a{display:block;border:1px solid var(--line);border-radius:10px;padding:14px 10px;font-weight:600}
 .sheet .menu a::after{display:none}
 
 /* HERO */
 .hero{position:relative;min-height:70svh;display:grid;place-items:center;padding:40px 6%;color:#fff;text-align:center;border-bottom:1px solid var(--line);
-  background-image:url("./home-candles-hero.JPG?v=21");background-size:cover;background-position:center 50%}
+  background-image:url("./home-candles-hero.JPG?v=22");background-size:cover;background-position:center 50%}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.80), rgba(0,0,0,.62) 45%, rgba(0,0,0,.55))}
 .hero .inner{position:relative;z-index:1;max-width:900px}
 .hero h1{font-family:Fraunces,serif;font-weight:700;font-size:clamp(24px,5.2vw,38px);line-height:1.12;margin-bottom:.4em;text-shadow:0 3px 10px rgba(0,0,0,.55)}
@@ -93,7 +95,6 @@ section,footer{padding:48px 6%}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .filter{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:600}
 .filter:hover,.filter[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
-/* Kare grid: mobil 2 / desktop 3 */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
 @media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
 .item{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
@@ -134,7 +135,8 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <span class="logo-text">EUREKA STUDIO</span>
     </a>
 
-    <div class="menu" role="navigation" aria-label="Site">
+    <!-- ANA MENÜ -->
+    <div class="menu main" role="navigation" aria-label="Site">
       <ul>
         <li><a href="#home" data-nav data-i18n="navHome">Ana Sayfa</a></li>
         <li><a href="#about" data-nav data-i18n="navAbout">Hakkımızda</a></li>
@@ -148,14 +150,13 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
       <button class="lang" data-lang="en">EN</button>
       <button class="lang" data-lang="tr">TR</button>
       <button class="lang" data-lang="he">HE</button>
-      <!-- IG butonu kaldırıldı -->
       <a class="btn" href="https://ig.me/m/eurekastudio3" target="_blank" rel="noopener" aria-label="Instagram DM">DM</a>
       <button class="burger" id="burger" aria-label="Menü" aria-expanded="false">☰</button>
     </div>
   </div>
 </nav>
 
-<!-- Mobile sheet: nav dışına alındı ki layout hiç değişmesin -->
+<!-- Mobile sheet (nav dışında) -->
 <div class="sheet-host" id="sheetHost" aria-hidden="true">
   <div class="sheet-backdrop" data-close></div>
   <div class="sheet" role="dialog" aria-modal="true" aria-label="Mobil Menü">
@@ -293,9 +294,8 @@ footer{background:color-mix(in srgb,var(--bg) 92%,#fff 8%);border-top:1px solid 
 <footer><p data-i18n="footerText">© 2025 Eureka Studio — Özen ve huzurla el yapımıdır.</p></footer>
 
 <script>
-/* I18N */
-const I18N={
-tr:{navHome:"Ana Sayfa",navAbout:"Hakkımızda",navWorks:"Çalışmalar",navInstagram:"Instagram",navContact:"İletişim",
+/* I18N sözlüğü (kısaltılmadı) */
+const I18N={tr:{navHome:"Ana Sayfa",navAbout:"Hakkımızda",navWorks:"Çalışmalar",navInstagram:"Instagram",navContact:"İletişim",
 heroTitle:"Eureka Studio — El Yapımı Mumlar & Sakin Tasarımlar",heroSub:"El dökümü soya mumları ve epoksi tasarımlar — minimal, sıcak ve özenle üretilir.",ctaWorks:"Çalışmaları Keşfet",
 aboutTitle:"Sakin. El emeği. Duyarlı.",aboutLead:"Eureka Studio, gündelik hayatın telaşını yumuşatan küçük ritüellere inanır. Her mumu ve her epoksi parçayı; ışığın, kokunun ve dokunun denge hâlini hatırlatması için tasarlıyoruz.",
 valuesTitle:"Değerlerimiz",valuesText:"Her parça; dürüst malzeme, yavaş üretim ve uzun ömürlü kullanım için tasarlanır.",
@@ -346,11 +346,11 @@ function setLang(lang){
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-  /* Logo: resim bulunursa göster, yoksa yazı kalsın */
+  /* Logo fallback */
   (function(){
     const img=document.getElementById('logo');
     const text=document.querySelector('.logo-text');
-    const list=['./logo.png1.PNG?v=5','./logo.png1.png?v=5','./logo.PNG?v=5','./logo.png?v=5','./logo.jpg?v=5'];
+    const list=['./logo.png1.PNG?v=6','./logo.png1.png?v=6','./logo.PNG?v=6','./logo.png?v=6','./logo.jpg?v=6'];
     (function trySrc(i=0){
       if(i>=list.length){ text.style.display='inline'; return; }
       const test=new Image();
@@ -360,9 +360,9 @@ window.addEventListener('DOMContentLoaded',()=>{
     })();
   })();
 
-  /* Scroll state + aktif link */
+  /* Scroll state + active link */
   const nav=document.getElementById('nav');
-  const links=[...document.querySelectorAll('.menu a[data-nav]')];
+  const links=[...document.querySelectorAll('.menu.main a[data-nav]')];
   const secs=['home','about','works','instagram','contact'].map(id=>document.getElementById(id));
   function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8); let idx=0; secs.forEach((s,i)=>{if(s && s.getBoundingClientRect().top<=110) idx=i;}); links.forEach(a=>a.removeAttribute('aria-current')); if(links[idx]) links[idx].setAttribute('aria-current','true');}
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
@@ -371,14 +371,13 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>{setLang(b.dataset.lang); plausible&&plausible('Language Switch',{props:{lang:b.dataset.lang}})}));
   setLang(localStorage.getItem('eureka_lang')||'tr');
 
-  /* HAMBURGER: layout kayması yok */
+  /* HAMBURGER çekmece */
   const burger=document.getElementById('burger');
   const sheetHost=document.getElementById('sheetHost');
 
   function scrollbarW(){return window.innerWidth - document.documentElement.clientWidth;}
   function openSheet(){
     sheetHost.classList.add('open'); sheetHost.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true');
-    // Sadece masaüstünde scrollbar kaymasını telafi et
     const sw=scrollbarW(); if(sw>0){ document.documentElement.style.setProperty('--pr',''+sw+'px'); document.body.style.paddingRight='var(--pr)'; }
     document.body.style.overflow='hidden';
   }
@@ -387,7 +386,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     document.body.style.overflow=''; document.body.style.paddingRight='';
   }
   burger.addEventListener('click',()=> sheetHost.classList.contains('open')?closeSheet():openSheet());
-  sheetHost.addEventListener('click',e=>{ if(e.target.matches('[data-close], .sheet-host')) closeSheet(); });
+  sheetHost.addEventListener('click',e=>{ if(e.target.matches('[data-close], .sheet-backdrop')) closeSheet(); });
   document.querySelectorAll('.sheet a[data-close]').forEach(a=>a.addEventListener('click',closeSheet));
   document.addEventListener('keydown',e=>{ if(e.key==='Escape' && sheetHost.classList.contains('open')) closeSheet(); });
 
